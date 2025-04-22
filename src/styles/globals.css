@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import "./reset.css";
+
+@theme {
+  --color-background: #0e0f1c;
+  --color-background-hover: #2f31454a;
+  --color-primary: #f8f9fa;
+  --color-accent: #6da2ff;
+  --color-muted: #aaafc3;
+  --color-highlight: #6da2ff;
+  --color-border: #2a2d3a;
+  --color-accessibility: #ffca6d;
+
+  --font-inter: var(--font-inter), sans-serif;
+
+  --spacing-screen-xl: 1280px;
+
+  --shadow-navbar: 0 15px 25px 0px var(--tw-shadow-color, rgb(0 0 0 / 0.3));
+}
+
+@layer base {
+  *:focus-visible {
+    @apply outline-accessibility;
+  }
+}
