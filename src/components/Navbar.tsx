@@ -1,43 +1,13 @@
-"use client";
-
 import { ROUTES } from "@/routes/routes";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 
 export const Navbar = () => {
-  const [show, setShow] = useState(true);
-  const [minify, setMinify] = useState(false);
-  const prevPos = useRef(0);
-
-  const handleScroll = () => {
-    const currPos = window.scrollY;
-    const nextShow = currPos < prevPos.current || currPos < 80;
-    setShow(nextShow);
-    prevPos.current = currPos;
-
-    if (nextShow === false) {
-      setMinify(true);
-    } else if (currPos === 0) {
-      setMinify(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <header
       className={clsx(
-        "fixed left-0 top-0 w-screen px-5 transition-transform lg:px-11",
-        {
-          "-translate-y-full": !show,
-          "shadow-navbar py-3 lg:py-2": minify,
-          "py-5": !minify,
-        },
+        "border-border fixed left-0 top-0 w-screen border-b px-5 py-3 transition-transform lg:px-11",
       )}
     >
       <nav className="flex items-center justify-between gap-x-10">
