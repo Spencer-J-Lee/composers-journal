@@ -7,6 +7,7 @@ import { SkipToContent } from "@/components/common/SkipToContent";
 import "../styles/reset.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";
+import { Footer } from "@/components/Footer";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({
         <SkipToContent />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
