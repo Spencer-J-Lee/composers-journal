@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { inter } from "@/styles/fonts";
+import { Navbar } from "@/components/Navbar";
+import { SkipToContent } from "@/components/common/SkipToContent";
 
 import "../styles/reset.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";
-import { Navbar } from "@/components/Navbar";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} bg-background text-primary min-h-screen antialiased`}
       >
+        <SkipToContent />
         <Navbar />
         <div className="h-[3000px]"></div>
         {children}
