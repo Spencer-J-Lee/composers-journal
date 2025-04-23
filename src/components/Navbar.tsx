@@ -2,12 +2,14 @@ import { ROUTES } from "@/routes/routes";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { ELEMENT_IDS } from "./common/constants/elementIds";
 
 export const Navbar = () => {
   return (
     <header
+      id={ELEMENT_IDS.NAVBAR}
       className={clsx(
-        "border-border fixed left-0 top-0 w-screen border-b px-5 py-3 transition-transform lg:px-11",
+        "border-border z-navbar bg-background sticky left-0 right-0 top-0 h-[--navbar-height] border-b px-5 py-3 transition-transform lg:px-11",
       )}
     >
       <nav className="flex items-center justify-between gap-x-10">

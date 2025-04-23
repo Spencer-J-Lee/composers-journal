@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "./reset.css";
 
 @theme {
   --color-background: #1b1b1b;
@@ -17,7 +16,7 @@
 
   --spacing-screen-xl: 1280px;
 
-  --shadow-navbar: 0 15px 25px 0px var(--tw-shadow-color, rgb(0 0 0 / 0.3));
+  --navbar-height: 60px;
 }
 
 @layer base {
@@ -25,3 +24,6 @@
     @apply outline-accessibility;
   }
 }
+
+@import "./reset.css";
+@import "./utilities.css";

@@ -22,11 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} bg-background text-primary min-h-screen antialiased`}
+        className={`${inter.variable} bg-background text-primary h-auto min-h-screen antialiased`}
       >
         <SkipToContent />
         <Navbar />
-        <div className="h-[3000px]"></div>
         {children}
       </body>
     </html>
