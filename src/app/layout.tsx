@@ -5,6 +5,7 @@ import { inter } from "@/styles/fonts";
 import "../styles/reset.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";
+import { Navbar } from "@/components/Navbar";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
@@ -19,7 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body
+        className={`${inter.variable} bg-background text-primary min-h-screen antialiased`}
+      >
+        <Navbar />
+        <div className="h-[3000px]"></div>
+        {children}
+      </body>
     </html>
   );
 }
