@@ -9,13 +9,13 @@ export const Navbar = () => {
     <header
       id={ELEMENT_IDS.NAVBAR}
       className={clsx(
-        "border-border z-navbar bg-background sticky left-0 right-0 top-0 h-[--navbar-height] border-b px-5 py-3 transition-transform lg:px-11",
+        "z-navbar bg-background sticky left-0 right-0 top-0 h-[--navbar-height] px-5 py-3 shadow-sm transition-transform lg:px-11",
       )}
     >
       <nav className="flex items-center justify-between gap-x-10">
         <Link href={ROUTES.HOME} className="-m-2 block p-2">
           <Image
-            src="/assets/logo-white.png"
+            src="/assets/logo-black.png"
             alt="Composer's Toolkit logo"
             width={220}
             height={40}

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   description: "Application to help track and manage composition techniques.",
 };
 
+// TODO add favicon
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} bg-background text-primary h-auto min-h-screen antialiased`}
+        className={`${inter.variable} bg-background text-text h-auto min-h-screen antialiased`}
       >
         <SkipToContent />
         <Navbar />

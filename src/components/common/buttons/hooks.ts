@@ -13,7 +13,7 @@ export const useButtonClassname = (size: ButtonSize) => {
   }, [size]);
 
   return clsx(
-    "text-primary font-inter rounded font-medium tracking-widest transition-all bg-accent font-semibold active:brightness-90",
+    "text-text font-inter rounded font-medium tracking-widest transition-all bg-accent font-semibold active:brightness-90",
     sizeClassName,
   );
 };
