@@ -16,7 +16,7 @@ export const EntryCard = ({
   entry,
   defaultShowTags = true,
 }: EntryCardProps) => {
-  const { title, description, examples, tags } = entry;
+  const { title, description, youtube_urls, tags } = entry;
   const [showTags, setShowTags] = useState(defaultShowTags);
 
   return (
