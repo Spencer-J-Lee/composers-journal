@@ -1,14 +1,18 @@
+import { EntryCard } from "../entryCard/EntryCard";
+import { genTestResultsData } from "./testData";
+
 export const Results = () => {
+  const data = genTestResultsData(50);
+
   return (
-    <section className="flex-1">
-      <div>Showing X of X results</div>
-      <div className="grid"></div>
-      <div className="h-[900px] bg-red-500" />
-      <div className="h-20 bg-green-700" />
-      <div className="h-[900px] bg-red-500" />
-      <div className="h-20 bg-green-700" />
-      <div className="h-[900px] bg-red-500" />
-      <div className="h-20 bg-green-700" />
+    <section className="flex-1 px-8 py-5">
+      <ul className="flex flex-col gap-4">
+        {data.map((entry) => (
+          <li key={entry.title}>
+            <EntryCard entry={entry} />
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };

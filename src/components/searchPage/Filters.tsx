@@ -4,11 +4,10 @@ export const Filters = () => {
   return (
     <aside
       className={clsx(
-        "sticky top-[var(--navbar-height)] h-[calc(100vh_-_var(--navbar-height))] max-w-56 flex-1 overflow-y-auto overflow-x-hidden",
+        "bg-background sticky top-[var(--navbar-height)] h-[calc(100vh_-_var(--navbar-height))] w-72 min-w-72 overflow-y-auto overflow-x-hidden px-5 py-5 shadow-sm",
       )}
     >
-      <div className="h-[900px] bg-red-500" />
-      <div className="h-20 bg-green-700" />
+      {/* <div className="bg-background h-[1200px]" /> */}
     </aside>
   );
 };

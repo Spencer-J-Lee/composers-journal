@@ -4,6 +4,7 @@
 @theme {
   --color-background: #e6d7c3;
   --color-surface: #fffdfa;
+  --color-surface-dark: #eee7e2;
   --color-text: #1a1a1a;
   --color-text-muted: #595959;
   --color-accent: #7a4e32;
