@@ -14,23 +14,21 @@ interface EntryCardProps {
 
 export const EntryCard = ({
   entry,
-  defaultShowTags = true,
+  defaultShowTags = false,
 }: EntryCardProps) => {
-  const { title, description, youtube_urls, tags } = entry;
+  const { tags } = entry;
   const [showTags, setShowTags] = useState(defaultShowTags);
 
   return (
     <div className="bg-surface rounded shadow-sm">
       <div className="flex">
-        <EntryControls />
-
         <EntryInfo
-          title={title}
-          description={description}
-          tags={tags}
+          entry={entry}
           showTags={showTags}
           setShowTags={setShowTags}
         />
+
+        <EntryControls />
 
         <ExamplesButton />
       </div>

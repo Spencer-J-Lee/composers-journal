@@ -1,36 +1,33 @@
+import { Entry } from "@/models/Entry";
 import { Dispatch, SetStateAction } from "react";
 
 interface EntryInfoProps {
-  title: string;
-  description: string;
-  tags: string[];
+  entry: Entry;
   showTags: boolean;
   setShowTags: Dispatch<SetStateAction<boolean>>;
 }
 
-export const EntryInfo = ({
-  title,
-  description,
-  tags,
-  showTags,
-  setShowTags,
-}: EntryInfoProps) => {
+export const EntryInfo = ({ entry, showTags, setShowTags }: EntryInfoProps) => {
+  const { title, description, tags, created_at } = entry;
+  console.log(`created_at:`, created_at);
   return (
-    <div className="border-border flex flex-1 flex-col border-l px-4 pb-2 pt-4">
+    <div className="flex flex-1 flex-col px-4 pb-2 pt-4">
       {/* TODO make sure tag hierarchy is in order */}
       <h2 className="mb-1 text-xl font-semibold">{title}</h2>
       <p className="mb-2">{description}</p>
 
-      {tags.length > 0 && (
-        <div className="mt-auto self-end">
+      <div className="mt-auto flex justify-between gap-10">
+        <small>{new Date(created_at).toLocaleDateString()}</small>
+
+        {tags.length > 0 && (
           <button
             onClick={() => setShowTags((prev) => !prev)}
             className="text-accent -m-1 p-1 text-xs font-medium uppercase tracking-widest"
           >
             {showTags ? "Hide tags" : "Show tags"}
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
