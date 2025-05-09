@@ -1,4 +1,4 @@
-import { Entry } from "@/models/Entry";
+import { Entry } from "@/lib/types/Entry";
 import { Dispatch, SetStateAction } from "react";
 
 interface EntryInfoProps {

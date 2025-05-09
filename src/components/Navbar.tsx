@@ -2,7 +2,7 @@ import { ROUTES } from "@/routes/routes";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { ELEMENT_IDS } from "./common/constants/elementIds";
+import { ELEMENT_IDS } from "./shared/constants/elementIds";
 
 export const Navbar = () => {
   return (

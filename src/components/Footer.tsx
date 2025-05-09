@@ -1,4 +1,4 @@
-import { StyledLink } from "./common/StyledLink";
+import { StyledLink } from "./shared/StyledLink";
 
 export const Footer = () => {
   const genExternalLink = (text: string, href: string) => {

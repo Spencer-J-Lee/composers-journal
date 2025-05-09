@@ -2,33 +2,6 @@
 @import "./reset.css";
 
 @theme {
-  /* Greyish blue */
-  /* --color-background: #40485c;
-  --color-background-light: #5c667b;
-  --color-surface: #fafbff;
-  --color-surface-dark: #eee7e2;
-  --color-text: #1a1a1a;
-  --color-text-muted: #595959;
-  --color-accent: #7a4e32;
-  --color-border: #e1dfdc;
-  --color-danger: #a7372e;
-  --color-accessibility: #1a1a1a; */
-
-  /* Dark greyish blue */
-  /* --color-background: #242935;
-  --color-background-light: #323645;
-  --color-surface: #fafbff;
-  --color-surface-dark: #eee7e2;
-  --color-text: #1a1a1a;
-  --color-text-muted: #595959;
-  --color-accent: #2261ad;
-  --color-accent: #8462a7;
-  --color-accent: #624a3a;
-  --color-accent: #2649ba;
-  --color-border: #e1dfdc;
-  --color-danger: #a7372e;
-  --color-accessibility: #1a1a1a; */
-
   /* Caffe Latte */
   --color-background: #7a4e32;
   --color-background-light: #e6d7c3;

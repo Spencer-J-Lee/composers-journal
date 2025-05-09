@@ -1,4 +1,4 @@
-import { ButtonSize } from "@/components/common/buttons/types";
+import { ButtonSize } from "@/components/shared/buttons/types";
 import clsx from "clsx";
 import { useMemo } from "react";
 

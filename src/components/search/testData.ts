@@ -1,4 +1,4 @@
-import { Entry } from "@/models/Entry";
+import { Entry } from "@/lib/types/Entry";
 
 const cases: Entry[] = [
   {

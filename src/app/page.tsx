@@ -1,6 +1,6 @@
-import { ELEMENT_IDS } from "@/components/common/constants/elementIds";
-import { Filters } from "@/components/searchPage/Filters";
-import { Results } from "@/components/searchPage/Results";
+import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
+import { Filters } from "@/components/search/Filters";
+import { Results } from "@/components/search/Results";
 
 export default function Home() {
   return (

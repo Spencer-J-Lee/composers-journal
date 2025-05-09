@@ -1,4 +1,4 @@
-import { ENTRY_STATUSES } from "@/models/Entry";
+import { ENTRY_STATUSES } from "@/lib/types/Entry";
 import { pgTable, bigint, text, timestamp, pgEnum } from "drizzle-orm/pg-core";
 
 export const entryStatusEnum = pgEnum("entry_status", ENTRY_STATUSES);

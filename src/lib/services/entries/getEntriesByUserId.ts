@@ -1,9 +1,6 @@
 import { eq } from "drizzle-orm";
-import { db } from "../drizzle";
-import { entries } from "../drizzle/schemas/entries";
-import { entryTags } from "../drizzle/schemas/entryTags";
-import { tags } from "../drizzle/schemas/tags";
-import { Entry } from "@/models/Entry";
+import { db, entries, entryTags, tags } from "@/lib/db";
+import { Entry } from "@/lib/types/Entry";
 
 export async function getEntriesByUserId(userId: number) {
   const result = await db

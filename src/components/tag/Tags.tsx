@@ -1,5 +1,5 @@
-import { Tag } from "@/models/Tag";
-import { Chip } from "../common/Chip";
+import { Tag } from "@/lib/types/Tag";
+import { Chip } from "../shared/Chip";
 
 interface TagsProps {
   tags: Tag[];

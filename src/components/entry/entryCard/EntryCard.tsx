@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { EntryControls } from "./entryControls/EntryControls";
+import { EntryControls } from "../entryControls/EntryControls";
 import { EntryInfo } from "./EntryInfo";
 import { ExamplesButton } from "./ExamplesButton";
-import { Entry } from "@/models/Entry";
-import { Tags } from "./Tags";
+import { Entry } from "@/lib/types/Entry";
+import { Tags } from "../../tag/Tags";
 
 interface EntryCardProps {
   entry: Entry;
@@ -22,13 +22,13 @@ export const EntryCard = ({
   return (
     <div className="bg-surface rounded shadow-sm">
       <div className="flex">
+        <EntryControls />
+
         <EntryInfo
           entry={entry}
           showTags={showTags}
           setShowTags={setShowTags}
         />
-
-        <EntryControls />
 
         <ExamplesButton />
       </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { inter } from "@/styles/fonts";
 import { Navbar } from "@/components/Navbar";
-import { SkipToContent } from "@/components/common/SkipToContent";
+import { SkipToContent } from "@/components/shared/SkipToContent";
 
 import "../styles/reset.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
