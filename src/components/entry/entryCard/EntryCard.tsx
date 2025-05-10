@@ -28,12 +28,15 @@ export const EntryCard = ({
           entry={entry}
           showTags={showTags}
           setShowTags={setShowTags}
+          className="border-border border-x"
         />
 
         <ExamplesButton />
       </div>
 
-      {tags.length > 0 && showTags && <Tags tags={tags} />}
+      {tags.length > 0 && showTags && (
+        <Tags tags={tags} className="border-border border-t" />
+      )}
     </div>
   );
 };

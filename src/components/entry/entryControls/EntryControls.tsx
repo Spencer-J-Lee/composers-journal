@@ -6,7 +6,7 @@ interface EntryControlsProps {}
 
 export const EntryControls = ({}: EntryControlsProps) => {
   return (
-    <div className="text-accent flex flex-col items-center gap-0.5 p-2">
+    <div className="text-text-muted gap- flex flex-col items-center gap-1 p-2">
       <EntryControlButton icon={faStar} />
       <EntryControlButton icon={faEdit} />
       <EntryControlButton icon={faTrash} />

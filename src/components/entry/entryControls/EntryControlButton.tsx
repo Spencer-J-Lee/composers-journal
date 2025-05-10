@@ -7,7 +7,7 @@ interface EntryControlButtonProps {
 
 export const EntryControlButton = ({ icon }: EntryControlButtonProps) => {
   return (
-    <button className="bg-surface h-8 w-8 hover:brightness-[0.97] active:brightness-95">
+    <button className="bg-surface hover:bg-surface-hover hover:text-text h-8 w-8 rounded transition-colors duration-75">
       <FontAwesomeIcon icon={icon} />
     </button>
   );
