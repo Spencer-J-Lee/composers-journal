@@ -6,6 +6,7 @@ import { EntryInfo } from "./EntryInfo";
 import { ExamplesButton } from "./ExamplesButton";
 import { Entry } from "@/lib/types/Entry";
 import { Tags } from "../../tag/Tags";
+import { Card } from "@/components/shared/card/Card";
 
 interface EntryCardProps {
   entry: Entry;
@@ -20,7 +21,7 @@ export const EntryCard = ({
   const [showTags, setShowTags] = useState(defaultShowTags);
 
   return (
-    <div className="bg-surface rounded shadow-sm">
+    <Card paddingSize="none">
       <div className="flex">
         <EntryControls />
 
@@ -37,6 +38,6 @@ export const EntryCard = ({
       {tags.length > 0 && showTags && (
         <Tags tags={tags} className="border-border border-t" />
       )}
-    </div>
+    </Card>
   );
 };
