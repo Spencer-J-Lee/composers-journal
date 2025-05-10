@@ -3,7 +3,7 @@
 
 @theme {
   /* Caffe Latte */
-  --color-background: #7a4e32;
+  /* --color-background: #7a4e32;
   --color-background-light: #e6d7c3;
   --color-surface: #fffdfa;
   --color-surface-dark: #eee7e2;
@@ -12,7 +12,21 @@
   --color-accent: #7a4e32;
   --color-border: #e1dfdc;
   --color-danger: #a7372e;
-  --color-accessibility: #1a1a1a;
+  --color-accessibility: #1a1a1a; */
+
+  /* Discord */
+  --color-background: #2c2d32;
+  --color-background-light: #292b2f;
+  --color-surface: #2f3136;
+  --color-surface-hover: #45464c;
+  --color-surface-light: #3f4248;
+  --color-text: #fff;
+  --color-text-muted: #c2c2c6;
+  --color-accent: #5c68e0;
+  --color-border: #43464c;
+  --color-success: #3ba55c;
+  --color-danger: #ed4245;
+  --color-accessibility: #5865f2;
 
   --font-inter: var(--font-inter), sans-serif;
 
