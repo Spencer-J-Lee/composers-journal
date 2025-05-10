@@ -1,19 +1,34 @@
-import { ButtonSize } from "@/components/shared/buttons/types";
+import { ButtonSize, ButtonVariant } from "@/components/shared/buttons/types";
 import clsx from "clsx";
 import { useMemo } from "react";
 
-export const useButtonClassname = (size: ButtonSize) => {
+export const useButtonClassname = (
+  size: ButtonSize,
+  variant: ButtonVariant,
+) => {
   const sizeClassName = useMemo(() => {
     switch (size) {
       case "sm":
-        return "px-4 py-2 text-sm";
+        return "px-2 py-1 text-xs";
       case "md":
-        return "px-10 py-3 text-base";
+        return "px-4 py-2 text-sm";
+    }
+  }, [size]);
+
+  const variantClassName = useMemo(() => {
+    switch (variant) {
+      case "default":
+        return "text-text bg-accent";
+      case "CTA":
+        return "text-text bg-success";
+      case "danger":
+        return "text-text bg-danger";
     }
   }, [size]);
 
   return clsx(
-    "text-text font-inter rounded font-medium tracking-widest transition-all bg-accent font-semibold active:brightness-90",
+    "font-inter rounded-sm font-medium tracking-widest transition-all font-semibold active:brightness-90",
     sizeClassName,
+    variantClassName,
   );
 };

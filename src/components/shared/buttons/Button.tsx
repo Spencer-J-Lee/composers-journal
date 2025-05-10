@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import { ButtonSize } from "./types";
+import { ButtonSize, ButtonVariant } from "./types";
 import { useButtonClassname } from "./hooks";
 
 interface ButtonProps
@@ -8,10 +8,15 @@ interface ButtonProps
     HTMLButtonElement
   > {
   size?: ButtonSize;
+  variant?: ButtonVariant;
 }
 
-export const Button = ({ children, size = "md" }: ButtonProps) => {
-  const className = useButtonClassname(size);
+export const Button = ({
+  children,
+  size = "md",
+  variant = "default",
+}: ButtonProps) => {
+  const className = useButtonClassname(size, variant);
 
   return <button className={className}>{children}</button>;
 };
