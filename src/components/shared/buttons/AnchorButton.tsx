@@ -1,3 +1,5 @@
+"use client";
+
 import { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 import { BaseButtonProps } from "./types";
 import { useButtonClassname } from "./hooks";

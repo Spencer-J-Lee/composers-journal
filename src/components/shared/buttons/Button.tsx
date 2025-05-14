@@ -1,3 +1,5 @@
+"use client";
+
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { BaseButtonProps } from "./types";
 import { useButtonClassname } from "./hooks";

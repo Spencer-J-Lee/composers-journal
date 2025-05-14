@@ -8,6 +8,7 @@ import "../styles/reset.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";
 import { Footer } from "@/components/Footer";
+import Script from "next/script";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
@@ -23,6 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script src="https://accounts.google.com/gsi/client" async />
+      </head>
       <body
         className={`${inter.variable} bg-background text-text h-auto min-h-screen antialiased`}
       >
