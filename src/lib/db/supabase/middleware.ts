@@ -1,14 +1,15 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseEnv } from "./shared/helpers";
-import { AUTHED_ROUTES, ROUTES } from "@/routes/routes";
+import { ROUTES } from "@/routes/routes";
 import { isAuthedRoute, isGuestOnlyRoute } from "@/routes/helpers";
 
 /**
- * The middleware is responsible for:
+ * updateSession is responsible for:
  * - Refreshing the Auth token (by calling `supabase.auth.getUser`).
  * - Passing the refreshed Auth token to Server Components, so they don't attempt to refresh the same token themselves. This is accomplished with `request.cookies.set`.
  * - Passing the refreshed Auth token to the browser, so it replaces the old token. This is accomplished with `response.cookies.set`.
+ * - Rerouting the user based on authentication.
  */
 export const updateSession = async (request: NextRequest) => {
   const { supabaseUrl, supabaseKey } = getSupabaseEnv();
@@ -45,6 +46,15 @@ export const updateSession = async (request: NextRequest) => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  let nextUrl = request.nextUrl.clone();
+  if (!user && isAuthedRoute(request.nextUrl.pathname)) {
+    nextUrl.pathname = ROUTES.LOGIN.pathname;
+    return NextResponse.redirect(nextUrl);
+  } else if (user && isGuestOnlyRoute(request.nextUrl.pathname)) {
+    nextUrl.pathname = ROUTES.SEARCH.pathname;
+    return NextResponse.redirect(nextUrl);
+  }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:

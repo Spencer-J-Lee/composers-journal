@@ -13,7 +13,7 @@ export const Navbar = () => {
       )}
     >
       <nav className="flex items-center justify-between gap-x-10">
-        <Link href={ROUTES.HOME} className="-m-2 block p-2">
+        <Link href={ROUTES.HOME.pathname} className="-m-2 block p-2">
           <Image
             src="/assets/logo-white.png"
             // src="/assets/logo-black.png"
@@ -25,7 +25,7 @@ export const Navbar = () => {
         </Link>
 
         <div>
-          <Link href={ROUTES.HOME} className="-m-2 block p-2">
+          <Link href={ROUTES.HOME.pathname} className="-m-2 block p-2">
             <Image
               src="/assets/empty-profile.png"
               alt="User's profile picture"
