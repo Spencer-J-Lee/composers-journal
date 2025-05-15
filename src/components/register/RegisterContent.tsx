@@ -25,7 +25,7 @@ export const RegisterContent = () => {
       password: formValues.password,
     });
 
-    // TODO: remove logs
+    // TODO: remove test logs
     console.log(`session:`, session);
 
     // TODO: add better error handling

@@ -19,7 +19,7 @@ export const EntryInfo = ({
 
   return (
     <div className={clsx("flex flex-1 flex-col p-4", className)}>
-      {/* TODO make sure tag hierarchy is in order */}
+      {/* TODO: make sure tag hierarchy is in order */}
       <h2 className="mb-1 text-xl font-semibold">{title}</h2>
       <p className="mb-2">{description}</p>
 

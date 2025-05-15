@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: "Application to help track and manage composition techniques.",
 };
 
-// TODO add favicon
+// TODO: add favicon
 export default function RootLayout({
   children,
 }: Readonly<{
