@@ -11,13 +11,13 @@ import { isAuthedRoute, isGuestOnlyRoute } from "@/routes/helpers";
  * - Passing the refreshed Auth token to the browser, so it replaces the old token. This is accomplished with `response.cookies.set`.
  */
 export const updateSession = async (request: NextRequest) => {
-  const { url, key } = getSupabaseEnv();
+  const { supabaseUrl, supabaseKey } = getSupabaseEnv();
 
   let supabaseResponse = NextResponse.next({
     request,
   });
 
-  const supabase = createServerClient(url, key, {
+  const supabase = createServerClient(supabaseUrl, supabaseKey, {
     cookies: {
       getAll() {
         return request.cookies.getAll();

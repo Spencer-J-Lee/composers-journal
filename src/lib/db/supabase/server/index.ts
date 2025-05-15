@@ -7,10 +7,10 @@ import { getSessionSS } from "./helpers";
  * Creates a Supabase client to be used on server-side
  */
 export const createClientSS = async () => {
-  const { url, key } = getSupabaseEnv();
+  const { supabaseUrl, supabaseKey } = getSupabaseEnv();
   const cookieStore = await cookies();
 
-  return createServerClient(url, key, {
+  return createServerClient(supabaseUrl, supabaseKey, {
     cookies: {
       getAll() {
         return cookieStore.getAll();

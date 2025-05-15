@@ -6,9 +6,9 @@ import { getSessionCS } from "./helpers";
  * Creates a Supabase client to be used on client-side
  */
 export const createClientCS = () => {
-  const { url, key } = getSupabaseEnv();
+  const { supabaseUrl, supabaseKey } = getSupabaseEnv();
 
-  return createBrowserClient(url, key);
+  return createBrowserClient(supabaseUrl, supabaseKey);
 };
 
 export { getSessionCS };
