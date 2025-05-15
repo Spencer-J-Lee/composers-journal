@@ -1,4 +1,4 @@
-import { getSupabase } from "../db/supabase/client";
+import { createClientCS } from "../db/supabase/client";
 
 interface GoogleCredentialResponse {
   credential: string;
@@ -9,7 +9,7 @@ interface GoogleCredentialResponse {
 export const handleSignInWithGoogle = async (
   response: GoogleCredentialResponse,
 ) => {
-  const supabase = getSupabase();
+  const supabase = createClientCS();
   const { data, error } = await supabase.auth.signInWithIdToken({
     provider: "google",
     token: response.credential,

@@ -1,7 +1,7 @@
 import { createBrowserClient } from "@supabase/ssr";
 import { getSupabaseEnv } from "./helpers";
 
-export const getSupabase = () => {
+export const createClientCS = () => {
   const { url, key } = getSupabaseEnv();
 
   return createBrowserClient(url, key);
