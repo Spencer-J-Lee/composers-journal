@@ -9,6 +9,7 @@ export const authRules: AuthRule[] = [
     matcher: /^\//,
     type: "public",
   },
+
   {
     matcher: /^\/login/,
     type: "guestOnly",
@@ -17,16 +18,17 @@ export const authRules: AuthRule[] = [
     matcher: /^\/register/,
     type: "guestOnly",
   },
-  {
-    matcher: /^\/search/,
-    type: "authed",
-  },
+
   {
     matcher: /^\/verify-email/,
     type: "authed",
   },
   {
     matcher: /^\/profile/,
+    type: "authed",
+  },
+  {
+    matcher: /^\/search/,
     type: "authed",
   },
   {
@@ -39,29 +41,43 @@ export const authRules: AuthRule[] = [
   },
 ] as const;
 
-export const routes = {
-  home: () => {
-    return "/";
-  },
-  login: () => {
-    return "/login";
-  },
-  search: () => {
-    return "/search";
-  },
-  verifyEmail: () => {
-    return "/verify-email";
-  },
-  profile: () => {
-    return "/profile";
-  },
-  entries: () => {
+class Routes {
+  constructor() {}
+
+  private entries() {
     return "/entries";
-  },
-  entry: (entryId: number) => {
+  }
+
+  home() {
+    return "/";
+  }
+  login() {
+    return "/login";
+  }
+  register() {
+    return "/register";
+  }
+  search() {
+    return "/search";
+  }
+  verifyEmail() {
+    return "/verify-email";
+  }
+  profile() {
+    return "/profile";
+  }
+  entry(entryId: number) {
     return `${routes.entries()}/${entryId}`;
-  },
-  tags: () => {
+  }
+  entryEdit(entryId: number) {
+    return `${routes.entries()}/${entryId}/edit`;
+  }
+  entryCreate() {
+    return `${routes.entries}/create`;
+  }
+  tags() {
     return "/tags";
-  },
-} as const;
+  }
+}
+
+export const routes = new Routes();
