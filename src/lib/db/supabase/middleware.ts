@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseEnv } from "./shared/helpers";
-import { ROUTES } from "@/routes/routes";
 import { isAuthedRoute, isGuestOnlyRoute } from "@/routes/helpers";
+import { routes } from "@/routes/routes";
 
 /**
  * updateSession is responsible for:
@@ -49,10 +49,10 @@ export const updateSession = async (request: NextRequest) => {
 
   let nextUrl = request.nextUrl.clone();
   if (!user && isAuthedRoute(request.nextUrl.pathname)) {
-    nextUrl.pathname = ROUTES.LOGIN.pathname;
+    nextUrl.pathname = routes.login();
     return NextResponse.redirect(nextUrl);
   } else if (user && isGuestOnlyRoute(request.nextUrl.pathname)) {
-    nextUrl.pathname = ROUTES.SEARCH.pathname;
+    nextUrl.pathname = routes.search();
     return NextResponse.redirect(nextUrl);
   }
 

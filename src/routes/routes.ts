@@ -1,34 +1,67 @@
 export type RouteType = "public" | "authed" | "guestOnly";
-interface Route {
-  pathname: string;
+
+interface AuthRule {
+  matcher: RegExp;
   type: RouteType;
 }
-
-export const ROUTES: Record<string, Route> = {
-  HOME: {
-    pathname: "/",
+export const authRules: AuthRule[] = [
+  {
+    matcher: /^\//,
     type: "public",
   },
-
-  LOGIN: {
-    pathname: "/login",
+  {
+    matcher: /^\/login/,
     type: "guestOnly",
   },
-  REGISTER: {
-    pathname: "/register",
+  {
+    matcher: /^\/register/,
     type: "guestOnly",
   },
+  {
+    matcher: /^\/search/,
+    type: "authed",
+  },
+  {
+    matcher: /^\/verify-email/,
+    type: "authed",
+  },
+  {
+    matcher: /^\/profile/,
+    type: "authed",
+  },
+  {
+    matcher: /^\/entries/,
+    type: "authed",
+  },
+  {
+    matcher: /^\/tags/,
+    type: "authed",
+  },
+] as const;
 
-  SEARCH: {
-    pathname: "/search",
-    type: "authed",
+export const routes = {
+  home: () => {
+    return "/";
   },
-  VERIFY_EMAIL: {
-    pathname: "/verify-email",
-    type: "authed",
+  login: () => {
+    return "/login";
   },
-  PROFILE: {
-    pathname: "/user/profile",
-    type: "authed",
+  search: () => {
+    return "/search";
+  },
+  verifyEmail: () => {
+    return "/verify-email";
+  },
+  profile: () => {
+    return "/profile";
+  },
+  entries: () => {
+    return "/entries";
+  },
+  entry: (entryId: number) => {
+    return `${routes.entries()}/${entryId}`;
+  },
+  tags: () => {
+    return "/tags";
   },
 } as const;

@@ -1,15 +1,14 @@
-import { ROUTES } from "./routes";
+import { authRules } from "./routes";
 
-const findRoute = (pathname: string) => {
-  return Object.values(ROUTES).find((route) => route.pathname === pathname);
+export const getRouteType = (pathname: string) => {
+  const rule = authRules.find(({ matcher }) => matcher.test(pathname));
+  return rule ? rule.type : "public";
 };
 
 export const isAuthedRoute = (pathname: string) => {
-  const route = findRoute(pathname);
-  return route && route.type === "authed";
+  return getRouteType(pathname) === "authed";
 };
 
 export const isGuestOnlyRoute = (pathname: string) => {
-  const route = findRoute(pathname);
-  return route && route.type === "guestOnly";
+  return getRouteType(pathname) === "guestOnly";
 };
