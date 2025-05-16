@@ -1,13 +1,14 @@
 "use client";
 
+import { ChangeEventHandler,MouseEventHandler, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
-import { revalidatePath } from "next/cache";
-import { redirect, useRouter } from "next/navigation";
-import { useState, MouseEventHandler, ChangeEventHandler } from "react";
+
+import { GSIButton } from "./google/GSIButton";
 import { Button } from "../shared/buttons/Button";
 import { ELEMENT_IDS } from "../shared/constants/elementIds";
-import { GSIButton } from "./google/GSIButton";
-import { createClientCS } from "@/lib/db/supabase/client";
 
 export const LoginContent = () => {
   const supabase = createClientCS();

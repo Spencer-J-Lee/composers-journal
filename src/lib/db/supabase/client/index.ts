@@ -1,6 +1,7 @@
 import { createBrowserClient } from "@supabase/ssr";
-import { getSupabaseEnv } from "../shared/helpers";
+
 import { getSessionCS } from "./helpers";
+import { getSupabaseEnv } from "../shared/helpers";
 
 /**
  * Creates a Supabase client to be used on client-side

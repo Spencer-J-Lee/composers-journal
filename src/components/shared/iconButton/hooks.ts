@@ -1,6 +1,7 @@
-import { ButtonVariant } from "@/components/shared/buttons/types";
-import clsx from "clsx";
 import { useMemo } from "react";
+import clsx from "clsx";
+
+import { ButtonVariant } from "@/components/shared/buttons/types";
 
 export const useIconButtonClassname = (variant: ButtonVariant) => {
   const variantClassName = useMemo(() => {

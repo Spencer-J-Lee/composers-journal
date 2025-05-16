@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { inter } from "@/styles/fonts";
+import type { Metadata } from "next";
+import Script from "next/script";
+
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { SkipToContent } from "@/components/shared/SkipToContent";
+import { inter } from "@/styles/fonts";
 
 import "../styles/reset.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";
-import { Footer } from "@/components/Footer";
-import Script from "next/script";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {

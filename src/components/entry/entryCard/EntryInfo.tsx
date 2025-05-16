@@ -1,6 +1,7 @@
-import { Entry } from "@/lib/types/Entry";
-import clsx from "clsx";
 import { Dispatch, SetStateAction } from "react";
+import clsx from "clsx";
+
+import { Entry } from "@/lib/types/Entry";
 
 interface EntryInfoProps {
   entry: Entry;

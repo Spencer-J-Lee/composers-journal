@@ -1,7 +1,8 @@
 "use client";
 
-import { handleSignInWithGoogle } from "@/lib/auth/google";
 import { useEffect } from "react";
+
+import { handleSignInWithGoogle } from "@/lib/auth/google";
 
 /**
  * Only one instance of this component should exist on any given page

@@ -1,8 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
-import { getSupabaseEnv } from "./shared/helpers";
+import { type NextRequest, NextResponse } from "next/server";
+
 import { isAuthedRoute, isGuestOnlyRoute } from "@/routes/helpers";
 import { routes } from "@/routes/routes";
+
+import { getSupabaseEnv } from "./shared/helpers";
 
 /**
  * updateSession is responsible for:
@@ -47,7 +49,7 @@ export const updateSession = async (request: NextRequest) => {
     data: { user },
   } = await supabase.auth.getUser();
 
-  let nextUrl = request.nextUrl.clone();
+  const nextUrl = request.nextUrl.clone();
   if (!user && isAuthedRoute(request.nextUrl.pathname)) {
     nextUrl.pathname = routes.login();
     return NextResponse.redirect(nextUrl);

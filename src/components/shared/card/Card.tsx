@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
-import { CardPaddingSize } from "./types";
+
 import { useCardClassName } from "./hooks";
+import { CardPaddingSize } from "./types";
 
 interface CardProps {
   children: ReactNode;

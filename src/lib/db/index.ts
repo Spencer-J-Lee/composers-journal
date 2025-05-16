@@ -2,6 +2,7 @@ import "dotenv/config";
 
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
+
 import { entries } from "./entries";
 import { entryTags } from "./entryTags";
 import { tags } from "./tags";

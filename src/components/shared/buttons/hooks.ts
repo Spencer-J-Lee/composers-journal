@@ -1,6 +1,7 @@
-import { ButtonSize, ButtonVariant } from "@/components/shared/buttons/types";
-import clsx from "clsx";
 import { useMemo } from "react";
+import clsx from "clsx";
+
+import { ButtonSize, ButtonVariant } from "@/components/shared/buttons/types";
 
 export const useButtonClassname = (
   size: ButtonSize,
@@ -24,7 +25,7 @@ export const useButtonClassname = (
       case "danger":
         return "text-text bg-danger";
     }
-  }, [size]);
+  }, [variant]);
 
   return clsx(
     "font-inter rounded-sm font-medium tracking-widest transition-all font-semibold active:brightness-90",

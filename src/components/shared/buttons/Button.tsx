@@ -1,9 +1,10 @@
 "use client";
 
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import { BaseButtonProps } from "./types";
-import { useButtonClassname } from "./hooks";
 import clsx from "clsx";
+
+import { useButtonClassname } from "./hooks";
+import { BaseButtonProps } from "./types";
 
 interface ButtonProps
   extends BaseButtonProps,

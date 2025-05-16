@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { EntryControls } from "../entryControls/EntryControls";
+
+import { Card } from "@/components/shared/card/Card";
+import { Entry } from "@/lib/types/Entry";
+
 import { EntryInfo } from "./EntryInfo";
 import { ExamplesButton } from "./ExamplesButton";
-import { Entry } from "@/lib/types/Entry";
 import { Tags } from "../../tag/Tags";
-import { Card } from "@/components/shared/card/Card";
+import { EntryControls } from "../entryControls/EntryControls";
 
 interface EntryCardProps {
   entry: Entry;

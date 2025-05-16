@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { Chip } from "../shared/Chip";
 
 const tagNames = [
   "Melody",

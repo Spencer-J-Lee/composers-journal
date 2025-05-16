@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { EntryCard } from "../entry/entryCard/EntryCard";
+
 import { Entry } from "@/lib/types/Entry";
+
+import { EntryCard } from "../entry/entryCard/EntryCard";
 
 export const Results = () => {
   const [entries, setEntries] = useState<Entry[]>([]);

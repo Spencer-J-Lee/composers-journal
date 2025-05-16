@@ -1,6 +1,6 @@
+import type { ComponentPropsWithoutRef } from "react";
 import clsx from "clsx";
 import Link from "next/link";
-import type { ComponentPropsWithoutRef } from "react";
 
 type StyledLinkProps = ComponentPropsWithoutRef<typeof Link> & {
   external?: boolean;

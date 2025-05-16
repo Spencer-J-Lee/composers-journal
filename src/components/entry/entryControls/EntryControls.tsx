@@ -1,5 +1,6 @@
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import { IconButton } from "@/components/shared/iconButton/IconButton";
 
 interface EntryControlsProps {}

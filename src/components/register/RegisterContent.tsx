@@ -1,10 +1,11 @@
 "use client";
 
-import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
-import { Button } from "@/components/shared/buttons/Button";
-import { createClientCS } from "@/lib/db/supabase/client";
 import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
+
+import { Button } from "@/components/shared/buttons/Button";
+import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
+import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 
 export const RegisterContent = () => {

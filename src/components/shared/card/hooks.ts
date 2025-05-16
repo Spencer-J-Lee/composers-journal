@@ -1,5 +1,6 @@
-import clsx from "clsx";
 import { useMemo } from "react";
+import clsx from "clsx";
+
 import { CardPaddingSize } from "./types";
 
 export const useCardClassName = (padding: CardPaddingSize) => {

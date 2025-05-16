@@ -1,6 +1,8 @@
-import { Tag } from "@/lib/types/Tag";
-import { Chip } from "../shared/Chip";
 import clsx from "clsx";
+
+import { Tag } from "@/lib/types/Tag";
+
+import { Chip } from "../shared/Chip";
 
 interface TagsProps {
   tags: Tag[];
