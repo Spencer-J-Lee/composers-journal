@@ -6,37 +6,45 @@ interface AuthRule {
 }
 export const authRules: AuthRule[] = [
   {
-    matcher: /^\//,
+    matcher: /^\/$/,
     type: "public",
   },
 
   {
-    matcher: /^\/login/,
+    matcher: /^\/login$/,
     type: "guestOnly",
   },
   {
-    matcher: /^\/register/,
+    matcher: /^\/register$/,
     type: "guestOnly",
   },
 
   {
-    matcher: /^\/verify-email/,
+    matcher: /^\/verify-email$/,
     type: "authed",
   },
   {
-    matcher: /^\/profile/,
+    matcher: /^\/profile$/,
     type: "authed",
   },
   {
-    matcher: /^\/search/,
+    matcher: /^\/search$/,
     type: "authed",
   },
   {
-    matcher: /^\/entries/,
+    matcher: /^\/entries\/[0-9]+$/,
     type: "authed",
   },
   {
-    matcher: /^\/tags/,
+    matcher: /^\/entries\/[0-9]+\/edit$/,
+    type: "authed",
+  },
+  {
+    matcher: /^\/entries\/create$/,
+    type: "authed",
+  },
+  {
+    matcher: /^\/tags$/,
     type: "authed",
   },
 ] as const;
