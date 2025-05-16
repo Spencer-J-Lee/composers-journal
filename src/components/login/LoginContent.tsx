@@ -78,17 +78,6 @@ export const LoginContent = () => {
         <Button onClick={login} type="submit">
           Log In
         </Button>
-        <Button
-          onClick={async () => {
-            const { error } = await supabase.auth.signOut();
-            if (error) {
-              console.error(`error:`, error);
-            }
-          }}
-          type="button"
-        >
-          Log Out
-        </Button>
         <GSIButton />
       </form>
       {/* TODO: Add login functionality */}

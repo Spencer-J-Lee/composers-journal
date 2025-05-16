@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,8 +7,14 @@ import Link from "next/link";
 import { routes } from "@/routes/routes";
 
 import { ELEMENT_IDS } from "./shared/constants/elementIds";
+import { createClientCS } from "@/lib/db/supabase/client";
+import { Button } from "./shared/buttons/Button";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
+  const supabase = createClientCS();
+  const router = useRouter();
+
   return (
     <header
       id={ELEMENT_IDS.NAVBAR}
@@ -27,7 +35,21 @@ export const Navbar = () => {
         </Link>
 
         <div>
-          <Link href={routes.home()} className="-m-2 block p-2">
+          {/* TODO: remove test code */}
+          <Button
+            onClick={async () => {
+              const { error } = await supabase.auth.signOut();
+              if (error) {
+                console.error(`error:`, error);
+              } else {
+                router.push(routes.login());
+              }
+            }}
+            type="button"
+          >
+            Log Out
+          </Button>
+          <Link href={routes.profile()} className="-m-2 block p-2">
             <Image
               src="/assets/empty-profile.png"
               alt="User's profile picture"
