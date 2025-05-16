@@ -20,16 +20,13 @@ export const RegisterContent = () => {
   const register: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
 
-    const { data: session, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email: formValues.email,
       password: formValues.password,
     });
 
-    // TODO: remove test logs
-    console.log(`session:`, session);
-
     // TODO: add better error handling
-    console.log(`error:`, error);
+    // TODO: remove test logs
     if (error) {
       console.error(error);
     } else {

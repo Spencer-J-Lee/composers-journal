@@ -2,7 +2,7 @@
 
 import { routes } from "@/routes/routes";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState, MouseEventHandler, ChangeEventHandler } from "react";
 import { Button } from "../shared/buttons/Button";
 import { ELEMENT_IDS } from "../shared/constants/elementIds";
@@ -11,6 +11,7 @@ import { createClientCS } from "@/lib/db/supabase/client";
 
 export const LoginContent = () => {
   const supabase = createClientCS();
+  const router = useRouter();
 
   // TODO: implement proper form fields with validations
   const [formValues, setFormValues] = useState({
@@ -27,12 +28,13 @@ export const LoginContent = () => {
     });
 
     // TODO: add better error handling
+    // TODO: remove test logs
     if (error) {
       console.error(error);
+    } else {
+      console.log("redirecting...");
+      router.push(routes.home());
     }
-
-    revalidatePath(routes.home(), "page");
-    redirect(routes.home());
   };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {

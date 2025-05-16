@@ -5,10 +5,8 @@ export const getRouteType = (pathname: string) => {
   return rule ? rule.type : "public";
 };
 
-export const isAuthedRoute = (pathname: string) => {
-  return getRouteType(pathname) === "authed";
-};
+export const isAuthedRoute = (pathname: string) =>
+  getRouteType(pathname) === "authed";
 
-export const isGuestOnlyRoute = (pathname: string) => {
-  return getRouteType(pathname) === "guestOnly";
-};
+export const isGuestOnlyRoute = (pathname: string) =>
+  getRouteType(pathname) === "guestOnly";

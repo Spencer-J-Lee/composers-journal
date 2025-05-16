@@ -14,7 +14,7 @@ export const handleSignInWithGoogle = async (
     provider: "google",
     token: response.credential,
   });
-  // TODO remove console logs
+  // TODO: remove test logs
   console.log(`data:`, data);
   console.error(`error:`, error);
 };
