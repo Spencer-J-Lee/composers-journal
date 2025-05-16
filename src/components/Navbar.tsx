@@ -1,4 +1,4 @@
-import { ROUTES } from "@/routes/routes";
+import { routes } from "@/routes/routes";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ export const Navbar = () => {
       )}
     >
       <nav className="flex items-center justify-between gap-x-10">
-        <Link href={ROUTES.HOME.pathname} className="-m-2 block p-2">
+        <Link href={routes.home()} className="-m-2 block p-2">
           <Image
             src="/assets/logo-white.png"
             // src="/assets/logo-black.png"
@@ -25,7 +25,7 @@ export const Navbar = () => {
         </Link>
 
         <div>
-          <Link href={ROUTES.HOME.pathname} className="-m-2 block p-2">
+          <Link href={routes.home()} className="-m-2 block p-2">
             <Image
               src="/assets/empty-profile.png"
               alt="User's profile picture"

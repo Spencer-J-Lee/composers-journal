@@ -1,15 +1,16 @@
 "use client";
 
-import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
-import { Button } from "@/components/shared/buttons/Button";
-import { createClientCS } from "@/lib/db/supabase/client";
-import { ChangeEventHandler, MouseEventHandler, useState } from "react";
-import { useRouter } from "next/navigation";
 import { routes } from "@/routes/routes";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { useState, MouseEventHandler, ChangeEventHandler } from "react";
+import { Button } from "../shared/buttons/Button";
+import { ELEMENT_IDS } from "../shared/constants/elementIds";
+import { GSIButton } from "./google/GSIButton";
+import { createClientCS } from "@/lib/db/supabase/client";
 
-export const RegisterContent = () => {
+export const LoginContent = () => {
   const supabase = createClientCS();
-  const router = useRouter();
 
   // TODO: implement proper form fields with validations
   const [formValues, setFormValues] = useState({
@@ -17,25 +18,21 @@ export const RegisterContent = () => {
     password: "",
   });
 
-  const register: MouseEventHandler<HTMLButtonElement> = async (e) => {
+  const login: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
 
-    const { data: session, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signInWithPassword({
       email: formValues.email,
       password: formValues.password,
     });
 
-    // TODO: remove test logs
-    console.log(`session:`, session);
-
     // TODO: add better error handling
-    console.log(`error:`, error);
     if (error) {
       console.error(error);
-    } else {
-      console.log("redirecting...");
-      router.push(routes.verifyEmail());
     }
+
+    revalidatePath(routes.home(), "page");
+    redirect(routes.home());
   };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -65,20 +62,33 @@ export const RegisterContent = () => {
 
         {/* TODO: remove test code */}
         <Button
-          type="button"
           onClick={async () => {
             const {
               data: { session },
             } = await supabase.auth.getSession();
             console.log(`session:`, session);
           }}
+          type="button"
         >
           Log Session
         </Button>
-        <Button onClick={register} type="submit">
-          Register
+        <Button onClick={login} type="submit">
+          Log In
         </Button>
+        <Button
+          onClick={async () => {
+            const { error } = await supabase.auth.signOut();
+            if (error) {
+              console.error(`error:`, error);
+            }
+          }}
+          type="button"
+        >
+          Log Out
+        </Button>
+        <GSIButton />
       </form>
+      {/* TODO: Add login functionality */}
     </main>
   );
 };
