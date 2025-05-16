@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEventHandler,MouseEventHandler, useState } from "react";
+import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { createClientCS } from "@/lib/db/supabase/client";
@@ -34,7 +34,7 @@ export const LoginContent = () => {
       console.error(error);
     } else {
       console.log("redirecting...");
-      router.push(routes.home());
+      router.push(routes.search());
     }
   };
 
