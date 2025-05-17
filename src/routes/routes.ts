@@ -2,7 +2,7 @@ import { RouteOptions } from "./types";
 
 class Routes {
   private withQuery(path: string, options?: RouteOptions) {
-    if (!options || Object.keys(options).length === 0) {
+    if (!options) {
       return path;
     }
 
@@ -31,44 +31,44 @@ class Routes {
     return "/entries";
   }
 
-  home(options?: RouteOptions) {
-    return this.withQuery("/", options);
+  home() {
+    return "/";
   }
 
-  login(options?: RouteOptions) {
-    return this.withQuery("/login", options);
+  login() {
+    return "/login";
   }
 
-  register(options?: RouteOptions) {
-    return this.withQuery("/register", options);
+  register() {
+    return "/register";
   }
 
   verifyEmail(options?: RouteOptions) {
     return this.withQuery("/verify-email", options);
   }
 
-  profile(options?: RouteOptions) {
-    return this.withQuery("/profile", options);
+  profile() {
+    return "/profile";
   }
 
-  search(options?: RouteOptions) {
-    return this.withQuery("/search", options);
+  search() {
+    return "/search";
   }
 
-  entry(entryId: number, options?: RouteOptions) {
-    return this.withQuery(`${this.entries()}/${entryId}`, options);
+  entry(entryId: number) {
+    return `${this.entries()}/${entryId}`;
   }
 
-  entryEdit(entryId: number, options?: RouteOptions) {
-    return this.withQuery(`${this.entries()}/${entryId}/edit`, options);
+  entryEdit(entryId: number) {
+    return `${this.entries()}/${entryId}/edit`;
   }
 
-  entryCreate(options?: RouteOptions) {
-    return this.withQuery(`${this.entries}/create`, options);
+  entryCreate() {
+    return `${this.entries}/create`;
   }
 
-  tags(options?: RouteOptions) {
-    return this.withQuery("/tags", options);
+  tags() {
+    return "/tags";
   }
 }
 
