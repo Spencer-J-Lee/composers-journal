@@ -8,6 +8,7 @@ import { Button } from "@/components/shared/buttons/Button";
 import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
+import { getRedirectUrl } from "@/utils/urls";
 
 /**
  * TODO: handle error when user already exists
@@ -29,6 +30,9 @@ export const RegisterContent = () => {
     const { error } = await supabase.auth.signUp({
       email: formValues.email,
       password: formValues.password,
+      options: {
+        emailRedirectTo: getRedirectUrl(routes.search()),
+      },
     });
 
     // TODO: add better error handling
@@ -37,7 +41,7 @@ export const RegisterContent = () => {
       console.error(error);
     } else {
       console.log("redirecting...");
-      router.push(routes.verifyEmail());
+      router.push(routes.verifyEmail(formValues.email));
     }
   };
 

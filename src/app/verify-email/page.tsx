@@ -1,5 +1,7 @@
+import { VerifyEmailContent } from "@/components/verifyEmail/VerifyEmailContent";
+
 const VerifyEmailPage = () => {
-  return <div></div>;
+  return <VerifyEmailContent />;
 };
 
 export default VerifyEmailPage;

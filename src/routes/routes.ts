@@ -43,8 +43,9 @@ class Routes {
     return "/register";
   }
 
-  verifyEmail(options?: RouteOptions) {
-    return this.withQuery("/verify-email", options);
+  verifyEmail(email?: string) {
+    const basePath = `/verify-email`;
+    return email ? this.withQuery(basePath, { query: { email } }) : basePath;
   }
 
   profile() {
