@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEventHandler, MouseEventHandler, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { createClientCS } from "@/lib/db/supabase/client";
@@ -79,8 +80,8 @@ export const LoginContent = () => {
           Log In
         </Button>
         <GSIButton />
+        <Link href={routes.register()}>Register</Link>
       </form>
-      {/* TODO: Add login functionality */}
     </main>
   );
 };

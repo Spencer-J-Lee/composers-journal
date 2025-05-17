@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEventHandler, MouseEventHandler, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/shared/buttons/Button";
@@ -8,6 +9,10 @@ import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 
+/**
+ * TODO: handle error when user already exists
+ * TODO: handle error when user already registered through OAuth
+ */
 export const RegisterContent = () => {
   const supabase = createClientCS();
   const router = useRouter();
@@ -76,6 +81,7 @@ export const RegisterContent = () => {
         <Button onClick={register} type="submit">
           Register
         </Button>
+        <Link href={routes.login()}>Login</Link>
       </form>
     </main>
   );
