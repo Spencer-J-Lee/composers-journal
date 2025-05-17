@@ -3,13 +3,13 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
+import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 
-import { ELEMENT_IDS } from "./shared/constants/elementIds";
-import { createClientCS } from "@/lib/db/supabase/client";
 import { Button } from "./shared/buttons/Button";
-import { useRouter } from "next/navigation";
+import { ELEMENT_IDS } from "./shared/constants/elementIds";
 
 export const Navbar = () => {
   const supabase = createClientCS();

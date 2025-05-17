@@ -102,7 +102,7 @@ const cases: Entry[] = [
 ];
 
 const genCardData = (n: number) => {
-  let description = "Lorem ipsum, dolor sit amet consectetur adipisicing elit.";
+  const description = "Lorem ipsum, dolor sit amet consectetur adipisicing elit.";
 
   return {
     id: n + cases.length + 1,
