@@ -1,90 +1,74 @@
-export type RouteType = "public" | "authed" | "guestOnly";
-
-interface AuthRule {
-  matcher: RegExp;
-  type: RouteType;
-}
-export const authRules: AuthRule[] = [
-  {
-    matcher: /^\/$/,
-    type: "public",
-  },
-
-  {
-    matcher: /^\/login$/,
-    type: "guestOnly",
-  },
-  {
-    matcher: /^\/register$/,
-    type: "guestOnly",
-  },
-
-  {
-    matcher: /^\/verify-email$/,
-    type: "authed",
-  },
-  {
-    matcher: /^\/profile$/,
-    type: "authed",
-  },
-  {
-    matcher: /^\/search$/,
-    type: "authed",
-  },
-  {
-    matcher: /^\/entries\/[0-9]+$/,
-    type: "authed",
-  },
-  {
-    matcher: /^\/entries\/[0-9]+\/edit$/,
-    type: "authed",
-  },
-  {
-    matcher: /^\/entries\/create$/,
-    type: "authed",
-  },
-  {
-    matcher: /^\/tags$/,
-    type: "authed",
-  },
-] as const;
+import { RouteOptions } from "./types";
 
 class Routes {
-  constructor() {}
+  private withQuery(path: string, options?: RouteOptions) {
+    if (!options || Object.keys(options).length === 0) {
+      return path;
+    }
+
+    let url = path;
+
+    if (options.query) {
+      const query = new URLSearchParams();
+      for (const [key, value] of Object.entries(options.query)) {
+        if (Array.isArray(value)) {
+          value.forEach((child) => query.append(key, child));
+        } else {
+          query.append(key, value);
+        }
+      }
+      url += `?${query.toString()}`;
+    }
+
+    if (options.fragment) {
+      url += `#${encodeURIComponent(options.fragment)}`;
+    }
+
+    return url;
+  }
 
   private entries() {
     return "/entries";
   }
 
-  home() {
-    return "/";
+  home(options?: RouteOptions) {
+    return this.withQuery("/", options);
   }
-  login() {
-    return "/login";
+
+  login(options?: RouteOptions) {
+    return this.withQuery("/login", options);
   }
-  register() {
-    return "/register";
+
+  register(options?: RouteOptions) {
+    return this.withQuery("/register", options);
   }
-  search() {
-    return "/search";
+
+  verifyEmail(options?: RouteOptions) {
+    return this.withQuery("/verify-email", options);
   }
-  verifyEmail() {
-    return "/verify-email";
+
+  profile(options?: RouteOptions) {
+    return this.withQuery("/profile", options);
   }
-  profile() {
-    return "/profile";
+
+  search(options?: RouteOptions) {
+    return this.withQuery("/search", options);
   }
-  entry(entryId: number) {
-    return `${routes.entries()}/${entryId}`;
+
+  entry(entryId: number, options?: RouteOptions) {
+    return this.withQuery(`${this.entries()}/${entryId}`, options);
   }
-  entryEdit(entryId: number) {
-    return `${routes.entries()}/${entryId}/edit`;
+
+  entryEdit(entryId: number, options?: RouteOptions) {
+    return this.withQuery(`${this.entries()}/${entryId}/edit`, options);
   }
-  entryCreate() {
-    return `${routes.entries}/create`;
+
+  entryCreate(options?: RouteOptions) {
+    return this.withQuery(`${this.entries}/create`, options);
   }
-  tags() {
-    return "/tags";
+
+  tags(options?: RouteOptions) {
+    return this.withQuery("/tags", options);
   }
 }
 

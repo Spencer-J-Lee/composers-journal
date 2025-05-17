@@ -1,4 +1,4 @@
-import { authRules } from "./routes";
+import { authRules } from "./authRules";
 
 export const getRouteType = (pathname: string) => {
   const rule = authRules.find(({ matcher }) => matcher.test(pathname));
