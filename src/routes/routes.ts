@@ -46,7 +46,8 @@ class Routes {
   }
 
   /**
-   * The provided email will be used to prefill an email input on the Verify Email page
+   * The provided email will be used to prefill
+   * an email input on the Verify Email page
    */
   verifyEmail(email?: string) {
     const basePath = `/verify-email`;
@@ -54,8 +55,8 @@ class Routes {
   }
 
   /**
-   * The provided redirectUrl will be used to redirect the user after authentication
-   * on the Verify Email Callback page
+   * The provided redirectUrl will be used to redirect
+   * the user after authentication on the Verify Email Callback page
    */
   verifyEmailCallback(redirectUrl: string) {
     const basePath = `${this.verifyEmail()}/callback`;
@@ -68,7 +69,8 @@ class Routes {
   }
 
   /**
-   * The provided email will be used to prefill an email input on the Forgot Password page
+   * The provided email will be used to prefill
+   * an email input on the Forgot Password page
    */
   forgotPassword(email?: string) {
     const basePath = `/forgot-password`;
