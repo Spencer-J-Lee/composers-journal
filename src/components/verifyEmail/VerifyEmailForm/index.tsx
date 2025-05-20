@@ -4,6 +4,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 
+import { QUERY_KEYS } from "@/constants/queryKeys";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 import { genFullSiteUrl } from "@/utils/urls";
@@ -16,7 +17,7 @@ export const VerifyEmailForm = () => {
   const supabase = createClientCS();
   const searchParams = useSearchParams();
   const methods = useForm<VerifyEmailFormValues>({
-    defaultValues: { email: searchParams.get("email") ?? "" },
+    defaultValues: { email: searchParams.get(QUERY_KEYS.EMAIL) ?? "" },
     resolver: zodResolver(verifyEmailSchema),
   });
 

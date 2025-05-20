@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/shared/buttons/Button";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
+import { QUERY_KEYS } from "@/constants/queryKeys";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 import { genFullSiteUrl } from "@/utils/urls";
@@ -18,7 +19,7 @@ export const ForgotPasswordForm = () => {
   const methods = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
-      email: searchParams.get("email") ?? "",
+      email: searchParams.get(QUERY_KEYS.EMAIL) ?? "",
     },
   });
 
