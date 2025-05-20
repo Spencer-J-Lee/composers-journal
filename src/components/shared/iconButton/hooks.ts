@@ -7,13 +7,9 @@ type UseIconButtonClassNameProps = {
   variant: ButtonVariant;
 };
 
-type UseIconButtonClassNameReturn = {
-  iconButtonClassName: string;
-};
-
 export const useIconButtonClassName = ({
   variant,
-}: UseIconButtonClassNameProps): UseIconButtonClassNameReturn => {
+}: UseIconButtonClassNameProps) => {
   const variantClassName = useMemo(() => {
     switch (variant) {
       case "default":

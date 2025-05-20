@@ -5,13 +5,7 @@ type UseInputClassNameProps = {
   hasError?: boolean;
 };
 
-type UseInputClassNameReturn = {
-  inputClassName: string;
-};
-
-export const useInputClassName = ({
-  hasError,
-}: UseInputClassNameProps): UseInputClassNameReturn => {
+export const useInputClassName = ({ hasError }: UseInputClassNameProps) => {
   const errorClassName = useMemo(() => {
     return hasError ? " border-danger" : " border-border focus:border-accent";
   }, [hasError]);

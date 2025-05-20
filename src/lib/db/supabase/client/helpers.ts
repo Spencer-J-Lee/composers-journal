@@ -1,9 +1,11 @@
+import { Session } from "@supabase/supabase-js";
+
 import { createClientCS } from ".";
 
 /**
  * Returns the current session on client-side
  */
-export const getSessionCS = async () => {
+export const getSessionCS = async (): Promise<Session | null> => {
   const supabase = createClientCS();
   const {
     data: { session },

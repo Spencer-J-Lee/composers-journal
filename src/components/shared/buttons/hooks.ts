@@ -9,15 +9,11 @@ type UseButtonClassNameProps = {
   fullWidth?: boolean;
 };
 
-type UseButtonClassNameReturn = {
-  buttonClassName: string;
-};
-
 export const useButtonClassName = ({
   size,
   variant,
   fullWidth,
-}: UseButtonClassNameProps): UseButtonClassNameReturn => {
+}: UseButtonClassNameProps) => {
   const sizeClassName = useMemo(() => {
     switch (size) {
       case "sm":

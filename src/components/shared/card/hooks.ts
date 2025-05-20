@@ -7,13 +7,7 @@ type UseCardClassNameProps = {
   paddingSize: CardPaddingSize;
 };
 
-type UseCardClassNameReturn = {
-  cardClassName: string;
-};
-
-export const useCardClassName = ({
-  paddingSize,
-}: UseCardClassNameProps): UseCardClassNameReturn => {
+export const useCardClassName = ({ paddingSize }: UseCardClassNameProps) => {
   const paddingClassName = useMemo(() => {
     switch (paddingSize) {
       case "md":

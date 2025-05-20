@@ -45,6 +45,9 @@ class Routes {
     return "/register";
   }
 
+  /**
+   * The provided email will be used to prefill an email input on the Verify Email page
+   */
   verifyEmail(email?: string) {
     const basePath = `/verify-email`;
     return email ? this.withQuery(basePath, { query: { email } }) : basePath;
@@ -64,6 +67,9 @@ class Routes {
       : basePath;
   }
 
+  /**
+   * The provided email will be used to prefill an email input on the Forgot Password page
+   */
   forgotPassword(email?: string) {
     const basePath = `/forgot-password`;
     return email ? this.withQuery(basePath, { query: { email } }) : basePath;
@@ -86,7 +92,7 @@ class Routes {
   }
 
   entryCreate() {
-    return `${this.entries}/create`;
+    return `${this.entries()}/create`;
   }
 
   tags() {
