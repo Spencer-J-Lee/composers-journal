@@ -1,8 +1,8 @@
 "use client";
 
 import { GSIButton } from "./google/GSIButton";
-import { ELEMENT_IDS } from "../shared/constants/elementIds";
 import { LoginForm } from "./LoginForm";
+import { ELEMENT_IDS } from "../shared/constants/elementIds";
 
 export const LoginContent = () => {
   return (

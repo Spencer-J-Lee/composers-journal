@@ -1,14 +1,14 @@
 "use client";
 
 import { ChangeEventHandler, MouseEventHandler, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
+import { getRedirectUrl } from "@/utils/urls";
 
 import { Button } from "../shared/buttons/Button";
 import { ELEMENT_IDS } from "../shared/constants/elementIds";
-import { useSearchParams } from "next/navigation";
-import { getRedirectUrl } from "@/utils/urls";
 
 /**
  * TODO: handle email already verified error
@@ -53,7 +53,7 @@ export const VerifyEmailContent = () => {
   return (
     <main id={ELEMENT_IDS.MAIN_CONTENT}>
       <form className="flex flex-col">
-        Didn't receive an email?
+        {"Didn't"} receive an email?
         <input
           type="email"
           name="email"
