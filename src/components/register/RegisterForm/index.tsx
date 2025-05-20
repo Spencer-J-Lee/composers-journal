@@ -8,7 +8,7 @@ import { Button } from "@/components/shared/buttons/Button";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
-import { getFullSiteUrl } from "@/utils/urls";
+import { genFullSiteUrl } from "@/utils/urls";
 
 import { RegisterFormValues, registerSchema } from "./schema";
 
@@ -24,7 +24,9 @@ export const RegisterForm = () => {
       email: data.email,
       password: data.password,
       options: {
-        emailRedirectTo: getFullSiteUrl(routes.search()),
+        emailRedirectTo: genFullSiteUrl(
+          routes.verifyEmailCallback(routes.search()),
+        ),
       },
     });
 

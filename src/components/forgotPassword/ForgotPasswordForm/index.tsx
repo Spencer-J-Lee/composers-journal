@@ -8,7 +8,7 @@ import { Button } from "@/components/shared/buttons/Button";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
-import { getFullSiteUrl } from "@/utils/urls";
+import { genFullSiteUrl } from "@/utils/urls";
 
 import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
 
@@ -26,8 +26,9 @@ export const ForgotPasswordForm = () => {
     const { error } = await supabase.auth.signInWithOtp({
       email: data.email,
       options: {
-        // TODO: redirect user to intermediate page to authenticate before redirecting
-        emailRedirectTo: getFullSiteUrl(routes.search()),
+        emailRedirectTo: genFullSiteUrl(
+          routes.verifyEmailCallback(routes.search()),
+        ),
         shouldCreateUser: false,
       },
     });
