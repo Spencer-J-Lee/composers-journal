@@ -16,10 +16,10 @@ export const AnchorButton = ({
   className,
   ...props
 }: AnchorButtonProps) => {
-  const baseClassName = useButtonClassName({ size, variant });
+  const { buttonClassName } = useButtonClassName({ size, variant });
 
   return (
-    <a className={clsx(baseClassName, className)} {...props}>
+    <a className={clsx(buttonClassName, className)} {...props}>
       {children}
     </a>
   );

@@ -9,7 +9,7 @@ type CardProps = {
 };
 
 export const Card: FC<CardProps> = ({ children, paddingSize = "md" }) => {
-  const className = useCardClassName({ paddingSize });
+  const { cardClassName } = useCardClassName({ paddingSize });
 
-  return <div className={className}>{children}</div>;
+  return <div className={cardClassName}>{children}</div>;
 };

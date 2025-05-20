@@ -20,10 +20,10 @@ export const IconButton = ({
   variant = "default",
   ...props
 }: IconButtonProps) => {
-  const baseClassName = useIconButtonClassName(variant);
+  const { iconButtonClassName } = useIconButtonClassName({ variant });
 
   return (
-    <button className={clsx(baseClassName, className)} {...props}>
+    <button className={clsx(iconButtonClassName, className)} {...props}>
       <FontAwesomeIcon icon={faIcon} />
     </button>
   );

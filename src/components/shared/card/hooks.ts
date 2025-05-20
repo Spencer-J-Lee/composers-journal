@@ -7,7 +7,13 @@ type UseCardClassNameProps = {
   paddingSize: CardPaddingSize;
 };
 
-export const useCardClassName = ({ paddingSize }: UseCardClassNameProps) => {
+type UseCardClassNameReturn = {
+  cardClassName: string;
+};
+
+export const useCardClassName = ({
+  paddingSize,
+}: UseCardClassNameProps): UseCardClassNameReturn => {
   const paddingClassName = useMemo(() => {
     switch (paddingSize) {
       case "md":
@@ -17,8 +23,10 @@ export const useCardClassName = ({ paddingSize }: UseCardClassNameProps) => {
     }
   }, [paddingSize]);
 
-  return clsx(
-    "bg-surface border-border rounded border shadow-sm",
-    paddingClassName,
-  );
+  return {
+    cardClassName: clsx(
+      "bg-surface border-border rounded border shadow-sm",
+      paddingClassName,
+    ),
+  };
 };

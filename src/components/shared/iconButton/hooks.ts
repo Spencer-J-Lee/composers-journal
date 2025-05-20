@@ -7,9 +7,13 @@ type UseIconButtonClassNameProps = {
   variant: ButtonVariant;
 };
 
+type UseIconButtonClassNameReturn = {
+  iconButtonClassName: string;
+};
+
 export const useIconButtonClassName = ({
   variant,
-}: UseIconButtonClassNameProps) => {
+}: UseIconButtonClassNameProps): UseIconButtonClassNameReturn => {
   const variantClassName = useMemo(() => {
     switch (variant) {
       case "default":
@@ -21,8 +25,10 @@ export const useIconButtonClassName = ({
     }
   }, [variant]);
 
-  return clsx(
-    "bg-surface hover:brightness-125 focus-visible:brightness-125 h-8 w-8 rounded duration-75 transition-all",
-    variantClassName,
-  );
+  return {
+    iconButtonClassName: clsx(
+      "bg-surface hover:brightness-125 focus-visible:brightness-125 h-8 w-8 rounded duration-75 transition-all",
+      variantClassName,
+    ),
+  };
 };

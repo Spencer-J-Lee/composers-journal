@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from "react";
 import clsx from "clsx";
 
-import { useInputClassName } from "./helpers";
+import { useInputClassName } from "./hooks";
 
 export type TextFieldProps = {
   hasError?: boolean;

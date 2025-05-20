@@ -19,10 +19,10 @@ export const Button = ({
   className,
   ...props
 }: ButtonProps) => {
-  const baseClassName = useButtonClassName({ size, variant, fullWidth });
+  const { buttonClassName } = useButtonClassName({ size, variant, fullWidth });
 
   return (
-    <button className={clsx(baseClassName, className)} {...props}>
+    <button className={clsx(buttonClassName, className)} {...props}>
       {children}
     </button>
   );

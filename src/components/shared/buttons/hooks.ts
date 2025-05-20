@@ -9,11 +9,15 @@ type UseButtonClassNameProps = {
   fullWidth?: boolean;
 };
 
+type UseButtonClassNameReturn = {
+  buttonClassName: string;
+};
+
 export const useButtonClassName = ({
   size,
   variant,
   fullWidth,
-}: UseButtonClassNameProps) => {
+}: UseButtonClassNameProps): UseButtonClassNameReturn => {
   const sizeClassName = useMemo(() => {
     switch (size) {
       case "sm":
@@ -38,10 +42,12 @@ export const useButtonClassName = ({
     return fullWidth ? "w-full" : "";
   }, [fullWidth]);
 
-  return clsx(
-    "font-inter rounded-sm font-medium tracking-widest transition-all font-semibold active:brightness-90",
-    sizeClassName,
-    variantClassName,
-    fullWidthClassName,
-  );
+  return {
+    buttonClassName: clsx(
+      "font-inter rounded-sm font-medium tracking-widest transition-all font-semibold active:brightness-90",
+      sizeClassName,
+      variantClassName,
+      fullWidthClassName,
+    ),
+  };
 };
