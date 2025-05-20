@@ -1,7 +1,7 @@
 import { routes } from "@/routes/routes";
 
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
-import { ELEMENT_IDS } from "../shared/constants/elementIds";
+import { ELEMENT_IDS } from "../../constants/elementIds";
 import { StyledLink } from "../shared/StyledLink";
 
 export const ForgotPasswordContent = () => {

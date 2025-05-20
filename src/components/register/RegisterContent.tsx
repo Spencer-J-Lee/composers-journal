@@ -1,4 +1,4 @@
-import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
+import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/routes/routes";
 
 import { RegisterForm } from "./RegisterForm";

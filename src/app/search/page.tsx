@@ -1,6 +1,6 @@
 import { Filters } from "@/components/search/Filters";
 import { Results } from "@/components/search/Results";
-import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
+import { ELEMENT_IDS } from "@/constants/elementIds";
 
 const SearchPage = () => {
   return (
