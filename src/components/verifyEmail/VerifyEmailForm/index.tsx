@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
-import { getRedirectUrl } from "@/utils/urls";
+import { getFullSiteUrl } from "@/utils/urls";
 
 import { VerifyEmailFormValues, verifyEmailSchema } from "./schema";
 import { Button } from "../../shared/buttons/Button";
@@ -26,7 +26,7 @@ export const VerifyEmailForm = () => {
       type: "signup",
       email: data.email,
       options: {
-        emailRedirectTo: getRedirectUrl(routes.search()),
+        emailRedirectTo: getFullSiteUrl(routes.search()),
       },
     });
 
