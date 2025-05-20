@@ -22,6 +22,7 @@ export const LoginForm = () => {
       password: data.password,
     });
 
+    // TODO: handle error when invalid login credentials
     // TODO: add better error handling
     // TODO: remove test logs
     if (error) {
