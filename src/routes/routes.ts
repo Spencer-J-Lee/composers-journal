@@ -48,6 +48,11 @@ class Routes {
     return email ? this.withQuery(basePath, { query: { email } }) : basePath;
   }
 
+  forgotPassword(email?: string) {
+    const basePath = `/forgot-password`;
+    return email ? this.withQuery(basePath, { query: { email } }) : basePath;
+  }
+
   profile() {
     return "/profile";
   }

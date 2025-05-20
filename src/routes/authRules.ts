@@ -18,6 +18,10 @@ export const authRules: AuthRule[] = [
     matcher: /^\/verify-email$/,
     type: "guestOnly",
   },
+  {
+    matcher: /^\/forgot-password$/,
+    type: "guestOnly",
+  },
 
   {
     matcher: /^\/profile$/,

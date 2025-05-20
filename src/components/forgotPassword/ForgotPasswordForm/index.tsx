@@ -1,36 +1,41 @@
+"use client";
+
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/shared/buttons/Button";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
-import { StyledLink } from "@/components/shared/StyledLink";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
+import { getFullSiteUrl } from "@/utils/urls";
 
-import { LoginFormValues, loginSchema } from "./schema";
+import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
 
-export const LoginForm = () => {
+export const ForgotPasswordForm = () => {
   const supabase = createClientCS();
-  const router = useRouter();
-  const methods = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+  const searchParams = useSearchParams();
+  const methods = useForm<ForgotPasswordFormValues>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: {
+      email: searchParams.get("email") ?? "",
+    },
   });
 
-  const onSubmit = async (data: LoginFormValues) => {
-    const { error } = await supabase.auth.signInWithPassword({
+  const onSubmit = async (data: ForgotPasswordFormValues) => {
+    const { error } = await supabase.auth.signInWithOtp({
       email: data.email,
-      password: data.password,
+      options: {
+        // TODO: redirect user to intermediate page to authenticate before redirecting
+        emailRedirectTo: getFullSiteUrl(routes.search()),
+        shouldCreateUser: false,
+      },
     });
 
-    // TODO: handle error when invalid login credentials
     // TODO: add better error handling
     // TODO: remove test logs
     if (error) {
       console.error(error);
-    } else {
-      console.log("redirecting...");
-      router.push(routes.search());
     }
   };
 
@@ -39,19 +44,10 @@ export const LoginForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="mb-5 w-full space-y-4">
           <RHFTextField type="email" name="email" label="Email" required />
-          <RHFTextField
-            type="password"
-            name="password"
-            label="Password"
-            required
-          />
-          <StyledLink href={routes.forgotPassword(methods.getValues().email)}>
-            Forgot password?
-          </StyledLink>
         </div>
 
         <Button type="submit" fullWidth>
-          Log In
+          Send
         </Button>
       </form>
     </FormProvider>
