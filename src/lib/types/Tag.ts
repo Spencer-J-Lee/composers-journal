@@ -1,5 +1,5 @@
-export interface Tag {
+export type Tag = {
   id: number;
   name: string;
   createdAt: Date;
-}
+};

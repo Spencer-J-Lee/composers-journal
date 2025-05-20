@@ -10,10 +10,10 @@ import { ExamplesButton } from "./ExamplesButton";
 import { Tags } from "../../tag/Tags";
 import { EntryControls } from "../entryControls/EntryControls";
 
-interface EntryCardProps {
+type EntryCardProps = {
   entry: Entry;
   defaultShowTags?: boolean;
-}
+};
 
 export const EntryCard = ({
   entry,

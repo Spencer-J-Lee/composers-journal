@@ -6,14 +6,13 @@ import clsx from "clsx";
 import { useIconButtonClassname } from "./hooks";
 import { IconButtonVariant } from "./types";
 
-interface IconButtonProps
-  extends DetailedHTMLProps<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+type IconButtonProps = {
   faIcon: IconProp;
   variant?: IconButtonVariant;
-}
+} & DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
 
 export const IconButton = ({
   className,

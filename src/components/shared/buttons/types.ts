@@ -1,7 +1,7 @@
 export type ButtonSize = "sm" | "md";
 export type ButtonVariant = "default" | "CTA" | "danger";
 
-export interface BaseButtonProps {
+export type BaseButtonProps = {
   size?: ButtonSize;
   variant?: ButtonVariant;
-}
+};

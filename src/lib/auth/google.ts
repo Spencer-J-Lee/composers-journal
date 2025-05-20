@@ -1,10 +1,10 @@
 import { createClientCS } from "../db/supabase/client";
 
-interface GoogleCredentialResponse {
+type GoogleCredentialResponse = {
   credential: string;
   select_by: string;
   clientId?: string;
-}
+};
 
 export const handleSignInWithGoogle = async (
   response: GoogleCredentialResponse,

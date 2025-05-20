@@ -1,4 +1,4 @@
-export interface User {
+export type User = {
   id: number;
   email: string;
   firstName: string;
@@ -6,4 +6,4 @@ export interface User {
   avatarUrl: string;
   isEmailVerified: boolean;
   createdAt: Date;
-}
+};

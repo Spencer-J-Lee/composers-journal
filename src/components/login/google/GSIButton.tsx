@@ -4,9 +4,9 @@ import { useMemo } from "react";
 
 import { GSISetup } from "./GSISetup";
 
-interface GSIButtonProps {
+type GSIButtonProps = {
   variant?: "white" | "blue" | "black";
-}
+};
 
 export const GSIButton = ({ variant = "white" }: GSIButtonProps) => {
   const dataTheme = useMemo(() => {

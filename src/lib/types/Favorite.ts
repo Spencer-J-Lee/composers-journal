@@ -1,4 +1,4 @@
-export interface Favorite {
+export type Favorite = {
   id: number;
   entryId: number;
-}
+};

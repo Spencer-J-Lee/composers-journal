@@ -4,10 +4,10 @@ import { Tag } from "@/lib/types/Tag";
 
 import { Chip } from "../shared/Chip";
 
-interface TagsProps {
+type TagsProps = {
   tags: Tag[];
   className?: string;
-}
+};
 
 export const Tags = ({ tags, className }: TagsProps) => {
   return (

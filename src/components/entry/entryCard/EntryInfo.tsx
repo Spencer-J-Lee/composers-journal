@@ -3,12 +3,12 @@ import clsx from "clsx";
 
 import { Entry } from "@/lib/types/Entry";
 
-interface EntryInfoProps {
+type EntryInfoProps = {
   entry: Entry;
   showTags: boolean;
   setShowTags: Dispatch<SetStateAction<boolean>>;
   className?: string;
-}
+};
 
 export const EntryInfo = ({
   entry,

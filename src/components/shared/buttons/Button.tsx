@@ -6,14 +6,10 @@ import clsx from "clsx";
 import { useButtonClassname } from "./hooks";
 import { BaseButtonProps } from "./types";
 
-interface ButtonProps
-  extends BaseButtonProps,
-    DetailedHTMLProps<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      HTMLButtonElement
-    > {
+type ButtonProps = {
   fullWidth?: boolean;
-}
+} & BaseButtonProps &
+  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
 export const Button = ({
   children,

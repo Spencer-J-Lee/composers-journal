@@ -1,6 +1,6 @@
-interface ChipProps {
+type ChipProps = {
   text: string;
-}
+};
 
 export const Chip = ({ text }: ChipProps) => {
   return (

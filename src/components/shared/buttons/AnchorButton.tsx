@@ -6,12 +6,8 @@ import clsx from "clsx";
 import { useButtonClassname } from "./hooks";
 import { BaseButtonProps } from "./types";
 
-interface AnchorButtonProps
-  extends BaseButtonProps,
-    DetailedHTMLProps<
-      AnchorHTMLAttributes<HTMLAnchorElement>,
-      HTMLAnchorElement
-    > {}
+type AnchorButtonProps = BaseButtonProps &
+  DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
 
 export const AnchorButton = ({
   children,

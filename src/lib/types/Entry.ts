@@ -8,7 +8,7 @@ export const ENTRY_STATUSES = [
 ] as const;
 export type EntryStatus = (typeof ENTRY_STATUSES)[number];
 
-export interface Entry {
+export type Entry = {
   id: number;
   title: string;
   description: string;
@@ -16,4 +16,4 @@ export interface Entry {
   tags: Tag[];
   status: EntryStatus | null;
   createdAt: Date;
-}
+};
