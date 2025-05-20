@@ -1,3 +1,5 @@
+import { QUERY_KEYS } from "@/constants/queryKeys";
+
 import { RouteOptions } from "./types";
 
 class Routes {
@@ -46,6 +48,20 @@ class Routes {
   verifyEmail(email?: string) {
     const basePath = `/verify-email`;
     return email ? this.withQuery(basePath, { query: { email } }) : basePath;
+  }
+
+  /**
+   * The provided redirectUrl will be used to redirect the user after authentication
+   * on the Verify Email Callback page
+   */
+  verifyEmailCallback(redirectUrl: string) {
+    const basePath = `${this.verifyEmail()}/callback`;
+
+    return redirectUrl
+      ? this.withQuery(basePath, {
+          query: { [QUERY_KEYS.REDIRECT_URL]: redirectUrl },
+        })
+      : basePath;
   }
 
   forgotPassword(email?: string) {
