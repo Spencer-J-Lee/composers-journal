@@ -2,7 +2,7 @@
 
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
@@ -15,7 +15,6 @@ import { RHFTextField } from "../../shared/formFields/RHFFields/RHFTextField";
 export const VerifyEmailForm = () => {
   const supabase = createClientCS();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const methods = useForm<VerifyEmailFormValues>({
     defaultValues: { email: searchParams.get("email") ?? "" },
     resolver: zodResolver(verifyEmailSchema),
@@ -36,9 +35,6 @@ export const VerifyEmailForm = () => {
     // TODO: remove test logs
     if (error) {
       console.error(error);
-    } else {
-      console.log("redirecting...");
-      router.push(routes.search());
     }
   };
 
