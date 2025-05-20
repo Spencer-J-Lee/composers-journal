@@ -1,4 +1,4 @@
-import { FormProvider,useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
@@ -7,7 +7,7 @@ import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextFi
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 
-import { LoginFormValues,loginSchema } from "./schema";
+import { LoginFormValues, loginSchema } from "./schema";
 
 export const LoginForm = () => {
   const supabase = createClientCS();
@@ -36,15 +36,17 @@ export const LoginForm = () => {
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="w-full max-w-md space-y-4"
+        className="w-full max-w-md"
       >
-        <RHFTextField type="email" name="email" label="Email" required />
-        <RHFTextField
-          type="password"
-          name="password"
-          label="Password"
-          required
-        />
+        <div className="mb-5 w-full space-y-4">
+          <RHFTextField type="email" name="email" label="Email" required />
+          <RHFTextField
+            type="password"
+            name="password"
+            label="Password"
+            required
+          />
+        </div>
 
         <Button type="submit" fullWidth>
           Log In
