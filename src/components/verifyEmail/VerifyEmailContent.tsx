@@ -1,5 +1,3 @@
-"use client";
-
 import { VerifyEmailForm } from "./VerifyEmailForm";
 import { ELEMENT_IDS } from "../shared/constants/elementIds";
 

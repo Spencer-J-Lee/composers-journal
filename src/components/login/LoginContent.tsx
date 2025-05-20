@@ -1,5 +1,3 @@
-"use client";
-
 import { routes } from "@/routes/routes";
 
 import { GSIButton } from "./google/GSIButton";

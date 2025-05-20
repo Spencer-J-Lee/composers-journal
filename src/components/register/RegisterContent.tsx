@@ -1,5 +1,3 @@
-"use client";
-
 import { ELEMENT_IDS } from "@/components/shared/constants/elementIds";
 import { routes } from "@/routes/routes";
 
