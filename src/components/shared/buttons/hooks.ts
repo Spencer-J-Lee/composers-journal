@@ -6,6 +6,7 @@ import { ButtonSize, ButtonVariant } from "@/components/shared/buttons/types";
 export const useButtonClassname = (
   size: ButtonSize,
   variant: ButtonVariant,
+  fullWidth?: boolean,
 ) => {
   const sizeClassName = useMemo(() => {
     switch (size) {
@@ -27,9 +28,14 @@ export const useButtonClassname = (
     }
   }, [variant]);
 
+  const fullWidthClassName = useMemo(() => {
+    return fullWidth ? "w-full" : "";
+  }, [fullWidth]);
+
   return clsx(
     "font-inter rounded-sm font-medium tracking-widest transition-all font-semibold active:brightness-90",
     sizeClassName,
     variantClassName,
+    fullWidthClassName,
   );
 };

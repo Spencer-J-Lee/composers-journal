@@ -22,6 +22,7 @@
   --color-surface-light: #3f4248;
   --color-text: #fff;
   --color-text-muted: #c2c2c6;
+  --color-input-background: #18191c;
   --color-accent: #5c68e0;
   --color-border: #43464c;
   --color-success: #3ba55c;
@@ -33,35 +34,5 @@
   --navbar-height: 60px;
 }
 
-@layer base {
-  *:focus-visible {
-    @apply outline-accessibility outline-offset-2;
-  }
-
-  /* For Chrome/Safari */
-  @supports selector(::-webkit-scrollbar) {
-    ::-webkit-scrollbar {
-      width: 16px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #674027;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #84593d;
-      border-radius: 999px;
-      border: 4px solid transparent;
-      background-clip: content-box;
-    }
-  }
-
-  /* For Firefox */
-  @supports (scrollbar-color: auto) {
-    * {
-      scrollbar-color: #84593d #674027;
-    }
-  }
-}
-
+@import "./base.css";
 @import "./utilities.css";

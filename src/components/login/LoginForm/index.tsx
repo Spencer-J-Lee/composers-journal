@@ -1,0 +1,54 @@
+import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, LoginFormValues } from "./schema";
+
+import { createClientCS } from "@/lib/db/supabase/client";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/shared/buttons/Button";
+import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
+import { routes } from "@/routes/routes";
+
+export const LoginForm = () => {
+  const supabase = createClientCS();
+  const router = useRouter();
+  const methods = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onSubmit = async (data: LoginFormValues) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    });
+
+    // TODO: add better error handling
+    // TODO: remove test logs
+    if (error) {
+      console.error(error);
+    } else {
+      console.log("redirecting...");
+      router.push(routes.search());
+    }
+  };
+
+  return (
+    <FormProvider {...methods}>
+      <form
+        onSubmit={methods.handleSubmit(onSubmit)}
+        className="w-full max-w-md space-y-4"
+      >
+        <RHFTextField type="email" name="email" label="Email" required />
+        <RHFTextField
+          type="password"
+          name="password"
+          label="Password"
+          required
+        />
+
+        <Button type="submit" fullWidth>
+          Log In
+        </Button>
+      </form>
+    </FormProvider>
+  );
+};

@@ -11,16 +11,19 @@ interface ButtonProps
     DetailedHTMLProps<
       ButtonHTMLAttributes<HTMLButtonElement>,
       HTMLButtonElement
-    > {}
+    > {
+  fullWidth?: boolean;
+}
 
 export const Button = ({
   children,
   size = "md",
   variant = "default",
+  fullWidth,
   className,
   ...props
 }: ButtonProps) => {
-  const baseClassName = useButtonClassname(size, variant);
+  const baseClassName = useButtonClassname(size, variant, fullWidth);
 
   return (
     <button className={clsx(baseClassName, className)} {...props}>
