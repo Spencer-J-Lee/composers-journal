@@ -3,11 +3,17 @@ import clsx from "clsx";
 
 import { ButtonSize, ButtonVariant } from "@/components/shared/buttons/types";
 
-export const useButtonClassname = (
-  size: ButtonSize,
-  variant: ButtonVariant,
-  fullWidth?: boolean,
-) => {
+type UseButtonClassNameProps = {
+  size: ButtonSize;
+  variant: ButtonVariant;
+  fullWidth?: boolean;
+};
+
+export const useButtonClassName = ({
+  size,
+  variant,
+  fullWidth,
+}: UseButtonClassNameProps) => {
   const sizeClassName = useMemo(() => {
     switch (size) {
       case "sm":

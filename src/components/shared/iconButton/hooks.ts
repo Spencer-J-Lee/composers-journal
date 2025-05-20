@@ -3,7 +3,13 @@ import clsx from "clsx";
 
 import { ButtonVariant } from "@/components/shared/buttons/types";
 
-export const useIconButtonClassname = (variant: ButtonVariant) => {
+type UseIconButtonClassNameProps = {
+  variant: ButtonVariant;
+};
+
+export const useIconButtonClassName = ({
+  variant,
+}: UseIconButtonClassNameProps) => {
   const variantClassName = useMemo(() => {
     switch (variant) {
       case "default":

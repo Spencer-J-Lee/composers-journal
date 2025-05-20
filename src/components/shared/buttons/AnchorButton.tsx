@@ -3,7 +3,7 @@
 import { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 import clsx from "clsx";
 
-import { useButtonClassname } from "./hooks";
+import { useButtonClassName } from "./hooks";
 import { BaseButtonProps } from "./types";
 
 type AnchorButtonProps = BaseButtonProps &
@@ -16,7 +16,7 @@ export const AnchorButton = ({
   className,
   ...props
 }: AnchorButtonProps) => {
-  const baseClassName = useButtonClassname(size, variant);
+  const baseClassName = useButtonClassName({ size, variant });
 
   return (
     <a className={clsx(baseClassName, className)} {...props}>

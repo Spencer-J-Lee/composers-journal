@@ -3,7 +3,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 
-import { useIconButtonClassname } from "./hooks";
+import { useIconButtonClassName } from "./hooks";
 import { IconButtonVariant } from "./types";
 
 type IconButtonProps = {
@@ -20,7 +20,7 @@ export const IconButton = ({
   variant = "default",
   ...props
 }: IconButtonProps) => {
-  const baseClassName = useIconButtonClassname(variant);
+  const baseClassName = useIconButtonClassName(variant);
 
   return (
     <button className={clsx(baseClassName, className)} {...props}>

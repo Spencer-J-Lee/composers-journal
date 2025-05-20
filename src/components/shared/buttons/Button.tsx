@@ -3,7 +3,7 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import clsx from "clsx";
 
-import { useButtonClassname } from "./hooks";
+import { useButtonClassName } from "./hooks";
 import { BaseButtonProps } from "./types";
 
 type ButtonProps = {
@@ -19,7 +19,7 @@ export const Button = ({
   className,
   ...props
 }: ButtonProps) => {
-  const baseClassName = useButtonClassname(size, variant, fullWidth);
+  const baseClassName = useButtonClassName({ size, variant, fullWidth });
 
   return (
     <button className={clsx(baseClassName, className)} {...props}>

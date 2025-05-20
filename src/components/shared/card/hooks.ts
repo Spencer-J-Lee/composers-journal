@@ -3,15 +3,19 @@ import clsx from "clsx";
 
 import { CardPaddingSize } from "./types";
 
-export const useCardClassName = (padding: CardPaddingSize) => {
+type UseCardClassNameProps = {
+  paddingSize: CardPaddingSize;
+};
+
+export const useCardClassName = ({ paddingSize }: UseCardClassNameProps) => {
   const paddingClassName = useMemo(() => {
-    switch (padding) {
+    switch (paddingSize) {
       case "md":
         return "p-4";
       case "none":
         return "";
     }
-  }, [padding]);
+  }, [paddingSize]);
 
   return clsx(
     "bg-surface border-border rounded border shadow-sm",
