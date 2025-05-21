@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
+import { Alert } from "@/components/shared/alert/Alert";
+import { useAlert } from "@/components/shared/alert/hooks";
 import { Button } from "@/components/shared/buttons/Button";
+import { RHFPasswordField } from "@/components/shared/formFields/RHFFields/RHFPasswordField";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
@@ -15,11 +19,16 @@ import { RegisterFormValues, registerSchema } from "./schema";
 export const RegisterForm = () => {
   const supabase = createClientCS();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const { alertVisible, alertMsg, showAlert, hideAlert } = useAlert();
   const methods = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
   });
 
   const onSubmit = async (data: RegisterFormValues) => {
+    setLoading(true);
+    hideAlert();
+
     const { error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
@@ -30,16 +39,16 @@ export const RegisterForm = () => {
       },
     });
 
-    // TODO: handle error when user already exists
-    // TODO: handle error when user already registered through OAuth
-    // TODO: add better error handling
-    // TODO: remove test logs
     if (error) {
-      console.error(error);
+      // To increase security against brute force information farming, users
+      // aren't notified when an account already exists for the provided email.
+      // Instead, the request will succeed as if a new user was registered.
+      showAlert("Something went wrong. Please try again later.");
     } else {
-      console.log("redirecting...");
       router.push(routes.verifyEmail(data.email));
     }
+
+    setLoading(false);
   };
 
   return (
@@ -47,18 +56,20 @@ export const RegisterForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="mb-5 w-full space-y-4">
           <RHFTextField type="email" name="email" label="Email" required />
-          <RHFTextField
-            type="password"
-            name="password"
-            label="Password"
-            required
-          />
+          <RHFPasswordField name="password" required />
         </div>
 
-        <Button type="submit" fullWidth>
+        <Button type="submit" loading={loading} fullWidth>
           Register
         </Button>
       </form>
+
+      <Alert
+        message={alertMsg}
+        type="negative"
+        show={alertVisible}
+        onClose={hideAlert}
+      />
     </FormProvider>
   );
 };
