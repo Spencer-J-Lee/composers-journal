@@ -23,7 +23,7 @@ export const RHFTextField = ({
 
   return (
     <div>
-      <FieldLabel htmlFor={name} required={required}>
+      <FieldLabel htmlFor={name} required={required} hasError={!!error}>
         {label}
       </FieldLabel>
       <TextField id={name} hasError={!!error} {...register(name)} {...props} />

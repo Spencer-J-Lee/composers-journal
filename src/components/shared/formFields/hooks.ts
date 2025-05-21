@@ -7,12 +7,12 @@ type UseInputClassNameProps = {
 
 export const useInputClassName = ({ hasError }: UseInputClassNameProps) => {
   const errorClassName = useMemo(() => {
-    return hasError ? " border-danger" : " border-border focus:border-accent";
+    return hasError ? " border-negative" : " border-input-border";
   }, [hasError]);
 
   return {
     inputClassName: clsx(
-      "w-full rounded-sm border bg-input-background p-2",
+      "w-full rounded-lg border bg-input-background px-3 py-2.5 text-sm focus:border-input-border-focus transition-colors",
       errorClassName,
     ),
   };
