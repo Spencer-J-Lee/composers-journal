@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { ReactNode, useMemo } from "react";
+import clsx from "clsx";
 
 type LabelProps = {
   children: ReactNode;
