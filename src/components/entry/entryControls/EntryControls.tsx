@@ -10,7 +10,7 @@ export const EntryControls = ({}: EntryControlsProps) => {
     <div className="flex flex-col items-center gap-1 p-2">
       <IconButton faIcon={faStar} />
       <IconButton faIcon={faEdit} />
-      <IconButton faIcon={faTrash} variant="danger" />
+      <IconButton faIcon={faTrash} variant="negative" />
     </div>
   );
 };

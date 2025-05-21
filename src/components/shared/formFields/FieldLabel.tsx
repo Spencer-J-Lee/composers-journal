@@ -10,7 +10,7 @@ export const FieldLabel = ({ children, htmlFor, required }: LabelProps) => {
   return (
     <label className="mb-1 block text-sm font-medium" htmlFor={htmlFor}>
       {children}
-      {required && <span className="text-danger"> *</span>}
+      {required && <span className="text-negative-text"> *</span>}
     </label>
   );
 };

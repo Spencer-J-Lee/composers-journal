@@ -14,10 +14,10 @@ export const useIconButtonClassName = ({
     switch (variant) {
       case "default":
         return "text-text-muted";
-      case "CTA":
-        return "text-success";
-      case "danger":
-        return "text-danger";
+      case "positive":
+        return "text-positive";
+      case "negative":
+        return "text-negative";
     }
   }, [variant]);
 

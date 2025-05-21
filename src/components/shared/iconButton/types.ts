@@ -1,1 +1,1 @@
-export type IconButtonVariant = "default" | "CTA" | "danger";
+export type IconButtonVariant = "default" | "positive" | "negative";

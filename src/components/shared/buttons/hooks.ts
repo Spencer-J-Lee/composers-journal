@@ -27,10 +27,10 @@ export const useButtonClassName = ({
     switch (variant) {
       case "default":
         return "text-text bg-accent";
-      case "CTA":
-        return "text-text bg-success";
-      case "danger":
-        return "text-text bg-danger";
+      case "positive":
+        return "text-text bg-positive";
+      case "negative":
+        return "text-text bg-negative";
     }
   }, [variant]);
 

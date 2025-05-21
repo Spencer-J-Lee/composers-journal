@@ -25,8 +25,9 @@
   --color-input-background: #18191c;
   --color-accent: #5c68e0;
   --color-border: #43464c;
-  --color-success: #3ba55c;
-  --color-danger: #ed4245;
+  --color-positive: #75c383;
+  --color-negative: #da3e45;
+  --color-negative-text: #f57976;
   --color-accessibility: #5865f2;
 
   --font-inter: var(--font-inter), sans-serif;
