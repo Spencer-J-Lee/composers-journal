@@ -37,7 +37,10 @@
   --font-inter: var(--font-inter), sans-serif;
 
   --navbar-height: 60px;
+
+  --animate-pulsing-ellipsis: pulsing-ellipsis 1.4s ease-in-out infinite;
 }
 
 @import "./base.css";
 @import "./utilities.css";
+@import "./animations.css";

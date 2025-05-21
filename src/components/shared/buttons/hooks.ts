@@ -40,7 +40,7 @@ export const useButtonClassName = ({
 
   return {
     buttonClassName: clsx(
-      "font-inter rounded-sm font-medium tracking-widest transition-all font-semibold active:brightness-90",
+      "font-inter rounded-sm font-medium tracking-widest transition-all font-semibold active:brightness-90 disabled:pointer-events-none",
       sizeClassName,
       variantClassName,
       fullWidthClassName,

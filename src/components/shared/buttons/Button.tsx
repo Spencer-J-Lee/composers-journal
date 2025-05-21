@@ -5,9 +5,11 @@ import clsx from "clsx";
 
 import { useButtonClassName } from "./hooks";
 import { BaseButtonProps } from "./types";
+import { PulsingEllipsis } from "../loaders/PulsingEllipsis";
 
 type ButtonProps = {
   fullWidth?: boolean;
+  loading?: boolean;
 } & BaseButtonProps &
   DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
@@ -16,14 +18,20 @@ export const Button = ({
   size = "md",
   variant = "default",
   fullWidth,
+  loading,
+  disabled,
   className,
   ...props
 }: ButtonProps) => {
   const { buttonClassName } = useButtonClassName({ size, variant, fullWidth });
 
   return (
-    <button className={clsx(buttonClassName, className)} {...props}>
-      {children}
+    <button
+      className={clsx(buttonClassName, className)}
+      disabled={disabled || loading}
+      {...props}
+    >
+      {loading ? <PulsingEllipsis /> : children}
     </button>
   );
 };
