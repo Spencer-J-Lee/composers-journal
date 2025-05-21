@@ -19,6 +19,10 @@ export const authRules: AuthRule[] = [
     type: "guestOnly",
   },
   {
+    matcher: /^\/verify-email\/callback$/,
+    type: "guestOnly",
+  },
+  {
     matcher: /^\/forgot-password$/,
     type: "guestOnly",
   },
