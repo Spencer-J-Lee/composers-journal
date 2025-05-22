@@ -15,6 +15,9 @@ type AlertProps = {
   onClose: () => void;
 };
 
+/**
+ * @deprecated Use the custom Toast from sonner for alerts
+ */
 export const Alert = ({
   message,
   type,

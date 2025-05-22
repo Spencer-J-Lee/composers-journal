@@ -4,9 +4,8 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-import { Alert } from "@/components/shared/alert/Alert";
-import { useAlert } from "@/components/shared/alert/hooks";
 import { Button } from "@/components/shared/buttons/Button";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
 import { StyledLink } from "@/components/shared/StyledLink";
@@ -19,14 +18,12 @@ export const LoginForm = () => {
   const supabase = createClientCS();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { alertVisible, alertMsg, showAlert, hideAlert } = useAlert();
   const methods = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = async (data: LoginFormValues) => {
     setLoading(true);
-    hideAlert();
 
     const { error } = await supabase.auth.signInWithPassword({
       email: data.email,
@@ -46,7 +43,7 @@ export const LoginForm = () => {
         });
       });
     } else if (error) {
-      showAlert("Something went wrong. Please try again later.");
+      toast.error("Something went wrong. Please try again later.");
     } else {
       router.push(routes.search());
     }
@@ -74,13 +71,6 @@ export const LoginForm = () => {
           Log In
         </Button>
       </form>
-
-      <Alert
-        message={alertMsg}
-        type="negative"
-        show={alertVisible}
-        onClose={hideAlert}
-      />
     </FormProvider>
   );
 };

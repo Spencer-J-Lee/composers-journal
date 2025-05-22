@@ -1,6 +1,7 @@
 import { config } from "@fortawesome/fontawesome-svg-core";
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Toaster } from "sonner";
 
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
@@ -35,6 +36,8 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+
+        <Toaster richColors />
       </body>
     </html>
   );
