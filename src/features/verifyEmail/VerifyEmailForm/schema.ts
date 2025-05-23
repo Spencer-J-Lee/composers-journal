@@ -1,7 +1,9 @@
 import { z } from "zod";
 
+import { emailSchema } from "@/schemas";
+
 export const verifyEmailSchema = z.object({
-  email: z.string().email("Invalid email address"),
+  email: emailSchema,
 });
 
 export type VerifyEmailFormValues = z.infer<typeof verifyEmailSchema>;

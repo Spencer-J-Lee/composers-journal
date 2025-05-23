@@ -1,3 +1,4 @@
+import { emailSchema } from "./emailSchema";
 import { passwordSchema } from "./passwordSchema";
 
-export { passwordSchema };
+export { emailSchema, passwordSchema };
