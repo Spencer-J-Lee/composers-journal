@@ -5,10 +5,11 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 
-import { Button } from "@/components/buttons/Button";
+import { CooldownButton } from "@/components/buttons/CooldownButton";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
+import { useCountdown } from "@/hooks/useCountdown";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 import { showErrorToast } from "@/utils/toasts";
@@ -20,6 +21,7 @@ export const ForgotPasswordForm = () => {
   const supabase = createClientCS();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
+  const { count, startCountdown } = useCountdown();
   const methods = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
@@ -30,8 +32,6 @@ export const ForgotPasswordForm = () => {
   const onSubmit = async (data: ForgotPasswordFormValues) => {
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithOtp({
-      email: data.email,
       options: {
         emailRedirectTo: genFullSiteUrl(
           routes.verifyEmailCallback(routes.search()),
@@ -42,6 +42,8 @@ export const ForgotPasswordForm = () => {
 
     if (error) {
       showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
+    } else {
+      startCountdown(10);
     }
 
     setLoading(false);
@@ -54,9 +56,14 @@ export const ForgotPasswordForm = () => {
           <RHFTextField type="email" name="email" label="Email" required />
         </div>
 
-        <Button type="submit" loading={loading} fullWidth>
-          Send
-        </Button>
+        <CooldownButton
+          type="submit"
+          loading={loading}
+          cooldown={count}
+          fullWidth
+        >
+          Resend
+        </CooldownButton>
       </form>
     </FormProvider>
   );
