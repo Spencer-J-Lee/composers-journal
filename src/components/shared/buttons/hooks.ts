@@ -7,12 +7,14 @@ type UseButtonClassNameProps = {
   size: ButtonSize;
   variant: ButtonVariant;
   fullWidth?: boolean;
+  disabled?: boolean;
 };
 
 export const useButtonClassName = ({
   size,
   variant,
   fullWidth,
+  disabled,
 }: UseButtonClassNameProps) => {
   const sizeClassName = useMemo(() => {
     switch (size) {
@@ -38,12 +40,17 @@ export const useButtonClassName = ({
     return fullWidth ? "w-full" : "";
   }, [fullWidth]);
 
+  const disabledClassName = useMemo(() => {
+    return disabled ? "disabled:bg-disabled" : "";
+  }, [disabled]);
+
   return {
     buttonClassName: clsx(
       "font-inter rounded-sm font-medium tracking-widest transition-all font-semibold active:brightness-90 disabled:pointer-events-none",
       sizeClassName,
       variantClassName,
       fullWidthClassName,
+      disabledClassName,
     ),
   };
 };

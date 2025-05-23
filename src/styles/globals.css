@@ -32,6 +32,7 @@
   --color-positive: #75c383;
   --color-negative: #da3e45;
   --color-negative-text: #f57976;
+  --color-disabled: #73767c;
   --color-accessibility: #5865f2;
 
   --font-inter: var(--font-inter), sans-serif;

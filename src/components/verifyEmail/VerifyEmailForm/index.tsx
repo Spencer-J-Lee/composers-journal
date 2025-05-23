@@ -7,19 +7,21 @@ import { useSearchParams } from "next/navigation";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
+import { useCountdown } from "@/hooks/useCountdown";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 import { showErrorToast } from "@/utils/toasts";
 import { genFullSiteUrl } from "@/utils/urls";
 
 import { VerifyEmailFormValues, verifyEmailSchema } from "./schema";
-import { Button } from "../../shared/buttons/Button";
 import { RHFTextField } from "../../shared/formFields/RHFFields/RHFTextField";
+import { CooldownButton } from "@/components/shared/buttons/CooldownButton";
 
 export const VerifyEmailForm = () => {
   const supabase = createClientCS();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
+  const { count, startCountdown } = useCountdown();
   const methods = useForm<VerifyEmailFormValues>({
     defaultValues: { email: searchParams.get(QUERY_KEYS.EMAIL) ?? "" },
     resolver: zodResolver(verifyEmailSchema),
@@ -40,6 +42,8 @@ export const VerifyEmailForm = () => {
 
     if (error) {
       showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
+    } else {
+      startCountdown(10);
     }
 
     setLoading(false);
@@ -51,9 +55,14 @@ export const VerifyEmailForm = () => {
         <div className="mb-5 w-full space-y-4">
           <RHFTextField type="email" name="email" label="Email" required />
         </div>
-        <Button type="submit" loading={loading} fullWidth>
+        <CooldownButton
+          type="submit"
+          loading={loading}
+          cooldown={count}
+          fullWidth
+        >
           Resend
-        </Button>
+        </CooldownButton>
       </form>
     </FormProvider>
   );

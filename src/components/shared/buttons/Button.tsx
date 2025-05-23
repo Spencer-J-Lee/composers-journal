@@ -7,7 +7,7 @@ import { useButtonClassName } from "./hooks";
 import { BaseButtonProps } from "./types";
 import { PulsingEllipsis } from "../loaders/PulsingEllipsis";
 
-type ButtonProps = {
+export type ButtonProps = {
   fullWidth?: boolean;
   loading?: boolean;
 } & BaseButtonProps &
@@ -23,7 +23,12 @@ export const Button = ({
   className,
   ...props
 }: ButtonProps) => {
-  const { buttonClassName } = useButtonClassName({ size, variant, fullWidth });
+  const { buttonClassName } = useButtonClassName({
+    size,
+    variant,
+    fullWidth,
+    disabled,
+  });
 
   return (
     <button
