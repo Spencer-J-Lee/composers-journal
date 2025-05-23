@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 
-import { ButtonVariant } from "@/components/shared/buttons/types";
+import { ButtonVariant } from "@/components/buttons/types";
 
 type UseIconButtonClassNameProps = {
   variant: ButtonVariant;

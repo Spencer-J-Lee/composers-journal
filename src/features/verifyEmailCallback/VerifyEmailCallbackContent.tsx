@@ -9,7 +9,7 @@ import { routes } from "@/routes/routes";
 
 import { VerificationStatus } from "./types";
 import { ELEMENT_IDS } from "../../constants/elementIds";
-import { VerifyEmailForm } from "../verifyEmail/VerifyEmailForm";
+import { VerifyEmailForm } from "../../features/verifyEmail/VerifyEmailForm";
 
 /**
  * User will be authenticated before being redirected based on authentication.

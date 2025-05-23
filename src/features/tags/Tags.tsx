@@ -1,8 +1,7 @@
 import clsx from "clsx";
 
+import { Chip } from "@/components/Chip";
 import { Tag } from "@/lib/types/Tag";
-
-import { Chip } from "../shared/Chip";
 
 type TagsProps = {
   tags: Tag[];

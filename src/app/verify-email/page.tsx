@@ -1,4 +1,4 @@
-import { VerifyEmailContent } from "@/components/verifyEmail/VerifyEmailContent";
+import { VerifyEmailContent } from "@/features/verifyEmail/VerifyEmailContent";
 
 const VerifyEmailPage = () => {
   return <VerifyEmailContent />;

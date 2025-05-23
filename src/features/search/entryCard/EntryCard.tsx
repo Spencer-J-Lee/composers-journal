@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 
-import { Card } from "@/components/shared/card/Card";
+import { Card } from "@/components/card/Card";
 import { Entry } from "@/lib/types/Entry";
 
 import { EntryInfo } from "./EntryInfo";
 import { ExamplesButton } from "./ExamplesButton";
-import { Tags } from "../../tag/Tags";
+import { Tags } from "../../tags/Tags";
 import { EntryControls } from "../entryControls/EntryControls";
 
 type EntryCardProps = {

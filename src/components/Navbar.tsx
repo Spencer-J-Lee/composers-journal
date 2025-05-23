@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { createClientCS, getSessionCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 
-import { Button } from "./shared/buttons/Button";
+import { Button } from "./buttons/Button";
 import { ELEMENT_IDS } from "../constants/elementIds";
 
 export const Navbar = () => {

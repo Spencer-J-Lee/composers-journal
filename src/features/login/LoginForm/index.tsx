@@ -5,9 +5,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/shared/buttons/Button";
-import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
-import { StyledLink } from "@/components/shared/StyledLink";
+import { Button } from "@/components/buttons/Button";
+import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
+import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";

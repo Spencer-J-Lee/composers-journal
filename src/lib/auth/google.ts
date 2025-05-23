@@ -16,5 +16,7 @@ export const handleSignInWithGoogle = async (
   });
   // TODO: remove test logs
   console.log(`data:`, data);
-  console.error(`error:`, error);
+  if (error) {
+    console.error(`error:`, error);
+  }
 };

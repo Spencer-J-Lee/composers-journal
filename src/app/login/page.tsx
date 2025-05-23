@@ -1,4 +1,4 @@
-import { LoginContent } from "@/components/login/LoginContent";
+import { LoginContent } from "@/features/login/LoginContent";
 
 const LoginPage = () => {
   return <LoginContent />;

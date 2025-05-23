@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 
+import { CooldownButton } from "@/components/buttons/CooldownButton";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { useCountdown } from "@/hooks/useCountdown";
@@ -14,8 +15,7 @@ import { showErrorToast } from "@/utils/toasts";
 import { genFullSiteUrl } from "@/utils/urls";
 
 import { VerifyEmailFormValues, verifyEmailSchema } from "./schema";
-import { RHFTextField } from "../../shared/formFields/RHFFields/RHFTextField";
-import { CooldownButton } from "@/components/shared/buttons/CooldownButton";
+import { RHFTextField } from "../../../components/formFields/RHFFields/RHFTextField";
 
 export const VerifyEmailForm = () => {
   const supabase = createClientCS();

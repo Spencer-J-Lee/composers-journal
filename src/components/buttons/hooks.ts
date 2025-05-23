@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import clsx from "clsx";
 
-import { ButtonSize, ButtonVariant } from "@/components/shared/buttons/types";
+import { ButtonSize, ButtonVariant } from "@/components/buttons/types";
 
 type UseButtonClassNameProps = {
   size: ButtonSize;

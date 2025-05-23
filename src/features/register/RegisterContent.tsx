@@ -1,8 +1,8 @@
+import { StyledLink } from "@/components/StyledLink";
 import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/routes/routes";
 
 import { RegisterForm } from "./RegisterForm";
-import { StyledLink } from "../shared/StyledLink";
 
 export const RegisterContent = () => {
   return (

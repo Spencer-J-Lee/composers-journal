@@ -1,4 +1,4 @@
-import { VerifyEmailCallbackContent } from "@/components/verifyEmailCallback/VerifyEmailCallbackContent";
+import { VerifyEmailCallbackContent } from "@/features/verifyEmailCallback/VerifyEmailCallbackContent";
 
 /**
  * This page acts as an intermediary to verify authentication before

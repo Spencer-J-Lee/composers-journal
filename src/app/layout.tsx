@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { SkipToContent } from "@/components/shared/SkipToContent";
+import { SkipToContent } from "@/components/SkipToContent";
 import { inter } from "@/styles/fonts";
 
 import "../styles/reset.css";

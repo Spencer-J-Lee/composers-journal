@@ -3,45 +3,47 @@
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/shared/buttons/Button";
-import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
+import { Button } from "@/components/buttons/Button";
+import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
+import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { QUERY_KEYS } from "@/constants/queryKeys";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 import { showErrorToast } from "@/utils/toasts";
 import { genFullSiteUrl } from "@/utils/urls";
 
-import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
+import { RegisterFormValues, registerSchema } from "./schema";
 
-export const ForgotPasswordForm = () => {
+export const RegisterForm = () => {
   const supabase = createClientCS();
-  const searchParams = useSearchParams();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const methods = useForm<ForgotPasswordFormValues>({
-    resolver: zodResolver(forgotPasswordSchema),
-    defaultValues: {
-      email: searchParams.get(QUERY_KEYS.EMAIL) ?? "",
-    },
+  const methods = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data: ForgotPasswordFormValues) => {
+  const onSubmit = async (data: RegisterFormValues) => {
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signUp({
       email: data.email,
+      password: data.password,
       options: {
         emailRedirectTo: genFullSiteUrl(
           routes.verifyEmailCallback(routes.search()),
         ),
-        shouldCreateUser: false,
       },
     });
 
     if (error) {
+      // To increase security against brute force information farming, users
+      // aren't notified when an account already exists for the provided email.
+      // Instead, the request will succeed as if a new user was registered.
       showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
+    } else {
+      router.push(routes.verifyEmail(data.email));
     }
 
     setLoading(false);
@@ -52,10 +54,11 @@ export const ForgotPasswordForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="mb-5 w-full space-y-4">
           <RHFTextField type="email" name="email" label="Email" required />
+          <RHFPasswordField name="password" required />
         </div>
 
         <Button type="submit" loading={loading} fullWidth>
-          Send
+          Register
         </Button>
       </form>
     </FormProvider>
