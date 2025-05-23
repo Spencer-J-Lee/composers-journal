@@ -1,14 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/shared/buttons/Button";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
+import { showErrorToast } from "@/utils/toasts";
 import { genFullSiteUrl } from "@/utils/urls";
 
 import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
@@ -16,6 +19,7 @@ import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
 export const ForgotPasswordForm = () => {
   const supabase = createClientCS();
   const searchParams = useSearchParams();
+  const [loading, setLoading] = useState(false);
   const methods = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
@@ -24,6 +28,8 @@ export const ForgotPasswordForm = () => {
   });
 
   const onSubmit = async (data: ForgotPasswordFormValues) => {
+    setLoading(true);
+
     const { error } = await supabase.auth.signInWithOtp({
       email: data.email,
       options: {
@@ -34,11 +40,11 @@ export const ForgotPasswordForm = () => {
       },
     });
 
-    // TODO: add better error handling
-    // TODO: remove test logs
     if (error) {
-      console.error(error);
+      showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -48,7 +54,7 @@ export const ForgotPasswordForm = () => {
           <RHFTextField type="email" name="email" label="Email" required />
         </div>
 
-        <Button type="submit" fullWidth>
+        <Button type="submit" loading={loading} fullWidth>
           Send
         </Button>
       </form>

@@ -4,13 +4,14 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 import { Button } from "@/components/shared/buttons/Button";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
 import { StyledLink } from "@/components/shared/StyledLink";
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
+import { showErrorToast } from "@/utils/toasts";
 
 import { LoginFormValues, loginSchema } from "./schema";
 
@@ -43,7 +44,7 @@ export const LoginForm = () => {
         });
       });
     } else if (error) {
-      toast.error("Something went wrong. Please try again later.");
+      showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
     } else {
       router.push(routes.search());
     }

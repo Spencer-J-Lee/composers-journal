@@ -4,13 +4,14 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 import { Button } from "@/components/shared/buttons/Button";
 import { RHFPasswordField } from "@/components/shared/formFields/RHFFields/RHFPasswordField";
 import { RHFTextField } from "@/components/shared/formFields/RHFFields/RHFTextField";
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
+import { showErrorToast } from "@/utils/toasts";
 import { genFullSiteUrl } from "@/utils/urls";
 
 import { RegisterFormValues, registerSchema } from "./schema";
@@ -40,7 +41,7 @@ export const RegisterForm = () => {
       // To increase security against brute force information farming, users
       // aren't notified when an account already exists for the provided email.
       // Instead, the request will succeed as if a new user was registered.
-      toast.error("Something went wrong. Please try again later.");
+      showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
     } else {
       router.push(routes.verifyEmail(data.email));
     }
