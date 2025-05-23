@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
@@ -21,6 +21,10 @@ export const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const methods = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
+  });
+  const watchedEmail = useWatch({
+    control: methods.control,
+    name: "email",
   });
 
   const onSubmit = async (data: LoginFormValues) => {
@@ -63,7 +67,7 @@ export const LoginForm = () => {
             label="Password"
             required
           />
-          <StyledLink href={routes.forgotPassword(methods.getValues().email)}>
+          <StyledLink href={routes.forgotPassword(watchedEmail)}>
             Forgot password?
           </StyledLink>
         </div>
