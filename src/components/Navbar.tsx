@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { createClientCS } from "@/lib/db/supabase/client";
+import { createClientCS, getSessionCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 
 import { Button } from "./shared/buttons/Button";
@@ -48,6 +48,16 @@ export const Navbar = () => {
             type="button"
           >
             Log Out
+          </Button>
+          {/* TODO: remove test code */}
+          <Button
+            onClick={async () => {
+              const session = await getSessionCS();
+              console.log(`session:`, session);
+            }}
+            type="button"
+          >
+            Log Session
           </Button>
           <Link href={routes.profile()} className="-m-2 block p-2">
             <Image
