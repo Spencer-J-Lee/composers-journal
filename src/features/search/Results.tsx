@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Entry } from "@/lib/types/Entry";
 
-import { EntryCard } from "./entryCard/EntryCard";
+import { EntryCard } from "./EntryCard";
 
 export const Results = () => {
   const [entries, setEntries] = useState<Entry[]>([]);
