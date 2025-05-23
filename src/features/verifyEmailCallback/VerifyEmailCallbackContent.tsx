@@ -48,7 +48,6 @@ export const VerifyEmailCallbackContent = () => {
               Verification link has expired or is invalid.
             </p>
             <p>Please request a new verification email.</p>
-            <VerifyEmailForm />
           </>
         )}
 
@@ -58,6 +57,8 @@ export const VerifyEmailCallbackContent = () => {
             <p>Please allow up to one minute to receive the link.</p>
           </>
         )}
+
+        {(status === "invalid" || status === "resent") && <VerifyEmailForm />}
       </div>
     </main>
   );
