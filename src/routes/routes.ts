@@ -77,6 +77,10 @@ class Routes {
     return email ? this.withQuery(basePath, { query: { email } }) : basePath;
   }
 
+  resetPassword() {
+    return "/reset-password";
+  }
+
   profile() {
     return "/profile";
   }

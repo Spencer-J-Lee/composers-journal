@@ -5,17 +5,17 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 
-import { CooldownButton } from "@/components/buttons/CooldownButton";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
-import { useCountdown } from "@/hooks/useCountdown";
 import { createClientCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 import { showErrorToast } from "@/utils/toasts";
 import { genFullSiteUrl } from "@/utils/urls";
 
 import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
+import { CooldownButton } from "@/components/buttons/CooldownButton";
+import { useCountdown } from "@/hooks/useCountdown";
 
 export const ForgotPasswordForm = () => {
   const supabase = createClientCS();
@@ -32,12 +32,8 @@ export const ForgotPasswordForm = () => {
   const onSubmit = async (data: ForgotPasswordFormValues) => {
     setLoading(true);
 
-      options: {
-        emailRedirectTo: genFullSiteUrl(
-          routes.verifyEmailCallback(routes.search()),
-        ),
-        shouldCreateUser: false,
-      },
+    const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
+      redirectTo: genFullSiteUrl(routes.resetPassword()),
     });
 
     if (error) {
