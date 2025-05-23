@@ -2,8 +2,59 @@
 @import "./reset.css";
 
 @theme {
-  /* Caffe Latte */
-  /* --color-background: #7a4e32;
+  /**
+   * THEME: Discord
+   */
+
+  /* === Layout === */
+  --navbar-height: 60px;
+
+  /* === Typography === */
+  --font-inter: var(--font-inter), sans-serif;
+
+  /* === Base === */
+  --color-background: #323339;
+  --color-background-light: #292b2f;
+
+  /* === Surface === */
+  --color-surface: #2f3136;
+  --color-surface-hover: #45464c;
+  --color-surface-light: #3f4248;
+
+  /* === Text === */
+  --color-text: #ffffff;
+  --color-text-muted: #c2c2c6;
+  --color-header-secondary: #dfe0e2;
+
+  /* === Input === */
+  --color-input-background: #27282d;
+  --color-input-border: #404147;
+  --color-input-border-focus: #7bb0f5;
+
+  /* === Borders === */
+  --color-border: #43464c;
+
+  /* === Accent & Links === */
+  --color-accent: #5865f2;
+  --color-accent-link: #8da1fc;
+
+  /* === Status Colors === */
+  --color-positive: #75c383;
+  --color-negative: #da3e45;
+  --color-negative-text: #f57976;
+  --color-disabled: #73767c;
+
+  /* === Accessibility === */
+  --color-accessibility: #5865f2;
+
+  /* === Animation === */
+  --animate-pulsing-ellipsis: pulsing-ellipsis 1.4s ease-in-out infinite;
+
+  /**
+   * THEME: Caffe Latte (inactive)
+   */
+  /*
+  --color-background: #7a4e32;
   --color-background-light: #e6d7c3;
   --color-surface: #fffdfa;
   --color-surface-dark: #eee7e2;
@@ -12,34 +63,8 @@
   --color-accent: #7a4e32;
   --color-border: #e1dfdc;
   --color-danger: #a7372e;
-  --color-accessibility: #1a1a1a; */
-
-  /* Discord */
-  --color-background: #323339;
-  --color-background-light: #292b2f;
-  --color-surface: #2f3136;
-  --color-surface-hover: #45464c;
-  --color-surface-light: #3f4248;
-  --color-text: #fff;
-  --color-text-muted: #c2c2c6;
-  --color-input-background: #27282d;
-  --color-input-border: #404147;
-  --color-input-border-focus: #7bb0f5;
-  --color-header-secondary: #dfe0e2;
-  --color-accent: #5865f2;
-  --color-accent-link: #8da1fc;
-  --color-border: #43464c;
-  --color-positive: #75c383;
-  --color-negative: #da3e45;
-  --color-negative-text: #f57976;
-  --color-disabled: #73767c;
-  --color-accessibility: #5865f2;
-
-  --font-inter: var(--font-inter), sans-serif;
-
-  --navbar-height: 60px;
-
-  --animate-pulsing-ellipsis: pulsing-ellipsis 1.4s ease-in-out infinite;
+  --color-accessibility: #1a1a1a;
+  */
 }
 
 @import "./base.css";
