@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import { db, entries, entryTags, tags } from "@/lib/db";
 import { Entry } from "@/lib/types/Entry";
 
-export async function getEntriesByUserId(userId: number) {
+export async function getEntriesByUserId(userId: string) {
   const result = await db
     .select({
       entry: entries,

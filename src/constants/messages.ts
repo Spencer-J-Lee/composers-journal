@@ -1,5 +1,7 @@
 export const ERROR_MESSAGES = {
   GENERIC_SERVER_ERROR: "Something went wrong. Please try again later.",
+  UNAUTHORIZED: "Unauthorized.",
+  INTERNAL_SERVER_ERROR: "Internal Server Error",
 } as const;
 
 export const SUCCESS_MESSAGES = {
