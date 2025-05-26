@@ -17,6 +17,7 @@ export async function GET(req: Request) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
+    console.error("Failed to fetch entries:", err);
     return new Response(ERROR_MESSAGES.INTERNAL_SERVER_ERROR, { status: 500 });
   }
 }

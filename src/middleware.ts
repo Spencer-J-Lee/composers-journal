@@ -3,8 +3,6 @@ import { type NextRequest } from "next/server";
 import { updateSession } from "./lib/db/supabase/middleware";
 
 export const middleware = async (request: NextRequest) => {
-  // TODO: remove test logs
-  console.log("running middleware...");
   return await updateSession(request);
 };
 

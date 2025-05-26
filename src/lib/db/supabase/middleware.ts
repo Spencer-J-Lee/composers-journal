@@ -1,9 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
-import { isAuthedRoute, isGuestOnlyRoute } from "@/routes/helpers";
-import { routes } from "@/routes/routes";
-
 import { getSupabaseEnv } from "./shared/helpers";
 
 /**
@@ -14,7 +11,6 @@ import { getSupabaseEnv } from "./shared/helpers";
  *    This is accomplished with `request.cookies.set`.
  * - Passing the refreshed Auth token to the browser, so it replaces
  *    the old token. This is accomplished with `response.cookies.set`.
- * - Rerouting the user based on authentication.
  */
 export const updateSession = async (request: NextRequest) => {
   const { supabaseUrl, supabaseKey } = getSupabaseEnv();
@@ -48,18 +44,7 @@ export const updateSession = async (request: NextRequest) => {
 
   // IMPORTANT: DO NOT REMOVE auth.getUser()
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  const nextUrl = request.nextUrl.clone();
-  if (!user && isAuthedRoute(request.nextUrl.pathname)) {
-    nextUrl.pathname = routes.login();
-    return NextResponse.redirect(nextUrl);
-  } else if (user && isGuestOnlyRoute(request.nextUrl.pathname)) {
-    nextUrl.pathname = routes.search();
-    return NextResponse.redirect(nextUrl);
-  }
+  await supabase.auth.getUser();
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // When creating a new response object with NextResponse.next() make sure to:
