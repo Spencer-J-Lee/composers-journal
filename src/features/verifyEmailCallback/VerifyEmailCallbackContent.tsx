@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
-import { getSessionCS } from "@/lib/db/supabase/client";
+import { getUserCS } from "@/lib/db/supabase/client";
 import { routes } from "@/routes/routes";
 
 import { VerificationStatus } from "./types";
@@ -21,8 +21,8 @@ export const VerifyEmailCallbackContent = () => {
   const [status, setStatus] = useState<VerificationStatus>("verifying");
 
   useEffect(() => {
-    getSessionCS().then((session) => {
-      if (session) {
+    getUserCS().then((user) => {
+      if (user) {
         const redirectUrl =
           searchParams.get(QUERY_KEYS.REDIRECT_URL) ?? routes.search();
         router.replace(redirectUrl);

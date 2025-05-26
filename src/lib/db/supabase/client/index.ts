@@ -1,6 +1,6 @@
 import { createBrowserClient } from "@supabase/ssr";
 
-import { getSessionCS } from "./helpers";
+import { getUserCS } from "./helpers";
 import { getSupabaseEnv } from "../shared/helpers";
 
 /**
@@ -12,4 +12,4 @@ export const createClientCS = () => {
   return createBrowserClient(supabaseUrl, supabaseKey);
 };
 
-export { getSessionCS };
+export { getUserCS };

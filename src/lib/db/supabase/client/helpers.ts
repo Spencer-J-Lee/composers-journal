@@ -1,22 +1,16 @@
-import { Session } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
 
 import { createClientCS } from ".";
 
 /**
- * Returns the current session on client-side
+ * Returns the current user.
+ * Should only be used on server-side.
  */
-export const getSessionCS = async (): Promise<Session | null> => {
-  const supabase = createClientCS();
+export const getUserCS = async (): Promise<User | null> => {
+  const supabase = await createClientCS();
   const {
-    data: { session },
-    error,
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (error) {
-    // TODO: add better error handling
-    console.log(error);
-    return null;
-  }
-
-  return session;
+  return user;
 };

@@ -1,16 +1,16 @@
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { getSessionSS } from "@/lib/db/supabase/server";
+import { getUserSS } from "@/lib/db/supabase/server";
 import { getEntriesByUserId } from "@/lib/services/entries";
 
 export async function GET(req: Request) {
-  const session = await getSessionSS();
+  const user = await getUserSS();
 
-  if (!session) {
+  if (!user) {
     return new Response(ERROR_MESSAGES.UNAUTHORIZED, { status: 401 });
   }
 
   try {
-    const entries = await getEntriesByUserId(session.user.id);
+    const entries = await getEntriesByUserId(user.id);
 
     return new Response(JSON.stringify(entries), {
       status: 200,

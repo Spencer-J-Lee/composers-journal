@@ -1,4 +1,4 @@
-import { Session, User } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
 
 import { createClientSS } from ".";
 
@@ -13,23 +13,4 @@ export const getUserSS = async (): Promise<User | null> => {
   } = await supabase.auth.getUser();
 
   return user;
-};
-
-/**
- * Returns the current session on server-side
- */
-export const getSessionSS = async (): Promise<Session | null> => {
-  const supabase = await createClientSS();
-  const {
-    data: { session },
-    error,
-  } = await supabase.auth.getSession();
-
-  if (error) {
-    // TODO: add better error handling
-    console.log(error);
-    return null;
-  }
-
-  return session;
 };

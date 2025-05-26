@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-import { getSessionSS } from "./helpers";
+import { getUserSS } from "./helpers";
 import { getSupabaseEnv } from "../shared/helpers";
 
 /**
@@ -31,4 +31,4 @@ export const createClientSS = async () => {
   });
 };
 
-export { getSessionSS };
+export { getUserSS };
