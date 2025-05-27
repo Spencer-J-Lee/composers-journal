@@ -17,6 +17,6 @@ export const entries = pgTable("entries", {
   title: text("title").notNull(),
   description: text("description").notNull(),
   status: entryStatusEnum("status"),
-  createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }),
+  updatedAt: timestamp("updated_at", { withTimezone: true }),
 });
