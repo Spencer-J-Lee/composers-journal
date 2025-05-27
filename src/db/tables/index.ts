@@ -3,9 +3,9 @@ import "dotenv/config";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
-import { entries } from "./types/entries";
-import { entryTags } from "./types/entryTags";
-import { tags } from "./types/tags";
+import { entries } from "./entries";
+import { entryTags } from "./entryTags";
+import { tags } from "./tags";
 
 const connectionString = process.env.DATABASE_URL;
 if (!connectionString) {

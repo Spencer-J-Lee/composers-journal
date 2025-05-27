@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 
-import { db, entries, entryTags, tags } from "@/db";
+import { db, entries, entryTags, tags } from "@/db/tables";
 import { Entry } from "@/models/Entry";
 
 export async function getEntriesByUserId(userId: string) {
