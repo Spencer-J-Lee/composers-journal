@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode } from "react";
 import clsx from "clsx";
 
 type LabelProps = {
@@ -14,15 +14,11 @@ export const FieldLabel = ({
   required,
   hasError,
 }: LabelProps) => {
-  const errorClassName = useMemo(() => {
-    return hasError ? "text-negative-text" : "text-header-secondary";
-  }, [hasError]);
-
   return (
     <label
       className={clsx(
         "mb-2 block text-xs font-bold uppercase transition-colors",
-        errorClassName,
+        hasError ? "text-negative-text" : "text-header-secondary",
       )}
       htmlFor={htmlFor}
     >

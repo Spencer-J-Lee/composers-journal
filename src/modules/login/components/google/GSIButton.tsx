@@ -1,25 +1,18 @@
 "use client";
 
-import { useMemo } from "react";
-
 import { GSISetup } from "./GSISetup";
 
 type GSIButtonProps = {
   variant?: "white" | "blue" | "black";
 };
 
-export const GSIButton = ({ variant = "white" }: GSIButtonProps) => {
-  const dataTheme = useMemo(() => {
-    switch (variant) {
-      case "white":
-        return "outline";
-      case "blue":
-        return "filled_blue";
-      case "black":
-        return "filled_black";
-    }
-  }, [variant]);
+const dataTheme = {
+  white: "outline",
+  blue: "filled_blue",
+  black: "filled_black",
+};
 
+export const GSIButton = ({ variant = "white" }: GSIButtonProps) => {
   return (
     <>
       <GSISetup />
@@ -27,7 +20,7 @@ export const GSIButton = ({ variant = "white" }: GSIButtonProps) => {
         className="g_id_signin"
         data-type="standard"
         data-shape="rectangular"
-        data-theme={dataTheme}
+        data-theme={dataTheme[variant]}
         data-text="signin_with"
         data-size="large"
         data-logo_alignment="left"

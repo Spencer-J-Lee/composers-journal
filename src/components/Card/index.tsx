@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 
-import { useCardClassName } from "./hooks";
+import { useCardStyles } from "./hooks/useCardStyles";
 import { CardPaddingSize } from "./types";
 
 type CardProps = {
@@ -9,7 +9,7 @@ type CardProps = {
 };
 
 export const Card: FC<CardProps> = ({ children, paddingSize = "md" }) => {
-  const { cardClassName } = useCardClassName({ paddingSize });
+  const { cardClassName } = useCardStyles({ paddingSize });
 
   return <div className={cardClassName}>{children}</div>;
 };

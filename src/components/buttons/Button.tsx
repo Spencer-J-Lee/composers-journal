@@ -3,7 +3,7 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import clsx from "clsx";
 
-import { useButtonClassName } from "./hooks";
+import { useButtonStyles } from "./hooks/useButtonStyles";
 import { BaseButtonProps } from "./types";
 import { PulsingEllipsis } from "../loaders/PulsingEllipsis";
 
@@ -23,7 +23,7 @@ export const Button = ({
   className,
   ...props
 }: ButtonProps) => {
-  const { buttonClassName } = useButtonClassName({
+  const { buttonClassName } = useButtonStyles({
     size,
     variant,
     fullWidth,
