@@ -18,7 +18,10 @@ export const FieldLabel = ({
     <label
       className={clsx(
         "mb-2 block text-xs font-bold uppercase transition-colors",
-        hasError ? "text-negative-text" : "text-header-secondary",
+        {
+          "text-negative-text": hasError,
+          "text-header-secondary": !hasError,
+        },
       )}
       htmlFor={htmlFor}
     >

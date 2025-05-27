@@ -22,8 +22,10 @@ export const useButtonStyles = ({
       "font-inter rounded font-medium tracking-widest transition-all font-semibold active:brightness-90 disabled:pointer-events-none",
       sizeClassName[size],
       variantClassName[variant],
-      fullWidth ? "w-full" : "",
-      disabled ? "disabled:bg-disabled" : "",
+      {
+        "w-full": fullWidth,
+        "disabled:bg-disabled": disabled,
+      },
     ),
   };
 };
