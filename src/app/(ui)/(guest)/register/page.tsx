@@ -1,7 +1,12 @@
+import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
 import { RegisterContent } from "@/modules/register/components/RegisterContent";
 
 const RegisterPage = () => {
-  return <RegisterContent />;
+  return (
+    <PageWrapper maxWidth="md">
+      <RegisterContent />;
+    </PageWrapper>
+  );
 };
 
 export default RegisterPage;

@@ -1,3 +1,4 @@
+import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
 import { VerifyEmailCallbackContent } from "@/modules/verifyEmail/components/VerifyEmailCallbackContent";
 
 /**
@@ -7,7 +8,11 @@ import { VerifyEmailCallbackContent } from "@/modules/verifyEmail/components/Ver
  * of email verification and magic links.
  */
 const VerifyEmailCallbackPage = () => {
-  return <VerifyEmailCallbackContent />;
+  return (
+    <PageWrapper maxWidth="md">
+      <VerifyEmailCallbackContent />;
+    </PageWrapper>
+  );
 };
 
 export default VerifyEmailCallbackPage;

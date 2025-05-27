@@ -7,13 +7,13 @@ import { LoginForm } from "./LoginForm";
 
 export const LoginContent = () => {
   return (
-    <PageWrapper maxWidth="md">
+    <>
       <LoginForm />
       <GSIButton />
       <div>
         Need an account?{" "}
         <StyledLink href={routes.register()}>Register</StyledLink>
       </div>
-    </PageWrapper>
+    </>
   );
 };

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { getUserCS } from "@/db/supabase/client";
@@ -33,7 +32,7 @@ export const VerifyEmailCallbackContent = () => {
   }, [searchParams, router]);
 
   return (
-    <PageWrapper maxWidth="md">
+    <>
       {status === "verifying" && (
         <>
           <p>Verifying...</p>
@@ -58,6 +57,6 @@ export const VerifyEmailCallbackContent = () => {
       )}
 
       {(status === "invalid" || status === "resent") && <VerifyEmailForm />}
-    </PageWrapper>
+    </>
   );
 };
