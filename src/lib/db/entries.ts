@@ -13,7 +13,7 @@ export const entryStatusEnum = pgEnum("entry_status", ENTRY_STATUSES);
 
 export const entries = pgTable("entries", {
   id: bigint("id", { mode: "number" }).primaryKey(),
-  ownerId: uuid().notNull(),
+  ownerId: uuid("owner_id").notNull(),
   title: text("title").notNull(),
   description: text("description").notNull(),
   status: entryStatusEnum("status"),
