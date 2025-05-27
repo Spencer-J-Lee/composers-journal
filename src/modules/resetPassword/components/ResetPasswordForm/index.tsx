@@ -31,7 +31,7 @@ export const ResetPasswordForm = () => {
 
     if (error) {
       console.error(error);
-      showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
+      showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN_LATER);
     } else {
       showSuccessToast(SUCCESS_MESSAGES.PASSWORD_RESET);
       router.push(routes.search());

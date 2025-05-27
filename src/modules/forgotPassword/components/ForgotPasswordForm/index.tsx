@@ -38,7 +38,7 @@ export const ForgotPasswordForm = () => {
 
     if (error) {
       console.error(error);
-      showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
+      showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN_LATER);
     } else {
       startCountdown(10);
     }
