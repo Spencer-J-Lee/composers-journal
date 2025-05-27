@@ -1,4 +1,3 @@
-import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
 import { StyledLink } from "@/components/StyledLink";
 import { routes } from "@/constants/routes";
 

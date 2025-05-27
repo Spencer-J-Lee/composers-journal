@@ -1,9 +1,9 @@
-import { bigint, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { bigserial, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const tags = pgTable("tags", {
-  id: bigint("id", { mode: "number" }).primaryKey(),
+  id: bigserial({ mode: "number" }).primaryKey(),
   ownerId: uuid("owner_id").notNull(),
-  name: text("name").notNull(),
+  name: text().notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull(),
 });
