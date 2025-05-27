@@ -1,7 +1,8 @@
 "use client";
 
-import { ResetPasswordForm } from "./ResetPasswordForm";
 import { ELEMENT_IDS } from "@/constants/elementIds";
+
+import { ResetPasswordForm } from "./ResetPasswordForm";
 
 export const ResetPasswordContent = () => {
   return (

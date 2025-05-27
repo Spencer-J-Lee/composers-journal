@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { ELEMENT_IDS } from "@/constants/elementIds";
 import { QUERY_KEYS } from "@/constants/queryKeys";
-import { getUserCS } from "@/db/supabase/client";
 import { routes } from "@/constants/routes";
+import { getUserCS } from "@/db/supabase/client";
+import { VerifyEmailForm } from "@/modules/verifyEmail/components/VerifyEmailForm";
 
 import { VerificationStatus } from "./types";
-import { ELEMENT_IDS } from "@/constants/elementIds";
-import { VerifyEmailForm } from "@/modules/verifyEmail/components/VerifyEmailForm";
 
 /**
  * User will be authenticated before being redirected based on authentication.

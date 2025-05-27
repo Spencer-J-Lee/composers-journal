@@ -9,8 +9,8 @@ import { Button } from "@/components/buttons/Button";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { createClientCS } from "@/db/supabase/client";
 import { routes } from "@/constants/routes";
+import { createClientCS } from "@/db/supabase/client";
 import { showErrorToast } from "@/utils/toasts";
 
 import { LoginFormValues, loginSchema } from "./schema";

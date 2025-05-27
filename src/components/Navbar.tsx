@@ -5,11 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { createClientCS, getUserCS } from "@/db/supabase/client";
+import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
+import { createClientCS, getUserCS } from "@/db/supabase/client";
 
 import { Button } from "./buttons/Button";
-import { ELEMENT_IDS } from "@/constants/elementIds";
 
 export const Navbar = () => {
   const supabase = createClientCS();

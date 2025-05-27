@@ -1,5 +1,6 @@
-import { VerifyEmailForm } from "./VerifyEmailForm";
 import { ELEMENT_IDS } from "@/constants/elementIds";
+
+import { VerifyEmailForm } from "./VerifyEmailForm";
 
 export const VerifyEmailContent = () => {
   return (

@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/buttons/Button";
 import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
-import { createClientCS } from "@/db/supabase/client";
 import { routes } from "@/constants/routes";
+import { createClientCS } from "@/db/supabase/client";
 import { showErrorToast, showSuccessToast } from "@/utils/toasts";
 
 import { ResetPasswordFormValues, resetPasswordSchema } from "./schema";

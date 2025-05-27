@@ -1,9 +1,9 @@
 import { StyledLink } from "@/components/StyledLink";
+import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
 
 import { GSIButton } from "./google/GSIButton";
 import { LoginForm } from "./LoginForm";
-import { ELEMENT_IDS } from "@/constants/elementIds";
 
 export const LoginContent = () => {
   return (

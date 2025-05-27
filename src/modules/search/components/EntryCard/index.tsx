@@ -4,11 +4,11 @@ import { useState } from "react";
 
 import { Card } from "@/components/Card";
 import { Entry } from "@/models/Entry";
+import { Tags } from "@/modules/tags/components/Tags";
 
 import { EntryControls } from "./EntryControls";
 import { EntryInfo } from "./EntryInfo";
 import { ExamplesButton } from "./ExamplesButton";
-import { Tags } from "@/modules/tags/components/Tags";
 
 type EntryCardProps = {
   entry: Entry;

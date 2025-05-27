@@ -9,8 +9,8 @@ import { Button } from "@/components/buttons/Button";
 import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { createClientCS } from "@/db/supabase/client";
 import { routes } from "@/constants/routes";
+import { createClientCS } from "@/db/supabase/client";
 import { showErrorToast } from "@/utils/toasts";
 import { genFullSiteUrl } from "@/utils/urls";
 

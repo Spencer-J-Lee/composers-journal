@@ -1,8 +1,8 @@
 import { StyledLink } from "@/components/StyledLink";
+import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
 
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
-import { ELEMENT_IDS } from "@/constants/elementIds";
 
 export const ForgotPasswordContent = () => {
   return (
