@@ -1,5 +1,5 @@
 import { AnchorButton } from "./buttons/AnchorButton";
-import { ELEMENT_IDS } from "../constants/elementIds";
+import { ELEMENT_IDS } from "@/constants/elementIds";
 
 export const SkipToContent = () => {
   return (
