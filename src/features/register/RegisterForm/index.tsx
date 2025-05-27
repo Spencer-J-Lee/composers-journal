@@ -27,6 +27,9 @@ export const RegisterForm = () => {
   const onSubmit = async (data: RegisterFormValues) => {
     setLoading(true);
 
+    // To increase security against brute force information farming, users
+    // aren't notified when an account already exists for the provided email.
+    // Instead, the request will succeed as if a new user was registered.
     const { error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
@@ -38,9 +41,7 @@ export const RegisterForm = () => {
     });
 
     if (error) {
-      // To increase security against brute force information farming, users
-      // aren't notified when an account already exists for the provided email.
-      // Instead, the request will succeed as if a new user was registered.
+      console.error(error);
       showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
     } else {
       router.push(routes.verifyEmail(data.email));

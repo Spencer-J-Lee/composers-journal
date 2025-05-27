@@ -6,6 +6,7 @@ export async function GET(req: Request) {
   const user = await getUserSS();
 
   if (!user) {
+    console.error(ERROR_MESSAGES.UNAUTHORIZED);
     return new Response(ERROR_MESSAGES.UNAUTHORIZED, { status: 401 });
   }
 

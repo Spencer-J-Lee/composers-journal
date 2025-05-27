@@ -1,6 +1,6 @@
 export const ERROR_MESSAGES = {
   GENERIC_SERVER_ERROR: "Something went wrong. Please try again later.",
-  UNAUTHORIZED: "Unauthorized.",
+  UNAUTHORIZED: "User is not authorized.",
   INTERNAL_SERVER_ERROR: "Internal Server Error",
 } as const;
 

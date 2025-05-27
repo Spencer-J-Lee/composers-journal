@@ -41,6 +41,7 @@ export const VerifyEmailForm = () => {
     });
 
     if (error) {
+      console.error(error);
       showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
     } else {
       startCountdown(10);

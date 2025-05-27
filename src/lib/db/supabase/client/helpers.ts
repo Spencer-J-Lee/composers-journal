@@ -10,7 +10,12 @@ export const getUserCS = async (): Promise<User | null> => {
   const supabase = await createClientCS();
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
+
+  if (error && error.name !== "AuthSessionMissingError") {
+    console.error(error);
+  }
 
   return user;
 };

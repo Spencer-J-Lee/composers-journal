@@ -30,7 +30,7 @@ export const ResetPasswordForm = () => {
     });
 
     if (error) {
-      console.log(`error.code:`, error.code);
+      console.error(error);
       showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
     } else {
       showSuccessToast(SUCCESS_MESSAGES.PASSWORD_RESET);

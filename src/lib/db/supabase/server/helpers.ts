@@ -10,7 +10,12 @@ export const getUserSS = async (): Promise<User | null> => {
   const supabase = await createClientSS();
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
+
+  if (error && error.name !== "AuthSessionMissingError") {
+    console.error(error);
+  }
 
   return user;
 };

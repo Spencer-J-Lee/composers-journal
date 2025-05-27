@@ -48,6 +48,7 @@ export const LoginForm = () => {
         });
       });
     } else if (error) {
+      console.error(error);
       showErrorToast(ERROR_MESSAGES.GENERIC_SERVER_ERROR);
     } else {
       router.push(routes.search());
