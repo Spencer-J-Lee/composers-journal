@@ -1,9 +1,10 @@
 import { eq } from "drizzle-orm";
 
-import { db, entries, entryTags, tags } from "@/db/schema";
+import { db } from "@/db";
+import { entries, entryTags, tags } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 
-export async function getEntriesByUserId(userId: string) {
+export const dbGetEntries = async (userId: string) => {
   const result = await db
     .select({
       entry: entries,
@@ -36,4 +37,4 @@ export async function getEntriesByUserId(userId: string) {
   );
 
   return Object.values(groupedEntries);
-}
+};

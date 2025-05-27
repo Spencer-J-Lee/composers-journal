@@ -1,8 +1,8 @@
 import { ERROR_MESSAGES } from "@/constants/messages";
+import { dbGetEntries } from "@/db/queries/entries";
 import { getUserSS } from "@/db/supabase/server";
-import { getEntriesByUserId } from "@/services/entries";
 
-export async function GET(req: Request) {
+export const GET = async () => {
   const user = await getUserSS();
 
   if (!user) {
@@ -11,7 +11,7 @@ export async function GET(req: Request) {
   }
 
   try {
-    const entries = await getEntriesByUserId(user.id);
+    const entries = await dbGetEntries(user.id);
 
     return new Response(JSON.stringify(entries), {
       status: 200,

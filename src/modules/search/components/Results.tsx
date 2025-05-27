@@ -5,14 +5,15 @@ import { useEffect, useState } from "react";
 import { Entry } from "@/models/Entry";
 
 import { EntryCard } from "./EntryCard";
+import { apiGetEntries } from "@/services/entries/get";
 
 export const Results = () => {
   const [entries, setEntries] = useState<Entry[]>([]);
 
   useEffect(() => {
-    fetch("/api/entries/")
-      .then((res) => res.json())
-      .then((data) => setEntries(data));
+    apiGetEntries().then((data) => {
+      setEntries(data);
+    });
   }, []);
 
   return (
