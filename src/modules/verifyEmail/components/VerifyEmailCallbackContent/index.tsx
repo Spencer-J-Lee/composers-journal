@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { ELEMENT_IDS } from "@/constants/elementIds";
+import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { getUserCS } from "@/db/supabase/client";
@@ -33,33 +33,31 @@ export const VerifyEmailCallbackContent = () => {
   }, [searchParams, router]);
 
   return (
-    <main id={ELEMENT_IDS.MAIN_CONTENT} className="flex flex-col items-center">
-      <div className="w-full max-w-md">
-        {status === "verifying" && (
-          <>
-            <p>Verifying...</p>
-            <p>Hang on tight while we log you in.</p>
-          </>
-        )}
+    <PageWrapper maxWidth="md">
+      {status === "verifying" && (
+        <>
+          <p>Verifying...</p>
+          <p>Hang on tight while we log you in.</p>
+        </>
+      )}
 
-        {status === "invalid" && (
-          <>
-            <p className="text-negative-text font-semibold">
-              Verification link has expired or is invalid.
-            </p>
-            <p>Please request a new verification email.</p>
-          </>
-        )}
+      {status === "invalid" && (
+        <>
+          <p className="text-negative-text font-semibold">
+            Verification link has expired or is invalid.
+          </p>
+          <p>Please request a new verification email.</p>
+        </>
+      )}
 
-        {status === "resent" && (
-          <>
-            <p>Verification link has been sent.</p>
-            <p>Please allow up to one minute to receive the link.</p>
-          </>
-        )}
+      {status === "resent" && (
+        <>
+          <p>Verification link has been sent.</p>
+          <p>Please allow up to one minute to receive the link.</p>
+        </>
+      )}
 
-        {(status === "invalid" || status === "resent") && <VerifyEmailForm />}
-      </div>
-    </main>
+      {(status === "invalid" || status === "resent") && <VerifyEmailForm />}
+    </PageWrapper>
   );
 };
