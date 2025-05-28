@@ -7,7 +7,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { ENTRY_STATUSES } from "@/models/Entry";
+import { ENTRY_STATUSES } from "@/models/Entry/types";
 
 export const entryStatusEnum = pgEnum("entry_status", ENTRY_STATUSES);
 
