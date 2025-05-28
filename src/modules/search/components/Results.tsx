@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 
 import { Entry } from "@/models/Entry";
+import { apiGetEntries } from "@/services/entries/get";
 
 import { EntryCard } from "./EntryCard";
-import { apiGetEntries } from "@/services/entries/get";
 
 export const Results = () => {
   const [entries, setEntries] = useState<Entry[]>([]);

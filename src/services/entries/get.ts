@@ -1,4 +1,5 @@
 import { ERROR_MESSAGES } from "@/constants/messages";
+
 import { API_PATHS } from "../constants/apiPaths";
 
 export const apiGetEntries = async () => {

@@ -1,5 +1,5 @@
-import { Tag } from "../Tag";
 import { EntryStatus } from "./types";
+import { Tag } from "../Tag";
 
 export type Entry = {
   id: number;
