@@ -1,5 +1,5 @@
 import { EntryStatus } from "@/models/Entry/types";
-import { fetchWithErrorHandling } from "@/utils/api/fetchWithErrorHandling";
+import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
 import { API_PATHS } from "../constants/apiPaths";
 
