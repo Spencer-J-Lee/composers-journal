@@ -1,16 +1,16 @@
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
 
-type FetchOptions = {
-  defaultErrMsg?: string;
-} & RequestInit;
+type Options = {
+  defaultErrMsg: string;
+};
 
 export async function fetchWithErrorHandling<T>(
   input: RequestInfo | URL,
-  options?: FetchOptions,
+  init?: RequestInit,
+  options?: Options,
 ): Promise<T> {
-  const { defaultErrMsg = DEFAULT_ERROR_MSG, ...fetchOptions } = options || {};
-
-  const res = await fetch(input, fetchOptions);
+  const res = await fetch(input, init);
+  const { defaultErrMsg = DEFAULT_ERROR_MSG } = options ?? {};
 
   if (!res.ok) {
     let errMsg = defaultErrMsg;

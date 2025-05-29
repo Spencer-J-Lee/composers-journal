@@ -4,7 +4,7 @@ import { PageWrapperBase, PageWrapperBaseProps } from "./PageWrapperBase";
 import { maxWidthClassName } from "./styles";
 
 type PageWrapperProps = {
-  maxWidth: "sm" | "md" | "lg" | "none";
+  maxWidth: "sm" | "md" | "lg" | "xl" | "none";
 } & PageWrapperBaseProps;
 
 export const PageWrapper = ({

@@ -1,13 +1,13 @@
-import { ERROR_MESSAGES } from "@/constants/messages";
-import { dbGetEntries } from "@/db/queries/entries";
+import { DEFAULT_ERROR_MSG, ERROR_MESSAGES } from "@/constants/messages";
+import { dbCreateEntry, dbGetEntries } from "@/db/queries/entries";
 import { getUserSS } from "@/db/supabase/server";
+import { entrySchema } from "@/models/Entry/schema";
+import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
 
 export const GET = async () => {
   const user = await getUserSS();
-
   if (!user) {
-    console.error(ERROR_MESSAGES.DEV.UNAUTHORIZED);
-    return new Response(ERROR_MESSAGES.USER.UNAUTHORIZED, { status: 401 });
+    return respondWithUnauthorized();
   }
 
   try {
@@ -18,9 +18,60 @@ export const GET = async () => {
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
-    console.error(ERROR_MESSAGES.DEV.FETCH.ENTRIES, err);
-    return new Response(ERROR_MESSAGES.USER.INTERNAL_SERVER_ERROR, {
+    return respondWithError({
       status: 500,
+      userMsg: DEFAULT_ERROR_MSG,
+      devMsg: ERROR_MESSAGES.DEV.FETCH.ENTRIES,
+      err,
+    });
+  }
+};
+
+export async function POST(req: Request) {
+  const user = await getUserSS();
+  if (!user) {
+    return respondWithUnauthorized();
+  }
+
+  try {
+    const body = await req.json();
+
+    const schema = entrySchema.pick({
+      title: true,
+      description: true,
+      status: true,
+    });
+    const res = schema.safeParse(body);
+
+    if (!res.success) {
+      const fieldErrs = res.error.flatten().fieldErrors;
+
+      return respondWithError({
+        status: 400,
+        userMsg: ERROR_MESSAGES.USER.INVALID_INFO,
+        devMsg: ERROR_MESSAGES.DEV.INVALID_INFO,
+        err: fieldErrs,
+        resData: { fields: fieldErrs },
+      });
+    }
+
+    const entry = await dbCreateEntry({
+      ownerId: user.id,
+      title: res.data?.title,
+      description: res.data?.description,
+      status: res.data?.status,
+    });
+
+    return new Response(JSON.stringify(entry), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err) {
+    return respondWithError({
+      status: 500,
+      userMsg: DEFAULT_ERROR_MSG,
+      devMsg: ERROR_MESSAGES.DEV.CREATE.ENTRY,
+      err,
     });
   }
 }

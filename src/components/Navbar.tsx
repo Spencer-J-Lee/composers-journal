@@ -9,6 +9,7 @@ import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
 import { createClientCS, getUserCS } from "@/db/supabase/client";
 
+import { AnchorButton } from "./buttons/AnchorButton";
 import { Button } from "./buttons/Button";
 
 export const Navbar = () => {
@@ -34,21 +35,10 @@ export const Navbar = () => {
           />
         </Link>
 
-        <div>
-          {/* TODO: remove test code */}
-          <Button
-            onClick={async () => {
-              const { error } = await supabase.auth.signOut();
-              if (error) {
-                console.error(`error:`, error);
-              } else {
-                router.push(routes.login());
-              }
-            }}
-            type="button"
-          >
-            Log Out
-          </Button>
+        <div className="flex justify-between gap-x-4">
+          <AnchorButton href={routes.entryCreate()} variant="positive">
+            Create
+          </AnchorButton>
           {/* TODO: remove test code */}
           <Button
             onClick={async () => {
@@ -68,6 +58,20 @@ export const Navbar = () => {
               style={{ objectFit: "cover" }}
             />
           </Link>
+          {/* TODO: remove test code */}
+          <Button
+            onClick={async () => {
+              const { error } = await supabase.auth.signOut();
+              if (error) {
+                console.error(`error:`, error);
+              } else {
+                router.push(routes.login());
+              }
+            }}
+            type="button"
+          >
+            Log Out
+          </Button>
         </div>
       </nav>
     </header>

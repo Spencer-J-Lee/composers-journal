@@ -7,6 +7,7 @@ export type Entry = {
   description: string;
   references: [];
   tags: Tag[];
-  status: EntryStatus | null;
+  status: EntryStatus;
   createdAt: Date;
+  updatedAt: Date;
 };

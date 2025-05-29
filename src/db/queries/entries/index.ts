@@ -1,3 +1,4 @@
+import { dbCreateEntry } from "./create";
 import { dbGetEntries } from "./get";
 
-export { dbGetEntries };
+export { dbCreateEntry, dbGetEntries };

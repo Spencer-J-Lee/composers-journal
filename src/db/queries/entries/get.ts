@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { entries, entryTags, tags } from "@/db/schema";
 import { Entry } from "@/models/Entry";
+import { EntryStatus } from "@/models/Entry/types";
 
 export const dbGetEntries = async (userId: string) => {
   const result = await db
@@ -22,6 +23,7 @@ export const dbGetEntries = async (userId: string) => {
       if (!acc[entryId]) {
         acc[entryId] = {
           ...entry,
+          status: entry.status as EntryStatus,
           tags: [],
           references: [],
         };
