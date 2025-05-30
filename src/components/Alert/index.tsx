@@ -46,7 +46,6 @@ export const Alert = ({
         {message}
 
         <button
-          type="button"
           onClick={onClose}
           className="-m-3 -mt-3.5 flex items-center justify-center p-3 hover:brightness-90"
         >

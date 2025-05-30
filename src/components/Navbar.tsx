@@ -45,7 +45,6 @@ export const Navbar = () => {
               const user = await getUserCS();
               console.log(`user:`, user);
             }}
-            type="button"
           >
             Log User
           </Button>
@@ -68,7 +67,6 @@ export const Navbar = () => {
                 router.push(routes.login());
               }
             }}
-            type="button"
           >
             Log Out
           </Button>

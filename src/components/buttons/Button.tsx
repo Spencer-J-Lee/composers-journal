@@ -13,6 +13,7 @@ export const Button = ({
   children,
   size = "md",
   variant = "default",
+  type = "button",
   fullWidth,
   loading,
   disabled,
@@ -30,6 +31,7 @@ export const Button = ({
     <button
       className={clsx(buttonClassName, className)}
       disabled={disabled || loading}
+      type={type}
       {...props}
     >
       {loading ? <PulsingEllipsis /> : children}
