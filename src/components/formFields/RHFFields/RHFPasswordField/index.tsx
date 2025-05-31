@@ -4,6 +4,7 @@ import { checkPasswordRules } from "./helpers";
 import { PasswordRequirement } from "./PasswordRequirement";
 import { FieldLabel } from "../../FieldLabel";
 import { TextField, TextFieldProps } from "../../TextField";
+import { getFieldError } from "../helpers";
 
 type RHFPasswordFieldProps = {
   name: string;
@@ -19,7 +20,7 @@ export const RHFPasswordField = ({
     control,
     formState: { errors },
   } = useFormContext();
-  const error = errors[name]?.message as string | undefined;
+  const error = getFieldError(errors, name);
   const password = useWatch({ name, control });
   const rules = checkPasswordRules(password ?? "");
 

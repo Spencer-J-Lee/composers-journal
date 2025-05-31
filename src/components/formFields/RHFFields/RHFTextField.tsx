@@ -1,5 +1,6 @@
 import { useFormContext } from "react-hook-form";
 
+import { getFieldError } from "./helpers";
 import { FieldError } from "../FieldError";
 import { FieldLabel } from "../FieldLabel";
 import { TextField, TextFieldProps } from "../TextField";
@@ -19,7 +20,7 @@ export const RHFTextField = ({
     register,
     formState: { errors },
   } = useFormContext();
-  const error = errors[name]?.message as string | undefined;
+  const error = getFieldError(errors, name);
 
   return (
     <div>

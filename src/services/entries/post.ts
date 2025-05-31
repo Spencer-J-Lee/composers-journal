@@ -1,7 +1,7 @@
 import { EntryStatus } from "@/models/Entry/types";
-import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
 import { API_PATHS } from "../constants/apiPaths";
+import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
 type apiCreateEntryProps = {
   title: string;

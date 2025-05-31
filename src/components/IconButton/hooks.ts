@@ -11,7 +11,7 @@ type UseIconButtonStylesProps = {
 export const useIconButtonStyles = ({ variant }: UseIconButtonStylesProps) => {
   return {
     iconButtonClassName: clsx(
-      "bg-surface hover:brightness-125 focus-visible:brightness-125 h-8 w-8 rounded duration-75 transition-all",
+      "bg-surface hover:brightness-125 focus-visible:brightness-125 active:brightness-[1.15] h-8 w-8 rounded duration-75 transition-all",
       variantClassName[variant],
     ),
   };

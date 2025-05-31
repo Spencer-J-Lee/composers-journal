@@ -1,7 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 
+import { Divider } from "@/components/Divider";
 import { Entry } from "@/models/Entry";
+
+import { Markdown } from "./Markdown";
 
 type EntryInfoProps = {
   entry: Entry;
@@ -22,7 +25,10 @@ export const EntryInfo = ({
     <div className={clsx("flex flex-1 flex-col p-4", className)}>
       {/* TODO: make sure tag hierarchy is in order */}
       <h2 className="mb-1 text-xl font-semibold">{title}</h2>
-      <p className="mb-2">{description}</p>
+
+      <Divider orientation="horizontal" className="my-2" />
+
+      <Markdown markdown={description} className="mb-2" />
 
       <div className="mt-auto flex justify-between gap-10">
         <small className="text-text-muted">

@@ -1,0 +1,11 @@
+.tiptap p.is-editor-empty:first-child::before {
+  @apply text-text-muted;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror-focused:focus {
+  outline: none;
+}

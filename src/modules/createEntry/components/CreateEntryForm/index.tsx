@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
+import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
 import { routes } from "@/constants/routes";
@@ -35,6 +36,7 @@ export const CreateEntryForm = () => {
       });
 
       // TODO: handle entryTag creation
+
       // TODO: handle entryMedia creation
 
       // router.push(routes.entry(entry.id))
@@ -51,8 +53,13 @@ export const CreateEntryForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="mb-5 w-full space-y-4">
           <RHFTextField name="title" label="Title" required />
-          {/* TODO: create richtext field */}
-          <RHFTextField name="description" label="Description" required />
+          <RHFRichTextField
+            name="description"
+            label="Description"
+            placeholder="Start writing your entry ..."
+            showMenuBar
+            required
+          />
         </div>
 
         <Button type="submit" loading={loading} fullWidth>

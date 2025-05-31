@@ -1,0 +1,36 @@
+.markdown-container {
+  @apply text-base;
+  line-height: 1.75;
+}
+.markdown-container > *:first-child {
+  @apply mt-0;
+}
+
+.markdown-container > p {
+  margin: 0.75em 0;
+}
+
+.markdown-container em {
+  @apply italic;
+}
+
+.markdown-container ul,
+.markdown-container ol {
+  padding-left: 1.5em;
+  margin: 1em 0;
+}
+.markdown-container ul {
+  @apply list-disc;
+}
+.markdown-container ol {
+  @apply list-decimal;
+}
+.markdown-container li {
+  margin: 0.25em 0;
+}
+
+.markdown-container blockquote {
+  @apply border-accent border-l-4 italic;
+  padding-left: 1em;
+  margin: 1em 0;
+}

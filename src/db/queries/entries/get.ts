@@ -6,6 +6,7 @@ import { Entry } from "@/models/Entry";
 import { EntryStatus } from "@/models/Entry/types";
 
 export const dbGetEntries = async (userId: string) => {
+  // TODO: add limits and order by desc entries.createdAt
   const result = await db
     .select({
       entry: entries,
