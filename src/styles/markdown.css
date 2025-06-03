@@ -39,4 +39,5 @@
   @apply border-accent border-l-4 italic;
   padding-left: 1em;
   margin: 1em 0;
+  background-color: var(--color-blockquote-background);
 }
