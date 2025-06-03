@@ -19,6 +19,12 @@
   padding-left: 1.5em;
   margin: 1em 0;
 }
+.markdown-container ul ul,
+.markdown-container ul ol,
+.markdown-container ol ol,
+.markdown-container ol ul {
+  margin: 0;
+}
 .markdown-container ul {
   @apply list-disc;
 }
