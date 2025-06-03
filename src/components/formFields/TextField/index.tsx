@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from "react";
 import clsx from "clsx";
 
-import { useInputStyles } from "./hooks";
+import { useTextFieldStyles } from "./hooks";
 
 export type TextFieldProps = {
   hasError?: boolean;
@@ -13,6 +13,6 @@ export const TextField = ({
   className,
   ...props
 }: TextFieldProps) => {
-  const { inputClassName } = useInputStyles({ hasError });
-  return <input {...props} className={clsx(inputClassName, className)} />;
+  const { textFieldClassName } = useTextFieldStyles({ hasError });
+  return <input {...props} className={clsx(textFieldClassName, className)} />;
 };
