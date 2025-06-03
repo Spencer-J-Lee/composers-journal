@@ -14,16 +14,13 @@
   @apply italic;
 }
 
+.markdown-container > ul,
+.markdown-container > ol {
+  margin: 0.75em 0;
+}
 .markdown-container ul,
 .markdown-container ol {
   padding-left: 1.5em;
-  margin: 1em 0;
-}
-.markdown-container ul ul,
-.markdown-container ul ol,
-.markdown-container ol ol,
-.markdown-container ol ul {
-  margin: 0;
 }
 .markdown-container ul {
   @apply list-disc;
@@ -38,6 +35,6 @@
 .markdown-container blockquote {
   @apply border-accent border-l-4 italic;
   padding-left: 1em;
-  margin: 1em 0;
+  margin: 0.75em 0;
   background-color: var(--color-blockquote-background);
 }

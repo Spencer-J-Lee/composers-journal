@@ -4,11 +4,11 @@ type Options = {
   defaultErrMsg: string;
 };
 
-export async function fetchWithErrorHandling<T>(
+export const fetchWithErrorHandling = async <T>(
   input: RequestInfo | URL,
   init?: RequestInit,
   options?: Options,
-): Promise<T> {
+): Promise<T> => {
   const res = await fetch(input, init);
   const { defaultErrMsg = DEFAULT_ERROR_MSG } = options ?? {};
 
@@ -19,7 +19,7 @@ export async function fetchWithErrorHandling<T>(
       const data = await res.json();
       errMsg = data?.error || errMsg;
     } catch {
-      // Body not JSON or couldn't parse – fallback to default message
+      // Body not JSON or couldn't parse. Fallback to default message
     }
 
     throw new Error(errMsg);
@@ -30,4 +30,4 @@ export async function fetchWithErrorHandling<T>(
   } catch {
     throw new Error(DEFAULT_ERROR_MSG);
   }
-}
+};

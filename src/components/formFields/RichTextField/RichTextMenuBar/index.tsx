@@ -37,6 +37,7 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
     return null;
   }
 
+  // TODO: encapsulate youtube functionality in a separate component
   const addYoutubeVideo = () => {
     // TODO: add modal for this(?)
     const url = prompt("Enter YouTube URL");
@@ -143,7 +144,10 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
       >
         Break
       </RichTextMenuButton>
+
+      {/* TODO: encapsulate youtube functionality in a separate component */}
       <RichTextMenuButton onClick={addYoutubeVideo}>YouTube</RichTextMenuButton>
+
       <RichTextMenuButton
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().chain().focus().undo().run()}

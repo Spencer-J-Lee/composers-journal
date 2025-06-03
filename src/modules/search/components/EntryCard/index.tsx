@@ -31,10 +31,11 @@ export const EntryCard = ({
           entry={entry}
           showTags={showTags}
           setShowTags={setShowTags}
-          className="border-border border-x"
+          className="border-border border-l"
         />
 
-        <ExamplesButton />
+        {/* TODO: remove once scrapped for sure */}
+        {/* <ExamplesButton /> */}
       </div>
 
       {tags.length > 0 && showTags && (
