@@ -1,5 +1,9 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
+import { ERROR_MESSAGES } from "@/constants/messages";
+import { showErrorToast } from "@/utils/toasts";
+
+import { toYouTubeEmbedUrl } from "./helpers";
 import { RichTextMenuButton } from "./RichTextMenuButton";
 
 type RichTextMenuBarProps = {
@@ -30,6 +34,26 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
   if (!editor || !editorState) {
     return null;
   }
+
+  const addYoutubeVideo = () => {
+    // TODO: add modal for this(?)
+    const url = prompt("Enter YouTube URL");
+
+    if (url) {
+      const embededUrl = toYouTubeEmbedUrl(url);
+      if (!embededUrl) {
+        showErrorToast(ERROR_MESSAGES.USER.YOUTUBE_LINK);
+        return;
+      }
+
+      const success = editor.commands.setYoutubeVideo({
+        src: embededUrl,
+      });
+      if (!success) {
+        showErrorToast(ERROR_MESSAGES.USER.YOUTUBE_LINK);
+      }
+    }
+  };
 
   return (
     <div className="sticky left-0 right-0 top-0 z-10 flex flex-wrap gap-2">
@@ -77,6 +101,7 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
       >
         Break
       </RichTextMenuButton>
+      <RichTextMenuButton onClick={addYoutubeVideo}>YouTube</RichTextMenuButton>
       <RichTextMenuButton
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().chain().focus().undo().run()}

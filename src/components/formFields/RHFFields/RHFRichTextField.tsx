@@ -36,8 +36,6 @@ export const RHFRichTextField = ({
     defaultValue: "",
   });
 
-  console.log(`value:`, value);
-
   return (
     <div>
       <FieldLabel htmlFor={name} required={required} hasError={!!error}>

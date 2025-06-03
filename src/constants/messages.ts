@@ -3,6 +3,7 @@ export const ERROR_MESSAGES = {
     TRY_AGAIN_LATER: "Something went wrong. Please try again later.",
     UNAUTHORIZED: "You do not have permission to perform this action.",
     INVALID_INFO: "Some of the provided information is invalid.",
+    YOUTUBE_LINK: "Please enter a valid YouTube link.",
 
     FETCH: {
       ENTRIES: "Failed to load your entries.",

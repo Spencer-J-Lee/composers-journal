@@ -1,3 +1,4 @@
+/* Placeholder styling */
 .tiptap p.is-editor-empty:first-child::before {
   @apply text-text-muted;
   content: attr(data-placeholder);
@@ -6,6 +7,17 @@
   pointer-events: none;
 }
 
+/* Disables default outline on ProseMirror */
 .ProseMirror-focused:focus {
   outline: none;
+}
+
+/* Targets nodes selected by Gapcursor extension */
+.ProseMirror-selectednode {
+  outline: 3px solid var(--color-accent);
+}
+
+/* Targets embed YouTube nodes */
+.tiptap div[data-youtube-video] {
+  width: fit-content;
 }

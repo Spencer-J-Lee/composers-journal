@@ -7,7 +7,17 @@ type MarkdownProps = {
 };
 
 export const Markdown = ({ markdown, className }: MarkdownProps) => {
-  const sanitizedMarkdown = DOMPurify.sanitize(markdown);
+  const sanitizedMarkdown = DOMPurify.sanitize(markdown, {
+    ALLOWED_TAGS: ["iframe"],
+    ADD_ATTR: [
+      "allow",
+      "allowfullscreen",
+      "frameborder",
+      "scrolling",
+      "modestbranding",
+      "start",
+    ],
+  });
 
   return (
     <div
