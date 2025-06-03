@@ -6,6 +6,7 @@ import Gapcursor from "@tiptap/extension-gapcursor";
 import HardBreak from "@tiptap/extension-hard-break";
 import History from "@tiptap/extension-history";
 import Italic from "@tiptap/extension-italic";
+import Link from "@tiptap/extension-link";
 import ListItem from "@tiptap/extension-list-item";
 import OrderedList from "@tiptap/extension-ordered-list";
 import Paragraph from "@tiptap/extension-paragraph";
@@ -22,6 +23,7 @@ export const tipTapExtensions = [
   HardBreak,
   History,
   Italic,
+  Link,
   ListItem,
   OrderedList,
   Paragraph,

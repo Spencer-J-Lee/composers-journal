@@ -28,6 +28,8 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
       isBulletList: context.editor?.isActive("bulletList"),
       isOrderedList: context.editor?.isActive("orderedList"),
       isBlockquote: context.editor?.isActive("blockquote"),
+      isLink: context.editor?.isActive("link"),
+      isPlainText: !context.editor?.isActive("link"),
     }),
   });
 
@@ -52,6 +54,34 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
       if (!success) {
         showErrorToast(ERROR_MESSAGES.USER.YOUTUBE_LINK);
       }
+    }
+  };
+
+  // TODO: encapsulate link functionality in a separate component
+  const setLink = () => {
+    const prevUrl = editor.getAttributes("link").href;
+    const url = window.prompt("URL", prevUrl);
+
+    if (url === null) {
+      return;
+    }
+
+    // Unsetting link
+    if (url === "") {
+      editor.chain().focus().extendMarkRange("link").unsetLink().run();
+      return;
+    }
+
+    try {
+      editor
+        .chain()
+        .focus()
+        .extendMarkRange("link")
+        .setLink({ href: url })
+        .run();
+    } catch (e) {
+      console.error(e);
+      showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN);
     }
   };
 
@@ -96,6 +126,18 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
       >
         Quote
       </RichTextMenuButton>
+
+      {/* TODO: encapsulate link functionality in a separate component */}
+      <RichTextMenuButton onClick={setLink} isActive={editorState.isLink}>
+        Set link
+      </RichTextMenuButton>
+      <RichTextMenuButton
+        onClick={() => editor.chain().focus().unsetLink().run()}
+        disabled={editorState.isPlainText}
+      >
+        Unset link
+      </RichTextMenuButton>
+
       <RichTextMenuButton
         onClick={() => editor.chain().focus().setHardBreak().run()}
       >

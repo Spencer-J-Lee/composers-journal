@@ -6,8 +6,8 @@
   @apply mt-0;
 }
 
-.markdown-container > p {
-  margin: 0.75em 0;
+.markdown-container a {
+  @apply text-accent font-semibold hover:underline;
 }
 
 .markdown-container em {
