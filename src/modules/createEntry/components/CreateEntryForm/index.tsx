@@ -11,7 +11,7 @@ import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextF
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client";
-import { ENTRY_STATUSES } from "@/models/Entry/types";
+import { STATUSES } from "@/models/types";
 import { apiCreateEntry } from "@/services/entries/post";
 import { isError } from "@/utils/isError";
 import { showErrorToast } from "@/utils/toasts";
@@ -32,7 +32,7 @@ export const CreateEntryForm = () => {
     try {
       const entry = await apiCreateEntry({
         ...data,
-        status: ENTRY_STATUSES.ACTIVE,
+        status: STATUSES.ACTIVE,
       });
 
       // TODO: handle entryTag creation

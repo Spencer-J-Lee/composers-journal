@@ -1,5 +1,5 @@
-import { EntryStatus } from "./types";
 import { Tag } from "../Tag";
+import { Status } from "../types";
 
 export type Entry = {
   id: number;
@@ -7,7 +7,7 @@ export type Entry = {
   description: string;
   references: [];
   tags: Tag[];
-  status: EntryStatus;
+  status: Status;
   createdAt: Date;
   updatedAt: Date;
 };

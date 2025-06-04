@@ -1,22 +1,13 @@
-import {
-  bigserial,
-  pgEnum,
-  pgTable,
-  text,
-  timestamp,
-  uuid,
-} from "drizzle-orm/pg-core";
+import { bigserial, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
-import { ENTRY_STATUSES } from "@/models/Entry/types";
-
-export const entryStatusEnum = pgEnum("entry_status", ENTRY_STATUSES);
+import { statusEnum } from "@/models/types";
 
 export const entries = pgTable("entries", {
   id: bigserial({ mode: "number" }).primaryKey(),
   ownerId: uuid("owner_id").notNull(),
   title: text().notNull(),
   description: text().notNull(),
-  status: entryStatusEnum("status"),
+  status: statusEnum("status"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull(),
 });

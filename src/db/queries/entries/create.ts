@@ -1,12 +1,12 @@
 import { db } from "@/db";
 import { entries } from "@/db/schema";
-import { EntryStatus } from "@/models/Entry/types";
+import { Status } from "@/models/types";
 
 type dbCreateEntryProps = {
   ownerId: string;
   title: string;
   description: string;
-  status: EntryStatus;
+  status: Status;
 };
 
 export const dbCreateEntry = async ({

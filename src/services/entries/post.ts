@@ -1,4 +1,4 @@
-import { EntryStatus } from "@/models/Entry/types";
+import { Status } from "@/models/types";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
@@ -6,7 +6,7 @@ import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 type apiCreateEntryProps = {
   title: string;
   description: string;
-  status: EntryStatus;
+  status: Status;
 };
 
 export const apiCreateEntry = async ({
