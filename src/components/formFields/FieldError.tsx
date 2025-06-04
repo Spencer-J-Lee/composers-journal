@@ -14,7 +14,7 @@ export const FieldError = ({ show, children }: FieldErrorProps) => {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.15 }}
+          transition={{ duration: 0.1 }}
           className="text-negative-text mt-1 overflow-hidden text-sm"
         >
           {children}

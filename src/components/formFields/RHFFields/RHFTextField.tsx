@@ -5,7 +5,7 @@ import { FieldError } from "../FieldError";
 import { FieldLabel } from "../FieldLabel";
 import { TextField, TextFieldProps } from "../TextField";
 
-type RHFTextFieldProps = {
+export type RHFTextFieldProps = {
   name: string;
   label: string;
 } & TextFieldProps;

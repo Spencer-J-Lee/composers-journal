@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
+import { RHFGhostTextField } from "@/components/formFields/RHFFields/RHFGhostTextField";
 import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
@@ -52,7 +53,11 @@ export const CreateEntryForm = () => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="mb-5 w-full space-y-4">
-          <RHFTextField name="title" label="Title" required />
+          <RHFGhostTextField
+            name="title"
+            className="text-4xl"
+            placeholder="Title"
+          />
           <RHFRichTextField
             name="description"
             label="Description"
