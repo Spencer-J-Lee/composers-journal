@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/buttons/Button";
 import { RHFGhostTextField } from "@/components/formFields/RHFFields/RHFGhostTextField";
 import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
-import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client";
@@ -60,10 +59,8 @@ export const CreateEntryForm = () => {
           />
           <RHFRichTextField
             name="description"
-            label="Description"
-            placeholder="Start writing your entry ..."
+            placeholder="Start writing your entry..."
             showMenuBar
-            required
           />
         </div>
 

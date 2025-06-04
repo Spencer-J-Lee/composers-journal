@@ -48,7 +48,7 @@ export const RichTextField = ({
 
   return (
     <div
-      className={clsx("max-h-100 relative overflow-y-auto rounded-lg border", {
+      className={clsx("relative border", {
         "border-negative": hasError,
         "border-transparent": !hasError,
       })}
