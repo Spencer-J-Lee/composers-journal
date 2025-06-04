@@ -89,20 +89,32 @@ class Routes {
     return "/search";
   }
 
-  entry(entryId: number) {
-    return `${this.entries()}/${entryId}`;
+  collections() {
+    return "/collections";
   }
 
-  entryEdit(entryId: number) {
-    return `${this.entries()}/${entryId}/edit`;
+  collection(collectionId: number) {
+    return `/collections/${collectionId}`;
   }
 
-  entryCreate() {
-    return `${this.entries()}/create`;
+  entry(collectionId: number, entryId: number) {
+    return `${this.collection(collectionId)}/${this.entries()}/${entryId}`;
+  }
+
+  entryEdit(collectionId: number, entryId: number) {
+    return `${this.collection(collectionId)}/${this.entries()}/${entryId}/edit`;
+  }
+
+  entryCreate(collectionId: number) {
+    return `${this.collection(collectionId)}/${this.entries()}/create`;
   }
 
   tags() {
     return "/tags";
+  }
+
+  trash() {
+    return "/trash";
   }
 }
 

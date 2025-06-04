@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 
+import { Sidebar } from "@/components/Sidebar";
+import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
 import { getUserSS } from "@/db/supabase/server/helpers";
 
@@ -14,7 +16,14 @@ const ProtectedLayout = async ({
     redirect(routes.login());
   }
 
-  return <>{children}</>;
+  return (
+    <div className="flex">
+      <Sidebar />
+      <main id={ELEMENT_IDS.MAIN_CONTENT} className="flex-1">
+        {children}
+      </main>
+    </div>
+  );
 };
 
 export default ProtectedLayout;

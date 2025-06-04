@@ -4,7 +4,6 @@ import Script from "next/script";
 import { Toaster } from "sonner";
 
 import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
 import { SkipToContent } from "@/components/SkipToContent";
 import { inter } from "@/styles/fonts";
 
@@ -33,7 +32,6 @@ const RootLayout = ({
         className={`${inter.variable} bg-background text-text h-auto min-h-screen antialiased`}
       >
         <SkipToContent />
-        <Navbar />
         {children}
         <Footer />
 

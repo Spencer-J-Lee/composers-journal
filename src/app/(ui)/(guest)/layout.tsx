@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Navbar } from "@/components/Navbar";
 import { routes } from "@/constants/routes";
 import { getUserSS } from "@/db/supabase/server/helpers";
 
@@ -14,7 +15,12 @@ const GuestLayout = async ({
     redirect(routes.search());
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  );
 };
 
 export default GuestLayout;

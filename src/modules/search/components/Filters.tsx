@@ -38,6 +38,7 @@ import clsx from "clsx";
 //   "Puzzle",
 // ];
 
+// TODO: repurpose this for entry quick search feature
 export const Filters = () => {
   return (
     <aside
