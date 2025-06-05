@@ -81,28 +81,32 @@ class Routes {
     return "/reset-password";
   }
 
+  notebook() {
+    return "/notebook";
+  }
+
   profile() {
-    return "/profile";
+    return `${this.notebook()}/profile`;
   }
 
   search() {
-    return "/search";
+    return `${this.notebook()}/search`;
   }
 
   collections() {
-    return "/collections";
+    return `${this.notebook()}/collections`;
   }
 
   collection(collectionId: number) {
-    return `${this.collections}/${collectionId}`;
+    return `${this.collections()}/${collectionId}`;
   }
 
   collectionCreate() {
-    return `${this.collections}/create`;
+    return `${this.collections()}/create`;
   }
 
   entry(collectionId: number, entryId: number) {
-    return `${this.collection(collectionId)}/${this.entries()}/${entryId}`;
+    return `${this.notebook()}${this.collection(collectionId)}/${this.entries()}/${entryId}`;
   }
 
   entryEdit(collectionId: number, entryId: number) {
@@ -114,11 +118,11 @@ class Routes {
   }
 
   tags() {
-    return "/tags";
+    return `${this.notebook()}/tags`;
   }
 
   trash() {
-    return "/trash";
+    return `${this.notebook()}/trash`;
   }
 }
 
