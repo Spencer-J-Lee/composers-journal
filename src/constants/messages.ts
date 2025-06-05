@@ -8,15 +8,19 @@ export const ERROR_MESSAGES = {
 
     FETCH: {
       ENTRIES: "Failed to load your entries.",
+      COLLECTIONS: "Failed to load your collections.",
     },
     CREATE: {
       ENTRY: "Failed to create your entry.",
+      COLLECTION: "Failed to create your collection.",
     },
     UPDATE: {
       ENTRY: "Failed to update your entry.",
+      COLLECTION: "Failed to update your collection.",
     },
     DELETE: {
       ENTRY: "Failed to delete your entry.",
+      COLLECTION: "Failed to delete your collection.",
     },
   },
 
@@ -26,15 +30,19 @@ export const ERROR_MESSAGES = {
 
     FETCH: {
       ENTRIES: "Failed to fetch entries.",
+      COLLECTIONS: "Failed to fetch collections.",
     },
     CREATE: {
       ENTRY: "Failed to create entry.",
+      COLLECTION: "Failed to create collection.",
     },
     UPDATE: {
       ENTRY: "Failed to update entry.",
+      COLLECTION: "Failed to update collection.",
     },
     DELETE: {
       ENTRY: "Failed to delete entry.",
+      COLLECTION: "Failed to delete collection.",
     },
   },
 } as const;

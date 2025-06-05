@@ -1,13 +1,9 @@
-import { Tag } from "../Tag";
 import { Status } from "../types";
 
-export type Entry = {
+export type Collection = {
   id: number;
   ownerId: string;
-  title: string;
-  description: string;
-  references: [];
-  tags: Tag[];
+  name: string;
   status: Status;
   createdAt: Date;
   updatedAt: Date;

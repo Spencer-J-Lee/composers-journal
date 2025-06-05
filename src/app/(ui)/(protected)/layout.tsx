@@ -17,9 +17,12 @@ const ProtectedLayout = async ({
   }
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <Sidebar />
-      <main id={ELEMENT_IDS.MAIN_CONTENT} className="flex-1">
+      <main
+        id={ELEMENT_IDS.MAIN_CONTENT}
+        className="bg-background-light flex-1"
+      >
         {children}
       </main>
     </div>

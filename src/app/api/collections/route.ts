@@ -1,7 +1,7 @@
 import { DEFAULT_ERROR_MSG, ERROR_MESSAGES } from "@/constants/messages";
-import { dbCreateEntry, dbGetEntries } from "@/db/queries/entries";
+import { dbCreateCollection, dbGetCollections } from "@/db/queries/collections";
 import { getUserSS } from "@/db/supabase/server";
-import { entrySchema } from "@/models/Entry/schema";
+import { collectionSchema } from "@/models/Collection/schema";
 import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
 
 export const GET = async () => {
@@ -11,17 +11,17 @@ export const GET = async () => {
   }
 
   try {
-    const entries = await dbGetEntries(user.id);
+    const collections = await dbGetCollections(user.id);
 
-    return new Response(JSON.stringify(entries), {
+    return new Response(JSON.stringify(collections), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
     return respondWithError({
       status: 500,
-      userMsg: ERROR_MESSAGES.USER.FETCH.ENTRIES,
-      devMsg: ERROR_MESSAGES.DEV.FETCH.ENTRIES,
+      userMsg: ERROR_MESSAGES.USER.FETCH.COLLECTIONS,
+      devMsg: ERROR_MESSAGES.DEV.FETCH.COLLECTIONS,
       err,
     });
   }
@@ -36,9 +36,8 @@ export const POST = async (req: Request) => {
   try {
     const body = await req.json();
 
-    const schema = entrySchema.pick({
-      title: true,
-      description: true,
+    const schema = collectionSchema.pick({
+      name: true,
       status: true,
     });
     const res = schema.safeParse(body);
@@ -55,22 +54,21 @@ export const POST = async (req: Request) => {
       });
     }
 
-    const entry = await dbCreateEntry({
+    const collection = await dbCreateCollection({
       ownerId: user.id,
-      title: res.data?.title,
-      description: res.data?.description,
+      name: res.data?.name,
       status: res.data?.status,
     });
 
-    return new Response(JSON.stringify(entry), {
+    return new Response(JSON.stringify(collection), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
     return respondWithError({
       status: 500,
-      userMsg: ERROR_MESSAGES.USER.CREATE.ENTRY,
-      devMsg: ERROR_MESSAGES.DEV.CREATE.ENTRY,
+      userMsg: ERROR_MESSAGES.USER.CREATE.COLLECTION,
+      devMsg: ERROR_MESSAGES.DEV.CREATE.COLLECTION,
       err,
     });
   }

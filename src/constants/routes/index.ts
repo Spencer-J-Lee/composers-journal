@@ -94,7 +94,11 @@ class Routes {
   }
 
   collection(collectionId: number) {
-    return `/collections/${collectionId}`;
+    return `${this.collections}/${collectionId}`;
+  }
+
+  collectionCreate() {
+    return `${this.collections}/create`;
   }
 
   entry(collectionId: number, entryId: number) {
@@ -102,7 +106,7 @@ class Routes {
   }
 
   entryEdit(collectionId: number, entryId: number) {
-    return `${this.collection(collectionId)}/${this.entries()}/${entryId}/edit`;
+    return `${this.entry(collectionId, entryId)}/edit`;
   }
 
   entryCreate(collectionId: number) {
