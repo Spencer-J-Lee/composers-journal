@@ -1,4 +1,4 @@
-import { DEFAULT_ERROR_MSG, ERROR_MESSAGES } from "@/constants/messages";
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateEntry, dbGetEntries } from "@/db/queries/entries";
 import { getUserSS } from "@/db/supabase/server";
 import { entrySchema } from "@/models/Entry/schema";

@@ -8,7 +8,6 @@ import { Tags } from "@/modules/tags/components/Tags";
 
 import { EntryControls } from "./EntryControls";
 import { EntryInfo } from "./EntryInfo";
-import { ExamplesButton } from "./ExamplesButton";
 
 type EntryCardProps = {
   entry: Entry;
@@ -33,9 +32,6 @@ export const EntryCard = ({
           setShowTags={setShowTags}
           className="border-border border-l"
         />
-
-        {/* TODO: remove once scrapped for sure */}
-        {/* <ExamplesButton /> */}
       </div>
 
       {tags.length > 0 && showTags && (

@@ -1,4 +1,4 @@
-import { DEFAULT_ERROR_MSG, ERROR_MESSAGES } from "@/constants/messages";
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateCollection, dbGetCollections } from "@/db/queries/collections";
 import { getUserSS } from "@/db/supabase/server";
 import { collectionSchema } from "@/models/Collection/schema";

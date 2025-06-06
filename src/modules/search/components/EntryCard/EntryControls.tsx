@@ -3,9 +3,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { IconButton } from "@/components/IconButton";
 
-type EntryControlsProps = {};
-
-export const EntryControls = ({}: EntryControlsProps) => {
+export const EntryControls = () => {
   return (
     <div className="flex flex-col items-center gap-1 p-2">
       <IconButton faIcon={faStar} />
