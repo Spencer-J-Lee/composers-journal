@@ -8,6 +8,7 @@ type apiCreateCollectionProps = {
   status: Status;
 };
 
+// TODO: setup redux
 export const apiCreateCollection = async ({
   name,
   status,

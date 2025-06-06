@@ -8,6 +8,7 @@ import { apiGetCollections } from "@/services/collections/get";
 export const CollectionsContent = () => {
   const [collections, setCollections] = useState<Collection[]>([]);
 
+  // TODO: setup redux
   useEffect(() => {
     apiGetCollections().then((data) => {
       setCollections(data);

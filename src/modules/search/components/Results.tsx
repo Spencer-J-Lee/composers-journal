@@ -10,6 +10,7 @@ import { EntryCard } from "./EntryCard";
 export const Results = () => {
   const [entries, setEntries] = useState<Entry[]>([]);
 
+  // TODO: setup redux
   useEffect(() => {
     apiGetEntries().then((data) => {
       setEntries(data);

@@ -21,6 +21,7 @@ export const CollectionsAccordionMenu = () => {
   const [collections, setCollections] = useState<Collection[]>([]);
   const [show, setShow] = useState(true);
 
+  // TODO: setup redux
   useEffect(() => {
     apiGetCollections().then((data) => {
       setCollections(data);
