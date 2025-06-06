@@ -3,20 +3,14 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 import { ASSET_PATHS } from "@/constants/assetPaths";
 import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
-import { createClientCS, getUserCS } from "@/db/supabase/client";
 
-import { Button } from "./buttons/Button";
 import { LinkButton } from "./buttons/LinkButton";
 
 export const Navbar = () => {
-  const supabase = createClientCS();
-  const router = useRouter();
-
   return (
     <header
       id={ELEMENT_IDS.NAVBAR}
@@ -36,40 +30,7 @@ export const Navbar = () => {
         </Link>
 
         <div className="flex justify-between gap-x-4">
-          <LinkButton href={routes.entryCreate()} variant="positive">
-            Create
-          </LinkButton>
-          {/* TODO: remove test code */}
-          <Button
-            onClick={async () => {
-              const user = await getUserCS();
-              console.log(`user:`, user);
-            }}
-          >
-            Log User
-          </Button>
-          <Link href={routes.profile()} className="-m-2 block p-2">
-            <Image
-              src="/assets/empty-profile.png"
-              alt="User's profile picture"
-              width={32}
-              height={32}
-              style={{ objectFit: "cover" }}
-            />
-          </Link>
-          {/* TODO: remove test code */}
-          <Button
-            onClick={async () => {
-              const { error } = await supabase.auth.signOut();
-              if (error) {
-                console.error(`error:`, error);
-              } else {
-                router.push(routes.login());
-              }
-            }}
-          >
-            Log Out
-          </Button>
+          <LinkButton href={routes.login()}>Login</LinkButton>
         </div>
       </nav>
     </header>
