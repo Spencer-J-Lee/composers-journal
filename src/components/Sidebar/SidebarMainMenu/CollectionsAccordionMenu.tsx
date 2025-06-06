@@ -12,7 +12,7 @@ import { routes } from "@/constants/routes";
 import { Collection } from "@/models/Collection";
 import { apiGetCollections } from "@/services/collections/get";
 
-import { IconButton } from "../../IconButton";
+import { IconButton } from "../../buttons/IconButton";
 import { SidebarLinkButton } from "../SidebarLinkButton";
 
 export const CollectionsAccordionMenu = () => {
@@ -27,7 +27,7 @@ export const CollectionsAccordionMenu = () => {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex gap-x-1">
         <SidebarLinkButton
           href={routes.collections()}
           faIcon={faBook}

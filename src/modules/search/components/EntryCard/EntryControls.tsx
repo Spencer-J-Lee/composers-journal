@@ -1,7 +1,7 @@
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import { IconButton } from "@/components/IconButton";
+import { IconButton } from "@/components/buttons/IconButton";
 
 export const EntryControls = () => {
   return (
