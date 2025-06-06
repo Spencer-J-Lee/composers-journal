@@ -12,7 +12,7 @@ import { routes } from "@/constants/routes";
 import { Collection } from "@/models/Collection";
 import { apiGetCollections } from "@/services/collections/get";
 
-import { IconButton } from "../../buttons/IconButton";
+import { IconButton } from "../../iconButtons/IconButton";
 import { SidebarLinkButton } from "../SidebarLinkButton";
 
 export const CollectionsAccordionMenu = () => {

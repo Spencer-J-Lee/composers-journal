@@ -1,4 +1,4 @@
-import { IconButtonVariant } from "../../types";
+import { IconButtonVariant } from "../../../buttons/types";
 
 export const variantClassName: Record<IconButtonVariant, string> = {
   default: "text-text-muted",

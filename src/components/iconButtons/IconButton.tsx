@@ -1,15 +1,11 @@
 import { ComponentProps } from "react";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 
 import { useIconButtonStyles } from "./hooks/useIconButtonStyles";
-import { IconButtonVariant } from "./types";
+import { BaseIconButtonProps } from "./types";
 
-type IconButtonProps = {
-  faIcon: IconProp;
-  variant?: IconButtonVariant;
-} & ComponentProps<"button">;
+type IconButtonProps = BaseIconButtonProps & ComponentProps<"button">;
 
 export const IconButton = ({
   className,
