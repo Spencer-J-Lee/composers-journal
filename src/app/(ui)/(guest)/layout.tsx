@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { Navbar } from "@/components/Navbar";
-import { routes } from "@/constants/routes";
+import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { getUserSS } from "@/db/supabase/server/helpers";
 
 const GuestLayout = async ({
@@ -12,7 +12,7 @@ const GuestLayout = async ({
   const user = await getUserSS();
 
   if (user) {
-    redirect(routes.search());
+    redirect(DEFAULT_PROTECTED_ROUTE);
   }
 
   return (

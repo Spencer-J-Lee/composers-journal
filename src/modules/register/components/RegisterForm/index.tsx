@@ -10,6 +10,7 @@ import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordF
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
+import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client";
 import { showErrorToast } from "@/utils/toasts";
 import { genFullSiteUrl } from "@/utils/urls";
@@ -35,7 +36,7 @@ export const RegisterForm = () => {
       password: data.password,
       options: {
         emailRedirectTo: genFullSiteUrl(
-          routes.verifyEmailCallback(routes.search()),
+          routes.verifyEmailCallback(DEFAULT_PROTECTED_ROUTE),
         ),
       },
     });

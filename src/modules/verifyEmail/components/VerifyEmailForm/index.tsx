@@ -10,6 +10,7 @@ import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
+import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client";
 import { useCountdown } from "@/hooks/useCountdown";
 import { showErrorToast } from "@/utils/toasts";
@@ -35,7 +36,7 @@ export const VerifyEmailForm = () => {
       email: data.email,
       options: {
         emailRedirectTo: genFullSiteUrl(
-          routes.verifyEmailCallback(routes.search()),
+          routes.verifyEmailCallback(DEFAULT_PROTECTED_ROUTE),
         ),
       },
     });

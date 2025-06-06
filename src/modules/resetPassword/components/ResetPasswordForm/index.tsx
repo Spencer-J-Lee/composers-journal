@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/buttons/Button";
 import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
-import { routes } from "@/constants/routes";
+import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client";
 import { showErrorToast, showSuccessToast } from "@/utils/toasts";
 
@@ -34,7 +34,7 @@ export const ResetPasswordForm = () => {
       showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN_LATER);
     } else {
       showSuccessToast(SUCCESS_MESSAGES.PASSWORD_RESET);
-      router.push(routes.search());
+      router.push(DEFAULT_PROTECTED_ROUTE);
     }
 
     setLoading(false);

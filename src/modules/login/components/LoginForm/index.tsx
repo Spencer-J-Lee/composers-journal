@@ -10,6 +10,7 @@ import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
+import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client";
 import { showErrorToast } from "@/utils/toasts";
 
@@ -51,7 +52,7 @@ export const LoginForm = () => {
       console.error(error);
       showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN_LATER);
     } else {
-      router.push(routes.search());
+      router.push(DEFAULT_PROTECTED_ROUTE);
     }
 
     setLoading(false);

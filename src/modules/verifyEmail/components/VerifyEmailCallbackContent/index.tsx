@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
-import { routes } from "@/constants/routes";
+import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { getUserCS } from "@/db/supabase/client";
 import { VerifyEmailForm } from "@/modules/verifyEmail/components/VerifyEmailForm";
 
@@ -23,7 +23,7 @@ export const VerifyEmailCallbackContent = () => {
     getUserCS().then((user) => {
       if (user) {
         const redirectUrl =
-          searchParams.get(QUERY_KEYS.REDIRECT_URL) ?? routes.search();
+          searchParams.get(QUERY_KEYS.REDIRECT_URL) ?? DEFAULT_PROTECTED_ROUTE;
         router.replace(redirectUrl);
       } else {
         setStatus("invalid");
