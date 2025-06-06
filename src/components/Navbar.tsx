@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+import { ASSET_PATHS } from "@/constants/assetPaths";
 import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
 import { createClientCS, getUserCS } from "@/db/supabase/client";
@@ -26,8 +27,7 @@ export const Navbar = () => {
       <nav className="flex items-center justify-between gap-x-10">
         <Link href={routes.home()} className="-m-2 block p-2">
           <Image
-            src="/assets/logo-white.png"
-            // src="/assets/logo-black.png"
+            src={ASSET_PATHS.LOGO_WHITE}
             alt="Composer's Toolkit logo"
             width={220}
             height={40}
