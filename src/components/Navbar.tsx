@@ -10,8 +10,8 @@ import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
 import { createClientCS, getUserCS } from "@/db/supabase/client";
 
-import { AnchorButton } from "./buttons/AnchorButton";
 import { Button } from "./buttons/Button";
+import { LinkButton } from "./buttons/LinkButton";
 
 export const Navbar = () => {
   const supabase = createClientCS();
@@ -36,9 +36,9 @@ export const Navbar = () => {
         </Link>
 
         <div className="flex justify-between gap-x-4">
-          <AnchorButton href={routes.entryCreate()} variant="positive">
+          <LinkButton href={routes.entryCreate()} variant="positive">
             Create
-          </AnchorButton>
+          </LinkButton>
           {/* TODO: remove test code */}
           <Button
             onClick={async () => {

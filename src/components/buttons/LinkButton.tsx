@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
@@ -14,7 +14,8 @@ type LinkButtonProps = {
   children: ReactNode;
   faIcon?: IconProp;
   className?: string;
-} & BaseButtonProps;
+} & BaseButtonProps &
+  ComponentProps<"a">;
 
 export const LinkButton = ({
   href,
