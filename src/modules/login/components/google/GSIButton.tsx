@@ -12,6 +12,8 @@ const dataTheme = {
   black: "filled_black",
 };
 
+// TODO: Fix issue where button doesn't render if coming from another page
+// TODO: Redirect user to authed page on successful login
 export const GSIButton = ({ variant = "white" }: GSIButtonProps) => {
   return (
     <>
