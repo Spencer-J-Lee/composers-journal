@@ -26,7 +26,7 @@ export const EntryInfo = ({
       {/* TODO: make sure tag hierarchy is in order */}
       <h2 className="mb-1 text-xl font-semibold">{title}</h2>
 
-      <Divider orientation="horizontal" className="my-2" />
+      <Divider className="my-2" />
 
       <Markdown markdown={description} className="mb-2" />
 
