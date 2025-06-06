@@ -48,6 +48,10 @@
   /* === Accessibility === */
   --color-accessibility: #5865f2;
 
+  /* === Scrollbar === */
+  --color-scrollbar-track: #3d4047;
+  --color-scrollbar-thumb: #5c5d65;
+
   /* === Animation === */
   --animate-pulsing-ellipsis: pulsing-ellipsis 1.4s ease-in-out infinite;
 

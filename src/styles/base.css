@@ -10,11 +10,11 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: #674027;
+      background: var(--color-scrollbar-track);
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #84593d;
+      background: var(--color-scrollbar-thumb);
       border-radius: 999px;
       border: 4px solid transparent;
       background-clip: content-box;
@@ -24,7 +24,7 @@
   /* For Firefox */
   @supports (scrollbar-color: auto) {
     * {
-      scrollbar-color: #84593d #674027;
+      scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
     }
   }
 }
