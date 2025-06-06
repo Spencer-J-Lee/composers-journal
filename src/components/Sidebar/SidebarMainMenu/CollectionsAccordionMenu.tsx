@@ -5,6 +5,7 @@ import {
   faBook,
   faChevronDown,
   faChevronUp,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Collapsible } from "@/components/Collapsible";
@@ -14,6 +15,7 @@ import { apiGetCollections } from "@/services/collections/get";
 
 import { IconButton } from "../../iconButtons/IconButton";
 import { SidebarLinkButton } from "../SidebarLinkButton";
+import { SidebarLinkIconButton } from "../SidebarLinkIconButton";
 
 export const CollectionsAccordionMenu = () => {
   const [collections, setCollections] = useState<Collection[]>([]);
@@ -35,6 +37,10 @@ export const CollectionsAccordionMenu = () => {
         >
           Collections
         </SidebarLinkButton>
+        <SidebarLinkIconButton
+          href={routes.collectionCreate()}
+          faIcon={faPlus}
+        />
         {collections.length > 0 && (
           <IconButton
             faIcon={show ? faChevronUp : faChevronDown}
