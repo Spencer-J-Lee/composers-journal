@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useButtonStyles } from "./hooks/useButtonStyles";
 import { BaseButtonProps } from "./types";
 
-type LinkButtonProps = {
+export type LinkButtonProps = {
   href: string;
   children: ReactNode;
   faIcon?: IconProp;
