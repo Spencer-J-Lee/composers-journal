@@ -2,11 +2,11 @@
 
 import clsx from "clsx";
 
+import { useSidebarLinkStyles } from "./hooks/useSidebarButtonStyles";
 import {
   LinkIconButton,
   LinkIconButtonProps,
 } from "../iconButtons/LinkIconButton";
-import { useSidebarLinkStyles } from "./hooks/useSidebarButtonStyles";
 
 type SidebarLinkIconButtonProps = LinkIconButtonProps;
 
