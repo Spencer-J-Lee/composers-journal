@@ -1,5 +1,6 @@
 import { faGear, faUser } from "@fortawesome/free-solid-svg-icons";
 
+import { SidebarLogoutButton } from "@/components/Sidebar/SidebarLogoutButton";
 import { routes } from "@/constants/routes";
 
 import { SidebarLinkButton } from "../SidebarLinkButton";
@@ -13,10 +14,15 @@ export const SidebarUserMenu = () => {
           Settings
         </SidebarLinkButton>
       </li>
-      <li>
-        <SidebarLinkButton faIcon={faUser} href={routes.profile()}>
+      <li className="flex gap-x-1">
+        <SidebarLinkButton
+          faIcon={faUser}
+          href={routes.profile()}
+          className="flex-1"
+        >
           Profile
         </SidebarLinkButton>
+        <SidebarLogoutButton />
       </li>
     </SidebarMenuContainer>
   );
