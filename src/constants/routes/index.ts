@@ -117,6 +117,10 @@ class Routes {
     return `${this.collection(collectionId)}/${this.entries()}/create`;
   }
 
+  settings() {
+    return `${this.notebook()}/settings`;
+  }
+
   tags() {
     return `${this.notebook()}/tags`;
   }

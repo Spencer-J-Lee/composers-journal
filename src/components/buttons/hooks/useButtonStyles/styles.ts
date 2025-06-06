@@ -1,10 +1,17 @@
-export const sizeClassName = {
+import { ButtonSize, ButtonVariant } from "../../types";
+
+export const sizeClassName: Record<ButtonSize, string> = {
   sm: "px-2 py-1 text-xs",
   md: "px-4 py-2 text-sm",
 };
 
-export const variantClassName = {
-  default: "text-text bg-accent",
-  positive: "text-text bg-positive",
-  negative: "text-text bg-negative",
+export const variantClassName: Record<ButtonVariant, string> = {
+  default:
+    "text-text bg-accent hover:brightness-90 focus-visible:brightness-90",
+  positive:
+    "text-text bg-positive hover:brightness-90 focus-visible:brightness-90",
+  negative:
+    "text-text bg-negative hover:brightness-90 focus-visible:brightness-90",
+  ghost:
+    "text-text bg-surface hover:brightness-125 focus-visible:brightness-125 active:brightness-[1.4]",
 };

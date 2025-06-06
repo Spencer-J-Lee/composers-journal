@@ -1,5 +1,5 @@
 export type ButtonSize = "sm" | "md";
-export type ButtonVariant = "default" | "positive" | "negative";
+export type ButtonVariant = "default" | "positive" | "negative" | "ghost";
 
 export type BaseButtonProps = {
   size?: ButtonSize;
