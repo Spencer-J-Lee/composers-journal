@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+
+import { Collapsible } from "../Collapsible";
 
 type FieldErrorProps = {
   show: boolean;
@@ -8,18 +9,10 @@ type FieldErrorProps = {
 
 export const FieldError = ({ show, children }: FieldErrorProps) => {
   return (
-    <AnimatePresence initial={false}>
-      {show && (
-        <motion.p
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.1 }}
-          className="text-negative-text mt-1 overflow-hidden text-sm"
-        >
-          {children}
-        </motion.p>
-      )}
-    </AnimatePresence>
+    <Collapsible show={show} tag="p">
+      <span className="text-negative-text mt-1 inline-block text-sm">
+        {children}
+      </span>
+    </Collapsible>
   );
 };
