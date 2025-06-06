@@ -1,22 +1,22 @@
 import { db } from "@/db";
-import { collections } from "@/db/schema";
+import { notebooks } from "@/db/schema";
 import { Status } from "@/models/types";
 
-type dbCreateCollectionProps = {
+type dbCreateNotebookProps = {
   ownerId: string;
   name: string;
   status: Status;
 };
 
-export const dbCreateCollection = async ({
+export const dbCreateNotebook = async ({
   ownerId,
   name,
   status,
-}: dbCreateCollectionProps) => {
+}: dbCreateNotebookProps) => {
   const now = new Date();
 
   const data = await db
-    .insert(collections)
+    .insert(notebooks)
     .values([
       {
         ownerId,

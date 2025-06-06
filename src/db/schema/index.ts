@@ -1,6 +1,6 @@
-import { collections } from "./collections";
 import { entries } from "./entries";
 import { entryTags } from "./entryTags";
+import { notebooks } from "./notebooks";
 import { tags } from "./tags";
 
-export { collections,entries, entryTags, tags };
+export { entries, entryTags, notebooks, tags };

@@ -2,7 +2,7 @@ import { bigserial, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 import { statusEnum } from "@/models/types";
 
-export const collections = pgTable("collections", {
+export const notebooks = pgTable("notebooks", {
   id: bigserial({ mode: "number" }).primaryKey(),
   ownerId: uuid("owner_id").notNull(),
   name: text().notNull(),

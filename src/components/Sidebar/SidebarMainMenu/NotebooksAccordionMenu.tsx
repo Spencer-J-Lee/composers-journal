@@ -10,21 +10,21 @@ import {
 
 import { Collapsible } from "@/components/Collapsible";
 import { routes } from "@/constants/routes";
-import { Collection } from "@/models/Collection";
-import { apiGetCollections } from "@/services/collections/get";
+import { Notebook } from "@/models/Notebook";
+import { apiGetNotebooks } from "@/services/notebooks/get";
 
 import { IconButton } from "../../iconButtons/IconButton";
 import { SidebarLinkButton } from "../SidebarLinkButton";
 import { SidebarLinkIconButton } from "../SidebarLinkIconButton";
 
-export const CollectionsAccordionMenu = () => {
-  const [collections, setCollections] = useState<Collection[]>([]);
+export const NotebooksAccordionMenu = () => {
+  const [notebooks, setNotebooks] = useState<Notebook[]>([]);
   const [show, setShow] = useState(true);
 
   // TODO: setup redux
   useEffect(() => {
-    apiGetCollections().then((data) => {
-      setCollections(data);
+    apiGetNotebooks().then((data) => {
+      setNotebooks(data);
     });
   }, []);
 
@@ -32,17 +32,14 @@ export const CollectionsAccordionMenu = () => {
     <div>
       <div className="flex gap-x-1">
         <SidebarLinkButton
-          href={routes.collections()}
+          href={routes.notebooks()}
           faIcon={faBook}
           className="flex-1"
         >
-          Collections
+          Notebooks
         </SidebarLinkButton>
-        <SidebarLinkIconButton
-          href={routes.collectionCreate()}
-          faIcon={faPlus}
-        />
-        {collections.length > 0 && (
+        <SidebarLinkIconButton href={routes.notebookCreate()} faIcon={faPlus} />
+        {notebooks.length > 0 && (
           <IconButton
             faIcon={show ? faChevronUp : faChevronDown}
             onClick={() => setShow((prev) => !prev)}
@@ -50,16 +47,16 @@ export const CollectionsAccordionMenu = () => {
         )}
       </div>
 
-      {collections.length > 0 && (
+      {notebooks.length > 0 && (
         <Collapsible show={show}>
           <div className="flex pt-1.5">
             <div className="bg-text-muted ml-5 mr-1.5 w-0.5 rounded-full" />
 
             <ul className="flex-1 space-y-1.5">
-              {collections.map((collection) => (
-                <li key={collection.name}>
-                  <SidebarLinkButton href={routes.collection(collection.id)}>
-                    {collection.name}
+              {notebooks.map((notebook) => (
+                <li key={notebook.name}>
+                  <SidebarLinkButton href={routes.notebook(notebook.id)}>
+                    {notebook.name}
                   </SidebarLinkButton>
                 </li>
               ))}

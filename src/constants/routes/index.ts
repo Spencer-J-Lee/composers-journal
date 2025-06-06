@@ -81,52 +81,52 @@ class Routes {
     return "/reset-password";
   }
 
-  notebook() {
-    return "/notebook";
+  workspace() {
+    return "/workspace";
   }
 
   profile() {
-    return `${this.notebook()}/profile`;
+    return `${this.workspace()}/profile`;
   }
 
   search() {
-    return `${this.notebook()}/search`;
+    return `${this.workspace()}/search`;
   }
 
-  collections() {
-    return `${this.notebook()}/collections`;
+  notebooks() {
+    return `${this.workspace()}/notebooks`;
   }
 
-  collection(collectionId: number) {
-    return `${this.collections()}/${collectionId}`;
+  notebook(notebookId: number) {
+    return `${this.notebooks()}/${notebookId}`;
   }
 
-  collectionCreate() {
-    return `${this.collections()}/create`;
+  notebookCreate() {
+    return `${this.notebooks()}/create`;
   }
 
-  entry(collectionId: number, entryId: number) {
-    return `${this.notebook()}${this.collection(collectionId)}/${this.entries()}/${entryId}`;
+  entry(notebookId: number, entryId: number) {
+    return `${this.notebook(notebookId)}/${this.entries()}/${entryId}`;
   }
 
-  entryEdit(collectionId: number, entryId: number) {
-    return `${this.entry(collectionId, entryId)}/edit`;
+  entryEdit(notebookId: number, entryId: number) {
+    return `${this.entry(notebookId, entryId)}/edit`;
   }
 
-  entryCreate(collectionId: number) {
-    return `${this.collection(collectionId)}/${this.entries()}/create`;
+  entryCreate(notebookId: number) {
+    return `${this.notebook(notebookId)}/${this.entries()}/create`;
   }
 
   settings() {
-    return `${this.notebook()}/settings`;
+    return `${this.workspace()}/settings`;
   }
 
   tags() {
-    return `${this.notebook()}/tags`;
+    return `${this.workspace()}/tags`;
   }
 
   trash() {
-    return `${this.notebook()}/trash`;
+    return `${this.workspace()}/trash`;
   }
 }
 

@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { isStatus } from "../helpers";
 
-export const collectionSchema = z.object({
+export const notebookSchema = z.object({
   id: z.number(),
   ownerId: z.string(),
   name: z.string().min(1, "Name is required"),

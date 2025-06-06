@@ -6,8 +6,8 @@ export const API_PATHS = {
     TAGS: "/api/entry-tags",
     FAVORITES: "/api/favorites",
   },
-  COLLECTIONS: {
-    ROOT: "/api/collections",
+  NOTEBOOKS: {
+    ROOT: "/api/notebooks",
   },
   TAGS: "/api/tags",
 };

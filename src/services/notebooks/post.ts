@@ -3,16 +3,16 @@ import { Status } from "@/models/types";
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-type apiCreateCollectionProps = {
+type apiCreateNotebookProps = {
   name: string;
   status: Status;
 };
 
 // TODO: setup redux
-export const apiCreateCollection = async ({
+export const apiCreateNotebook = async ({
   name,
   status,
-}: apiCreateCollectionProps) => {
+}: apiCreateNotebookProps) => {
   return await fetchWithErrorHandling(API_PATHS.COLLECTIONS.ROOT, {
     method: "POST",
     headers: {

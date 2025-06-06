@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { dbCreateCollection, dbGetCollections } from "@/db/queries/collections";
+import { dbCreateNotebook, dbGetNotebooks } from "@/db/queries/notebooks";
 import { getUserSS } from "@/db/supabase/server";
-import { collectionSchema } from "@/models/Collection/schema";
+import { notebookSchema } from "@/models/Notebook/schema";
 import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
 
 export const GET = async () => {
@@ -11,17 +11,17 @@ export const GET = async () => {
   }
 
   try {
-    const collections = await dbGetCollections(user.id);
+    const notebooks = await dbGetNotebooks(user.id);
 
-    return new Response(JSON.stringify(collections), {
+    return new Response(JSON.stringify(notebooks), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
     return respondWithError({
       status: 500,
-      userMsg: ERROR_MESSAGES.USER.FETCH.COLLECTIONS,
-      devMsg: ERROR_MESSAGES.DEV.FETCH.COLLECTIONS,
+      userMsg: ERROR_MESSAGES.USER.FETCH.NOTEBOOKS,
+      devMsg: ERROR_MESSAGES.DEV.FETCH.NOTEBOOKS,
       err,
     });
   }
@@ -36,7 +36,7 @@ export const POST = async (req: Request) => {
   try {
     const body = await req.json();
 
-    const schema = collectionSchema.pick({
+    const schema = notebookSchema.pick({
       name: true,
       status: true,
     });
@@ -54,21 +54,21 @@ export const POST = async (req: Request) => {
       });
     }
 
-    const collection = await dbCreateCollection({
+    const notebook = await dbCreateNotebook({
       ownerId: user.id,
       name: res.data?.name,
       status: res.data?.status,
     });
 
-    return new Response(JSON.stringify(collection), {
+    return new Response(JSON.stringify(notebook), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
     return respondWithError({
       status: 500,
-      userMsg: ERROR_MESSAGES.USER.CREATE.COLLECTION,
-      devMsg: ERROR_MESSAGES.DEV.CREATE.COLLECTION,
+      userMsg: ERROR_MESSAGES.USER.CREATE.NOTEBOOK,
+      devMsg: ERROR_MESSAGES.DEV.CREATE.NOTEBOOK,
       err,
     });
   }

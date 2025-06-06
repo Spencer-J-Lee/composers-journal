@@ -5,7 +5,7 @@ import {
 
 import { routes } from "@/constants/routes";
 
-import { CollectionsAccordionMenu } from "./CollectionsAccordionMenu";
+import { NotebooksAccordionMenu } from "./NotebooksAccordionMenu";
 import { SidebarLinkButton } from "../SidebarLinkButton";
 import { SidebarMenuContainer } from "../SidebarMenuContainer";
 
@@ -13,7 +13,7 @@ export const SidebarMainMenu = () => {
   return (
     <SidebarMenuContainer className="flex-1 overflow-y-auto overscroll-contain">
       <li>
-        <CollectionsAccordionMenu />
+        <NotebooksAccordionMenu />
       </li>
       <li>
         <SidebarLinkButton href={routes.search()} faIcon={faMagnifyingGlass}>

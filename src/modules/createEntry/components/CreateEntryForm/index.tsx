@@ -28,6 +28,7 @@ export const CreateEntryForm = () => {
 
   const onSubmit = async (data: CreateEntryFormValues) => {
     setLoading(true);
+    console.log(`data:`, data);
 
     try {
       const entry = await apiCreateEntry({

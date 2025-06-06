@@ -1,6 +1,6 @@
 import { Status } from "../types";
 
-export type Collection = {
+export type Notebook = {
   id: number;
   ownerId: string;
   name: string;
