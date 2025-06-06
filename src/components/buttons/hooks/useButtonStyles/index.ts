@@ -19,7 +19,7 @@ export const useButtonStyles = ({
 }: useButtonStylesProps) => {
   return {
     buttonClassName: clsx(
-      "font-inter rounded tracking-widest transition-all font-semibold disabled:pointer-events-none block",
+      "font-inter rounded tracking-widest font-semibold disabled:pointer-events-none block",
       sizeClassName[size],
       variantClassName[variant],
       {
