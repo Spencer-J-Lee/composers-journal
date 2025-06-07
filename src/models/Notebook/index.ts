@@ -1,10 +1,5 @@
-import { Status } from "../types";
+import { InferSelectModel } from "drizzle-orm";
 
-export type Notebook = {
-  id: number;
-  ownerId: string;
-  name: string;
-  status: Status;
-  createdAt: Date;
-  updatedAt: Date;
-};
+import { notebooks } from "@/db/schema";
+
+export type Notebook = InferSelectModel<typeof notebooks>;
