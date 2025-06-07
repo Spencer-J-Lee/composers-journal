@@ -1,5 +1,7 @@
+import { CreateNotebookContent } from "@/modules/createNotebook/components/CreateNotebookContent";
+
 const CreateNotebookPage = () => {
-  return <div>CreateNotebook</div>;
+  return <CreateNotebookContent />;
 };
 
 export default CreateNotebookPage;
