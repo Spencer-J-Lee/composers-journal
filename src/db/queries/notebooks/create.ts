@@ -1,32 +1,31 @@
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
 import { notebooks } from "@/db/schema";
-import { Status } from "@/models/types";
+import { Notebook } from "@/models/Notebook";
 
-type dbCreateNotebookProps = {
-  ownerId: string;
-  name: string;
-  status: Status;
-};
+type dbCreateNotebookProps = Pick<Notebook, "ownerId" | "name" | "status">;
 
 export const dbCreateNotebook = async ({
   ownerId,
   name,
   status,
-}: dbCreateNotebookProps) => {
+}: dbCreateNotebookProps): Promise<Notebook> => {
   const now = new Date();
 
-  const data = await db
+  const result = await db
     .insert(notebooks)
-    .values([
-      {
-        ownerId,
-        name,
-        status,
-        createdAt: now,
-        updatedAt: now,
-      },
-    ])
+    .values({
+      ownerId,
+      name,
+      status,
+      createdAt: now,
+      updatedAt: now,
+    })
     .returning();
 
-  return data;
+  if (!result.length) {
+    throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
+  }
+
+  return result[0];
 };

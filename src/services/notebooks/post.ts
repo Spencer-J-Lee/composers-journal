@@ -1,3 +1,4 @@
+import { Notebook } from "@/models/Notebook";
 import { Status } from "@/models/types";
 
 import { API_PATHS } from "../constants/apiPaths";
@@ -12,8 +13,8 @@ type apiCreateNotebookProps = {
 export const apiCreateNotebook = async ({
   name,
   status,
-}: apiCreateNotebookProps) => {
-  return await fetchWithErrorHandling(API_PATHS.COLLECTIONS.ROOT, {
+}: apiCreateNotebookProps): Promise<Notebook> => {
+  return await fetchWithErrorHandling<Notebook>(API_PATHS.NOTEBOOKS.ROOT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -44,6 +44,7 @@ export const ERROR_MESSAGES = {
       ENTRY: "Error occurred while deleting entry.",
       NOTEBOOK: "Error occurred while deleting notebook.",
     },
+    DB_RETURNED_EMPTY: "Database return value is empty",
   },
 } as const;
 
