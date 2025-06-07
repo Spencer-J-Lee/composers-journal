@@ -41,9 +41,9 @@ export const CreateEntryForm = () => {
       // TODO: handle entryMedia creation
 
       // router.push(routes.entry(entry.id))
-    } catch (error) {
-      console.error(error);
-      showErrorToast(isError(error) ? error.message : DEFAULT_ERROR_MSG);
+    } catch (err) {
+      console.error(err);
+      showErrorToast(isError(err) ? err.message : DEFAULT_ERROR_MSG);
     } finally {
       setLoading(false);
     }

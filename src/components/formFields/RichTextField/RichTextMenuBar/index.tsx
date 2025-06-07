@@ -80,8 +80,8 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
         .extendMarkRange("link")
         .setLink({ href: url })
         .run();
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN);
     }
   };
