@@ -29,20 +29,20 @@ export const ERROR_MESSAGES = {
     INVALID_INFO: "The provided input is invalid for performing this action.",
 
     FETCH: {
-      ENTRIES: "Failed to fetch entries.",
-      NOTEBOOKS: "Failed to fetch notebooks.",
+      ENTRIES: "Error occurred while fetching entries.",
+      NOTEBOOKS: "Error occurred while fetching notebooks.",
     },
     CREATE: {
-      ENTRY: "Failed to create entry.",
-      NOTEBOOK: "Failed to create notebook.",
+      ENTRY: "Error occurred while creating entry.",
+      NOTEBOOK: "Error occurred while creating notebook.",
     },
     UPDATE: {
-      ENTRY: "Failed to update entry.",
-      NOTEBOOK: "Failed to update notebook.",
+      ENTRY: "Error occurred while updating entry.",
+      NOTEBOOK: "Error occurred while updating notebook.",
     },
     DELETE: {
-      ENTRY: "Failed to delete entry.",
-      NOTEBOOK: "Failed to delete notebook.",
+      ENTRY: "Error occurred while deleting entry.",
+      NOTEBOOK: "Error occurred while deleting notebook.",
     },
   },
 } as const;
