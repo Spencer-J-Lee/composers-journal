@@ -5,6 +5,7 @@ import { entries, entryTags, tags } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 import { Status } from "@/models/types";
 
+// TODO: type this
 export const dbGetEntries = async (userId: string) => {
   // TODO: add limits and order by desc entries.createdAt
   const result = await db

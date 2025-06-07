@@ -9,6 +9,7 @@ type dbCreateEntryProps = {
   status: Status;
 };
 
+// TODO: type this
 export const dbCreateEntry = async ({
   ownerId,
   title,

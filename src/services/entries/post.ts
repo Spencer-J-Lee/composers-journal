@@ -9,6 +9,7 @@ type apiCreateEntryProps = {
   status: Status;
 };
 
+// TODO: type this better
 export const apiCreateEntry = async ({
   title,
   description,

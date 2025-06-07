@@ -31,6 +31,7 @@ export const CreateEntryForm = () => {
     console.log(`data:`, data);
 
     try {
+      // TODO: grab correct thing
       const entry = await apiCreateEntry({
         ...data,
         status: STATUSES.ACTIVE,
