@@ -7,7 +7,7 @@ export const entries = pgTable("entries", {
   ownerId: uuid("owner_id").notNull(),
   title: text().notNull(),
   description: text().notNull(),
-  status: statusEnum("status"),
+  status: statusEnum("status").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull(),
 });

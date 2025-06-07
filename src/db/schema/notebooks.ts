@@ -5,8 +5,8 @@ import { statusEnum } from "@/models/types";
 export const notebooks = pgTable("notebooks", {
   id: bigserial({ mode: "number" }).primaryKey(),
   ownerId: uuid("owner_id").notNull(),
-  name: text().notNull(),
-  status: statusEnum("status"),
+  name: text().unique().notNull(),
+  status: statusEnum("status").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull(),
 });
