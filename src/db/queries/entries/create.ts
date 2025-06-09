@@ -7,7 +7,9 @@ type dbCreateEntryProps = Pick<
   "ownerId" | "notebookId" | "title" | "description" | "status"
 >;
 
-export const dbCreateEntry = async (props: dbCreateEntryProps) => {
+export const dbCreateEntry = async (
+  props: dbCreateEntryProps,
+): Promise<Entry> => {
   const now = new Date();
 
   const data = await db
@@ -21,5 +23,5 @@ export const dbCreateEntry = async (props: dbCreateEntryProps) => {
     ])
     .returning();
 
-  return data;
+  return data[0];
 };
