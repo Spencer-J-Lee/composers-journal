@@ -1,3 +1,5 @@
+import { NextRequest } from "next/server";
+
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateEntry, dbGetEntries } from "@/db/queries/entries";
 import { getUserSS } from "@/db/supabase/server";
@@ -27,7 +29,7 @@ export const GET = async () => {
   }
 };
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   const user = await getUserSS();
   if (!user) {
     return respondWithUnauthorized();

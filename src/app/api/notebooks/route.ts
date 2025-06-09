@@ -37,7 +37,7 @@ export const GET = async (req: NextRequest) => {
   }
 };
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   const user = await getUserSS();
   if (!user) {
     return respondWithUnauthorized();
