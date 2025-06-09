@@ -13,7 +13,7 @@ export const GET = async () => {
   }
 
   try {
-    const entries = await dbGetEntries(user.id);
+    const entries = await dbGetEntries({ ownerId: user.id });
 
     return new Response(JSON.stringify(entries), {
       status: 200,

@@ -5,8 +5,9 @@ import { entries, entryTags, tags } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 import { Status } from "@/models/types";
 
-// TODO: type this
-export const dbGetEntries = async (userId: string) => {
+type dbGetEntriesProps = Pick<Entry, "ownerId">;
+
+export const dbGetEntries = async ({ ownerId }: dbGetEntriesProps) => {
   // TODO: add limits and order by desc entries.createdAt
   const result = await db
     .select({
@@ -16,7 +17,7 @@ export const dbGetEntries = async (userId: string) => {
     .from(entries)
     .leftJoin(entryTags, eq(entryTags.entryId, entries.id))
     .leftJoin(tags, eq(tags.id, entryTags.tagId))
-    .where(eq(entries.ownerId, userId));
+    .where(eq(entries.ownerId, ownerId));
 
   const groupedEntries = result.reduce(
     (acc, { entry, tag }) => {
