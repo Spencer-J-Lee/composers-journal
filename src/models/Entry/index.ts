@@ -1,15 +1,5 @@
-import { Tag } from "../Tag";
-import { Status } from "../types";
+import { InferSelectModel } from "drizzle-orm";
 
-// TODO: infer this type from db schema
-export type Entry = {
-  id: number;
-  ownerId: string;
-  title: string;
-  description: string;
-  references: [];
-  tags: Tag[];
-  status: Status;
-  createdAt: Date;
-  updatedAt: Date;
-};
+import { entries } from "@/db/schema";
+
+export type Entry = InferSelectModel<typeof entries>;

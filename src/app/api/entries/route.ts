@@ -39,6 +39,7 @@ export const POST = async (req: NextRequest) => {
     const body = await req.json();
 
     const schema = entrySchema.pick({
+      notebookId: true,
       title: true,
       description: true,
       status: true,
@@ -59,6 +60,7 @@ export const POST = async (req: NextRequest) => {
 
     const entry = await dbCreateEntry({
       ownerId: user.id,
+      notebookId: res.data?.notebookId,
       title: res.data?.title,
       description: res.data?.description,
       status: res.data?.status,

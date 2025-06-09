@@ -1,31 +1,20 @@
 import { db } from "@/db";
 import { entries } from "@/db/schema";
-import { Status } from "@/models/types";
+import { Entry } from "@/models/Entry";
 
-type dbCreateEntryProps = {
-  ownerId: string;
-  title: string;
-  description: string;
-  status: Status;
-};
+type dbCreateEntryProps = Pick<
+  Entry,
+  "ownerId" | "notebookId" | "title" | "description" | "status"
+>;
 
-// TODO: type this
-export const dbCreateEntry = async ({
-  ownerId,
-  title,
-  description,
-  status,
-}: dbCreateEntryProps) => {
+export const dbCreateEntry = async (props: dbCreateEntryProps) => {
   const now = new Date();
 
   const data = await db
     .insert(entries)
     .values([
       {
-        ownerId,
-        title,
-        description,
-        status,
+        ...props,
         createdAt: now,
         updatedAt: now,
       },

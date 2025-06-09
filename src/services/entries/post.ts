@@ -1,30 +1,20 @@
-import { Status } from "@/models/types";
+import { Entry } from "@/models/Entry";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-// TODO: type this better
-type apiCreateEntryProps = {
-  title: string;
-  description: string;
-  status: Status;
-};
+type apiCreateEntryProps = Pick<
+  Entry,
+  "notebookId" | "title" | "description" | "status"
+>;
 
-// TODO: type this better
-export const apiCreateEntry = async ({
-  title,
-  description,
-  status,
-}: apiCreateEntryProps) => {
+// TODO: setup redux
+export const apiCreateEntry = async (props: apiCreateEntryProps) => {
   return await fetchWithErrorHandling(API_PATHS.ENTRIES.ROOT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      title,
-      description,
-      status,
-    }),
+    body: JSON.stringify(props),
   });
 };
