@@ -55,10 +55,17 @@ export const NotebooksAccordionMenu = () => {
 
             <ul className="flex-1 space-y-1.5">
               {notebooks.map((notebook) => (
-                <li key={notebook.name}>
-                  <SidebarLinkButton href={routes.notebook(notebook.id)}>
+                <li key={notebook.name} className="flex gap-x-1">
+                  <SidebarLinkButton
+                    href={routes.notebook(notebook.id)}
+                    className="flex-1"
+                  >
                     {notebook.name}
                   </SidebarLinkButton>
+                  <SidebarLinkIconButton
+                    href={routes.entryCreate(notebook.id)}
+                    faIcon={faPlus}
+                  />
                 </li>
               ))}
             </ul>
