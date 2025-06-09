@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Notebook } from "@/models/Notebook";
+import { STATUSES } from "@/models/types";
 import { apiGetNotebooks } from "@/services/notebooks/get";
 
 export const NotebooksContent = () => {
@@ -10,7 +11,7 @@ export const NotebooksContent = () => {
 
   // TODO: setup redux
   useEffect(() => {
-    apiGetNotebooks().then((data) => {
+    apiGetNotebooks({ status: STATUSES.ACTIVE }).then((data) => {
       setNotebooks(data);
     });
   }, []);

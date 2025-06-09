@@ -1,17 +1,27 @@
+import { NextRequest } from "next/server";
+
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateNotebook, dbGetNotebooks } from "@/db/queries/notebooks";
 import { getUserSS } from "@/db/supabase/server";
 import { notebookSchema } from "@/models/Notebook/schema";
+import { Status } from "@/models/types";
 import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   const user = await getUserSS();
   if (!user) {
     return respondWithUnauthorized();
   }
 
   try {
-    const notebooks = await dbGetNotebooks(user.id);
+    const { searchParams } = new URL(req.url);
+
+    const notebooks = await dbGetNotebooks({
+      ownerId: user.id,
+      name: searchParams.get("name") ?? undefined,
+      status: (searchParams.get("status") as Status) ?? undefined,
+      limit: parseInt(searchParams.get("limit") || "") ?? undefined,
+    });
 
     return new Response(JSON.stringify(notebooks), {
       status: 200,

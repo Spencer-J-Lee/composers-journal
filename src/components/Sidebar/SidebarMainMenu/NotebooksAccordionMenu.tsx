@@ -11,6 +11,7 @@ import {
 import { Collapsible } from "@/components/Collapsible";
 import { routes } from "@/constants/routes";
 import { Notebook } from "@/models/Notebook";
+import { STATUSES } from "@/models/types";
 import { apiGetNotebooks } from "@/services/notebooks/get";
 
 import { IconButton } from "../../iconButtons/IconButton";
@@ -23,7 +24,7 @@ export const NotebooksAccordionMenu = () => {
 
   // TODO: setup redux
   useEffect(() => {
-    apiGetNotebooks().then((data) => {
+    apiGetNotebooks({ status: STATUSES.ACTIVE }).then((data) => {
       setNotebooks(data);
     });
   }, []);
