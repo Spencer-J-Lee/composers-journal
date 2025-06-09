@@ -7,8 +7,8 @@ type CreateEntryPageProps = {
   params: { notebookId: string };
 };
 
-const CreateEntryPage = ({ params }: CreateEntryPageProps) => {
-  const notebookId = parseInt(params.notebookId);
+const CreateEntryPage = async ({ params }: CreateEntryPageProps) => {
+  const notebookId = parseInt(await params.notebookId);
 
   if (isNaN(notebookId)) {
     notFound();
