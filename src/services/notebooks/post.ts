@@ -4,11 +4,7 @@ import { Status } from "@/models/types";
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-// TODO: type this better
-type apiCreateNotebookProps = {
-  name: string;
-  status: Status;
-};
+type apiCreateNotebookProps = Pick<Notebook, "name" | "status">;
 
 // TODO: setup redux
 export const apiCreateNotebook = async ({
