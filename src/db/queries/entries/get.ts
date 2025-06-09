@@ -1,45 +1,16 @@
 import { eq } from "drizzle-orm";
 
 import { db } from "@/db";
-import { entries, entryTags, tags } from "@/db/schema";
+import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
-import { Status } from "@/models/types";
 
 type dbGetEntriesProps = Pick<Entry, "ownerId">;
 
 export const dbGetEntries = async ({ ownerId }: dbGetEntriesProps) => {
   // TODO: add limits and order by desc entries.createdAt
-  const result = await db
-    .select({
-      entry: entries,
-      tag: tags,
-    })
-    .from(entries)
-    .leftJoin(entryTags, eq(entryTags.entryId, entries.id))
-    .leftJoin(tags, eq(tags.id, entryTags.tagId))
-    .where(eq(entries.ownerId, ownerId));
+  const result = await db.query.entries.findMany({
+    where: eq(entries.ownerId, ownerId),
+  });
 
-  const groupedEntries = result.reduce(
-    (acc, { entry, tag }) => {
-      const entryId = entry.id;
-
-      if (!acc[entryId]) {
-        acc[entryId] = {
-          ...entry,
-          status: entry.status as Status,
-          tags: [],
-          references: [],
-        };
-      }
-
-      if (tag) {
-        acc[entryId].tags.push(tag);
-      }
-
-      return acc;
-    },
-    {} as Record<number, Entry>,
-  );
-
-  return Object.values(groupedEntries);
+  return result;
 };
