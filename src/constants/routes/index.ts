@@ -106,7 +106,7 @@ class Routes {
   }
 
   entry(notebookId: number, entryId: number) {
-    return `${this.notebook(notebookId)}/${this.entries()}/${entryId}`;
+    return `${this.notebook(notebookId)}${this.entries()}/${entryId}`;
   }
 
   entryEdit(notebookId: number, entryId: number) {
@@ -114,7 +114,7 @@ class Routes {
   }
 
   entryCreate(notebookId: number) {
-    return `${this.notebook(notebookId)}/${this.entries()}/create`;
+    return `${this.notebook(notebookId)}${this.entries()}/create`;
   }
 
   settings() {
