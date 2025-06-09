@@ -1,5 +1,6 @@
 import { bigserial, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
+// TODO: set up relations
 export const tags = pgTable("tags", {
   id: bigserial({ mode: "number" }).primaryKey(),
   ownerId: uuid("owner_id").notNull(),
