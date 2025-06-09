@@ -1,9 +1,13 @@
 import { CreateEntryForm } from "./CreateEntryForm";
 
-export const CreateEntryContent = () => {
+type CreateEntryContentProps = {
+  notebookId: number;
+};
+
+export const CreateEntryContent = ({ notebookId }: CreateEntryContentProps) => {
   return (
     <>
-      <CreateEntryForm />
+      <CreateEntryForm notebookId={notebookId} />
     </>
   );
 };

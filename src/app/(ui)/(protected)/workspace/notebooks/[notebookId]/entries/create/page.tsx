@@ -16,7 +16,7 @@ const CreateEntryPage = ({ params }: CreateEntryPageProps) => {
 
   return (
     <PageWrapper maxWidth="lg">
-      <CreateEntryContent />
+      <CreateEntryContent notebookId={notebookId} />
     </PageWrapper>
   );
 };

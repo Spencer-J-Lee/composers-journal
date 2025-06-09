@@ -18,7 +18,11 @@ import { showErrorToast } from "@/utils/toasts";
 
 import { CreateEntryFormValues, createEntrySchema } from "./schema";
 
-export const CreateEntryForm = () => {
+type CreateEntryFormProps = {
+  notebookId: number;
+};
+
+export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
   const supabase = createClientCS();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -33,8 +37,9 @@ export const CreateEntryForm = () => {
     try {
       // TODO: grab correct thing
       const entry = await apiCreateEntry({
-        ...data,
+        notebookId,
         status: STATUSES.ACTIVE,
+        ...data,
       });
 
       // TODO: handle entryTag creation
