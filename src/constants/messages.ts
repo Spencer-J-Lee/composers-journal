@@ -18,6 +18,10 @@ export const ERROR_MESSAGES = {
       ENTRY: "Failed to update your entry.",
       NOTEBOOK: "Failed to update your notebook.",
     },
+    TRASH: {
+      ENTRY: "Failed to trash your entry.",
+      NOTEBOOK: "Failed to trash your notebook",
+    },
     DELETE: {
       ENTRY: "Failed to delete your entry.",
       NOTEBOOK: "Failed to delete your notebook.",
@@ -52,4 +56,10 @@ export const DEFAULT_ERROR_MSG = ERROR_MESSAGES.USER.TRY_AGAIN_LATER;
 
 export const SUCCESS_MESSAGES = {
   PASSWORD_RESET: "Password successfully updated.",
+
+  USER: {
+    TRASH: {
+      NOTEBOOK: "Successfully trashed your notebook.",
+    },
+  },
 } as const;

@@ -1,5 +1,6 @@
-import { ERROR_MESSAGES } from "@/constants/messages";
+import { ZodError } from "zod";
 
+import { ERROR_MESSAGES } from "@/constants/messages";
 type RespondWithErrorProps = {
   status: number;
   userMsg: string;
@@ -29,5 +30,17 @@ export const respondWithUnauthorized = () => {
     status: 401,
     userMsg: ERROR_MESSAGES.USER.UNAUTHORIZED,
     devMsg: ERROR_MESSAGES.DEV.UNAUTHORIZED,
+  });
+};
+
+export const respondWithInvalidInfoError = (zodErr: ZodError) => {
+  const fieldErrs = zodErr.flatten().fieldErrors;
+
+  return respondWithError({
+    status: 400,
+    userMsg: ERROR_MESSAGES.USER.INVALID_INFO,
+    devMsg: ERROR_MESSAGES.DEV.INVALID_INFO,
+    err: fieldErrs,
+    resData: { fields: fieldErrs },
   });
 };

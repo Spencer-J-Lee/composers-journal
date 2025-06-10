@@ -1,11 +1,19 @@
 import { NextRequest } from "next/server";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { dbCreateNotebook, dbGetNotebooks } from "@/db/queries/notebooks";
+import {
+  dbCreateNotebook,
+  dbGetNotebooks,
+  dbUpdateNotebook,
+} from "@/db/queries/notebooks";
 import { getUserSS } from "@/db/supabase/server";
 import { notebookSchema } from "@/models/Notebook/schema";
 import { Status } from "@/models/types";
-import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
+import {
+  respondWithError,
+  respondWithInvalidInfoError,
+  respondWithUnauthorized,
+} from "@/utils/api/errors";
 
 export const GET = async (req: NextRequest) => {
   const user = await getUserSS();
@@ -79,6 +87,49 @@ export const POST = async (req: NextRequest) => {
       status: 500,
       userMsg: ERROR_MESSAGES.USER.CREATE.NOTEBOOK,
       devMsg: ERROR_MESSAGES.DEV.CREATE.NOTEBOOK,
+      err,
+    });
+  }
+};
+
+export const PATCH = async (req: NextRequest) => {
+  const user = await getUserSS();
+  if (!user) {
+    return respondWithUnauthorized();
+  }
+
+  try {
+    const body = await req.json();
+
+    const schema = notebookSchema
+      .pick({
+        id: true,
+        name: true,
+        status: true,
+      })
+      .partial({ name: true, status: true });
+
+    const result = schema.safeParse(body);
+
+    if (!result.success) {
+      return respondWithInvalidInfoError(result.error);
+    }
+
+    const notebook = await dbUpdateNotebook({
+      id: result.data?.id,
+      name: result.data?.name,
+      status: result.data?.status,
+    });
+
+    return new Response(JSON.stringify(notebook), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err) {
+    return respondWithError({
+      status: 500,
+      userMsg: ERROR_MESSAGES.USER.UPDATE.NOTEBOOK,
+      devMsg: ERROR_MESSAGES.DEV.UPDATE.NOTEBOOK,
       err,
     });
   }
