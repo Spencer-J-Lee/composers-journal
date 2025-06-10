@@ -20,11 +20,9 @@ export const apiUpdateNotebook = async (
   });
 };
 
-type apiTrashNotebookProps = Pick<Notebook, "id">;
-
 // TODO: setup redux
 export const apiTrashNotebook = async (
-  props: apiTrashNotebookProps,
+  props: Pick<Notebook, "id">,
 ): Promise<Notebook> => {
   return apiUpdateNotebook({
     ...props,
