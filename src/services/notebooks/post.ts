@@ -6,18 +6,14 @@ import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 type apiCreateNotebookProps = Pick<Notebook, "name" | "status">;
 
 // TODO: setup redux
-export const apiCreateNotebook = async ({
-  name,
-  status,
-}: apiCreateNotebookProps): Promise<Notebook> => {
+export const apiCreateNotebook = async (
+  props: apiCreateNotebookProps,
+): Promise<Notebook> => {
   return await fetchWithErrorHandling<Notebook>(API_PATHS.NOTEBOOKS.ROOT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      name,
-      status,
-    }),
+    body: JSON.stringify(props),
   });
 };

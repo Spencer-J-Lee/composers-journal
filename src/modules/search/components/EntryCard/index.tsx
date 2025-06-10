@@ -18,7 +18,7 @@ export const EntryCard = ({
   entry,
   defaultShowTags = false,
 }: EntryCardProps) => {
-  const { tags } = entry;
+  // const { tags } = entry;
   const [showTags, setShowTags] = useState(defaultShowTags);
 
   return (
@@ -34,9 +34,9 @@ export const EntryCard = ({
         />
       </div>
 
-      {tags.length > 0 && showTags && (
+      {/* {tags.length > 0 && showTags && (
         <Tags tags={tags} className="border-border border-t" />
-      )}
+      )} */}
     </Card>
   );
 };
