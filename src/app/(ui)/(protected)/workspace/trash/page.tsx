@@ -1,5 +1,7 @@
+import { TrashContent } from "@/modules/trash/components/TrashContent";
+
 const TrashPage = () => {
-  return <div>Trash</div>;
+  return <TrashContent />;
 };
 
 export default TrashPage;

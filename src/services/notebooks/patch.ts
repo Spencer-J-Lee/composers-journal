@@ -21,11 +21,31 @@ export const apiUpdateNotebook = async (
 };
 
 // TODO: setup redux
+export const apiRestoreNotebook = async (
+  props: Pick<Notebook, "id">,
+): Promise<Notebook> => {
+  return apiUpdateNotebook({
+    ...props,
+    status: STATUSES.ACTIVE,
+  });
+};
+
+// TODO: setup redux
 export const apiTrashNotebook = async (
   props: Pick<Notebook, "id">,
 ): Promise<Notebook> => {
   return apiUpdateNotebook({
     ...props,
     status: STATUSES.TRASHED,
+  });
+};
+
+// TODO: setup redux
+export const apiSoftDeleteNotebook = async (
+  props: Pick<Notebook, "id">,
+): Promise<Notebook> => {
+  return apiUpdateNotebook({
+    ...props,
+    status: STATUSES.DELETED,
   });
 };

@@ -22,6 +22,10 @@ export const ERROR_MESSAGES = {
       ENTRY: "Failed to trash your entry.",
       NOTEBOOK: "Failed to trash your notebook",
     },
+    RESTORE: {
+      ENTRY: "Failed to restore your entry.",
+      NOTEBOOK: "Failed to restore your notebook",
+    },
     DELETE: {
       ENTRY: "Failed to delete your entry.",
       NOTEBOOK: "Failed to delete your notebook.",
@@ -60,6 +64,12 @@ export const SUCCESS_MESSAGES = {
   USER: {
     TRASH: {
       NOTEBOOK: "Successfully trashed your notebook.",
+    },
+    RESTORE: {
+      NOTEBOOK: "Successfully restored your notebook.",
+    },
+    DELETE: {
+      NOTEBOOK: "Successfully deleted your notebook.",
     },
   },
 } as const;
