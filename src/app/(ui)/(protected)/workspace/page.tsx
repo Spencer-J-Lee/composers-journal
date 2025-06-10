@@ -1,5 +1,5 @@
-const NotebookPage = () => {
-  return <div>Notebook</div>;
+const WorkspacePage = () => {
+  return <div>Workspace</div>;
 };
 
-export default NotebookPage;
+export default WorkspacePage;
