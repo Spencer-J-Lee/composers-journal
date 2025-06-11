@@ -49,7 +49,7 @@ export const GET = async (req: NextRequest) => {
 
     const entries = await dbGetEntries({
       ownerId: user.id,
-      ...safeParams,
+      ...safeParams.data,
     });
 
     return new Response(JSON.stringify(entries), {

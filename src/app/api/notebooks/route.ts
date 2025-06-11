@@ -55,7 +55,7 @@ export const GET = async (req: NextRequest) => {
 
     const notebooks = await dbGetNotebooks({
       ownerId: user.id,
-      ...safeParams,
+      ...safeParams.data,
     });
 
     return new Response(JSON.stringify(notebooks), {
