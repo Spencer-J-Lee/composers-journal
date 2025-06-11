@@ -2,6 +2,7 @@ import { apiCreateEntry } from "./create";
 import {
   apiGetActiveEntriesForNotebook,
   apiGetEntries,
+  apiGetTrashedEntries,
 } from "./get";
 import {
   apiRestoreEntry,
@@ -14,6 +15,7 @@ export {
   apiCreateEntry,
   apiGetActiveEntriesForNotebook,
   apiGetEntries,
+  apiGetTrashedEntries,
   apiRestoreEntry,
   apiSoftDeleteEntry,
   apiTrashEntry,

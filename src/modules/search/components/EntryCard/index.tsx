@@ -24,7 +24,7 @@ export const EntryCard = ({
   return (
     <Card paddingSize="none">
       <div className="flex">
-        <EntryControls />
+        <EntryControls entry={entry} />
 
         <EntryInfo
           entry={entry}

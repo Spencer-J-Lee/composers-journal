@@ -63,12 +63,15 @@ export const SUCCESS_MESSAGES = {
 
   USER: {
     TRASH: {
+      ENTRY: "Successfully trashed your entry.",
       NOTEBOOK: "Successfully trashed your notebook.",
     },
     RESTORE: {
+      ENTRY: "Successfully restored your entry.",
       NOTEBOOK: "Successfully restored your notebook.",
     },
     DELETE: {
+      ENTRY: "Successfully deleted your entry.",
       NOTEBOOK: "Successfully deleted your notebook.",
     },
   },

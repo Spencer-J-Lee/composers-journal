@@ -30,7 +30,7 @@ export const dbCreateEntry = async (
 
   return {
     ...data[0],
-    // TODO: figure out best way to past tags here
+    // TODO: figure out best way to pass tags here
     tags: [],
   };
 };
