@@ -1,5 +1,11 @@
 import { dbCreateNotebook } from "./create";
+import { dbDeleteNotebooks } from "./delete";
 import { dbGetNotebooks } from "./get";
-import { dbUpdateNotebook } from "./patch";
+import { dbUpdateNotebook } from "./update";
 
-export { dbCreateNotebook, dbGetNotebooks, dbUpdateNotebook };
+export {
+  dbCreateNotebook,
+  dbDeleteNotebooks,
+  dbGetNotebooks,
+  dbUpdateNotebook,
+};

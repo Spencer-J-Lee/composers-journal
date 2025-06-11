@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { z } from "zod";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import {
@@ -6,6 +7,7 @@ import {
   dbGetNotebooks,
   dbUpdateNotebook,
 } from "@/db/queries/notebooks";
+import { dbDeleteNotebooks } from "@/db/queries/notebooks/delete";
 import { getUserSS } from "@/db/supabase/server";
 import { notebookSchema } from "@/models/Notebook/schema";
 import { Status } from "@/models/types";
@@ -130,6 +132,42 @@ export const PATCH = async (req: NextRequest) => {
       status: 500,
       userMsg: ERROR_MESSAGES.USER.UPDATE.NOTEBOOK,
       devMsg: ERROR_MESSAGES.DEV.UPDATE.NOTEBOOK,
+      err,
+    });
+  }
+};
+
+export const DELETE = async (req: NextRequest) => {
+  const user = await getUserSS();
+  if (!user) {
+    return respondWithUnauthorized();
+  }
+
+  try {
+    const body = await req.json();
+
+    const schema = z.object({
+      ids: z.array(z.number()),
+    });
+    const result = schema.safeParse(body);
+
+    if (!result.success) {
+      return respondWithInvalidInfoError(result.error);
+    }
+
+    await dbDeleteNotebooks({
+      ids: result.data?.ids,
+    });
+
+    return new Response(null, {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err) {
+    return respondWithError({
+      status: 500,
+      userMsg: ERROR_MESSAGES.USER.DELETE.NOTEBOOK,
+      devMsg: ERROR_MESSAGES.DEV.DELETE.NOTEBOOK,
       err,
     });
   }
