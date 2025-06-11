@@ -1,5 +1,5 @@
 import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import { IconButton } from "@/components/iconButtons/IconButton";
 
@@ -8,7 +8,7 @@ export const EntryControls = () => {
     <div className="flex flex-col items-center gap-1 p-2">
       <IconButton faIcon={faStar} />
       <IconButton faIcon={faEdit} />
-      <IconButton faIcon={faTrash} variant="negative" />
+      <IconButton faIcon={faTrashCan} variant="negative" />
     </div>
   );
 };
