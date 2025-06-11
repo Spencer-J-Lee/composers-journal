@@ -5,6 +5,7 @@ import { dbCreateEntry, dbGetEntries } from "@/db/queries/entries";
 import { getUserSS } from "@/db/supabase/server";
 import { entrySchema } from "@/models/Entry/schema";
 import { Status } from "@/models/types/status";
+import { limitSchema } from "@/schemas/limitSchema";
 import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
 
 import {
@@ -21,12 +22,28 @@ export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
 
-    // TODO: add schema check
-    const entries = await dbGetEntries({
-      ownerId: user.id,
+    const params = {
       status: getQueryValue<Status>(searchParams, "status"),
       notebookId: getQueryInt(searchParams, "notebookId"),
       limit: getQueryInt(searchParams, "limit"),
+    };
+
+    const schema = entrySchema
+      .pick({
+        status: true,
+        notebookId: true,
+      })
+      .merge(limitSchema)
+      .partial({
+        status: true,
+        notebookId: true,
+        limit: true,
+      });
+    const safeParams = schema.safeParse(params);
+
+    const entries = await dbGetEntries({
+      ownerId: user.id,
+      ...safeParams,
     });
 
     return new Response(JSON.stringify(entries), {

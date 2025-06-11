@@ -11,6 +11,7 @@ import { dbDeleteNotebooks } from "@/db/queries/notebooks/delete";
 import { getUserSS } from "@/db/supabase/server";
 import { notebookSchema } from "@/models/Notebook/schema";
 import { Status } from "@/models/types/status";
+import { limitSchema } from "@/schemas/limitSchema";
 import {
   getQueryInt,
   getQueryString,
@@ -31,12 +32,28 @@ export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
 
-    // TODO: add schema check
-    const notebooks = await dbGetNotebooks({
-      ownerId: user.id,
+    const params = {
       name: getQueryString(searchParams, "name"),
       status: getQueryValue<Status>(searchParams, "status"),
       limit: getQueryInt(searchParams, "limit"),
+    };
+
+    const schema = notebookSchema
+      .pick({
+        name: true,
+        status: true,
+      })
+      .merge(limitSchema)
+      .partial({
+        name: true,
+        status: true,
+        limit: true,
+      });
+    const safeParams = schema.safeParse(params);
+
+    const notebooks = await dbGetNotebooks({
+      ownerId: user.id,
+      ...safeParams,
     });
 
     return new Response(JSON.stringify(notebooks), {
