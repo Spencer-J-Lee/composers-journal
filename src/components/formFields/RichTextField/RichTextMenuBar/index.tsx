@@ -1,10 +1,8 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
-import { ERROR_MESSAGES } from "@/constants/messages";
-import { showErrorToast } from "@/utils/toasts";
-
-import { toYouTubeEmbedUrl } from "./helpers";
 import { RichTextMenuButton } from "./RichTextMenuButton";
+import { AddYouTubeButton } from "./AddYouTubeButton";
+import { SetLinkButton } from "./SetLinkButton";
 
 type RichTextMenuBarProps = {
   editor: Editor | null;
@@ -36,55 +34,6 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
   if (!editor || !editorState) {
     return null;
   }
-
-  // TODO: encapsulate youtube functionality in a separate component
-  const addYoutubeVideo = () => {
-    // TODO: add modal for this(?)
-    const url = prompt("Enter YouTube URL");
-
-    if (url) {
-      const embededUrl = toYouTubeEmbedUrl(url);
-      if (!embededUrl) {
-        showErrorToast(ERROR_MESSAGES.USER.YOUTUBE_LINK);
-        return;
-      }
-
-      const success = editor.commands.setYoutubeVideo({
-        src: embededUrl,
-      });
-      if (!success) {
-        showErrorToast(ERROR_MESSAGES.USER.YOUTUBE_LINK);
-      }
-    }
-  };
-
-  // TODO: encapsulate link functionality in a separate component
-  const setLink = () => {
-    const prevUrl = editor.getAttributes("link").href;
-    const url = window.prompt("URL", prevUrl);
-
-    if (url === null) {
-      return;
-    }
-
-    // Unsetting link
-    if (url === "") {
-      editor.chain().focus().extendMarkRange("link").unsetLink().run();
-      return;
-    }
-
-    try {
-      editor
-        .chain()
-        .focus()
-        .extendMarkRange("link")
-        .setLink({ href: url })
-        .run();
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN);
-    }
-  };
 
   return (
     <div className="sticky left-0 right-0 top-0 z-10 flex flex-wrap gap-2">
@@ -128,10 +77,8 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
         Quote
       </RichTextMenuButton>
 
-      {/* TODO: encapsulate link functionality in a separate component */}
-      <RichTextMenuButton onClick={setLink} isActive={editorState.isLink}>
-        Set link
-      </RichTextMenuButton>
+      <SetLinkButton editor={editor} isActive={!!editorState.isLink} />
+
       <RichTextMenuButton
         onClick={() => editor.chain().focus().unsetLink().run()}
         disabled={editorState.isPlainText}
@@ -145,8 +92,7 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
         Break
       </RichTextMenuButton>
 
-      {/* TODO: encapsulate youtube functionality in a separate component */}
-      <RichTextMenuButton onClick={addYoutubeVideo}>YouTube</RichTextMenuButton>
+      <AddYouTubeButton editor={editor} />
 
       <RichTextMenuButton
         onClick={() => editor.chain().focus().undo().run()}
