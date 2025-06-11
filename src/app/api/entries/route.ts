@@ -4,16 +4,26 @@ import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateEntry, dbGetEntries } from "@/db/queries/entries";
 import { getUserSS } from "@/db/supabase/server";
 import { entrySchema } from "@/models/Entry/schema";
+import { Status } from "@/models/types";
 import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
 
-export const GET = async () => {
+import { getQueryInt, getQueryValue } from "../helpers";
+
+export const GET = async (req: NextRequest) => {
   const user = await getUserSS();
   if (!user) {
     return respondWithUnauthorized();
   }
 
   try {
-    const entries = await dbGetEntries({ ownerId: user.id });
+    const { searchParams } = new URL(req.url);
+
+    const entries = await dbGetEntries({
+      ownerId: user.id,
+      status: getQueryValue<Status>(searchParams, "status"),
+      notebookId: getQueryInt(searchParams, "notebookId"),
+      limit: getQueryInt(searchParams, "limit"),
+    });
 
     return new Response(JSON.stringify(entries), {
       status: 200,

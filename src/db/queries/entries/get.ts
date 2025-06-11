@@ -1,17 +1,24 @@
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 
 import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 
-type dbGetEntriesProps = { limit?: number } & Pick<Entry, "ownerId">;
+type dbGetEntriesProps = { limit?: number } & Pick<Entry, "ownerId"> &
+  Partial<Pick<Entry, "status" | "notebookId">>;
 
 export const dbGetEntries = async ({
   ownerId,
+  status,
+  notebookId,
   limit = 50,
 }: dbGetEntriesProps): Promise<Entry[]> => {
+  const andClauses = [eq(entries.ownerId, ownerId)];
+  if (status) andClauses.push(eq(entries.status, status));
+  if (notebookId) andClauses.push(eq(entries.notebookId, notebookId));
+
   const result = await db.query.entries.findMany({
-    where: eq(entries.ownerId, ownerId),
+    where: and(...andClauses),
     with: {
       entryTags: {
         with: {
