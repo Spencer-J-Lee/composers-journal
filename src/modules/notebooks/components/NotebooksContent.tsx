@@ -6,7 +6,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { IconButton } from "@/components/iconButtons/IconButton";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { Notebook } from "@/models/Notebook";
-import { STATUSES } from "@/models/types";
+import { STATUSES } from "@/models/types/status";
 import { apiGetNotebooks, apiTrashNotebook } from "@/services/notebooks";
 import { showErrorToast, showSuccessToast } from "@/utils/toasts";
 

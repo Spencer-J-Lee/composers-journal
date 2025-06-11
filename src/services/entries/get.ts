@@ -1,5 +1,5 @@
 import { Entry } from "@/models/Entry";
-import { STATUSES } from "@/models/types";
+import { STATUSES } from "@/models/types/status";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { LimitOption } from "../types";

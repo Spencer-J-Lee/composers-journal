@@ -10,7 +10,7 @@ import {
 import { dbDeleteNotebooks } from "@/db/queries/notebooks/delete";
 import { getUserSS } from "@/db/supabase/server";
 import { notebookSchema } from "@/models/Notebook/schema";
-import { Status } from "@/models/types";
+import { Status } from "@/models/types/status";
 import {
   getQueryInt,
   getQueryString,

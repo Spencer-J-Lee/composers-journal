@@ -11,7 +11,7 @@ import {
 import { Collapsible } from "@/components/Collapsible";
 import { routes } from "@/constants/routes";
 import { Notebook } from "@/models/Notebook";
-import { STATUSES } from "@/models/types";
+import { STATUSES } from "@/models/types/status";
 import { apiGetNotebooks } from "@/services/notebooks";
 
 import { IconButton } from "../../iconButtons/IconButton";

@@ -11,7 +11,7 @@ import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextF
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client";
-import { STATUSES } from "@/models/types";
+import { STATUSES } from "@/models/types/status";
 import { apiCreateEntry } from "@/services/entries";
 import { isError } from "@/utils/isError";
 import { showErrorToast } from "@/utils/toasts";

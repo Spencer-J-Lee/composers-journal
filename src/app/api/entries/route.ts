@@ -4,7 +4,7 @@ import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateEntry, dbGetEntries } from "@/db/queries/entries";
 import { getUserSS } from "@/db/supabase/server";
 import { entrySchema } from "@/models/Entry/schema";
-import { Status } from "@/models/types";
+import { Status } from "@/models/types/status";
 import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
 
 import {

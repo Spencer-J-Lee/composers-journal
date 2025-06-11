@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { bigserial, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
-import { statusEnum } from "@/models/types";
+import { statusEnum } from "@/models/types/status";
 
 import { entries } from "./entries";
 

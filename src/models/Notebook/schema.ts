@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { isStatus } from "../helpers";
+import { isStatus } from "../helpers/status";
 
 export const notebookSchema = z.object({
   id: z.number(),

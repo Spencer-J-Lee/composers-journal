@@ -8,7 +8,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { statusEnum } from "@/models/types";
+import { statusEnum } from "@/models/types/status";
 
 import { entryTags } from "./entryTags";
 import { notebooks } from "./notebooks";

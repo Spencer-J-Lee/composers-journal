@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Entry } from "@/models/Entry";
-import { STATUSES } from "@/models/types";
+import { STATUSES } from "@/models/types/status";
 import { apiGetEntries } from "@/services/entries";
 
 import { EntryCard } from "./EntryCard";

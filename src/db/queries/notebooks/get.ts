@@ -3,7 +3,7 @@ import { and, desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
-import { Status } from "@/models/types";
+import { Status } from "@/models/types/status";
 
 type dbGetNotebooksProps = { limit?: number } & Pick<Notebook, "ownerId"> &
   Partial<Pick<Notebook, "name" | "status">>;

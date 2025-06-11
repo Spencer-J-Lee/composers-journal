@@ -1,6 +1,6 @@
 import { apiGetNotebooks } from "@/services/notebooks";
 
-import { STATUSES } from "../types";
+import { STATUSES } from "../types/status";
 
 export const checkNotebookNameUnique = async (val: string) => {
   const trimmedVal = val.trim();

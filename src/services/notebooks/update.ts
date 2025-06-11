@@ -1,5 +1,5 @@
 import { Notebook } from "@/models/Notebook";
-import { STATUSES } from "@/models/types";
+import { STATUSES } from "@/models/types/status";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
