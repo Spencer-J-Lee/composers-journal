@@ -1,5 +1,3 @@
-// TODO: refactor api to use these
-
 export const getQueryString = (params: URLSearchParams, key: string) => {
   return params.get(key) ?? undefined;
 };

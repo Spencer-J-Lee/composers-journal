@@ -12,6 +12,11 @@ import { getUserSS } from "@/db/supabase/server";
 import { notebookSchema } from "@/models/Notebook/schema";
 import { Status } from "@/models/types";
 import {
+  getQueryInt,
+  getQueryString,
+  getQueryValue,
+} from "@/services/utils/searchParamsGetters";
+import {
   respondWithError,
   respondWithInvalidInfoError,
   respondWithUnauthorized,
@@ -26,11 +31,12 @@ export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
 
+    // TODO: add schema check
     const notebooks = await dbGetNotebooks({
       ownerId: user.id,
-      name: searchParams.get("name") ?? undefined,
-      status: (searchParams.get("status") as Status) ?? undefined,
-      limit: parseInt(searchParams.get("limit") || "") ?? undefined,
+      name: getQueryString(searchParams, "name"),
+      status: getQueryValue<Status>(searchParams, "status"),
+      limit: getQueryInt(searchParams, "limit"),
     });
 
     return new Response(JSON.stringify(notebooks), {

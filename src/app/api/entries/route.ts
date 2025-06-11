@@ -7,7 +7,10 @@ import { entrySchema } from "@/models/Entry/schema";
 import { Status } from "@/models/types";
 import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
 
-import { getQueryInt, getQueryValue } from "../helpers";
+import {
+  getQueryInt,
+  getQueryValue,
+} from "../../../services/utils/searchParamsGetters";
 
 export const GET = async (req: NextRequest) => {
   const user = await getUserSS();
@@ -18,6 +21,7 @@ export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
 
+    // TODO: add schema check
     const entries = await dbGetEntries({
       ownerId: user.id,
       status: getQueryValue<Status>(searchParams, "status"),
