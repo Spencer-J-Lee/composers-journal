@@ -1,4 +1,21 @@
 import { apiCreateEntry } from "./create";
-import { apiGetEntries } from "./get";
+import {
+  apiGetActiveEntriesForNotebook,
+  apiGetEntries,
+} from "./get";
+import {
+  apiRestoreEntry,
+  apiSoftDeleteEntry,
+  apiTrashEntry,
+  apiUpdateEntry,
+} from "./update";
 
-export { apiCreateEntry, apiGetEntries };
+export {
+  apiCreateEntry,
+  apiGetActiveEntriesForNotebook,
+  apiGetEntries,
+  apiRestoreEntry,
+  apiSoftDeleteEntry,
+  apiTrashEntry,
+  apiUpdateEntry,
+};

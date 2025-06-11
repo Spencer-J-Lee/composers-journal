@@ -1,7 +1,11 @@
 import { NextRequest } from "next/server";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { dbCreateEntry, dbGetEntries } from "@/db/queries/entries";
+import {
+  dbCreateEntry,
+  dbGetEntries,
+  dbUpdateEntry,
+} from "@/db/queries/entries";
 import { getUserSS } from "@/db/supabase/server";
 import { entrySchema } from "@/models/Entry/schema";
 import { Status } from "@/models/types/status";
@@ -103,6 +107,50 @@ export const POST = async (req: NextRequest) => {
       status: 500,
       userMsg: ERROR_MESSAGES.USER.CREATE.ENTRY,
       devMsg: ERROR_MESSAGES.DEV.CREATE.ENTRY,
+      err,
+    });
+  }
+};
+
+export const PATCH = async (req: NextRequest) => {
+  const user = await getUserSS();
+  if (!user) {
+    return respondWithUnauthorized();
+  }
+
+  try {
+    const body = await req.json();
+
+    const schema = entrySchema
+      .pick({
+        id: true,
+        title: true,
+        description: true,
+        status: true,
+        notebookId: true,
+      })
+      .partial({
+        title: true,
+        description: true,
+        status: true,
+        notebookId: true,
+      });
+    const safeParams = schema.safeParse(body);
+    if (!safeParams.success) {
+      return respondWithInvalidInfoError(safeParams.error);
+    }
+
+    const entry = await dbUpdateEntry(safeParams.data);
+
+    return new Response(JSON.stringify(entry), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err) {
+    return respondWithError({
+      status: 500,
+      userMsg: ERROR_MESSAGES.USER.UPDATE.ENTRY,
+      devMsg: ERROR_MESSAGES.DEV.UPDATE.ENTRY,
       err,
     });
   }
