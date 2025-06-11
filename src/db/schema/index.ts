@@ -1,10 +1,27 @@
-import { entries } from "./entries";
-import { entryTags } from "./entryTags";
-import { notebooks } from "./notebooks";
-import { tags } from "./tags";
+import { entries, entriesRelations } from "./entries";
+import { entryTags, entryTagsRelations } from "./entryTags";
+import { notebooks, notebooksRelations } from "./notebooks";
+import { tags, tagsRelations } from "./tags";
 
-export { entries, entryTags, notebooks, tags };
-
-const schemas = { entries, entryTags, notebooks, tags };
+export {
+  entries,
+  entriesRelations,
+  entryTags,
+  entryTagsRelations,
+  notebooks,
+  notebooksRelations,
+  tags,
+  tagsRelations,
+};
+const schemas = {
+  entries,
+  entryTags,
+  entryTagsRelations,
+  notebooks,
+  tags,
+  entriesRelations,
+  tagsRelations,
+  notebooksRelations,
+};
 
 export default schemas;

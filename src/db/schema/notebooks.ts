@@ -1,6 +1,9 @@
+import { relations } from "drizzle-orm";
 import { bigserial, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 import { statusEnum } from "@/models/types";
+
+import { entries } from "./entries";
 
 // TODO: set up relations
 export const notebooks = pgTable("notebooks", {
@@ -11,3 +14,7 @@ export const notebooks = pgTable("notebooks", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull(),
 });
+
+export const notebooksRelations = relations(notebooks, ({ many }) => ({
+  entries: many(entries),
+}));
