@@ -16,4 +16,12 @@ export const apiGetEntries = async (
     genUrlWithSearchParams(API_PATHS.ENTRIES.ROOT, props),
   );
 };
+
+export const apiGetActiveEntriesForNotebook = async (
+  props: Pick<Entry, "notebookId"> & LimitOption,
+): Promise<Entry[]> => {
+  return apiGetEntries({
+    ...props,
+    status: STATUSES.ACTIVE,
+  });
 };
