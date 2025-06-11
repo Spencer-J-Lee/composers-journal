@@ -7,6 +7,6 @@ export const notebookSchema = z.object({
   ownerId: z.string(),
   name: z.string().min(1, "Name is required"),
   status: z.string().refine(isStatus, { message: "Invalid status" }),
-  createdAt: z.coerce.date({ required_error: "Missing created at" }),
-  updatedAt: z.coerce.date({ required_error: "Missing updated at" }),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
 });
