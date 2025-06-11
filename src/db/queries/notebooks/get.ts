@@ -4,9 +4,11 @@ import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 import { Status } from "@/models/types/status";
+import { LimitOption } from "@/services/types";
 
-type dbGetNotebooksProps = { limit?: number } & Pick<Notebook, "ownerId"> &
-  Partial<Pick<Notebook, "name" | "status">>;
+type dbGetNotebooksProps =  Pick<Notebook, "ownerId"> &
+  Partial<Pick<Notebook, "name" | "status">>&
+    LimitOption;
 
 export const dbGetNotebooks = async ({
   ownerId,

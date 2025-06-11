@@ -3,9 +3,11 @@ import { and, desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
+import { LimitOption } from "@/services/types";
 
-type dbGetEntriesProps = { limit?: number } & Pick<Entry, "ownerId"> &
-  Partial<Pick<Entry, "status" | "notebookId">>;
+type dbGetEntriesProps = Pick<Entry, "ownerId"> &
+  Partial<Pick<Entry, "status" | "notebookId">> &
+  LimitOption;
 
 export const dbGetEntries = async ({
   ownerId,
