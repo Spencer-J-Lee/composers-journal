@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
@@ -23,5 +24,13 @@ export const dbCreateEntry = async (
     ])
     .returning();
 
-  return data[0];
+  if (!data.length) {
+    throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
+  }
+
+  return {
+    ...data[0],
+    // TODO: figure out best way to past tags here
+    tags: [],
+  };
 };
