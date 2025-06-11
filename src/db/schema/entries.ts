@@ -13,7 +13,6 @@ import { statusEnum } from "@/models/types";
 import { entryTags } from "./entryTags";
 import { notebooks } from "./notebooks";
 
-// TODO: set up relations
 export const entries = pgTable("entries", {
   id: bigserial({ mode: "number" }).primaryKey(),
   ownerId: uuid("owner_id").notNull(),
