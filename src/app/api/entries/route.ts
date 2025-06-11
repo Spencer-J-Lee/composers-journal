@@ -92,10 +92,7 @@ export const POST = async (req: NextRequest) => {
 
     const entry = await dbCreateEntry({
       ownerId: user.id,
-      notebookId: safeParams.data?.notebookId,
-      title: safeParams.data?.title,
-      description: safeParams.data?.description,
-      status: safeParams.data?.status,
+      ...safeParams.data,
     });
 
     return new Response(JSON.stringify(entry), {

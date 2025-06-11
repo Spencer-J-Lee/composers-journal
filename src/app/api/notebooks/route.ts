@@ -92,8 +92,7 @@ export const POST = async (req: NextRequest) => {
 
     const notebook = await dbCreateNotebook({
       ownerId: user.id,
-      name: safeParams.data?.name,
-      status: safeParams.data?.status,
+      ...safeParams.data,
     });
 
     return new Response(JSON.stringify(notebook), {
@@ -132,9 +131,7 @@ export const PATCH = async (req: NextRequest) => {
     }
 
     const notebook = await dbUpdateNotebook({
-      id: safeParams.data?.id,
-      name: safeParams.data?.name,
-      status: safeParams.data?.status,
+      ...safeParams.data,
     });
 
     return new Response(JSON.stringify(notebook), {
@@ -168,9 +165,7 @@ export const DELETE = async (req: NextRequest) => {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    await dbDeleteNotebooks({
-      ids: safeParams.data?.ids,
-    });
+    await dbDeleteNotebooks(safeParams.data);
 
     return new Response(null, {
       status: 200,
