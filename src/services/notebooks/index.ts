@@ -1,5 +1,6 @@
 import { apiCreateNotebook } from "./create";
-import { apiGetNotebooks } from "./get";
+import { apiDeleteNotebooks } from "./delete";
+import { apiGetNotebooks, apiGetTrashedNotebooks } from "./get";
 import {
   apiRestoreNotebook,
   apiSoftDeleteNotebook,
@@ -9,7 +10,9 @@ import {
 
 export {
   apiCreateNotebook,
+  apiDeleteNotebooks,
   apiGetNotebooks,
+  apiGetTrashedNotebooks,
   apiRestoreNotebook,
   apiSoftDeleteNotebook,
   apiTrashNotebook,

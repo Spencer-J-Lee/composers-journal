@@ -11,7 +11,8 @@ import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types/status";
 import {
-  apiGetNotebooks,
+import {
+  apiGetTrashedNotebooks,
   apiRestoreNotebook,
   apiSoftDeleteNotebook,
 } from "@/services/notebooks";
@@ -22,7 +23,7 @@ export const TrashContent = () => {
 
   // TODO: setup redux
   useEffect(() => {
-    apiGetNotebooks({ status: STATUSES.TRASHED }).then((data) => {
+    apiGetTrashedNotebooks().then((data) => {
       setNotebooks(data);
     });
   }, []);
@@ -58,7 +59,7 @@ export const TrashContent = () => {
   return (
     <ul className="flex flex-col gap-4">
       {notebooks.map((notebook) => (
-        <li className="flex gap-x-2" key={notebook.name}>
+        <li className="flex gap-x-2" key={notebook.id}>
           {notebook.name}
           <IconButton
             faIcon={faTrashCanArrowUp}

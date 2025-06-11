@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Entry } from "@/models/Entry";
 import { Notebook } from "@/models/Notebook";
 import { EntryCard } from "@/modules/search/components/EntryCard";
-import { apiGetActiveEntriesForNotebook } from "@/services/entries/get";
+import { apiGetActiveEntriesForNotebook } from "@/services/entries";
 
 type NotebookContentProps = {
   notebookId: Notebook["id"];

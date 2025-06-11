@@ -1,4 +1,5 @@
 import { Notebook } from "@/models/Notebook";
+import { STATUSES } from "@/models/types/status";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { LimitOption } from "../types";
@@ -14,4 +15,8 @@ export const apiGetNotebooks = async (
   return await fetchWithErrorHandling<Notebook[]>(
     genUrlWithSearchParams(API_PATHS.NOTEBOOKS.ROOT, props),
   );
+};
+
+export const apiGetTrashedNotebooks = async () => {
+  return apiGetNotebooks({ status: STATUSES.TRASHED });
 };
