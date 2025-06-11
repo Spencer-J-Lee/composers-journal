@@ -1,16 +1,34 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 
-type dbGetEntriesProps = Pick<Entry, "ownerId">;
+type dbGetEntriesProps = { limit?: number } & Pick<Entry, "ownerId">;
 
-export const dbGetEntries = async ({ ownerId }: dbGetEntriesProps) => {
-  // TODO: add limits and order by desc entries.createdAt
+export const dbGetEntries = async ({
+  ownerId,
+  limit = 50,
+}: dbGetEntriesProps): Promise<Entry[]> => {
   const result = await db.query.entries.findMany({
     where: eq(entries.ownerId, ownerId),
+    with: {
+      entryTags: {
+        with: {
+          tags: true,
+        },
+      },
+    },
+    orderBy: [desc(entries.createdAt)],
+    limit,
   });
 
-  return result;
+  const formattedData = result.map(({ entryTags, ...rest }) => {
+    return {
+      ...rest,
+      tags: entryTags.map((entryTag) => entryTag.tags),
+    };
+  });
+
+  return formattedData;
 };
