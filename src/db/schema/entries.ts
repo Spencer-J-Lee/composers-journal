@@ -12,6 +12,7 @@ import { statusEnum } from "@/models/types/status";
 
 import { entryTags } from "./entryTags";
 import { notebooks } from "./notebooks";
+import { savedItems } from "./savedItems";
 
 export const entries = pgTable("entries", {
   id: bigserial({ mode: "number" }).primaryKey(),
@@ -30,4 +31,8 @@ export const entriesRelations = relations(entries, ({ one, many }) => ({
     references: [notebooks.id],
   }),
   entryTags: many(entryTags),
+  savedItem: one(savedItems, {
+    fields: [entries.id],
+    references: [savedItems.entryId],
+  }),
 }));

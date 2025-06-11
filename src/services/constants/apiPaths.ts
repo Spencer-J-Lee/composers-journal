@@ -4,10 +4,10 @@ export const API_PATHS = {
     ROOT: "/api/entries",
     MEDIA: "/api/entry-media",
     TAGS: "/api/entry-tags",
-    FAVORITES: "/api/favorites",
   },
   NOTEBOOKS: {
     ROOT: "/api/notebooks",
   },
+  SAVED_ITEMS: "/api/saved-items",
   TAGS: "/api/tags",
 };
