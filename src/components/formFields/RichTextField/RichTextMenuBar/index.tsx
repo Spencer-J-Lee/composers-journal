@@ -1,7 +1,7 @@
 import { Editor, useEditorState } from "@tiptap/react";
 
-import { RichTextMenuButton } from "./RichTextMenuButton";
 import { AddYouTubeButton } from "./AddYouTubeButton";
+import { RichTextMenuButton } from "./RichTextMenuButton";
 import { SetLinkButton } from "./SetLinkButton";
 
 type RichTextMenuBarProps = {
