@@ -6,7 +6,11 @@ import { getUserSS } from "@/db/supabase/server";
 import { entrySchema } from "@/models/Entry/schema";
 import { Status } from "@/models/types/status";
 import { limitSchema } from "@/schemas/limitSchema";
-import { respondWithError, respondWithUnauthorized } from "@/utils/api/errors";
+import {
+  respondWithError,
+  respondWithInvalidInfoError,
+  respondWithUnauthorized,
+} from "@/utils/api/errors";
 
 import {
   getQueryInt,
@@ -21,7 +25,6 @@ export const GET = async (req: NextRequest) => {
 
   try {
     const { searchParams } = new URL(req.url);
-
     const params = {
       status: getQueryValue<Status>(searchParams, "status"),
       notebookId: getQueryInt(searchParams, "notebookId"),
@@ -40,6 +43,9 @@ export const GET = async (req: NextRequest) => {
         limit: true,
       });
     const safeParams = schema.safeParse(params);
+    if (!safeParams.success) {
+      return respondWithInvalidInfoError(safeParams.error);
+    }
 
     const entries = await dbGetEntries({
       ownerId: user.id,
@@ -75,26 +81,17 @@ export const POST = async (req: NextRequest) => {
       description: true,
       status: true,
     });
-    const res = schema.safeParse(body);
-
-    if (!res.success) {
-      const fieldErrs = res.error.flatten().fieldErrors;
-
-      return respondWithError({
-        status: 400,
-        userMsg: ERROR_MESSAGES.USER.INVALID_INFO,
-        devMsg: ERROR_MESSAGES.DEV.INVALID_INFO,
-        err: fieldErrs,
-        resData: { fields: fieldErrs },
-      });
+    const safeParams = schema.safeParse(body);
+    if (!safeParams.success) {
+      return respondWithInvalidInfoError(safeParams.error);
     }
 
     const entry = await dbCreateEntry({
       ownerId: user.id,
-      notebookId: res.data?.notebookId,
-      title: res.data?.title,
-      description: res.data?.description,
-      status: res.data?.status,
+      notebookId: safeParams.data?.notebookId,
+      title: safeParams.data?.title,
+      description: safeParams.data?.description,
+      status: safeParams.data?.status,
     });
 
     return new Response(JSON.stringify(entry), {

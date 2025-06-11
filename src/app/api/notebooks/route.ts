@@ -31,7 +31,6 @@ export const GET = async (req: NextRequest) => {
 
   try {
     const { searchParams } = new URL(req.url);
-
     const params = {
       name: getQueryString(searchParams, "name"),
       status: getQueryValue<Status>(searchParams, "status"),
@@ -50,6 +49,9 @@ export const GET = async (req: NextRequest) => {
         limit: true,
       });
     const safeParams = schema.safeParse(params);
+    if (!safeParams.success) {
+      return respondWithInvalidInfoError(safeParams.error);
+    }
 
     const notebooks = await dbGetNotebooks({
       ownerId: user.id,
@@ -83,24 +85,15 @@ export const POST = async (req: NextRequest) => {
       name: true,
       status: true,
     });
-    const res = schema.safeParse(body);
-
-    if (!res.success) {
-      const fieldErrs = res.error.flatten().fieldErrors;
-
-      return respondWithError({
-        status: 400,
-        userMsg: ERROR_MESSAGES.USER.INVALID_INFO,
-        devMsg: ERROR_MESSAGES.DEV.INVALID_INFO,
-        err: fieldErrs,
-        resData: { fields: fieldErrs },
-      });
+    const safeParams = schema.safeParse(body);
+    if (!safeParams.success) {
+      return respondWithInvalidInfoError(safeParams.error);
     }
 
     const notebook = await dbCreateNotebook({
       ownerId: user.id,
-      name: res.data?.name,
-      status: res.data?.status,
+      name: safeParams.data?.name,
+      status: safeParams.data?.status,
     });
 
     return new Response(JSON.stringify(notebook), {
@@ -133,17 +126,15 @@ export const PATCH = async (req: NextRequest) => {
         status: true,
       })
       .partial({ name: true, status: true });
-
-    const result = schema.safeParse(body);
-
-    if (!result.success) {
-      return respondWithInvalidInfoError(result.error);
+    const safeParams = schema.safeParse(body);
+    if (!safeParams.success) {
+      return respondWithInvalidInfoError(safeParams.error);
     }
 
     const notebook = await dbUpdateNotebook({
-      id: result.data?.id,
-      name: result.data?.name,
-      status: result.data?.status,
+      id: safeParams.data?.id,
+      name: safeParams.data?.name,
+      status: safeParams.data?.status,
     });
 
     return new Response(JSON.stringify(notebook), {
@@ -172,14 +163,13 @@ export const DELETE = async (req: NextRequest) => {
     const schema = z.object({
       ids: z.array(z.number()),
     });
-    const result = schema.safeParse(body);
-
-    if (!result.success) {
-      return respondWithInvalidInfoError(result.error);
+    const safeParams = schema.safeParse(body);
+    if (!safeParams.success) {
+      return respondWithInvalidInfoError(safeParams.error);
     }
 
     await dbDeleteNotebooks({
-      ids: result.data?.ids,
+      ids: safeParams.data?.ids,
     });
 
     return new Response(null, {
