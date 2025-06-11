@@ -14,9 +14,10 @@ import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types/status";
 import { apiGetNotebooks } from "@/services/notebooks";
 
-import { IconButton } from "../../iconButtons/IconButton";
-import { SidebarLinkButton } from "../SidebarLinkButton";
-import { SidebarLinkIconButton } from "../SidebarLinkIconButton";
+import { IconButton } from "../../../iconButtons/IconButton";
+import { SidebarLinkButton } from "../../SidebarLinkButton";
+import { SidebarLinkIconButton } from "../../SidebarLinkIconButton";
+import { TreeBranch } from "./TreeBranch";
 
 export const NotebooksAccordionMenu = () => {
   const [notebooks, setNotebooks] = useState<Notebook[]>([]);
@@ -50,12 +51,16 @@ export const NotebooksAccordionMenu = () => {
 
       {notebooks.length > 0 && (
         <Collapsible show={show}>
-          <div className="flex pt-1.5">
-            <div className="bg-text-muted ml-5 mr-1.5 w-0.5 rounded-full" />
+          <ul className="space-y-1.5 pt-1.5">
+            {notebooks.map((notebook, i) => (
+              <li key={notebook.name} className="flex items-center">
+                <TreeBranch
+                  variant={i === notebooks.length - 1 ? "bottom" : "middle"}
+                  className="-my-2 ml-5"
+                  flexChild
+                />
 
-            <ul className="flex-1 space-y-1.5">
-              {notebooks.map((notebook) => (
-                <li key={notebook.name} className="flex gap-x-1">
+                <div className="flex flex-1 gap-x-1">
                   <SidebarLinkButton
                     href={routes.notebook(notebook.id)}
                     className="flex-1"
@@ -66,10 +71,10 @@ export const NotebooksAccordionMenu = () => {
                     href={routes.entryCreate(notebook.id)}
                     faIcon={faPlus}
                   />
-                </li>
-              ))}
-            </ul>
-          </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </Collapsible>
       )}
     </div>
