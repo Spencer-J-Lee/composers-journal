@@ -8,15 +8,16 @@ type CreateEntryPageProps = {
 };
 
 const CreateEntryPage = async ({ params }: CreateEntryPageProps) => {
-  const notebookId = parseInt(await params.notebookId);
+  const { notebookId } = await params;
+  const parsedNotebookId = parseInt(notebookId);
 
-  if (isNaN(notebookId)) {
+  if (isNaN(parsedNotebookId)) {
     notFound();
   }
 
   return (
     <PageWrapper maxWidth="lg">
-      <CreateEntryContent notebookId={notebookId} />
+      <CreateEntryContent notebookId={parsedNotebookId} />
     </PageWrapper>
   );
 };
