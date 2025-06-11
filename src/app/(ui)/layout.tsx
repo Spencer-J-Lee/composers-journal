@@ -33,7 +33,8 @@ const RootLayout = ({
       >
         <SkipToContent />
         {children}
-        <Footer />
+        {/* TODO: figure out if i still want a footer */}
+        {/* <Footer /> */}
 
         <Toaster richColors />
       </body>
