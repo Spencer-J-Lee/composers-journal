@@ -12,7 +12,7 @@ import { DEFAULT_ERROR_MSG } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client";
 import { STATUSES } from "@/models/types";
-import { apiCreateEntry } from "@/services/entries/post";
+import { apiCreateEntry } from "@/services/entries";
 import { isError } from "@/utils/isError";
 import { showErrorToast } from "@/utils/toasts";
 

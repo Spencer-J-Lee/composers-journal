@@ -12,7 +12,7 @@ import { Collapsible } from "@/components/Collapsible";
 import { routes } from "@/constants/routes";
 import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types";
-import { apiGetNotebooks } from "@/services/notebooks/get";
+import { apiGetNotebooks } from "@/services/notebooks";
 
 import { IconButton } from "../../iconButtons/IconButton";
 import { SidebarLinkButton } from "../SidebarLinkButton";

@@ -1,4 +1,4 @@
-import { apiGetNotebooks } from "@/services/notebooks/get";
+import { apiGetNotebooks } from "@/services/notebooks";
 
 import { STATUSES } from "../types";
 

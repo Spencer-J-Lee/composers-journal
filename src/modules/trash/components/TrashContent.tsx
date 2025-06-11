@@ -10,11 +10,11 @@ import { IconButton } from "@/components/iconButtons/IconButton";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types";
-import { apiGetNotebooks } from "@/services/notebooks/get";
 import {
+  apiGetNotebooks,
   apiRestoreNotebook,
   apiSoftDeleteNotebook,
-} from "@/services/notebooks/patch";
+} from "@/services/notebooks";
 import { showErrorToast, showSuccessToast } from "@/utils/toasts";
 
 export const TrashContent = () => {
