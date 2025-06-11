@@ -1,6 +1,5 @@
 import { eq } from "drizzle-orm";
 
-import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
@@ -22,10 +21,6 @@ export const dbUpdateNotebook = async ({
     .set(newVals)
     .where(eq(notebooks.id, id))
     .returning();
-
-  if (!result.length) {
-    throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
-  }
 
   return result[0];
 };
