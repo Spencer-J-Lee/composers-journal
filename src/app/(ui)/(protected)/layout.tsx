@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
+import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { Sidebar } from "@/components/Sidebar";
-import { ELEMENT_IDS } from "@/constants/elementIds";
 import { routes } from "@/constants/routes";
 import { getUserSS } from "@/db/supabase/server/helpers";
 
@@ -19,12 +19,7 @@ const ProtectedLayout = async ({
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main
-        id={ELEMENT_IDS.MAIN_CONTENT}
-        className="bg-background-light flex-1"
-      >
-        {children}
-      </main>
+      <WorkspacePageWrapper>{children}</WorkspacePageWrapper>
     </div>
   );
 };
