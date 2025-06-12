@@ -11,6 +11,7 @@ export type LinkIconButtonProps = {
 } & BaseIconButtonProps &
   ComponentProps<"a">;
 
+// TODO: handle disabled styling
 export const LinkIconButton = ({
   className,
   faIcon,

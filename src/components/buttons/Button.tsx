@@ -9,6 +9,7 @@ import { PulsingEllipsis } from "../loaders/PulsingEllipsis";
 
 export type ButtonProps = BaseButtonProps & ComponentProps<"button">;
 
+// TODO: handle disabled styling
 export const Button = ({
   children,
   size = "md",

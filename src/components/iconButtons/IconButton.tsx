@@ -7,6 +7,7 @@ import { BaseIconButtonProps } from "./types";
 
 export type IconButtonProps = BaseIconButtonProps & ComponentProps<"button">;
 
+// TODO: handle disabled styling
 export const IconButton = ({
   className,
   type = "button",
