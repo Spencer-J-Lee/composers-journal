@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 
-import { useSidebarLinkStyles } from "./hooks/useSidebarButtonStyles";
+import { useSidebarLinkProps } from "./hooks/useSidebarLinkProps";
 import {
   LinkIconButton,
   LinkIconButtonProps,
@@ -14,9 +14,13 @@ export const SidebarLinkIconButton = ({
   className,
   ...props
 }: SidebarLinkIconButtonProps) => {
-  const { activeClassName } = useSidebarLinkStyles(props.href);
+  const { activeClassName, isActive } = useSidebarLinkProps(props.href);
 
   return (
-    <LinkIconButton className={clsx(activeClassName, className)} {...props} />
+    <LinkIconButton
+      className={clsx(activeClassName, className)}
+      isActive={isActive}
+      {...props}
+    />
   );
 };

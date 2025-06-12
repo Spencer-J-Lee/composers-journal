@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { useSidebarLinkStyles } from "./hooks/useSidebarButtonStyles";
+import { useSidebarLinkProps } from "./hooks/useSidebarLinkProps";
 import { LinkButton, LinkButtonProps } from "../buttons/LinkButton";
 
 type SidebarLinkButtonProps = Omit<LinkButtonProps, "variant">;
@@ -10,7 +10,7 @@ export const SidebarLinkButton = ({
   className,
   ...props
 }: SidebarLinkButtonProps) => {
-  const { activeClassName } = useSidebarLinkStyles(props.href);
+  const { activeClassName, isActive } = useSidebarLinkProps(props.href);
 
   return (
     <LinkButton
@@ -23,6 +23,7 @@ export const SidebarLinkButton = ({
         className,
       )}
       variant="ghost"
+      isActive={isActive}
       {...props}
     >
       {children}
