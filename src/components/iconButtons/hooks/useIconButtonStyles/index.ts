@@ -16,7 +16,7 @@ export const useIconButtonStyles = ({
 }: UseIconButtonStylesProps) => {
   return {
     iconButtonClassName: clsx(
-      "bg-surface h-9 w-9 flex justify-center items-center",
+      "bg-surface h-9 w-9 flex justify-center rounded items-center",
       isActive
         ? ghostButtonStyles.forceActive
         : ghostButtonStyles.forHoverActive,
