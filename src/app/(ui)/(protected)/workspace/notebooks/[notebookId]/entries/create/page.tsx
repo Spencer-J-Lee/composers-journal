@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
+import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { CreateEntryContent } from "@/modules/createEntry/components/CreateEntryContent";
 
 type CreateEntryPageProps = {
@@ -16,9 +16,9 @@ const CreateEntryPage = async ({ params }: CreateEntryPageProps) => {
   }
 
   return (
-    <PageWrapper maxWidth="lg">
+    <WorkspacePageWrapper>
       <CreateEntryContent notebookId={parsedNotebookId} />
-    </PageWrapper>
+    </WorkspacePageWrapper>
   );
 };
 
