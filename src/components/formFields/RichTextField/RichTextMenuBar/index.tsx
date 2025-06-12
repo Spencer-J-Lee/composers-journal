@@ -1,11 +1,13 @@
 import {
   faBold,
+  faHeading,
   faItalic,
   faListOl,
   faListUl,
   faQuoteRight,
   faRotateLeft,
   faRotateRight,
+  faStrikethrough,
   faUnderline,
 } from "@fortawesome/free-solid-svg-icons";
 import { Editor, useEditorState } from "@tiptap/react";
@@ -36,6 +38,8 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
       isBold: context.editor?.isActive("bold"),
       isItalic: context.editor?.isActive("italic"),
       isUnderline: context.editor?.isActive("underline"),
+      isStrike: context.editor?.isActive("strike"),
+      isHeading1: context.editor?.isActive("heading", { level: 1 }),
       isBulletList: context.editor?.isActive("bulletList"),
       isOrderedList: context.editor?.isActive("orderedList"),
       isBlockquote: context.editor?.isActive("blockquote"),
@@ -71,6 +75,27 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           disabled={!editor.can().chain().focus().toggleUnderline().run()}
           isActive={editorState.isUnderline}
+        />
+        <RichTextMenuButton
+          faIcon={faStrikethrough}
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+          disabled={!editor.can().chain().focus().toggleStrike().run()}
+          isActive={editorState.isStrike}
+        />
+      </RichTextButtonGroup>
+
+      <Divider orientation="vertical" flexChild className="mx-3" />
+
+      <RichTextButtonGroup>
+        <RichTextMenuButton
+          faIcon={faHeading}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 1 }).run()
+          }
+          disabled={
+            !editor.can().chain().focus().toggleHeading({ level: 1 }).run()
+          }
+          isActive={editorState.isHeading1}
         />
       </RichTextButtonGroup>
 
