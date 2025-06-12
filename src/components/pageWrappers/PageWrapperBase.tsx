@@ -15,7 +15,10 @@ export const PageWrapperBase = ({
   return (
     <main
       id={ELEMENT_IDS.MAIN_CONTENT}
-      className={clsx("min-h-[calc(100vh)-var(--navbar-height)]", className)}
+      className={clsx(
+        "min-h-[calc(100vh)-var(--navbar-height)] min-w-0",
+        className,
+      )}
     >
       {children}
     </main>
