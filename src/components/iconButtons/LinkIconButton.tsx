@@ -15,9 +15,10 @@ export const LinkIconButton = ({
   className,
   faIcon,
   variant = "default",
+  isActive,
   ...props
 }: LinkIconButtonProps) => {
-  const { iconButtonClassName } = useIconButtonStyles({ variant });
+  const { iconButtonClassName } = useIconButtonStyles({ variant, isActive });
 
   return (
     <Link className={clsx(iconButtonClassName, className)} {...props}>

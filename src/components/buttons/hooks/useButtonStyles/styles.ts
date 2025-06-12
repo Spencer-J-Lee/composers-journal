@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { ghostButtonHoverActiveClassName } from "@/components/styles/buttons";
+import { ghostButtonStyles } from "@/components/styles/buttons";
 
 import { ButtonSize, ButtonVariant } from "../../types";
 
@@ -16,5 +16,5 @@ export const variantClassName: Record<ButtonVariant, string> = {
     "text-text bg-positive hover:brightness-90 focus-visible:brightness-90",
   negative:
     "text-text bg-negative hover:brightness-90 focus-visible:brightness-90",
-  ghost: clsx("text-text bg-surface", ghostButtonHoverActiveClassName),
+  ghost: clsx("text-text bg-surface", ghostButtonStyles.forHoverActive),
 };

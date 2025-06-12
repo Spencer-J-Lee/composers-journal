@@ -5,18 +5,26 @@ import clsx from "clsx";
 import { useIconButtonStyles } from "./hooks/useIconButtonStyles";
 import { BaseIconButtonProps } from "./types";
 
-type IconButtonProps = BaseIconButtonProps & ComponentProps<"button">;
+export type IconButtonProps = BaseIconButtonProps & ComponentProps<"button">;
 
 export const IconButton = ({
   className,
   faIcon,
   variant = "default",
+  isActive,
   ...props
 }: IconButtonProps) => {
-  const { iconButtonClassName } = useIconButtonStyles({ variant });
+  const { iconButtonClassName } = useIconButtonStyles({
+    variant,
+    isActive,
+  });
 
   return (
-    <button className={clsx(iconButtonClassName, className)} {...props}>
+    <button
+      className={clsx(iconButtonClassName, className)}
+      type={type}
+      {...props}
+    >
       <FontAwesomeIcon icon={faIcon} />
     </button>
   );
