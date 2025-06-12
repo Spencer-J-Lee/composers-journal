@@ -70,7 +70,7 @@ export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
           />
         </div>
 
-        <Button type="submit" loading={loading} fullWidth>
+        <Button type="submit" loading={loading} variant="positive" fullWidth>
           Create
         </Button>
       </form>

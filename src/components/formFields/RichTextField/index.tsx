@@ -47,14 +47,15 @@ export const RichTextField = ({
   }, [editor, editable]);
 
   return (
-    <div
-      className={clsx(
-        "relative border",
-        hasError ? "border-negative" : "border-transparent",
-      )}
-    >
+    <div className="relative">
       {editable && showMenuBar && <RichTextMenuBar editor={editor} />}
-      <EditorContent editor={editor} />
+      <EditorContent
+        editor={editor}
+        className={clsx(
+          "border",
+          hasError ? "border-negative" : "border-transparent",
+        )}
+      />
     </div>
   );
 };

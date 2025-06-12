@@ -1,8 +1,9 @@
 import clsx from "clsx";
 
+import { variantClassNames } from "@/components/buttons/hooks/useButtonStyles/styles";
+
 import { textVariantClassName } from "./styles";
 import { IconButtonTextVariant } from "../../types";
-import { variantClassNames } from "@/components/buttons/hooks/useButtonStyles/styles";
 
 type UseIconButtonStylesProps = {
   textVariant: IconButtonTextVariant;

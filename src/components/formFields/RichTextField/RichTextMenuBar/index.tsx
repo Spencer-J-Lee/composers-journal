@@ -54,7 +54,7 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
 
   return (
     <Card
-      className="bg-surface sticky left-0 right-0 top-4 z-10 mb-2 flex flex-wrap gap-y-1.5"
+      className="bg-surface sticky left-0 right-0 top-0 z-10 mb-2 flex flex-wrap gap-y-1.5"
       paddingSize="sm"
     >
       <RichTextButtonGroup>
