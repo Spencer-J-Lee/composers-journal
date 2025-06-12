@@ -1,3 +1,4 @@
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { Editor } from "@tiptap/react";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
@@ -39,6 +40,8 @@ export const AddYouTubeButton = ({ editor }: AddYouTubeButtonProps) => {
   };
 
   return (
-    <RichTextMenuButton onClick={addYouTubeVideo}>YouTube</RichTextMenuButton>
+    <RichTextMenuButton faIcon={faYoutube} onClick={addYouTubeVideo}>
+      YouTube
+    </RichTextMenuButton>
   );
 };

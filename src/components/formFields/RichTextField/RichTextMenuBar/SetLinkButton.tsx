@@ -1,3 +1,4 @@
+import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { Editor } from "@tiptap/react";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
@@ -46,7 +47,7 @@ export const SetLinkButton = ({ editor, isActive }: SetLinkButtonProps) => {
   };
 
   return (
-    <RichTextMenuButton onClick={setLink} isActive={isActive}>
+    <RichTextMenuButton faIcon={faLink} onClick={setLink} isActive={isActive}>
       Set link
     </RichTextMenuButton>
   );

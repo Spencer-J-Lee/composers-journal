@@ -6,6 +6,13 @@
   @apply mt-0;
 }
 
+.markdown-container h1 {
+  @apply text-xl font-semibold leading-relaxed;
+}
+.markdown-container h1:not(:first-child) {
+  @apply mt-4;
+}
+
 .markdown-container a {
   @apply text-accent font-semibold hover:underline;
 }

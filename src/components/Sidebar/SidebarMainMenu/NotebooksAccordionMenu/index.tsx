@@ -14,10 +14,10 @@ import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types/status";
 import { apiGetNotebooks } from "@/services/notebooks";
 
+import { TreeBranch } from "./TreeBranch";
 import { IconButton } from "../../../iconButtons/IconButton";
 import { SidebarLinkButton } from "../../SidebarLinkButton";
 import { SidebarLinkIconButton } from "../../SidebarLinkIconButton";
-import { TreeBranch } from "./TreeBranch";
 
 export const NotebooksAccordionMenu = () => {
   const [notebooks, setNotebooks] = useState<Notebook[]>([]);
