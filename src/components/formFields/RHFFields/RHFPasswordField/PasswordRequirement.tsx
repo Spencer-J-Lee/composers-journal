@@ -16,10 +16,10 @@ export const PasswordRequirement = ({
       <FontAwesomeIcon
         icon={fulfilled ? faCheck : faXmark}
         size="sm"
-        className={clsx("mr-1.5 h-3 w-3", {
-          "text-positive": fulfilled,
-          "text-negative mt-0.5": !fulfilled,
-        })}
+        className={clsx(
+          "mr-1.5 h-3 w-3",
+          fulfilled ? "text-positive" : "text-negative mt-0.5",
+        )}
       />
       <span className="text-sm">{text}</span>
     </div>

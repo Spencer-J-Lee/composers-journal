@@ -17,7 +17,7 @@ export const TreeBranch = ({
         <div
           className={clsx(
             "flex items-center",
-            { "self-stretch": flexChild, "h-full": !flexChild },
+            flexChild ? "self-stretch" : "h-full",
             className,
           )}
         >
@@ -30,7 +30,7 @@ export const TreeBranch = ({
         <div
           className={clsx(
             "flex flex-col",
-            { "self-stretch": flexChild, "h-full": !flexChild },
+            flexChild ? "self-stretch" : "h-full",
             className,
           )}
         >

@@ -48,10 +48,10 @@ export const RichTextField = ({
 
   return (
     <div
-      className={clsx("relative border", {
-        "border-negative": hasError,
-        "border-transparent": !hasError,
-      })}
+      className={clsx(
+        "relative border",
+        hasError ? "border-negative" : "border-transparent",
+      )}
     >
       {editable && showMenuBar && <RichTextMenuBar editor={editor} />}
       <EditorContent editor={editor} />
