@@ -7,11 +7,11 @@ import {
 
 type RichTextMenuButtonProps = {
   onClick: MouseEventHandler<HTMLButtonElement>;
-} & Omit<IconButtonProps, "variant">;
+} & Omit<IconButtonProps, "textVariant">;
 
 export const RichTextMenuButton = ({
   onClick,
   ...props
 }: RichTextMenuButtonProps) => {
-  return <IconButton onClick={onClick} variant="default" {...props} />;
+  return <IconButton onClick={onClick} textVariant="default" {...props} />;
 };

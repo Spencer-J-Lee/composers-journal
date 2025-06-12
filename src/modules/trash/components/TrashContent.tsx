@@ -100,12 +100,12 @@ export const TrashContent = () => {
           <IconButton
             faIcon={faTrashCanArrowUp}
             onClick={() => restoreNotebook(notebook)}
-            variant="positive"
+            textVariant="positive"
           />
           <IconButton
             faIcon={faTrashCan}
             onClick={() => softDeleteNotebook(notebook)}
-            variant="negative"
+            textVariant="negative"
           />
         </li>
       ))}
@@ -116,12 +116,12 @@ export const TrashContent = () => {
           <IconButton
             faIcon={faTrashCanArrowUp}
             onClick={() => restoreEntry(entry)}
-            variant="positive"
+            textVariant="positive"
           />
           <IconButton
             faIcon={faTrashCan}
             onClick={() => softDeleteEntry(entry)}
-            variant="negative"
+            textVariant="negative"
           />
         </li>
       ))}

@@ -15,7 +15,7 @@ export const SidebarLogoutButton = () => {
   return (
     <IconButton
       faIcon={faRightFromBracket}
-      variant="negative"
+      textVariant="negative"
       onClick={async () => {
         const { error } = await supabase.auth.signOut();
 

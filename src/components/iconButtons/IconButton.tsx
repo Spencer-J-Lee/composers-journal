@@ -7,18 +7,18 @@ import { BaseIconButtonProps } from "./types";
 
 export type IconButtonProps = BaseIconButtonProps & ComponentProps<"button">;
 
-// TODO: handle disabled styling
 export const IconButton = ({
   className,
   type = "button",
   faIcon,
-  variant = "default",
+  textVariant = "default",
   isActive,
   ...props
 }: IconButtonProps) => {
   const { iconButtonClassName } = useIconButtonStyles({
-    variant,
+    textVariant,
     isActive,
+    disabled: props.disabled,
   });
 
   return (

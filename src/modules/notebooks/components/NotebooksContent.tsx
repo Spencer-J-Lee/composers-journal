@@ -43,7 +43,7 @@ export const NotebooksContent = () => {
           <IconButton
             faIcon={faTrashCan}
             onClick={() => trashNotebook(notebook)}
-            variant="negative"
+            textVariant="negative"
           />
         </li>
       ))}

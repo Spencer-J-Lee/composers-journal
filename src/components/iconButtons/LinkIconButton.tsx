@@ -8,18 +8,23 @@ import { BaseIconButtonProps } from "./types";
 
 export type LinkIconButtonProps = {
   href: string;
+  disabled?: boolean;
 } & BaseIconButtonProps &
   ComponentProps<"a">;
 
-// TODO: handle disabled styling
 export const LinkIconButton = ({
   className,
   faIcon,
-  variant = "default",
+  textVariant = "default",
   isActive,
+  disabled,
   ...props
 }: LinkIconButtonProps) => {
-  const { iconButtonClassName } = useIconButtonStyles({ variant, isActive });
+  const { iconButtonClassName } = useIconButtonStyles({
+    textVariant,
+    isActive,
+    disabled,
+  });
 
   return (
     <Link className={clsx(iconButtonClassName, className)} {...props}>

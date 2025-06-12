@@ -2,10 +2,10 @@ import { faBookmark as faBookmarkEmpty } from "@fortawesome/free-regular-svg-ico
 import { faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import { IconButton } from "@/components/iconButtons/IconButton";
-import { ERROR_MESSAGES,SUCCESS_MESSAGES } from "@/constants/messages";
+import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { Entry } from "@/models/Entry";
 import { apiTrashEntry } from "@/services/entries";
-import { showErrorToast,showSuccessToast } from "@/utils/toasts";
+import { showErrorToast, showSuccessToast } from "@/utils/toasts";
 
 type EntryControlsProps = {
   entry: Entry;
@@ -33,7 +33,7 @@ export const EntryControls = ({ entry }: EntryControlsProps) => {
       <IconButton faIcon={faEdit} />
       <IconButton
         faIcon={faTrashCan}
-        variant="negative"
+        textVariant="negative"
         onClick={() => trashEntry(entry)}
       />
     </div>
