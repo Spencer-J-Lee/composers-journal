@@ -1,9 +1,8 @@
 import clsx from "clsx";
 
-import { ghostButtonStyles } from "@/components/styles/buttons";
-
-import { disabledTextVariantClassName, textVariantClassName } from "./styles";
+import { textVariantClassName } from "./styles";
 import { IconButtonTextVariant } from "../../types";
+import { variantClassNames } from "@/components/buttons/hooks/useButtonStyles/styles";
 
 type UseIconButtonStylesProps = {
   textVariant: IconButtonTextVariant;
@@ -21,13 +20,15 @@ export const useIconButtonStyles = ({
       "h-9 w-9 flex justify-center rounded items-center",
       disabled
         ? [
-            "bg-[#282829] cursor-not-allowed",
-            disabledTextVariantClassName[textVariant],
+            "bg-surface-disabled cursor-not-allowed",
+            textVariantClassName[textVariant].disabled,
           ]
         : [
             "bg-surface",
-            textVariantClassName[textVariant],
-            isActive ? ghostButtonStyles.active : ghostButtonStyles.notActive,
+            textVariantClassName[textVariant].base,
+            isActive
+              ? variantClassNames.ghost.active
+              : variantClassNames.ghost.notActive,
           ],
     ),
   };

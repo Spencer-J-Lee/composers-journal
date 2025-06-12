@@ -32,7 +32,7 @@ export const variantClassNames: Record<
   },
   ghost: {
     base: "bg-surface text-text",
-    disabled: "bg-[#282829] cursor-not-allowed text-text-disabled",
+    disabled: "bg-surface-disabled cursor-not-allowed text-text-disabled",
     notActive:
       "hover:brightness-125 focus-visible:brightness-125 active:brightness-[1.4]",
     active: "brightness-[1.4]",

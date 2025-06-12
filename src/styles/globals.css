@@ -19,6 +19,7 @@
   /* === Surface === */
   --color-surface: #2f3136;
   --color-surface-hover: #45464c;
+  --color-surface-disabled: #282829;
   --color-surface-light: #3f4248;
 
   /* === Text === */

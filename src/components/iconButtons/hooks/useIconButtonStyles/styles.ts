@@ -1,16 +1,19 @@
 import { IconButtonTextVariant } from "../../types";
 
-export const textVariantClassName: Record<IconButtonTextVariant, string> = {
-  default: "text-text-muted",
-  positive: "text-positive",
-  negative: "text-negative",
-};
-
-export const disabledTextVariantClassName: Record<
+export const textVariantClassName: Record<
   IconButtonTextVariant,
-  string
+  Record<string, string>
 > = {
-  default: "text-[#4e5157]",
-  positive: "text-[#497451]",
-  negative: "text-[#8e3538]",
+  default: {
+    base: "text-text-muted",
+    disabled: "text-text-disabled",
+  },
+  positive: {
+    base: "text-positive",
+    disabled: "text-positive-disabled",
+  },
+  negative: {
+    base: "text-negative",
+    disabled: "text-negative-disabled",
+  },
 };
