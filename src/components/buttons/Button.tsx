@@ -18,6 +18,7 @@ export const Button = ({
   loading,
   disabled,
   className,
+  isActive,
   ...props
 }: ButtonProps) => {
   const { buttonClassName } = useButtonStyles({
@@ -25,6 +26,7 @@ export const Button = ({
     variant,
     fullWidth,
     disabled,
+    isActive,
   });
 
   return (
