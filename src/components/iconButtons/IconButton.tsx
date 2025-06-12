@@ -9,6 +9,7 @@ export type IconButtonProps = BaseIconButtonProps & ComponentProps<"button">;
 
 export const IconButton = ({
   className,
+  type = "button",
   faIcon,
   variant = "default",
   isActive,
