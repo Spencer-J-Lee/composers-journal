@@ -2,37 +2,38 @@ import clsx from "clsx";
 
 import { ButtonSize, ButtonVariant } from "@/components/buttons/types";
 
-import {
-  getHoverActiveClassName,
-  sizeClassName,
-  variantClassName,
-} from "./styles";
+import { sizeClassName, variantClassNames } from "./styles";
 
 type useButtonStylesProps = {
   size: ButtonSize;
   variant: ButtonVariant;
   fullWidth?: boolean;
-  disabled?: boolean;
   isActive?: boolean;
+  disabled?: boolean;
 };
 
 export const useButtonStyles = ({
   size,
   variant,
   fullWidth,
-  disabled,
   isActive,
+  disabled,
 }: useButtonStylesProps) => {
   return {
     buttonClassName: clsx(
-      "font-inter rounded tracking-widest font-semibold disabled:pointer-events-none block",
+      "font-inter rounded tracking-widest font-semibold block",
       sizeClassName[size],
-      variantClassName[variant],
-      getHoverActiveClassName(variant, isActive),
       {
         "w-full": fullWidth,
-        "disabled:bg-disabled": disabled,
       },
+      disabled
+        ? variantClassNames[variant].disabled
+        : [
+            variantClassNames[variant].base,
+            isActive
+              ? variantClassNames[variant].active
+              : variantClassNames[variant].notActive,
+          ],
     ),
   };
 };

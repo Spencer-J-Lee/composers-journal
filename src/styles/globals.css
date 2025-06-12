@@ -24,6 +24,7 @@
   /* === Text === */
   --color-text: #ffffff;
   --color-text-muted: #c2c2c6;
+  --color-text-disabled: #797979;
   --color-header-secondary: #dfe0e2;
   --color-blockquote-background: #2b2c31;
 
@@ -37,11 +38,14 @@
 
   /* === Accent & Links === */
   --color-accent: #5865f2;
+  --color-accent-disabled: #3d4263;
   --color-accent-link: #8da1fc;
 
   /* === Status Colors === */
-  --color-positive: #75c383;
-  --color-negative: #da3e45;
+  --color-positive: #43b581;
+  --color-positive-disabled: #39524c;
+  --color-negative: #f04747;
+  --color-negative-disabled: #5b3c41;
   --color-negative-text: #f57976;
   --color-disabled: #73767c;
 

@@ -9,7 +9,6 @@ import Link from "next/link";
 import { useButtonStyles } from "./hooks/useButtonStyles";
 import { BaseButtonProps } from "./types";
 
-// TODO: handle disabled styling
 export type LinkButtonProps = {
   href: string;
   children: ReactNode;
