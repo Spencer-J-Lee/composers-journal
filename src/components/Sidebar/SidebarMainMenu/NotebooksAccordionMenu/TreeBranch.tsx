@@ -35,7 +35,7 @@ export const TreeBranch = ({
           )}
         >
           <div className="bg-text-muted w-0.5 flex-1" />
-          <div className="relative h-0.5 w-4 overflow-hidden">
+          <div className="w-4.5 relative h-0.5 overflow-hidden">
             <div className="bg-text-muted absolute top-0 h-1 w-full -translate-y-1/2 rounded-bl-full" />
           </div>
           <div className="flex-1" />
