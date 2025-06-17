@@ -1,3 +1,4 @@
+// TODO: Fix copy
 export const ERROR_MESSAGES = {
   USER: {
     TRY_AGAIN_LATER: "Something went wrong. Please try again later.",
@@ -70,11 +71,13 @@ export const ERROR_MESSAGES = {
 
 export const DEFAULT_ERROR_MSG = ERROR_MESSAGES.USER.TRY_AGAIN_LATER;
 
+// TODO: Fix copy
 export const SUCCESS_MESSAGES = {
   PASSWORD_RESET: "Password successfully updated.",
 
   USER: {
     CREATE: {
+      NOTEBOOK: "Successfully created notebook",
       SAVED_ITEM: {
         ENTRY: "Entry saved.",
       },

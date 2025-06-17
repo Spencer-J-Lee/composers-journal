@@ -3,26 +3,26 @@
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
-import { routes } from "@/constants/routes";
 import { checkNotebookNameUnique } from "@/models/Notebook/helpers";
-import { STATUSES } from "@/models/types/status";
-import { apiCreateNotebook } from "@/services/notebooks";
 import { isError } from "@/utils/isError";
 import { showErrorToast } from "@/utils/toasts";
 
-import { CreateNotebookFormValues, createNotebookSchema } from "./schema";
+import { notebookFormSchema,NotebookFormValues } from "./schema";
 
-export const CreateNotebookForm = () => {
-  const router = useRouter();
+type NotebookFormProps = {
+  onSubmit: (data: NotebookFormValues) => Promise<void>;
+  submitText: string;
+};
+
+export const NotebookForm = ({ onSubmit, submitText }: NotebookFormProps) => {
   const [loading, setLoading] = useState(false);
 
-  const methods = useForm<CreateNotebookFormValues>({
-    resolver: zodResolver(createNotebookSchema),
+  const methods = useForm<NotebookFormValues>({
+    resolver: zodResolver(notebookFormSchema),
   });
 
   const validateNameUnique = async (val: string) => {
@@ -38,7 +38,7 @@ export const CreateNotebookForm = () => {
     }
   };
 
-  const onSubmit = async (data: CreateNotebookFormValues) => {
+  const handleSubmit = async (data: NotebookFormValues) => {
     setLoading(true);
 
     try {
@@ -46,12 +46,7 @@ export const CreateNotebookForm = () => {
         return;
       }
 
-      const notebook = await apiCreateNotebook({
-        name: data.name.trim(),
-        status: STATUSES.ACTIVE,
-      });
-
-      router.push(routes.notebook(notebook.id));
+      await onSubmit(data);
     } catch (err) {
       console.error(err);
       showErrorToast(isError(err) ? err.message : DEFAULT_ERROR_MSG);
@@ -62,13 +57,13 @@ export const CreateNotebookForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form onSubmit={methods.handleSubmit(handleSubmit)}>
         <div className="mb-5 space-y-4">
           <RHFTextField name="name" label="Name" placeholder="Name" />
         </div>
 
         <Button type="submit" loading={loading} fullWidth>
-          Create
+          {submitText}
         </Button>
       </form>
     </FormProvider>
