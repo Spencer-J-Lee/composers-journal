@@ -8,6 +8,8 @@ export const API_PATHS = {
   NOTEBOOKS: {
     ROOT: "/api/notebooks",
   },
-  SAVED_ITEMS: "/api/saved-items",
+  SAVED_ITEMS: {
+    ROOT: "/api/saved-items",
+  },
   TAGS: "/api/tags",
 };

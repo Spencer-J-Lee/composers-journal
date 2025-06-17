@@ -25,6 +25,10 @@ export const fetchWithErrorHandling = async <T>(
     throw new Error(errMsg);
   }
 
+  if (res.status === 204) {
+    return undefined as T;
+  }
+
   try {
     return (await res.json()) as T;
   } catch {

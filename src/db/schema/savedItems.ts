@@ -12,7 +12,7 @@ import { entries } from "./entries";
 export const savedItems = pgTable("saved_items", {
   id: bigserial({ mode: "number" }).primaryKey(),
   ownerId: uuid("owner_id").notNull(),
-  entryId: bigint("entry_id", { mode: "number" }),
+  entryId: bigint("entry_id", { mode: "number" }).notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull(),
 });

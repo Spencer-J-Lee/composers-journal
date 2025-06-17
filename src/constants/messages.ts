@@ -13,6 +13,9 @@ export const ERROR_MESSAGES = {
     CREATE: {
       ENTRY: "Failed to create your entry.",
       NOTEBOOK: "Failed to create your notebook.",
+      SAVED_ITEM: {
+        ENTRY: "Failed to save your entry",
+      },
     },
     UPDATE: {
       ENTRY: "Failed to update your entry.",
@@ -29,6 +32,9 @@ export const ERROR_MESSAGES = {
     DELETE: {
       ENTRY: "Failed to delete your entry.",
       NOTEBOOK: "Failed to delete your notebook.",
+      SAVED_ITEM: {
+        ENTRY: "Failed to unsave your entry",
+      },
     },
   },
 
@@ -43,6 +49,9 @@ export const ERROR_MESSAGES = {
     CREATE: {
       ENTRY: "Error occurred while creating entry.",
       NOTEBOOK: "Error occurred while creating notebook.",
+      SAVED_ITEM: {
+        ENTRY: "Error occurred while creating saved entry item.",
+      },
     },
     UPDATE: {
       ENTRY: "Error occurred while updating entry.",
@@ -51,6 +60,9 @@ export const ERROR_MESSAGES = {
     DELETE: {
       ENTRY: "Error occurred while deleting entry.",
       NOTEBOOK: "Error occurred while deleting notebook.",
+      SAVED_ITEM: {
+        ENTRY: "Error occurred while deleting saved entry item.",
+      },
     },
     DB_RETURNED_EMPTY: "Database return value is empty",
   },
@@ -62,6 +74,11 @@ export const SUCCESS_MESSAGES = {
   PASSWORD_RESET: "Password successfully updated.",
 
   USER: {
+    CREATE: {
+      SAVED_ITEM: {
+        ENTRY: "Entry saved.",
+      },
+    },
     TRASH: {
       ENTRY: "Successfully trashed your entry.",
       NOTEBOOK: "Successfully trashed your notebook.",
@@ -73,6 +90,9 @@ export const SUCCESS_MESSAGES = {
     DELETE: {
       ENTRY: "Successfully deleted your entry.",
       NOTEBOOK: "Successfully deleted your notebook.",
+      SAVED_ITEM: {
+        ENTRY: "Entry unsaved.",
+      },
     },
   },
 } as const;
