@@ -1,4 +1,4 @@
-import { NotebooksContent } from "@/modules/notebooks/components/NotebooksContent";
+import { NotebooksContent } from "@/modules/notebooks/list/NotebooksContent";
 
 const NotebooksPage = () => {
   return <NotebooksContent />;

@@ -1,5 +1,4 @@
 import { NextRequest } from "next/server";
-import { z } from "zod";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateSavedItem, dbDeleteSavedItems } from "@/db/queries/savedItems";

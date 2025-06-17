@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { NotebookContent } from "@/modules/notebook/components/NotebookContent";
+import { NotebookContent } from "@/modules/notebooks/detail/NotebookContent";
 
 type NotebookPageProps = {
   params: { notebookId: string };

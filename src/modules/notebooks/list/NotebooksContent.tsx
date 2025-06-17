@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
+import { Card } from "@/components/Card";
 import { IconButton } from "@/components/iconButtons/IconButton";
+import { LinkIconButton } from "@/components/iconButtons/LinkIconButton";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
+import { routes } from "@/constants/routes";
 import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types/status";
 import { apiGetNotebooks, apiTrashNotebook } from "@/services/notebooks";
@@ -37,14 +40,20 @@ export const NotebooksContent = () => {
   return (
     <ul className="flex flex-col gap-4">
       {notebooks.map((notebook) => (
-        <li className="flex gap-x-2" key={notebook.name}>
-          {notebook.name}
-          {/* TODO: notebook edit link */}
-          <IconButton
-            faIcon={faTrashCan}
-            onClick={() => trashNotebook(notebook)}
-            textVariant="negative"
-          />
+        <li key={notebook.name}>
+          <Card className="flex items-center gap-x-2" paddingSize="sm">
+            {notebook.name}
+
+            <LinkIconButton
+              href={routes.notebookEdit(notebook.id)}
+              faIcon={faEdit}
+            />
+            <IconButton
+              faIcon={faTrashCan}
+              onClick={() => trashNotebook(notebook)}
+              textVariant="negative"
+            />
+          </Card>
         </li>
       ))}
     </ul>

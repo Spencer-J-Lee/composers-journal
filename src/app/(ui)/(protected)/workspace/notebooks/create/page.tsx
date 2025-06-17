@@ -1,4 +1,4 @@
-import { CreateNotebookContent } from "@/modules/createNotebook/components/CreateNotebookContent";
+import { CreateNotebookContent } from "@/modules/notebooks/create/CreateNotebookContent";
 
 const CreateNotebookPage = () => {
   return <CreateNotebookContent />;
