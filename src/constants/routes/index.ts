@@ -1,4 +1,5 @@
 import { QUERY_KEYS } from "@/constants/queryKeys";
+import { Entry } from "@/models/Entry";
 
 import { RouteOptions } from "./types";
 
@@ -109,12 +110,12 @@ class Routes {
     return `${this.notebooks()}/create`;
   }
 
-  entry(notebookId: number, entryId: number) {
-    return `${this.notebook(notebookId)}${this.entries()}/${entryId}`;
+  entry(entry: Entry) {
+    return `${this.notebook(entry.notebookId)}${this.entries()}/${entry.id}`;
   }
 
-  entryEdit(notebookId: number, entryId: number) {
-    return `${this.entry(notebookId, entryId)}/edit`;
+  entryEdit(entry: Entry) {
+    return `${this.entry(entry)}/edit`;
   }
 
   entryCreate(notebookId: number) {

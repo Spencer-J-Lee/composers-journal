@@ -5,17 +5,21 @@ import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 import { LimitOption } from "@/services/types";
 
-type dbGetEntriesProps = Pick<Entry, "ownerId"> &
-  Partial<Pick<Entry, "status" | "notebookId">> &
+type dbGetEntriesProps = Partial<
+  Pick<Entry, "ownerId" | "id" | "status" | "notebookId">
+> &
   LimitOption;
 
 export const dbGetEntries = async ({
   ownerId,
+  id,
   status,
   notebookId,
   limit = 50,
 }: dbGetEntriesProps): Promise<Entry[]> => {
-  const andClauses = [eq(entries.ownerId, ownerId)];
+  const andClauses = [];
+  if (ownerId) andClauses.push(eq(entries.ownerId, ownerId));
+  if (id) andClauses.push(eq(entries.id, id));
   if (status) andClauses.push(eq(entries.status, status));
   if (notebookId) andClauses.push(eq(entries.notebookId, notebookId));
 

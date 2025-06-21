@@ -6,11 +6,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { IconButton } from "@/components/iconButtons/IconButton";
+import { LinkIconButton } from "@/components/iconButtons/LinkIconButton";
 import {
   DEFAULT_ERROR_MSG,
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
 } from "@/constants/messages";
+import { routes } from "@/constants/routes";
 import { Entry } from "@/models/Entry";
 import { apiTrashEntry } from "@/services/entries";
 import {
@@ -64,7 +66,7 @@ export const EntryControls = ({ entry }: EntryControlsProps) => {
       {/* TODO: add logic for bookmark dual state */}
       <IconButton faIcon={faBookmarkEmpty} onClick={() => saveEntry(entry)} />
       <IconButton faIcon={faBookmark} onClick={() => unsaveEntry(entry)} />
-      <IconButton faIcon={faEdit} />
+      <LinkIconButton faIcon={faEdit} href={routes.entryEdit(entry)} />
       <IconButton
         faIcon={faTrashCan}
         textVariant="negative"

@@ -1,5 +1,25 @@
-const EntryEditPage = () => {
-  return <div></div>;
+import { notFound } from "next/navigation";
+
+import { dbGetEntries } from "@/db/queries/entries";
+import { EditEntryContent } from "@/modules/entries/edit/EditEntryContent";
+
+type EditEntryPageProps = {
+  params: { entryId: string };
 };
 
-export default EntryEditPage;
+const EditEntryPage = async ({ params }: EditEntryPageProps) => {
+  const { entryId } = await params;
+  const parsedEntryId = parseInt(entryId);
+  if (isNaN(parsedEntryId)) {
+    notFound();
+  }
+
+  const entry = (await dbGetEntries({ id: parsedEntryId }))[0];
+  if (!entry) {
+    notFound();
+  }
+
+  return <EditEntryContent entry={entry} />;
+};
+
+export default EditEntryPage;

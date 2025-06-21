@@ -84,6 +84,7 @@ export const SUCCESS_MESSAGES = {
       },
     },
     EDIT: {
+      ENTRY: "Entry updated.",
       NOTEBOOK: "Notebook saved",
     },
     TRASH: {
