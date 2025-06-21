@@ -11,18 +11,24 @@ import { checkNotebookNameUnique } from "@/models/Notebook/helpers";
 import { isError } from "@/utils/isError";
 import { showErrorToast } from "@/utils/toasts";
 
-import { notebookFormSchema,NotebookFormValues } from "./schema";
+import { notebookFormSchema, NotebookFormValues } from "./schema";
 
 type NotebookFormProps = {
   onSubmit: (data: NotebookFormValues) => Promise<void>;
   submitText: string;
+  defaultValues?: Partial<NotebookFormValues>;
 };
 
-export const NotebookForm = ({ onSubmit, submitText }: NotebookFormProps) => {
+export const NotebookForm = ({
+  onSubmit,
+  submitText,
+  defaultValues,
+}: NotebookFormProps) => {
   const [loading, setLoading] = useState(false);
 
   const methods = useForm<NotebookFormValues>({
     resolver: zodResolver(notebookFormSchema),
+    defaultValues,
   });
 
   const validateNameUnique = async (val: string) => {

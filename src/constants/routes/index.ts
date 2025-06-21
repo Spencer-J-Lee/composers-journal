@@ -101,6 +101,10 @@ class Routes {
     return `${this.notebooks()}/${notebookId}`;
   }
 
+  notebookEdit(notebookId: number) {
+    return `${this.notebook(notebookId)}/edit`;
+  }
+
   notebookCreate() {
     return `${this.notebooks()}/create`;
   }

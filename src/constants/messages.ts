@@ -82,6 +82,9 @@ export const SUCCESS_MESSAGES = {
         ENTRY: "Entry saved.",
       },
     },
+    EDIT: {
+      NOTEBOOK: "Notebook saved",
+    },
     TRASH: {
       ENTRY: "Successfully trashed your entry.",
       NOTEBOOK: "Successfully trashed your notebook.",
