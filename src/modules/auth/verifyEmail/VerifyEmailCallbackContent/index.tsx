@@ -6,9 +6,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { getUserCS } from "@/db/supabase/client";
-import { VerifyEmailForm } from "@/modules/verifyEmail/components/VerifyEmailForm";
 
 import { VerificationStatus } from "./types";
+import { VerifyEmailForm } from "../VerifyEmailForm";
 
 /**
  * User will be authenticated before being redirected based on authentication.

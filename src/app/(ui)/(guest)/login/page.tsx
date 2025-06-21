@@ -1,5 +1,5 @@
 import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
-import { LoginContent } from "@/modules/login/components/LoginContent";
+import { LoginContent } from "@/modules/auth/login/LoginContent";
 
 /**
  * TODO: turn auth-related pages into a single page experience
