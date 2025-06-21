@@ -77,6 +77,7 @@ export const SUCCESS_MESSAGES = {
 
   USER: {
     CREATE: {
+      ENTRY: "Entry created.",
       NOTEBOOK: "Successfully created notebook",
       SAVED_ITEM: {
         ENTRY: "Entry saved.",

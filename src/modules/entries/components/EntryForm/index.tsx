@@ -3,43 +3,38 @@
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
 import { RHFGhostTextField } from "@/components/formFields/RHFFields/RHFGhostTextField";
 import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
-import { routes } from "@/constants/routes";
-import { createClientCS } from "@/db/supabase/client";
-import { STATUSES } from "@/models/types/status";
-import { apiCreateEntry } from "@/services/entries";
 import { isError } from "@/utils/isError";
 import { showErrorToast } from "@/utils/toasts";
 
-import { CreateEntryFormValues, createEntrySchema } from "./schema";
+import { entryFormSchema,EntryFormValues } from "./schema";
 
-type CreateEntryFormProps = {
-  notebookId: number;
+type EntryFormProps = {
+  onSubmit: (data: EntryFormValues) => Promise<void>;
+  submitText: string;
+  defaultValues?: Partial<EntryFormValues>;
 };
 
-export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
-  const supabase = createClientCS();
-  const router = useRouter();
+export const EntryForm = ({
+  onSubmit,
+  submitText,
+  defaultValues,
+}: EntryFormProps) => {
   const [loading, setLoading] = useState(false);
-  const methods = useForm<CreateEntryFormValues>({
-    resolver: zodResolver(createEntrySchema),
+  const methods = useForm<EntryFormValues>({
+    resolver: zodResolver(entryFormSchema),
+    defaultValues,
   });
 
-  const onSubmit = async (data: CreateEntryFormValues) => {
+  const handleSubmit = async (data: EntryFormValues) => {
     setLoading(true);
-    console.log(`data:`, data);
 
     try {
-      const entry = await apiCreateEntry({
-        notebookId,
-        status: STATUSES.ACTIVE,
-        ...data,
-      });
+      await onSubmit(data);
 
       // TODO: handle entryTag creation
 
@@ -56,7 +51,7 @@ export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form onSubmit={methods.handleSubmit(handleSubmit)}>
         <div className="mb-5 w-full space-y-4">
           <RHFGhostTextField
             name="title"
@@ -71,7 +66,7 @@ export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
         </div>
 
         <Button type="submit" loading={loading} variant="positive" fullWidth>
-          Create
+          {submitText}
         </Button>
       </form>
     </FormProvider>
