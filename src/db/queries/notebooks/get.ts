@@ -6,8 +6,9 @@ import { Notebook } from "@/models/Notebook";
 import { Status } from "@/models/types/status";
 import { LimitOption } from "@/services/types";
 
-type dbGetNotebooksProps = Pick<Notebook, "ownerId"> &
-  Partial<Pick<Notebook, "id" | "name" | "status">> &
+type dbGetNotebooksProps = Partial<
+  Pick<Notebook, "ownerId" | "id" | "name" | "status">
+> &
   LimitOption;
 
 export const dbGetNotebooks = async ({
@@ -17,7 +18,8 @@ export const dbGetNotebooks = async ({
   status,
   limit = 50,
 }: dbGetNotebooksProps): Promise<Notebook[]> => {
-  const andClauses = [eq(notebooks.ownerId, ownerId)];
+  const andClauses = [];
+  if (ownerId) andClauses.push(eq(notebooks.ownerId, ownerId));
   if (id) andClauses.push(eq(notebooks.id, id));
   if (name) andClauses.push(eq(notebooks.name, name));
   if (status) andClauses.push(eq(notebooks.status, status));

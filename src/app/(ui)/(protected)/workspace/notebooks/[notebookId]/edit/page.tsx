@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 
 import { dbGetNotebooks } from "@/db/queries/notebooks";
 import { EditNotebookContent } from "@/modules/notebooks/edit/EditNotebookContent";
-import { getUserOrNotFound } from "@/utils/getUserOrNotFound";
 
 type EditNotebookPageProps = {
   params: { notebookId: string };
@@ -15,11 +14,7 @@ const EditNotebookPage = async ({ params }: EditNotebookPageProps) => {
     notFound();
   }
 
-  const user = await getUserOrNotFound();
-
-  const notebook = (
-    await dbGetNotebooks({ ownerId: user.id, id: parsedNotebookId })
-  )[0];
+  const notebook = (await dbGetNotebooks({ id: parsedNotebookId }))[0];
   if (!notebook) {
     notFound();
   }
