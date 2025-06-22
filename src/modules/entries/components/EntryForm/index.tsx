@@ -5,13 +5,14 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/buttons/Button";
+import { Card } from "@/components/Card";
 import { RHFGhostTextField } from "@/components/formFields/RHFFields/RHFGhostTextField";
 import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
 import { isError } from "@/utils/isError";
 import { showErrorToast } from "@/utils/toasts";
 
-import { entryFormSchema,EntryFormValues } from "./schema";
+import { entryFormSchema, EntryFormValues } from "./schema";
 
 type EntryFormProps = {
   onSubmit: (data: EntryFormValues) => Promise<void>;
@@ -51,8 +52,11 @@ export const EntryForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(handleSubmit)}>
-        <div className="mb-5 w-full space-y-4">
+      <form
+        onSubmit={methods.handleSubmit(handleSubmit)}
+        className="flex h-full flex-col"
+      >
+        <div className="mb-5 w-full flex-1 space-y-4">
           <RHFGhostTextField
             name="title"
             className="text-4xl"
@@ -65,9 +69,16 @@ export const EntryForm = ({
           />
         </div>
 
-        <Button type="submit" loading={loading} variant="positive" fullWidth>
-          {submitText}
-        </Button>
+        <Card
+          className="sticky bottom-0 flex items-center justify-between gap-x-10"
+          paddingSize="sm"
+        >
+          <ul>Tags placeholder</ul>
+
+          <Button type="submit" loading={loading}>
+            {submitText}
+          </Button>
+        </Card>
       </form>
     </FormProvider>
   );
