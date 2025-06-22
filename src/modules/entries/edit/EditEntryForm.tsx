@@ -24,11 +24,12 @@ export const EditEntryForm = ({ entry }: EditEntryFormProps) => {
       ...data,
     });
 
-    // TODO: handle entryTag creation
+    // TODO: handle Tag update
+    // TODO: handle entryTag update
 
     showSuccessToast(SUCCESS_MESSAGES.USER.EDIT.ENTRY);
 
-    router.push(routes.entry(entry));
+    router.push(routes.notebook(entry.notebookId));
   };
 
   return (
