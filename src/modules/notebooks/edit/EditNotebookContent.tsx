@@ -6,11 +6,12 @@ type EditNotebookContentProps = {
   notebook: Notebook;
 };
 
-// TODO: style + copy
 export const EditNotebookContent = ({ notebook }: EditNotebookContentProps) => {
   return (
-    <>
-      <EditNotebookForm notebook={notebook} />
-    </>
+    <div className="flex min-h-full w-full items-center justify-center">
+      <div className="flex flex-col items-center">
+        <EditNotebookForm notebook={notebook} />
+      </div>
+    </div>
   );
 };
