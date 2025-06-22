@@ -13,7 +13,7 @@ export const NotebooksEmptyCTA = () => {
           alt: "Cartoon character writing lines with giant pencil.",
         }}
         title="No notebooks yet"
-        description="Let's start by creating a new one"
+        description="Start by creating a new one"
       >
         <LinkButton href={routes.notebookCreate()}>Get Started</LinkButton>
       </EmptyState>

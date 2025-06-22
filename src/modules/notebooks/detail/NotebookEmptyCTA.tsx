@@ -17,7 +17,7 @@ export const NotebookEmptyCTA = ({ notebookId }: NotebookEmptyCTAProps) => {
           alt: "Cartoon character writing lines with giant pencil.",
         }}
         title="No entries yet"
-        description="Let's start by creating a new one"
+        description="Start by creating a new one"
       >
         <LinkButton href={routes.entryCreate(notebookId)}>
           Get Started

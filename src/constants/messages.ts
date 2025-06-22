@@ -71,14 +71,13 @@ export const ERROR_MESSAGES = {
 
 export const DEFAULT_ERROR_MSG = ERROR_MESSAGES.USER.TRY_AGAIN_LATER;
 
-// TODO: Fix copy
 export const SUCCESS_MESSAGES = {
-  PASSWORD_RESET: "Password successfully updated.",
+  PASSWORD_RESET: "Password updated.",
 
   USER: {
     CREATE: {
       ENTRY: "Entry created.",
-      NOTEBOOK: "Successfully created notebook",
+      NOTEBOOK: "Notebook created",
       SAVED_ITEM: {
         ENTRY: "Entry saved.",
       },
@@ -88,16 +87,16 @@ export const SUCCESS_MESSAGES = {
       NOTEBOOK: "Notebook saved",
     },
     TRASH: {
-      ENTRY: "Successfully trashed your entry.",
-      NOTEBOOK: "Successfully trashed your notebook.",
+      ENTRY: "Entry trashed.",
+      NOTEBOOK: "Notebook trashed.",
     },
     RESTORE: {
-      ENTRY: "Successfully restored your entry.",
-      NOTEBOOK: "Successfully restored your notebook.",
+      ENTRY: "Entry restored.",
+      NOTEBOOK: "Notebook restored.",
     },
     DELETE: {
-      ENTRY: "Successfully deleted your entry.",
-      NOTEBOOK: "Successfully deleted your notebook.",
+      ENTRY: "Entry deleted.",
+      NOTEBOOK: "Notebook deleted.",
       SAVED_ITEM: {
         ENTRY: "Entry unsaved.",
       },
