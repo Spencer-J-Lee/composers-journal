@@ -1,11 +1,10 @@
-// TODO: Fix copy
 export const ERROR_MESSAGES = {
   USER: {
     TRY_AGAIN_LATER: "Something went wrong. Please try again later.",
     TRY_AGAIN: "Something went wrong. Please try again.",
     UNAUTHORIZED: "You do not have permission to perform this action.",
     INVALID_INFO: "Some of the provided information is invalid.",
-    YOUTUBE_LINK: "Please enter a valid YouTube link.",
+    YOUTUBE_LINK: "Invalid YouTube link.",
 
     FETCH: {
       ENTRIES: "Failed to load your entries.",
