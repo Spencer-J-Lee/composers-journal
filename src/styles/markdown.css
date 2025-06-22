@@ -6,10 +6,10 @@
   @apply mt-0;
 }
 
-.markdown-container h1 {
+.markdown-container h3 {
   @apply text-xl font-semibold leading-relaxed;
 }
-.markdown-container h1:not(:first-child) {
+.markdown-container h3:not(:first-child) {
   @apply mt-4;
 }
 

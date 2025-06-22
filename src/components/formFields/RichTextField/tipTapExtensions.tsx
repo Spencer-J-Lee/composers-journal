@@ -24,7 +24,7 @@ export const tipTapExtensions = [
   Gapcursor,
   HardBreak,
   Heading.configure({
-    levels: [1],
+    levels: [3],
   }),
   History,
   Italic,
