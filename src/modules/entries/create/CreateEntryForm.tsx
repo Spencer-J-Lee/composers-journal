@@ -25,6 +25,7 @@ export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
       ...data,
     });
 
+    // TODO: handle Tag creation
     // TODO: handle entryTag creation
 
     showSuccessToast(SUCCESS_MESSAGES.USER.CREATE.ENTRY);

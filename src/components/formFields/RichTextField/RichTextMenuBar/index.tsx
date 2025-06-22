@@ -24,9 +24,6 @@ type RichTextMenuBarProps = {
   editor: Editor | null;
 };
 
-/**
- * TODO: style this component
- */
 export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
   /**
    * `editorState` is used to watch for changes in editor state

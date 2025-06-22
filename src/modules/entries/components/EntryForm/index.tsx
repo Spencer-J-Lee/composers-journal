@@ -37,11 +37,8 @@ export const EntryForm = ({
     try {
       await onSubmit(data);
 
+      // TODO: handle Tag creation
       // TODO: handle entryTag creation
-
-      // TODO: handle entryMedia creation
-
-      // router.push(routes.entry(entry.id))
     } catch (err) {
       console.error(err);
       showErrorToast(isError(err) ? err.message : DEFAULT_ERROR_MSG);

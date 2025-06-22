@@ -11,9 +11,6 @@ type SetLinkButtonProps = {
   isActive: boolean;
 };
 
-/**
- * TODO: style this component
- */
 export const SetLinkButton = ({ editor, isActive }: SetLinkButtonProps) => {
   if (!editor) {
     return null;

@@ -11,9 +11,6 @@ type AddYouTubeButtonProps = {
   editor: Editor | null;
 };
 
-/**
- * TODO: style this component
- */
 export const AddYouTubeButton = ({ editor }: AddYouTubeButtonProps) => {
   if (!editor) {
     return null;
