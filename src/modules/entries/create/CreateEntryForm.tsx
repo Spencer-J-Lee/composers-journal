@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 
 import { SUCCESS_MESSAGES } from "@/constants/messages";
+import { routes } from "@/constants/routes";
 import { STATUSES } from "@/models/types/status";
 import { apiCreateEntry } from "@/services/entries";
 import { showSuccessToast } from "@/utils/toasts";
@@ -28,7 +29,7 @@ export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
 
     showSuccessToast(SUCCESS_MESSAGES.USER.CREATE.ENTRY);
 
-    // router.push(routes.entry(entry.id))
+    router.push(routes.notebook(entry.notebookId));
   };
 
   return <EntryForm onSubmit={handleSubmit} submitText="Create" />;
