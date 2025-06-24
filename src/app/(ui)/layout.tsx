@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Toaster } from "sonner";
 
 import { Footer } from "@/components/Footer";
+import Providers from "@/components/Providers";
 import { SkipToContent } from "@/components/SkipToContent";
 import { inter } from "@/styles/fonts";
 
@@ -28,16 +29,19 @@ const RootLayout = ({
       <head>
         <Script src="https://accounts.google.com/gsi/client" async />
       </head>
-      <body
-        className={`${inter.variable} bg-background text-text h-auto min-h-screen antialiased`}
-      >
-        <SkipToContent />
-        {children}
-        {/* TODO: figure out if i still want a footer */}
-        {/* <Footer /> */}
 
-        <Toaster richColors />
-      </body>
+      <Providers>
+        <body
+          className={`${inter.variable} bg-background text-text h-auto min-h-screen antialiased`}
+        >
+          <SkipToContent />
+          {children}
+          {/* TODO: figure out if i still want a footer */}
+          {/* <Footer /> */}
+
+          <Toaster richColors />
+        </body>
+      </Providers>
     </html>
   );
 };
