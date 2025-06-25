@@ -14,7 +14,7 @@ import "../../styles/globals.css";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-  title: "Composer's Toolkit",
+  title: "Composer's Journal",
   description: "Application to help track and manage composition techniques.",
 };
 

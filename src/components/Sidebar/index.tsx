@@ -24,7 +24,7 @@ export const Sidebar = () => {
       >
         <Image
           src={ASSET_PATHS.LOGO_WHITE}
-          alt="Composer's Toolkit logo"
+          alt="Composer's Journal logo"
           width={180}
           height={29}
           style={{ objectFit: "cover" }}

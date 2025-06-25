@@ -22,7 +22,7 @@ export const Navbar = () => {
         <Link href={routes.home()} className="-m-2 block p-2">
           <Image
             src={ASSET_PATHS.LOGO_WHITE}
-            alt="Composer's Toolkit logo"
+            alt="Composer's Journal logo"
             width={220}
             height={40}
             style={{ objectFit: "cover" }}
