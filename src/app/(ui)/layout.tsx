@@ -30,18 +30,18 @@ const RootLayout = ({
         <Script src="https://accounts.google.com/gsi/client" async />
       </head>
 
-      <Providers>
-        <body
-          className={`${inter.variable} bg-background text-text h-auto min-h-screen antialiased`}
-        >
+      <body
+        className={`${inter.variable} bg-background text-text h-auto min-h-screen antialiased`}
+      >
+        <Providers>
           <SkipToContent />
           {children}
           {/* TODO: figure out if i still want a footer */}
           {/* <Footer /> */}
 
           <Toaster richColors />
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 };
