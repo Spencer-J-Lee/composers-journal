@@ -8,8 +8,8 @@ import { Button } from "@/components/buttons/Button";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
 import { checkNotebookNameUnique } from "@/models/Notebook/helpers";
-import { isError } from "@/utils/isError";
-import { showErrorToast } from "@/utils/toasts";
+import { isError } from "@/utils/client/isError";
+import { showErrorToast } from "@/utils/client/toasts";
 
 import { notebookFormSchema, NotebookFormValues } from "./schema";
 

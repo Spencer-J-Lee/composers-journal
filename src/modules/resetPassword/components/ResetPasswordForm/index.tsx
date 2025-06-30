@@ -10,7 +10,7 @@ import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordF
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client";
-import { showErrorToast, showSuccessToast } from "@/utils/toasts";
+import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 import { ResetPasswordFormValues, resetPasswordSchema } from "./schema";
 

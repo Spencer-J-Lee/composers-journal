@@ -8,7 +8,7 @@ import {
   respondWithError,
   respondWithInvalidInfoError,
   respondWithUnauthorized,
-} from "@/utils/api/errors";
+} from "@/utils/server/errors";
 
 export const POST = async (req: NextRequest) => {
   const user = await getUserSS();

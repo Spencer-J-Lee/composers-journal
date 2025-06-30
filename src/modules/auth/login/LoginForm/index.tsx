@@ -12,7 +12,7 @@ import { ERROR_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client";
-import { showErrorToast } from "@/utils/toasts";
+import { showErrorToast } from "@/utils/client/toasts";
 
 import { LoginFormValues, loginSchema } from "./schema";
 

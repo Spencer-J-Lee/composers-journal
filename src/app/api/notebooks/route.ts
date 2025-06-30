@@ -21,7 +21,7 @@ import {
   respondWithError,
   respondWithInvalidInfoError,
   respondWithUnauthorized,
-} from "@/utils/api/errors";
+} from "@/utils/server/errors";
 
 export const GET = async (req: NextRequest) => {
   const user = await getUserSS();

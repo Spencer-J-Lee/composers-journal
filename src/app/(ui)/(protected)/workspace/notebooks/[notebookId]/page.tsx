@@ -4,7 +4,7 @@ import { dbGetEntries } from "@/db/queries/entries";
 import { STATUSES } from "@/models/types/status";
 import { NotebookContent } from "@/modules/notebooks/detail/NotebookContent";
 import { NotebookEmptyCTA } from "@/modules/notebooks/detail/NotebookEmptyCTA";
-import { getUserOrRedirect } from "@/utils/getUserOrRedirect";
+import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
 
 type NotebookPageProps = {
   params: { notebookId: string };
@@ -18,7 +18,7 @@ const NotebookPage = async ({ params }: NotebookPageProps) => {
     notFound();
   }
 
-  const user = await getUserOrRedirect();
+  const user = await getUserSSOrRedirect();
   const entries = await dbGetEntries({
     ownerId: user.id,
     notebookId: parsedNotebookId,

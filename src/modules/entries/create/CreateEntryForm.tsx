@@ -6,7 +6,7 @@ import { SUCCESS_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { STATUSES } from "@/models/types/status";
 import { apiCreateEntry } from "@/services/entries";
-import { showSuccessToast } from "@/utils/toasts";
+import { showSuccessToast } from "@/utils/client/toasts";
 
 import { EntryForm } from "../components/EntryForm";
 import { EntryFormValues } from "../components/EntryForm/schema";

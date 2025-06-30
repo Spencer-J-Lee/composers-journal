@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client";
-import { showErrorToast } from "@/utils/toasts";
+import { showErrorToast } from "@/utils/client/toasts";
 
 import { IconButton } from "../iconButtons/IconButton";
 

@@ -11,7 +11,7 @@ import { routes } from "@/constants/routes";
 import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types/status";
 import { apiGetNotebooks, apiTrashNotebook } from "@/services/notebooks";
-import { showErrorToast, showSuccessToast } from "@/utils/toasts";
+import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 export const NotebooksContent = () => {
   const [notebooks, setNotebooks] = useState<Notebook[]>([]);

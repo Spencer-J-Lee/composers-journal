@@ -13,8 +13,8 @@ import { routes } from "@/constants/routes";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client";
 import { useCountdown } from "@/hooks/useCountdown";
-import { showErrorToast } from "@/utils/toasts";
-import { genFullSiteUrl } from "@/utils/urls";
+import { showErrorToast } from "@/utils/client/toasts";
+import { genFullSiteUrl } from "@/utils/client/urls";
 
 import { VerifyEmailFormValues, verifyEmailSchema } from "./schema";
 

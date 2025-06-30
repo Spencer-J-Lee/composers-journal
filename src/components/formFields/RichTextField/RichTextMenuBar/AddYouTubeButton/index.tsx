@@ -2,7 +2,7 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { Editor } from "@tiptap/react";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { showErrorToast } from "@/utils/toasts";
+import { showErrorToast } from "@/utils/client/toasts";
 
 import { toYouTubeEmbedUrl } from "./helpers";
 import { RichTextMenuButton } from "../RichTextMenuButton";

@@ -19,8 +19,8 @@ import {
   apiCreateSavedEntry,
   apiDeleteSavedEntry,
 } from "@/services/savedItems";
-import { isError } from "@/utils/isError";
-import { showErrorToast, showSuccessToast } from "@/utils/toasts";
+import { isError } from "@/utils/client/isError";
+import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 type EntryControlsProps = {
   entry: Entry;

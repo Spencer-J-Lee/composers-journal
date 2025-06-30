@@ -6,7 +6,7 @@ import { SUCCESS_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { Notebook } from "@/models/Notebook";
 import { apiUpdateNotebook } from "@/services/notebooks";
-import { showSuccessToast } from "@/utils/toasts";
+import { showSuccessToast } from "@/utils/client/toasts";
 
 import { NotebookForm } from "../components/NotebookForm";
 import { NotebookFormValues } from "../components/NotebookForm/schema";

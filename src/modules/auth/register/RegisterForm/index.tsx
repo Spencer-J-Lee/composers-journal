@@ -12,8 +12,8 @@ import { ERROR_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client";
-import { showErrorToast } from "@/utils/toasts";
-import { genFullSiteUrl } from "@/utils/urls";
+import { showErrorToast } from "@/utils/client/toasts";
+import { genFullSiteUrl } from "@/utils/client/urls";
 
 import { RegisterFormValues, registerSchema } from "./schema";
 

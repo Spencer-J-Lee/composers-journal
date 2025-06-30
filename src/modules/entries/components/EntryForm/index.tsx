@@ -9,8 +9,8 @@ import { Card } from "@/components/Card";
 import { RHFGhostTextField } from "@/components/formFields/RHFFields/RHFGhostTextField";
 import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
-import { isError } from "@/utils/isError";
-import { showErrorToast } from "@/utils/toasts";
+import { isError } from "@/utils/client/isError";
+import { showErrorToast } from "@/utils/client/toasts";
 
 import { entryFormSchema, EntryFormValues } from "./schema";
 

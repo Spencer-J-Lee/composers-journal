@@ -20,7 +20,7 @@ import {
   apiRestoreNotebook,
   apiSoftDeleteNotebook,
 } from "@/services/notebooks";
-import { showErrorToast, showSuccessToast } from "@/utils/toasts";
+import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 export const TrashContent = () => {
   const [notebooks, setNotebooks] = useState<Notebook[]>([]);
