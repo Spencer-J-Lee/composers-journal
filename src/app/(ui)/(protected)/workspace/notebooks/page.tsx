@@ -1,21 +1,16 @@
-import { dbGetNotebooks } from "@/db/queries/notebooks";
-import { STATUSES } from "@/models/types/status";
+import { TS_KEYS } from "@/constants/tanStackQueryKeys";
+import { Notebook } from "@/models/Notebook";
 import { NotebooksContent } from "@/modules/notebooks/list/NotebooksContent";
 import { NotebooksEmptyCTA } from "@/modules/notebooks/list/NotebooksEmptyCTA";
-import { getUserOrRedirect } from "@/utils/getUserOrRedirect";
+import { getQueryClient } from "@/utils/getQueryClient";
 
 const NotebooksPage = async () => {
-  const user = await getUserOrRedirect();
-  const notebooks = await dbGetNotebooks({
-    ownerId: user.id,
-    status: STATUSES.ACTIVE,
-  });
+  const queryClient = getQueryClient();
+  const notebooks = queryClient.getQueryData<Notebook[]>(
+    TS_KEYS.ACTIVE_NOTEBOOKS,
+  );
 
-  if (!notebooks.length) {
-    return <NotebooksEmptyCTA />;
-  }
-
-  return <NotebooksContent />;
+  return notebooks?.length === 0 ? <NotebooksEmptyCTA /> : <NotebooksContent />;
 };
 
 export default NotebooksPage;

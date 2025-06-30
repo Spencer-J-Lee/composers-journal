@@ -17,6 +17,10 @@ export const apiGetNotebooks = async (
   );
 };
 
-export const apiGetTrashedNotebooks = async () => {
+export const apiGetActiveNotebooks = async (): Promise<Notebook[]> => {
+  return apiGetNotebooks({ status: STATUSES.ACTIVE });
+};
+
+export const apiGetTrashedNotebooks = async (): Promise<Notebook[]> => {
   return apiGetNotebooks({ status: STATUSES.TRASHED });
 };

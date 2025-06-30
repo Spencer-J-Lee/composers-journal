@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   faBook,
   faChevronDown,
@@ -10,9 +10,7 @@ import {
 
 import { Collapsible } from "@/components/Collapsible";
 import { routes } from "@/constants/routes";
-import { Notebook } from "@/models/Notebook";
-import { STATUSES } from "@/models/types/status";
-import { apiGetNotebooks } from "@/services/notebooks";
+import { useActiveNotebooks } from "@/hooks/cache/notebooks";
 
 import { TreeBranch } from "./TreeBranch";
 import { IconButton } from "../../../iconButtons/IconButton";
@@ -20,15 +18,11 @@ import { SidebarLinkButton } from "../../SidebarLinkButton";
 import { SidebarLinkIconButton } from "../../SidebarLinkIconButton";
 
 export const NotebooksAccordionMenu = () => {
-  const [notebooks, setNotebooks] = useState<Notebook[]>([]);
+  const { data, isPending } = useActiveNotebooks();
   const [show, setShow] = useState(true);
 
-  // TODO: setup redux
-  useEffect(() => {
-    apiGetNotebooks({ status: STATUSES.ACTIVE }).then((data) => {
-      setNotebooks(data);
-    });
-  }, []);
+  // TODO: handle loading UI
+  if (isPending) return "Loading...";
 
   return (
     <div>
@@ -41,7 +35,7 @@ export const NotebooksAccordionMenu = () => {
           Notebooks
         </SidebarLinkButton>
         <SidebarLinkIconButton href={routes.notebookCreate()} faIcon={faPlus} />
-        {notebooks.length > 0 && (
+        {data?.length && (
           <IconButton
             faIcon={show ? faChevronUp : faChevronDown}
             onClick={() => setShow((prev) => !prev)}
@@ -49,13 +43,13 @@ export const NotebooksAccordionMenu = () => {
         )}
       </div>
 
-      {notebooks.length > 0 && (
+      {data?.length && (
         <Collapsible show={show}>
           <ul className="space-y-1.5 pt-1.5">
-            {notebooks.map((notebook, i) => (
+            {data.map((notebook, i) => (
               <li key={notebook.name} className="flex items-center">
                 <TreeBranch
-                  variant={i === notebooks.length - 1 ? "bottom" : "middle"}
+                  variant={i === data.length - 1 ? "bottom" : "middle"}
                   className="-my-2 ml-5"
                   flexChild
                 />
