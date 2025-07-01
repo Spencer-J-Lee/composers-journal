@@ -1,12 +1,13 @@
+import { useState } from "react";
+import { faChevronDown,faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { Collapsible } from "@/components/Collapsible";
 import { SimpleFilters } from "@/components/SimpleFilters";
 import { Typography } from "@/components/Typography";
 import { useTrashedNotebooks } from "@/hooks/cache/notebooks";
 import { useSortedNotebooks } from "@/modules/notebooks/hooks/useSortedNotebooks";
 import { NotebookCard } from "@/modules/notebooks/list/NotebookCard";
-import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 
 export const NotebooksSection = () => {
   const { data: notebooks } = useTrashedNotebooks();

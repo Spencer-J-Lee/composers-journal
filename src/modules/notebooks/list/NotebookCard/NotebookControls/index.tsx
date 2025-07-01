@@ -48,20 +48,6 @@ export const NotebookControls = ({
     }
   };
 
-  const handleSoftDeleteNotebook = async ({ id, name }: Notebook) => {
-    if (!confirm(`Delete notebook: ${name}?`)) {
-      return;
-    }
-
-    try {
-      await softDeleteNotebook(id);
-      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.NOTEBOOK);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.DELETE.NOTEBOOK);
-    }
-  };
-
   const handleTrashNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Trash notebook: ${name}?`)) {
       return;
@@ -73,6 +59,20 @@ export const NotebookControls = ({
     } catch (err) {
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.TRASH.NOTEBOOK);
+    }
+  };
+
+  const handleSoftDeleteNotebook = async ({ id, name }: Notebook) => {
+    if (!confirm(`Delete notebook: ${name}?`)) {
+      return;
+    }
+
+    try {
+      await softDeleteNotebook(id);
+      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.NOTEBOOK);
+    } catch (err) {
+      console.error(err);
+      showErrorToast(ERROR_MESSAGES.USER.DELETE.NOTEBOOK);
     }
   };
 
