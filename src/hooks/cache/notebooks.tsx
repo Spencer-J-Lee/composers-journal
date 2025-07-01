@@ -8,16 +8,9 @@ import {
   apiRestoreNotebook,
   apiSoftDeleteNotebook,
   apiTrashNotebook,
+  apiUpdateNotebook,
 } from "@/services/notebooks";
 import { apiCreateNotebook } from "@/services/notebooks/create";
-import { apiGetActiveNotebookById } from "@/services/notebooks/get";
-
-export const useEditingNotebook = (id: Notebook["id"]) => {
-  return useQuery({
-    queryKey: TS_KEYS.NOTEBOOK_BEING_EDITED,
-    queryFn: () => apiGetActiveNotebookById(id),
-  });
-};
 
 export const useActiveNotebooks = () => {
   return useQuery({
@@ -102,6 +95,30 @@ export const useSoftDeleteNotebook = () => {
 
       // Ensure data integrity with follow-up revalidation
       queryClient.invalidateQueries({ queryKey: TS_KEYS.TRASHED_NOTEBOOKS });
+    },
+  });
+};
+
+export const useEditNotebook = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: apiUpdateNotebook,
+    onSuccess: (notebook: Notebook) => {
+      // Maximize UI update speed through manual data manipulation
+      queryClient.setQueryData<Notebook[]>(TS_KEYS.ACTIVE_NOTEBOOKS, (prev) => {
+        for (const nb of prev ?? []) {
+          if (nb.id === notebook.id) {
+            nb.name = notebook.name;
+            break;
+          }
+        }
+
+        return prev;
+      });
+
+      // Ensure data integrity with follow-up revalidation
+      queryClient.invalidateQueries({ queryKey: TS_KEYS.ACTIVE_NOTEBOOKS });
     },
   });
 };

@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 
 import { SUCCESS_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
+import { useEditNotebook } from "@/hooks/cache/notebooks";
 import { Notebook } from "@/models/Notebook";
-import { apiUpdateNotebook } from "@/services/notebooks";
 import { showSuccessToast } from "@/utils/client/toasts";
 
 import { NotebookForm } from "../components/NotebookForm";
@@ -17,9 +17,10 @@ type EditNotebookFormProps = {
 
 export const EditNotebookForm = ({ notebook }: EditNotebookFormProps) => {
   const router = useRouter();
+  const { mutateAsync: editNotebook } = useEditNotebook();
 
   const handleSuccess = async (data: NotebookFormValues) => {
-    await apiUpdateNotebook({
+    await editNotebook({
       id: notebook.id,
       name: data.name.trim(),
     });

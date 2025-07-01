@@ -19,11 +19,6 @@ export const apiGetNotebooks = async (
   );
 };
 
-export const apiGetActiveNotebookById = async (id: Notebook["id"]) => {
-  const res = await apiGetNotebooks({ id, status: STATUSES.ACTIVE });
-  return res.length === 1 ? res[0] : null;
-};
-
 export const apiGetActiveNotebooks = async (): Promise<Notebook[]> => {
   return apiGetNotebooks({ status: STATUSES.ACTIVE });
 };
