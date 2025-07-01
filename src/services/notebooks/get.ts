@@ -6,7 +6,9 @@ import { LimitOption } from "../types";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 import { genUrlWithSearchParams } from "../utils/genUrlWithSearchParams";
 
-export type apiGetNotebooksProps = Partial<Pick<Notebook, "name" | "status">> &
+export type apiGetNotebooksProps = Partial<
+  Pick<Notebook, "id" | "name" | "status">
+> &
   LimitOption;
 
 export const apiGetNotebooks = async (
@@ -15,6 +17,11 @@ export const apiGetNotebooks = async (
   return await fetchWithErrorHandling<Notebook[]>(
     genUrlWithSearchParams(API_PATHS.NOTEBOOKS.ROOT, props),
   );
+};
+
+export const apiGetActiveNotebookById = async (id: Notebook["id"]) => {
+  const res = await apiGetNotebooks({ id, status: STATUSES.ACTIVE });
+  return res.length === 1 ? res[0] : null;
 };
 
 export const apiGetActiveNotebooks = async (): Promise<Notebook[]> => {

@@ -3,7 +3,7 @@ import { and, desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
-import { Status } from "@/models/types/status";
+import { Status, STATUSES } from "@/models/types/status";
 import { LimitOption } from "@/services/types";
 
 type dbGetNotebooksProps = Partial<
@@ -34,4 +34,9 @@ export const dbGetNotebooks = async ({
     ...notebook,
     status: notebook.status as Status,
   }));
+};
+
+export const dbGetActiveNotebookById = async (id: Notebook["id"]) => {
+  const res = await dbGetNotebooks({ id, status: STATUSES.ACTIVE });
+  return res.length === 1 ? res[0] : null;
 };

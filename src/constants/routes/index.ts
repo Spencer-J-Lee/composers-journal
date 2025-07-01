@@ -133,6 +133,10 @@ class Routes {
   trash() {
     return `${this.workspace()}/trash`;
   }
+
+  notFound() {
+    return `/not-found`;
+  }
 }
 
 export const routes = new Routes();

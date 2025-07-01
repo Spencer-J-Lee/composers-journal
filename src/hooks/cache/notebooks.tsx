@@ -10,6 +10,14 @@ import {
   apiTrashNotebook,
 } from "@/services/notebooks";
 import { apiCreateNotebook } from "@/services/notebooks/create";
+import { apiGetActiveNotebookById } from "@/services/notebooks/get";
+
+export const useEditingNotebook = (id: Notebook["id"]) => {
+  return useQuery({
+    queryKey: TS_KEYS.NOTEBOOK_BEING_EDITED,
+    queryFn: () => apiGetActiveNotebookById(id),
+  });
+};
 
 export const useActiveNotebooks = () => {
   return useQuery({

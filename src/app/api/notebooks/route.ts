@@ -32,6 +32,7 @@ export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
     const params = {
+      id: getQueryInt(searchParams, "id"),
       name: getQueryString(searchParams, "name"),
       status: getQueryValue<Status>(searchParams, "status"),
       limit: getQueryInt(searchParams, "limit"),
@@ -39,11 +40,13 @@ export const GET = async (req: NextRequest) => {
 
     const schema = notebookSchema
       .pick({
+        id: true,
         name: true,
         status: true,
       })
       .merge(limitSchema)
       .partial({
+        id: true,
         name: true,
         status: true,
         limit: true,
