@@ -47,7 +47,7 @@ export const NotebooksContent = () => {
         <ul className="flex flex-col gap-4">
           {sortedNotebooks.map((notebook) => (
             <li key={notebook.name}>
-              <NotebookCard notebook={notebook} />
+              <NotebookCard notebook={notebook} controls={["edit", "trash"]} />
             </li>
           ))}
         </ul>
