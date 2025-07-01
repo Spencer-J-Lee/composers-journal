@@ -5,8 +5,8 @@ import { Sidebar } from "@/components/Sidebar";
 import { TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { dbGetNotebooks } from "@/db/queries/notebooks";
 import { STATUSES } from "@/models/types/status";
-import { makeQueryClient } from "@/utils/server/makeQueryClient";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
+import { makeQueryClient } from "@/utils/server/makeQueryClient";
 
 const ProtectedLayout = async ({
   children,
