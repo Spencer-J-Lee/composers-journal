@@ -3,15 +3,20 @@ import clsx from "clsx";
 
 import { ELEMENT_IDS } from "@/constants/elementIds";
 
-export type PageWrapperBaseProps = {
+import { maxWidthClassName } from "./styles";
+import { MaxWidth } from "./types";
+
+type PageWrapperProps = {
   children: ReactNode;
+  maxWidth: MaxWidth;
   className?: string;
 };
 
-export const PageWrapperBase = ({
+export const PageWrapper = ({
   children,
   className,
-}: PageWrapperBaseProps) => {
+  maxWidth,
+}: PageWrapperProps) => {
   return (
     <main
       id={ELEMENT_IDS.MAIN_CONTENT}
@@ -20,7 +25,9 @@ export const PageWrapperBase = ({
         className,
       )}
     >
-      {children}
+      <div className={clsx("w-full", maxWidthClassName[maxWidth])}>
+        {children}
+      </div>
     </main>
   );
 };
