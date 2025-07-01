@@ -14,10 +14,10 @@ import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 import { NotebooksEmptyCTA } from "./NotebooksEmptyCTA";
 
 export const NotebooksContent = () => {
-  const { data, isPending } = useActiveNotebooks();
+  const { data: notebooks, isPending } = useActiveNotebooks();
   const { mutateAsync: trashNotebook } = useTrashNotebook();
 
-  if (!data) return <NotebooksEmptyCTA />;
+  if (!notebooks) return <NotebooksEmptyCTA />;
 
   // TODO: handle loading UI
   if (isPending) return "Loading...";
@@ -38,7 +38,7 @@ export const NotebooksContent = () => {
 
   return (
     <ul className="flex flex-col gap-4">
-      {data.map((notebook) => (
+      {notebooks.map((notebook) => (
         <li key={notebook.name}>
           <Card className="flex items-center gap-x-2" paddingSize="sm">
             {notebook.name}

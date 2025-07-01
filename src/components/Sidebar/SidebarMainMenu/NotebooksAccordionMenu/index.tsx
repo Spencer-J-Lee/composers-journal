@@ -18,7 +18,7 @@ import { SidebarLinkButton } from "../../SidebarLinkButton";
 import { SidebarLinkIconButton } from "../../SidebarLinkIconButton";
 
 export const NotebooksAccordionMenu = () => {
-  const { data, isPending } = useActiveNotebooks();
+  const { data: notebooks, isPending } = useActiveNotebooks();
   const [show, setShow] = useState(true);
 
   // TODO: handle loading UI
@@ -35,7 +35,7 @@ export const NotebooksAccordionMenu = () => {
           Notebooks
         </SidebarLinkButton>
         <SidebarLinkIconButton href={routes.notebookCreate()} faIcon={faPlus} />
-        {!!data?.length && (
+        {!!notebooks?.length && (
           <IconButton
             faIcon={show ? faChevronUp : faChevronDown}
             onClick={() => setShow((prev) => !prev)}
@@ -43,13 +43,13 @@ export const NotebooksAccordionMenu = () => {
         )}
       </div>
 
-      {!!data?.length && (
+      {!!notebooks?.length && (
         <Collapsible show={show}>
           <ul className="space-y-1.5 pt-1.5">
-            {data.map((notebook, i) => (
+            {notebooks.map((notebook, i) => (
               <li key={notebook.name} className="flex items-center">
                 <TreeBranch
-                  variant={i === data.length - 1 ? "bottom" : "middle"}
+                  variant={i === notebooks.length - 1 ? "bottom" : "middle"}
                   className="-my-2 ml-5"
                   flexChild
                 />
