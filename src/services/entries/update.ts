@@ -7,7 +7,6 @@ import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 type apiUpdateEntryProps = Pick<Entry, "id"> &
   Partial<Pick<Entry, "title" | "description" | "status" | "notebookId">>;
 
-// TODO: setup redux
 export const apiUpdateEntry = async (
   props: apiUpdateEntryProps,
 ): Promise<Entry> => {
@@ -20,32 +19,23 @@ export const apiUpdateEntry = async (
   });
 };
 
-// TODO: setup redux
-export const apiRestoreEntry = async (
-  props: Pick<Entry, "id">,
-): Promise<Entry> => {
+export const apiRestoreEntry = async (id: Entry["id"]): Promise<Entry> => {
   return apiUpdateEntry({
-    ...props,
+    id,
     status: STATUSES.ACTIVE,
   });
 };
 
-// TODO: setup redux
-export const apiTrashEntry = async (
-  props: Pick<Entry, "id">,
-): Promise<Entry> => {
+export const apiTrashEntry = async (id: Entry["id"]): Promise<Entry> => {
   return apiUpdateEntry({
-    ...props,
+    id,
     status: STATUSES.TRASHED,
   });
 };
 
-// TODO: setup redux
-export const apiSoftDeleteEntry = async (
-  props: Pick<Entry, "id">,
-): Promise<Entry> => {
+export const apiSoftDeleteEntry = async (id: Entry["id"]): Promise<Entry> => {
   return apiUpdateEntry({
-    ...props,
+    id,
     status: STATUSES.DELETED,
   });
 };

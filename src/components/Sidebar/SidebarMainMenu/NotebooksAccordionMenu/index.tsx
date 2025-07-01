@@ -35,7 +35,7 @@ export const NotebooksAccordionMenu = () => {
           Notebooks
         </SidebarLinkButton>
         <SidebarLinkIconButton href={routes.notebookCreate()} faIcon={faPlus} />
-        {data?.length && (
+        {!!data?.length && (
           <IconButton
             faIcon={show ? faChevronUp : faChevronDown}
             onClick={() => setShow((prev) => !prev)}
@@ -43,7 +43,7 @@ export const NotebooksAccordionMenu = () => {
         )}
       </div>
 
-      {data?.length && (
+      {!!data?.length && (
         <Collapsible show={show}>
           <ul className="space-y-1.5 pt-1.5">
             {data.map((notebook, i) => (

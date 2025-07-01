@@ -28,7 +28,7 @@ export const NotebooksContent = () => {
     }
 
     try {
-      await trashNotebook({ id });
+      await trashNotebook(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.TRASH.NOTEBOOK);
     } catch (err) {
       console.error(err);

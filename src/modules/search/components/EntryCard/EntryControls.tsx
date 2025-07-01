@@ -33,7 +33,7 @@ export const EntryControls = ({ entry }: EntryControlsProps) => {
     }
 
     try {
-      await apiTrashEntry({ id });
+      await apiTrashEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.TRASH.ENTRY);
     } catch (err) {
       console.error(err);

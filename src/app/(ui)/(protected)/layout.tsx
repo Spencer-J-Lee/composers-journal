@@ -14,8 +14,8 @@ const ProtectedLayout = async ({
   children: React.ReactNode;
 }>) => {
   const user = await getUserSSOrRedirect();
-
   const queryClient = makeQueryClient();
+
   await queryClient.prefetchQuery({
     queryKey: TS_KEYS.ACTIVE_NOTEBOOKS,
     queryFn: () =>

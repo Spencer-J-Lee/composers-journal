@@ -1,48 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import {
   faTrashCan,
   faTrashCanArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { IconButton } from "@/components/iconButtons/IconButton";
+import { Typography } from "@/components/Typography";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
+import {
+  useRestoreEntry,
+  useSoftDeleteEntry,
+  useTrashedEntries,
+} from "@/hooks/cache/entries";
+import {
+  useRestoreNotebook,
+  useSoftDeleteNotebook,
+  useTrashedNotebooks,
+} from "@/hooks/cache/notebooks";
 import { Entry } from "@/models/Entry";
 import { Notebook } from "@/models/Notebook";
-import {
-  apiGetTrashedEntries,
-  apiRestoreEntry,
-  apiSoftDeleteEntry,
-} from "@/services/entries";
-import {
-  apiGetTrashedNotebooks,
-  apiRestoreNotebook,
-  apiSoftDeleteNotebook,
-} from "@/services/notebooks";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 export const TrashContent = () => {
-  const [notebooks, setNotebooks] = useState<Notebook[]>([]);
-  const [entries, setEntries] = useState<Entry[]>([]);
+  const { data: notebooks } = useTrashedNotebooks();
+  const { data: entries } = useTrashedEntries();
+  const { mutateAsync: restoreNotebook } = useRestoreNotebook();
+  const { mutateAsync: softDeleteNotebook } = useSoftDeleteNotebook();
+  const { mutateAsync: restoreEntry } = useRestoreEntry();
+  const { mutateAsync: softDeleteEntry } = useSoftDeleteEntry();
 
-  // TODO: setup redux
-  useEffect(() => {
-    apiGetTrashedNotebooks().then((data) => {
-      setNotebooks(data);
-    });
-    apiGetTrashedEntries().then((data) => {
-      setEntries(data);
-    });
-  }, []);
-
-  const restoreNotebook = async ({ id, name }: Notebook) => {
+  const handleRestoreNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Restore notebook: ${name}?`)) {
       return;
     }
 
     try {
-      await apiRestoreNotebook({ id });
+      await restoreNotebook(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.RESTORE.NOTEBOOK);
     } catch (err) {
       console.error(err);
@@ -50,13 +44,13 @@ export const TrashContent = () => {
     }
   };
 
-  const softDeleteNotebook = async ({ id, name }: Notebook) => {
+  const handleSoftDeleteNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Delete notebook: ${name}?`)) {
       return;
     }
 
     try {
-      await apiSoftDeleteNotebook({ id });
+      await softDeleteNotebook(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.NOTEBOOK);
     } catch (err) {
       console.error(err);
@@ -64,13 +58,13 @@ export const TrashContent = () => {
     }
   };
 
-  const restoreEntry = async ({ id, title }: Entry) => {
+  const handleRestoreEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Restore entry: ${title}?`)) {
       return;
     }
 
     try {
-      await apiRestoreEntry({ id });
+      await restoreEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.RESTORE.ENTRY);
     } catch (err) {
       console.error(err);
@@ -78,13 +72,13 @@ export const TrashContent = () => {
     }
   };
 
-  const softDeleteEntry = async ({ id, title }: Entry) => {
+  const handleSoftDeleteEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Delete entry: ${title}?`)) {
       return;
     }
 
     try {
-      await apiSoftDeleteEntry({ id });
+      await softDeleteEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.ENTRY);
     } catch (err) {
       console.error(err);
@@ -93,38 +87,52 @@ export const TrashContent = () => {
   };
 
   return (
-    <ul className="flex flex-col gap-4">
-      {notebooks.map((notebook) => (
-        <li className="flex gap-x-2" key={notebook.id}>
-          {notebook.name}
-          <IconButton
-            faIcon={faTrashCanArrowUp}
-            onClick={() => restoreNotebook(notebook)}
-            textVariant="positive"
-          />
-          <IconButton
-            faIcon={faTrashCan}
-            onClick={() => softDeleteNotebook(notebook)}
-            textVariant="negative"
-          />
-        </li>
-      ))}
+    <>
+      {!!notebooks?.length && (
+        <section>
+          <Typography variant="h2">Notebooks</Typography>
+          <ul className="flex flex-col gap-4">
+            {notebooks.map((notebook) => (
+              <li className="flex gap-x-2" key={notebook.id}>
+                {notebook.name}
+                <IconButton
+                  faIcon={faTrashCanArrowUp}
+                  onClick={() => handleRestoreNotebook(notebook)}
+                  textVariant="positive"
+                />
+                <IconButton
+                  faIcon={faTrashCan}
+                  onClick={() => handleSoftDeleteNotebook(notebook)}
+                  textVariant="negative"
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
-      {entries.map((entry) => (
-        <li className="flex gap-x-2" key={entry.id}>
-          {entry.title}
-          <IconButton
-            faIcon={faTrashCanArrowUp}
-            onClick={() => restoreEntry(entry)}
-            textVariant="positive"
-          />
-          <IconButton
-            faIcon={faTrashCan}
-            onClick={() => softDeleteEntry(entry)}
-            textVariant="negative"
-          />
-        </li>
-      ))}
-    </ul>
+      {!!entries?.length && (
+        <section>
+          <Typography variant="h2">Entries</Typography>
+          <ul className="flex flex-col gap-4">
+            {entries.map((entry) => (
+              <li className="flex gap-x-2" key={entry.id}>
+                {entry.title}
+                <IconButton
+                  faIcon={faTrashCanArrowUp}
+                  onClick={() => handleRestoreEntry(entry)}
+                  textVariant="positive"
+                />
+                <IconButton
+                  faIcon={faTrashCan}
+                  onClick={() => handleSoftDeleteEntry(entry)}
+                  textVariant="negative"
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </>
   );
 };

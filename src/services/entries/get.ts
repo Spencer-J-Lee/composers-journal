@@ -26,6 +26,10 @@ export const apiGetActiveEntriesForNotebook = async (
   });
 };
 
+export const apiGetActiveEntries = async () => {
+  return apiGetEntries({ status: STATUSES.ACTIVE });
+};
+
 export const apiGetTrashedEntries = async () => {
   return apiGetEntries({ status: STATUSES.TRASHED });
 };
