@@ -5,7 +5,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { dbGetNotebooks } from "@/db/queries/notebooks";
 import { STATUSES } from "@/models/types/status";
-import { getQueryClient } from "@/utils/getQueryClient";
+import { makeQueryClient } from "@/utils/server/makeQueryClient";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
 
 const ProtectedLayout = async ({
@@ -15,7 +15,7 @@ const ProtectedLayout = async ({
 }>) => {
   const user = await getUserSSOrRedirect();
 
-  const queryClient = getQueryClient();
+  const queryClient = makeQueryClient();
   await queryClient.prefetchQuery({
     queryKey: TS_KEYS.ACTIVE_NOTEBOOKS,
     queryFn: () =>
