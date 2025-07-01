@@ -19,11 +19,14 @@ export const Results = () => {
   }, []);
 
   return (
-    <section className="bg-background-light flex-1 px-8 py-5">
+    <section className="bg-background-light flex-1">
       <ul className="flex flex-col gap-4">
         {entries.map((entry) => (
           <li key={entry.id}>
-            <EntryCard entry={entry} />
+            <EntryCard
+              entry={entry}
+              controls={["edit", "save", "unsave", "trash"]}
+            />
           </li>
         ))}
       </ul>

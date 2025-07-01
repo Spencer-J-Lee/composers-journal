@@ -28,7 +28,10 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
       <ul className="flex flex-col gap-4">
         {entries.map((entry) => (
           <li key={entry.id}>
-            <EntryCard entry={entry} />
+            <EntryCard
+              entry={entry}
+              controls={["edit", "save", "unsave", "trash"]}
+            />
           </li>
         ))}
       </ul>

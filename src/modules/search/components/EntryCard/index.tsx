@@ -7,15 +7,18 @@ import { Entry } from "@/models/Entry";
 import { Tags } from "@/modules/tags/components/Tags";
 
 import { EntryControls } from "./EntryControls";
+import { EntryControl } from "./EntryControls/types";
 import { EntryInfo } from "./EntryInfo";
 
 type EntryCardProps = {
   entry: Entry;
+  controls: EntryControl[];
   defaultShowTags?: boolean;
 };
 
 export const EntryCard = ({
   entry,
+  controls,
   defaultShowTags = false,
 }: EntryCardProps) => {
   const { tags } = entry;
@@ -24,7 +27,7 @@ export const EntryCard = ({
   return (
     <Card paddingSize="none">
       <div className="flex">
-        <EntryControls entry={entry} />
+        <EntryControls entry={entry} controls={controls} />
 
         <EntryInfo
           entry={entry}
