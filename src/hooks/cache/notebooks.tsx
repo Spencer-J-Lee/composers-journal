@@ -18,9 +18,16 @@ export const useCreateNotebook = () => {
   return useMutation({
     mutationFn: apiCreateNotebook,
     onSuccess: (notebook: Notebook) => {
+      // Maximize UI update speed through manual data insertion
       queryClient.setQueryData<Notebook[]>(TS_KEYS.ACTIVE_NOTEBOOKS, (prev) =>
-        prev ? [notebook, ...prev] : [notebook],
+        prev ? [...prev, notebook] : [notebook],
       );
+
+      // Ensure data integrity with follow-up revalidation
+      queryClient.invalidateQueries({ queryKey: TS_KEYS.ACTIVE_NOTEBOOKS });
+    },
+  });
+};
     },
   });
 };
