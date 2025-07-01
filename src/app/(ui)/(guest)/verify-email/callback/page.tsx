@@ -1,5 +1,5 @@
 import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
-import { VerifyEmailCallbackContent } from "@/modules/verifyEmail/components/VerifyEmailCallbackContent";
+import { VerifyEmailCallbackContent } from "@/modules/auth/verifyEmail/VerifyEmailCallbackContent";
 
 /**
  * This page acts as an intermediary to verify authentication before
