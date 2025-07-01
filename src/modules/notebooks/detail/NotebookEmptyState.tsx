@@ -2,9 +2,13 @@ import { LinkButton } from "@/components/buttons/LinkButton";
 import { ASSET_PATHS } from "@/constants/assetPaths";
 import { routes } from "@/constants/routes";
 
-import { EmptyState } from "../components/EmptyState";
+import { EmptyState } from "../../../components/EmptyState";
 
-export const NotebooksEmptyCTA = () => {
+export type NotebookEmptyStateProps = {
+  notebookId: number;
+};
+
+export const NotebookEmptyState = ({ notebookId }: NotebookEmptyStateProps) => {
   return (
     <div className="flex min-h-full w-full items-center justify-center">
       <EmptyState
@@ -12,10 +16,12 @@ export const NotebooksEmptyCTA = () => {
           src: ASSET_PATHS.EMPTY_STATE_WRITING,
           alt: "Cartoon character writing lines with giant pencil.",
         }}
-        title="No notebooks yet"
+        title="No entries yet"
         description="Start by creating a new one"
       >
-        <LinkButton href={routes.notebookCreate()}>Get Started</LinkButton>
+        <LinkButton href={routes.entryCreate(notebookId)}>
+          Get Started
+        </LinkButton>
       </EmptyState>
     </div>
   );

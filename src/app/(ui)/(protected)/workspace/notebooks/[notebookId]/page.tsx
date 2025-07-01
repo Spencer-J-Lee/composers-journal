@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import { dbGetEntries } from "@/db/queries/entries";
 import { STATUSES } from "@/models/types/status";
 import { NotebookContent } from "@/modules/notebooks/detail/NotebookContent";
-import { NotebookEmptyCTA } from "@/modules/notebooks/detail/NotebookEmptyCTA";
+
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
+import { NotebookEmptyState } from "@/modules/notebooks/detail/NotebookEmptyState";
 
 type NotebookPageProps = {
   params: { notebookId: string };
@@ -26,7 +27,7 @@ const NotebookPage = async ({ params }: NotebookPageProps) => {
   });
 
   if (!entries.length) {
-    return <NotebookEmptyCTA notebookId={parsedNotebookId} />;
+    return <NotebookEmptyState notebookId={parsedNotebookId} />;
   }
 
   return <NotebookContent notebookId={parsedNotebookId} />;

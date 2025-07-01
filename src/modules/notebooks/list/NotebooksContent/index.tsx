@@ -5,16 +5,18 @@ import { useActiveNotebooks } from "@/hooks/cache/notebooks";
 import { SimpleFilters } from "../../../../components/SimpleFilters";
 import { useSortedNotebooks } from "../../hooks/useSortedNotebooks";
 import { NotebookCard } from "../NotebookCard";
-import { NotebooksEmptyCTA } from "../NotebooksEmptyCTA";
+import { NotebooksEmptyState } from "../NotebooksEmptyState";
 
 export const NotebooksContent = () => {
   const { data: notebooks, isPending } = useActiveNotebooks();
   const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
 
-  if (!notebooks) return <NotebooksEmptyCTA />;
-
   // TODO: handle loading UI
   if (isPending) return "Loading...";
+
+  if (!notebooks) {
+    return <NotebooksEmptyState />;
+  }
 
   return (
     <>
