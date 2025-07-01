@@ -1,6 +1,5 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
-import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { Sidebar } from "@/components/Sidebar";
 import { TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { dbGetNotebooks } from "@/db/queries/notebooks";
@@ -26,7 +25,7 @@ const ProtectedLayout = async ({
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="flex min-h-screen">
         <Sidebar />
-        <WorkspacePageWrapper>{children}</WorkspacePageWrapper>
+        {children}
       </div>
     </HydrationBoundary>
   );
