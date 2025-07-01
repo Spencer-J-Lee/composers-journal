@@ -1,9 +1,10 @@
 import { Notebook } from "@/models/Notebook";
+import { STATUSES } from "@/models/types/status";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-type apiCreateNotebookProps = Pick<Notebook, "name" | "status">;
+type apiCreateNotebookProps = Pick<Notebook, "name">;
 
 // TODO: setup redux
 export const apiCreateNotebook = async (
@@ -14,6 +15,9 @@ export const apiCreateNotebook = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(props),
+    body: JSON.stringify({
+      ...props,
+      status: STATUSES.ACTIVE,
+    }),
   });
 };
