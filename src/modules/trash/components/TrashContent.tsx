@@ -105,6 +105,9 @@ export const TrashContent = () => {
                   onClick={() => handleSoftDeleteNotebook(notebook)}
                   textVariant="negative"
                 />
+                <small className="text-text-muted">
+                  Created: {new Date(notebook.createdAt).toLocaleDateString()}
+                </small>
               </li>
             ))}
           </ul>
@@ -128,6 +131,9 @@ export const TrashContent = () => {
                   onClick={() => handleSoftDeleteEntry(entry)}
                   textVariant="negative"
                 />
+                <small className="text-text-muted">
+                  Created: {new Date(entry.createdAt).toLocaleDateString()}
+                </small>
               </li>
             ))}
           </ul>
