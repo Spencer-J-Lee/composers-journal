@@ -3,9 +3,8 @@ import { notFound } from "next/navigation";
 import { dbGetEntries } from "@/db/queries/entries";
 import { STATUSES } from "@/models/types/status";
 import { NotebookContent } from "@/modules/notebooks/detail/NotebookContent";
-
-import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
 import { NotebookEmptyState } from "@/modules/notebooks/detail/NotebookEmptyState";
+import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
 
 type NotebookPageProps = {
   params: { notebookId: string };
