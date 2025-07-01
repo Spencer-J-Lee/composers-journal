@@ -1,3 +1,4 @@
+@ -1,60 +0,0 @@
 "use client";
 
 import { faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
