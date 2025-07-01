@@ -7,28 +7,28 @@ import { IconButton } from "@/components/iconButtons/IconButton";
 import { LinkIconButton } from "@/components/iconButtons/LinkIconButton";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
-import { useActiveNotebooks } from "@/hooks/cache/notebooks";
+import { useActiveNotebooks, useTrashNotebook } from "@/hooks/cache/notebooks";
 import { Notebook } from "@/models/Notebook";
-import { apiTrashNotebook } from "@/services/notebooks";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 import { NotebooksEmptyCTA } from "./NotebooksEmptyCTA";
 
 export const NotebooksContent = () => {
   const { data, isPending } = useActiveNotebooks();
+  const { mutateAsync: trashNotebook } = useTrashNotebook();
 
   if (!data) return <NotebooksEmptyCTA />;
 
   // TODO: handle loading UI
   if (isPending) return "Loading...";
 
-  const trashNotebook = async ({ id, name }: Notebook) => {
+  const handleTrashNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Trash notebook: ${name}?`)) {
       return;
     }
 
     try {
-      await apiTrashNotebook({ id });
+      await trashNotebook({ id });
       showSuccessToast(SUCCESS_MESSAGES.USER.TRASH.NOTEBOOK);
     } catch (err) {
       console.error(err);
@@ -49,7 +49,7 @@ export const NotebooksContent = () => {
             />
             <IconButton
               faIcon={faTrashCan}
-              onClick={() => trashNotebook(notebook)}
+              onClick={() => handleTrashNotebook(notebook)}
               textVariant="negative"
             />
           </Card>

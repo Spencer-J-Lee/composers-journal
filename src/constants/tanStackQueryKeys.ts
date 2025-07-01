@@ -1,6 +1,7 @@
 const KEYS = {
   NOTEBOOKS: "notebooks",
   ACTIVE: "active",
+  TRASHED: "trashed",
 } as const;
 
 /**
@@ -8,4 +9,5 @@ const KEYS = {
  */
 export const TS_KEYS: Record<string, string[]> = {
   ACTIVE_NOTEBOOKS: [KEYS.NOTEBOOKS, KEYS.ACTIVE],
+  TRASHED_NOTEBOOKS: [KEYS.NOTEBOOKS, KEYS.TRASHED],
 } as const;
