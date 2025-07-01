@@ -1,38 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
-
 import { useActiveNotebooks } from "@/hooks/cache/notebooks";
 
-import { NotebooksFilters } from "./NotebooksFilters";
-import { SortBy } from "./types";
+import { SimpleFilters } from "../../../../components/SimpleFilters";
+import { useSortedNotebooks } from "../../hooks/useSortedNotebooks";
 import { NotebookCard } from "../NotebookCard";
 import { NotebooksEmptyCTA } from "../NotebooksEmptyCTA";
 
 export const NotebooksContent = () => {
   const { data: notebooks, isPending } = useActiveNotebooks();
-  const [sortBy, setSortBy] = useState<SortBy>("latest");
-
-  const sortedNotebooks = useMemo(() => {
-    if (!notebooks) return [];
-
-    return notebooks.toSorted((a, b) => {
-      switch (sortBy) {
-        case "latest":
-          return (
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-          );
-        case "oldest":
-          return (
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-          );
-        case "name asc":
-          return b.name.localeCompare(a.name);
-        case "name desc":
-          return a.name.localeCompare(b.name);
-      }
-    });
-  }, [notebooks, sortBy]);
+  const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
 
   if (!notebooks) return <NotebooksEmptyCTA />;
 
@@ -41,7 +18,9 @@ export const NotebooksContent = () => {
 
   return (
     <>
-      <NotebooksFilters sortBy={sortBy} setSortBy={setSortBy} />
+      <div className="bg-background-light sticky top-0 p-4">
+        <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
+      </div>
 
       <div className="px-4 pb-4">
         <ul className="flex flex-col gap-4">
