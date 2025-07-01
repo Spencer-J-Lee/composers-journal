@@ -13,7 +13,7 @@ export const dbCreateEntry = async (
 ): Promise<Entry> => {
   const now = new Date();
 
-  const data = await db
+  const result = await db
     .insert(entries)
     .values([
       {
@@ -24,12 +24,15 @@ export const dbCreateEntry = async (
     ])
     .returning();
 
-  if (!data.length) {
+  if (!result.length) {
     throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
   }
 
   return {
-    ...data[0],
+    ...result[0],
+    createdAt: result[0].createdAt.toISOString(),
+    updatedAt: result[0].updatedAt.toISOString(),
+
     // TODO: figure out best way to pass tags here
     tags: [],
   };

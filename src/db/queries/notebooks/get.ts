@@ -33,6 +33,8 @@ export const dbGetNotebooks = async ({
   return result.map((notebook) => ({
     ...notebook,
     status: notebook.status as Status,
+    createdAt: notebook.createdAt.toISOString(),
+    updatedAt: notebook.updatedAt.toISOString(),
   }));
 };
 

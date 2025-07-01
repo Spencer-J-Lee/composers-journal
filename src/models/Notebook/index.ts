@@ -2,4 +2,6 @@ import { InferSelectModel } from "drizzle-orm";
 
 import { notebooks } from "@/db/schema";
 
-export type Notebook = InferSelectModel<typeof notebooks>;
+import { WithDateStrings } from "../types/status";
+
+export type Notebook = WithDateStrings<InferSelectModel<typeof notebooks>>;

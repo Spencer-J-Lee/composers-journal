@@ -22,5 +22,9 @@ export const dbUpdateNotebook = async ({
     .where(eq(notebooks.id, id))
     .returning();
 
-  return result[0];
+  return {
+    ...result[0],
+    createdAt: result[0].createdAt.toISOString(),
+    updatedAt: result[0].updatedAt.toISOString(),
+  };
 };

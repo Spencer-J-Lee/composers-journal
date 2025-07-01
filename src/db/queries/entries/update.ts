@@ -28,6 +28,9 @@ export const dbUpdateEntry = async ({
 
   return {
     ...result[0],
+    createdAt: result[0].createdAt.toISOString(),
+    updatedAt: result[0].updatedAt.toISOString(),
+
     // TODO: figure out best way to pass tags here
     tags: [],
   };

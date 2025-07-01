@@ -27,5 +27,9 @@ export const dbCreateNotebook = async ({
     throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
   }
 
-  return result[0];
+  return {
+    ...result[0],
+    createdAt: result[0].createdAt.toISOString(),
+    updatedAt: result[0].updatedAt.toISOString(),
+  };
 };

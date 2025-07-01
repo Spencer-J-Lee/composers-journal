@@ -3,8 +3,7 @@ import { db } from "@/db";
 import { savedItems } from "@/db/schema";
 import { SavedItem } from "@/models/SavedItem";
 
-type dbCreateSavedItemProps = Pick<SavedItem, "ownerId"> &
-  Partial<Pick<SavedItem, "entryId">>;
+type dbCreateSavedItemProps = Pick<SavedItem, "ownerId" | "entryId">;
 
 export const dbCreateSavedItem = async ({
   ownerId,
@@ -26,5 +25,9 @@ export const dbCreateSavedItem = async ({
     throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
   }
 
-  return result[0];
+  return {
+    ...result[0],
+    createdAt: result[0].createdAt.toISOString(),
+    updatedAt: result[0].updatedAt.toISOString(),
+  };
 };

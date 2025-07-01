@@ -36,12 +36,21 @@ export const dbGetEntries = async ({
     limit,
   });
 
-  const formattedData = result.map(({ entryTags, ...rest }) => {
-    return {
-      ...rest,
-      tags: entryTags.map((entryTag) => entryTag.tags),
-    };
-  });
+  const formattedData = result.map(
+    ({ entryTags, createdAt, updatedAt, ...props }) => {
+      return {
+        ...props,
+        createdAt: createdAt.toISOString(),
+        updatedAt: updatedAt.toISOString(),
+
+        tags: entryTags.map((entryTag) => ({
+          ...entryTag.tags,
+          createdAt: createdAt.toISOString(),
+          updatedAt: updatedAt.toISOString(),
+        })),
+      };
+    },
+  );
 
   return formattedData;
 };
