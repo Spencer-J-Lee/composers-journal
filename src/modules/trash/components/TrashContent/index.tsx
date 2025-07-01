@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { IconButton } from "@/components/iconButtons/IconButton";
+import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { Typography } from "@/components/Typography";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import {
@@ -13,50 +14,15 @@ import {
   useSoftDeleteEntry,
   useTrashedEntries,
 } from "@/hooks/cache/entries";
-import {
-  useRestoreNotebook,
-  useSoftDeleteNotebook,
-  useTrashedNotebooks,
-} from "@/hooks/cache/notebooks";
 import { Entry } from "@/models/Entry";
-import { Notebook } from "@/models/Notebook";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
+import { NotebooksSection } from "./NotebooksSection";
+
 export const TrashContent = () => {
-  const { data: notebooks } = useTrashedNotebooks();
   const { data: entries } = useTrashedEntries();
-  const { mutateAsync: restoreNotebook } = useRestoreNotebook();
-  const { mutateAsync: softDeleteNotebook } = useSoftDeleteNotebook();
   const { mutateAsync: restoreEntry } = useRestoreEntry();
   const { mutateAsync: softDeleteEntry } = useSoftDeleteEntry();
-
-  const handleRestoreNotebook = async ({ id, name }: Notebook) => {
-    if (!confirm(`Restore notebook: ${name}?`)) {
-      return;
-    }
-
-    try {
-      await restoreNotebook(id);
-      showSuccessToast(SUCCESS_MESSAGES.USER.RESTORE.NOTEBOOK);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.RESTORE.NOTEBOOK);
-    }
-  };
-
-  const handleSoftDeleteNotebook = async ({ id, name }: Notebook) => {
-    if (!confirm(`Delete notebook: ${name}?`)) {
-      return;
-    }
-
-    try {
-      await softDeleteNotebook(id);
-      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.NOTEBOOK);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.DELETE.NOTEBOOK);
-    }
-  };
 
   const handleRestoreEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Restore entry: ${title}?`)) {
@@ -87,32 +53,8 @@ export const TrashContent = () => {
   };
 
   return (
-    <>
-      {!!notebooks?.length && (
-        <section>
-          <Typography variant="h2">Notebooks</Typography>
-          <ul className="flex flex-col gap-4">
-            {notebooks.map((notebook) => (
-              <li className="flex gap-x-2" key={notebook.id}>
-                {notebook.name}
-                <IconButton
-                  faIcon={faTrashCanArrowUp}
-                  onClick={() => handleRestoreNotebook(notebook)}
-                  textVariant="positive"
-                />
-                <IconButton
-                  faIcon={faTrashCan}
-                  onClick={() => handleSoftDeleteNotebook(notebook)}
-                  textVariant="negative"
-                />
-                <small className="text-text-muted">
-                  Created: {new Date(notebook.createdAt).toLocaleDateString()}
-                </small>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+    <WorkspacePageWrapper>
+      <NotebooksSection />
 
       {!!entries?.length && (
         <section>
@@ -139,6 +81,6 @@ export const TrashContent = () => {
           </ul>
         </section>
       )}
-    </>
+    </WorkspacePageWrapper>
   );
 };
