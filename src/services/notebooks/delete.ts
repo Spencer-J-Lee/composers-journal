@@ -7,7 +7,6 @@ type apiDeleteNotebooksProps = {
   ids: Notebook["id"][];
 };
 
-// TODO: setup redux
 export const apiDeleteNotebooks = async (
   props: apiDeleteNotebooksProps,
 ): Promise<Notebook> => {

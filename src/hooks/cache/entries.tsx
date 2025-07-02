@@ -7,14 +7,6 @@ import {
   apiRestoreEntry,
   apiSoftDeleteEntry,
 } from "@/services/entries";
-import { apiGetActiveEntries } from "@/services/entries/get";
-
-export const useActiveEntries = () => {
-  return useQuery({
-    queryKey: TS_KEYS.ACTIVE_ENTRIES,
-    queryFn: () => apiGetActiveEntries(),
-  });
-};
 
 export const useTrashedEntries = () => {
   return useQuery({

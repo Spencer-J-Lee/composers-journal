@@ -6,7 +6,6 @@ import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
 type apiCreateNotebookProps = Pick<Notebook, "name">;
 
-// TODO: setup redux
 export const apiCreateNotebook = async (
   props: apiCreateNotebookProps,
 ): Promise<Notebook> => {
