@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 
 import { dbGetEntries } from "@/db/queries/entries";
 import { STATUSES } from "@/models/types/status";
-import { NotebookContent } from "@/modules/notebooks/detail/NotebookContent";
-import { NotebookEmptyState } from "@/modules/notebooks/detail/NotebookEmptyState";
+import { NotebookContent } from "@/modules/entries/list/NotebookContent";
+import { NotebookEmptyState } from "@/modules/entries/list/NotebookEmptyState";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
 
 type NotebookPageProps = {
