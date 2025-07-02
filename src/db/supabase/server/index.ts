@@ -31,4 +31,5 @@ export const createClientSS = async () => {
   });
 };
 
+// TODO: remove index files
 export { getUserSS };

@@ -1,3 +1,4 @@
+// TODO: remove index files
 import { dbCreateNotebook } from "./create";
 import { dbDeleteNotebooks } from "./delete";
 import { dbGetNotebooks } from "./get";

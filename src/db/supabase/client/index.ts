@@ -12,4 +12,5 @@ export const createClientCS = () => {
   return createBrowserClient(supabaseUrl, supabaseKey);
 };
 
+// TODO: remove index files
 export { getUserCS };

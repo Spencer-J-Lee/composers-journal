@@ -1,3 +1,4 @@
+// TODO: remove index files
 import { apiCreateNotebook } from "./create";
 import { apiDeleteNotebooks } from "./delete";
 import {
