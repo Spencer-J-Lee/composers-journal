@@ -7,7 +7,8 @@ export type TypographyVariant =
   | "h6"
   | "subtitle"
   | "body"
-  | "bodySmall";
+  | "bodySmall"
+  | "divider";
 
 export type TypographyHtmlTag =
   | "h1"

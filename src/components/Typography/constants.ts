@@ -11,6 +11,7 @@ export const typographyHtmlTags: Record<TypographyVariant, TypographyHtmlTag> =
     subtitle: "p",
     body: "p",
     bodySmall: "small",
+    divider: "p",
   };
 
 export const typographyStyles: Record<TypographyVariant, string> = {
@@ -23,4 +24,5 @@ export const typographyStyles: Record<TypographyVariant, string> = {
   subtitle: "text-sm font-medium text-muted-foreground",
   body: "text-base font-normal text-foreground",
   bodySmall: "text-sm font-normal text-foreground",
+  divider: "text-sm font-medium italic text-text-muted-divider",
 };

@@ -12,7 +12,7 @@ export const Divider = ({
   flexChild,
 }: DividerProps) => {
   if (orientation === "horizontal") {
-    return <hr className={clsx("border-border w-full border-b", className)} />;
+    return <div className={clsx("border-border w-full border-b", className)} />;
   }
 
   if (orientation === "vertical") {
