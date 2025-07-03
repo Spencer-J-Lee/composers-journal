@@ -21,7 +21,7 @@ export const NotebooksAccordionMenu = () => {
   const { data: notebooks, isPending } = useActiveNotebooks();
   const [show, setShow] = useState(true);
 
-  // TODO: handle loading UI
+  // TODO: handle loading UI and error
   if (isPending) return "Loading...";
 
   return (

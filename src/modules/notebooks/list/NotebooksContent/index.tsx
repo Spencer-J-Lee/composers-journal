@@ -11,7 +11,7 @@ export const NotebooksContent = () => {
   const { data: notebooks, isPending } = useActiveNotebooks();
   const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
 
-  // TODO: handle loading UI
+  // TODO: handle loading UI and error
   if (isPending) return "Loading...";
 
   if (!notebooks) {
