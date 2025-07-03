@@ -1,7 +1,7 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { Sidebar } from "@/components/Sidebar";
-import { TS_KEYS } from "@/constants/tanStackQueryKeys";
+import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { dbGetNotebooks } from "@/db/queries/notebooks";
 import { STATUSES } from "@/models/types/status";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
@@ -16,7 +16,7 @@ const ProtectedLayout = async ({
   const queryClient = makeQueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: TS_KEYS.ACTIVE_NOTEBOOKS,
+    queryKey: STATIC_TS_KEYS.ACTIVE_NOTEBOOKS,
     queryFn: () =>
       dbGetNotebooks({ ownerId: user.id, status: STATUSES.ACTIVE }),
   });
