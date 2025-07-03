@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { CreateEntryContent } from "@/modules/entries/create/CreateEntryContent";
 
 type CreateEntryPageProps = {
-  params: { notebookId: string };
+  params: Promise<{ notebookId: string }>;
 };
 
 const CreateEntryPage = async ({ params }: CreateEntryPageProps) => {

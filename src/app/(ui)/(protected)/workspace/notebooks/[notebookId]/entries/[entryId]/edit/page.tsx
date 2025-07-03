@@ -4,7 +4,7 @@ import { dbGetEntries } from "@/db/queries/entries";
 import { EditEntryContent } from "@/modules/entries/edit/EditEntryContent";
 
 type EditEntryPageProps = {
-  params: { entryId: string };
+  params: Promise<{ entryId: string }>;
 };
 
 const EditEntryPage = async ({ params }: EditEntryPageProps) => {

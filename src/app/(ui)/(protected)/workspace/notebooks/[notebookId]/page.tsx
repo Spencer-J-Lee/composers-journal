@@ -7,7 +7,7 @@ import { NotebookEmptyState } from "@/modules/entries/list/NotebookEmptyState";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
 
 type NotebookPageProps = {
-  params: { notebookId: string };
+  params: Promise<{ notebookId: string }>;
 };
 
 const NotebookPage = async ({ params }: NotebookPageProps) => {

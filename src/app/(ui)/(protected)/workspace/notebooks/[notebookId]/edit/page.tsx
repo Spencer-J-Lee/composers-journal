@@ -4,7 +4,7 @@ import { dbGetActiveNotebookById } from "@/db/queries/notebooks/get";
 import { EditNotebookContent } from "@/modules/notebooks/edit/EditNotebookContent";
 
 type EditNotebookPageProps = {
-  params: { notebookId: string };
+  params: Promise<{ notebookId: string }>;
 };
 
 const EditNotebookPage = async ({ params }: EditNotebookPageProps) => {
