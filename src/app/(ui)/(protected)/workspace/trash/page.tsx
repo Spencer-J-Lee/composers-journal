@@ -1,6 +1,6 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
-import { TS_KEYS } from "@/constants/tanStackQueryKeys";
+import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { dbGetEntries } from "@/db/queries/entries";
 import { dbGetNotebooks } from "@/db/queries/notebooks";
 import { STATUSES } from "@/models/types/status";
@@ -13,7 +13,7 @@ const TrashPage = async () => {
   const queryClient = makeQueryClient();
 
   const fetchNotebooks = queryClient.prefetchQuery({
-    queryKey: TS_KEYS.TRASHED_NOTEBOOKS,
+    queryKey: STATIC_TS_KEYS.TRASHED_NOTEBOOKS,
     queryFn: () =>
       dbGetNotebooks({
         ownerId: user.id,
@@ -22,7 +22,7 @@ const TrashPage = async () => {
   });
 
   const fetchEntries = queryClient.prefetchQuery({
-    queryKey: TS_KEYS.TRASHED_ENTRIES,
+    queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
     queryFn: () =>
       dbGetEntries({
         ownerId: user.id,

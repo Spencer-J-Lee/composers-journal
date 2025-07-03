@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { TS_KEYS } from "@/constants/tanStackQueryKeys";
+import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { Entry } from "@/models/Entry";
 import {
   apiGetTrashedEntries,
@@ -10,7 +10,7 @@ import {
 
 export const useTrashedEntries = () => {
   return useQuery({
-    queryKey: TS_KEYS.TRASHED_ENTRIES,
+    queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
     queryFn: () => apiGetTrashedEntries(),
   });
 };
@@ -22,12 +22,15 @@ export const useRestoreEntry = () => {
     mutationFn: apiRestoreEntry,
     onSuccess: (entry: Entry) => {
       // Maximize UI update speed through manual data manipulation
-      queryClient.setQueryData<Entry[]>(TS_KEYS.TRASHED_ENTRIES, (prev) =>
-        prev ? prev.filter((en) => en.id !== entry.id) : [],
+      queryClient.setQueryData<Entry[]>(
+        STATIC_TS_KEYS.TRASHED_ENTRIES,
+        (prev) => (prev ? prev.filter((en) => en.id !== entry.id) : []),
       );
 
       // Ensure data integrity with follow-up revalidation
-      queryClient.invalidateQueries({ queryKey: TS_KEYS.TRASHED_ENTRIES });
+      queryClient.invalidateQueries({
+        queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
+      });
     },
   });
 };
@@ -39,12 +42,15 @@ export const useSoftDeleteEntry = () => {
     mutationFn: apiSoftDeleteEntry,
     onSuccess: (entry: Entry) => {
       // Maximize UI update speed through manual data manipulation
-      queryClient.setQueryData<Entry[]>(TS_KEYS.TRASHED_ENTRIES, (prev) =>
-        prev ? prev.filter((en) => en.id !== entry.id) : [],
+      queryClient.setQueryData<Entry[]>(
+        STATIC_TS_KEYS.TRASHED_ENTRIES,
+        (prev) => (prev ? prev.filter((en) => en.id !== entry.id) : []),
       );
 
       // Ensure data integrity with follow-up revalidation
-      queryClient.invalidateQueries({ queryKey: TS_KEYS.TRASHED_ENTRIES });
+      queryClient.invalidateQueries({
+        queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
+      });
     },
   });
 };
