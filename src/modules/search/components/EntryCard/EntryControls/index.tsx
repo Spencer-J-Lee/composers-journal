@@ -103,17 +103,25 @@ export const EntryControls = ({ entry, controls }: EntryControlsProps) => {
   };
 
   const controlMap: Record<EntryControl, JSX.Element> = {
-    edit: <LinkIconButton faIcon={faEdit} href={routes.entryEdit(entry)} />,
+    edit: (
+      <LinkIconButton
+        faIcon={faEdit}
+        href={routes.entryEdit(entry)}
+        key="edit"
+      />
+    ),
     save: (
       <IconButton
         faIcon={faBookmarkEmpty}
         onClick={() => handleSaveEntry(entry)}
+        key="save"
       />
     ),
     unsave: (
       <IconButton
         faIcon={faBookmark}
         onClick={() => handleUnsaveEntry(entry)}
+        key="unsave"
       />
     ),
     restore: (
@@ -129,6 +137,7 @@ export const EntryControls = ({ entry, controls }: EntryControlsProps) => {
         faIcon={faTrashCan}
         textVariant="negative"
         onClick={() => handleTrashEntry(entry)}
+        key="trash"
       />
     ),
     delete: (
