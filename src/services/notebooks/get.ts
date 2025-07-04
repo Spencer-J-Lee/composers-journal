@@ -1,15 +1,16 @@
+import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types/status";
 
 import { API_PATHS } from "../constants/apiPaths";
-import { LimitOption } from "../types";
+import { CommonApiOptions } from "../types";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 import { genUrlWithSearchParams } from "../utils/genUrlWithSearchParams";
 
 export type apiGetNotebooksProps = Partial<
   Pick<Notebook, "id" | "name" | "status">
 > &
-  LimitOption;
+  CommonApiOptions<typeof notebooks>;
 
 export const apiGetNotebooks = async (
   props: apiGetNotebooksProps,

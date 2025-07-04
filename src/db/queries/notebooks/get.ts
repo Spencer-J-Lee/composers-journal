@@ -4,12 +4,12 @@ import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 import { Status, STATUSES } from "@/models/types/status";
-import { LimitOption } from "@/services/types";
+import { CommonApiOptions } from "@/services/types";
 
 type dbGetNotebooksProps = Partial<
   Pick<Notebook, "ownerId" | "id" | "name" | "status">
 > &
-  LimitOption;
+  CommonApiOptions<typeof notebooks>;
 
 export const dbGetNotebooks = async ({
   ownerId,

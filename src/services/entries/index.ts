@@ -1,10 +1,6 @@
 // TODO: remove index files
 import { apiCreateEntry } from "./create";
-import {
-  apiGetActiveEntriesForNotebook,
-  apiGetEntries,
-  apiGetTrashedEntries,
-} from "./get";
+import { apiGetEntries, apiGetTrashedEntries } from "./get";
 import {
   apiRestoreEntry,
   apiSoftDeleteEntry,
@@ -14,7 +10,6 @@ import {
 
 export {
   apiCreateEntry,
-  apiGetActiveEntriesForNotebook,
   apiGetEntries,
   apiGetTrashedEntries,
   apiRestoreEntry,

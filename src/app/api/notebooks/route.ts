@@ -8,15 +8,17 @@ import {
   dbUpdateNotebook,
 } from "@/db/queries/notebooks";
 import { dbDeleteNotebooks } from "@/db/queries/notebooks/delete";
+import { notebooks as notebooksTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server";
 import { notebookSchema } from "@/models/Notebook/schema";
 import { Status } from "@/models/types/status";
-import { limitSchema } from "@/schemas/limitSchema";
+import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
 import {
   getQueryInt,
   getQueryString,
   getQueryValue,
 } from "@/services/utils/searchParamsGetters";
+import { OrderBy } from "@/types/query";
 import {
   respondWithError,
   respondWithInvalidInfoError,
@@ -44,21 +46,23 @@ export const GET = async (req: NextRequest) => {
         name: true,
         status: true,
       })
-      .merge(limitSchema)
       .partial({
         id: true,
         name: true,
         status: true,
-        limit: true,
-      });
+      })
+      .merge(commonApiParamsSchema);
+
     const safeParams = schema.safeParse(params);
     if (!safeParams.success) {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
+    const { orderBy, ...rest } = safeParams.data;
     const notebooks = await dbGetNotebooks({
       ownerId: user.id,
-      ...safeParams.data,
+      orderBy: orderBy as OrderBy<typeof notebooksTable>,
+      ...rest,
     });
 
     return new Response(JSON.stringify(notebooks), {
