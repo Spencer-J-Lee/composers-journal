@@ -1,40 +1,93 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import debounce from "debounce";
 
-import { Entry } from "@/models/Entry";
+import { InformativeDivider } from "@/components/InformativeDivider";
+import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
+import { useInfEntryPages } from "@/hooks/cache/entries";
 import { Notebook } from "@/models/Notebook";
 import { EntryCard } from "@/modules/search/components/EntryCard";
-import { apiGetActiveEntriesForNotebook } from "@/services/entries";
+
+import { DEFAULT_ENTRY_FILTER } from "./EntriesFilter/constants";
+import { EntryFilter } from "./EntriesFilter/types";
+import { NotebookEmptyState } from "./NotebookEmptyState";
 
 type NotebookContentProps = {
   notebookId: Notebook["id"];
 };
 
 export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
-  const [entries, setEntries] = useState<Entry[]>([]);
+  const [filters, setFilters] = useState<EntryFilter>(DEFAULT_ENTRY_FILTER);
+  const containerRef = useRef<HTMLElement | null>(null);
 
-  // TODO: setup redux
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+  } = useInfEntryPages(notebookId, filters);
+  const isFetchingNextPageRef = useRef(isFetchingNextPage);
+  isFetchingNextPageRef.current = isFetchingNextPage;
+
   useEffect(() => {
-    if (notebookId) {
-      apiGetActiveEntriesForNotebook({ notebookId }).then((data) => {
-        setEntries(data);
-      });
-    }
-  }, [notebookId]);
+    const container = containerRef.current;
+
+    if (!container) return;
+
+    const handleFetchTrigger = debounce(() => {
+      const triggerPoint = container.scrollHeight - window.innerHeight * 4;
+
+      if (
+        !isFetchingNextPageRef.current &&
+        container.scrollTop >= triggerPoint
+      ) {
+        fetchNextPage();
+      }
+    }, 50);
+
+    container.addEventListener("scroll", handleFetchTrigger);
+    return () => container.removeEventListener("scroll", handleFetchTrigger);
+  }, [fetchNextPage]);
+
+  // TODO: handle loading UI and error
+  if (status === "pending") return "Loading...";
+
+  // TODO: check if any entries exist for this notebook before showing empty
+  if (!data?.pages.length) {
+    return <NotebookEmptyState notebookId={notebookId} />;
+  }
 
   return (
-    <section className="bg-background-light flex-1 px-8 py-5">
-      <ul className="flex flex-col gap-4">
-        {entries.map((entry) => (
-          <li key={entry.id}>
-            <EntryCard
-              entry={entry}
-              controls={["edit", "save", "unsave", "trash"]}
-            />
-          </li>
-        ))}
-      </ul>
-    </section>
+    <WorkspacePageWrapper paddingSize="none" ref={containerRef}>
+      <div className="p-4">
+        <ul className="space-y-4">
+          {data.pages.map(({ entries }, i) => (
+            <Fragment key={i}>
+              {entries.map((entry) => (
+                <li key={entry.id}>
+                  <EntryCard
+                    entry={entry}
+                    controls={["edit", "save", "unsave", "trash"]}
+                  />
+                </li>
+              ))}
+            </Fragment>
+          ))}
+        </ul>
+
+        {!hasNextPage && (
+          <InformativeDivider className="mt-4">
+            No more entries to show
+          </InformativeDivider>
+        )}
+
+        {/* TODO: handle loading UI */}
+        <div>{isFetching ? "Fetching..." : null}</div>
+      </div>
+    </WorkspacePageWrapper>
   );
 };

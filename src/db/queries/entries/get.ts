@@ -1,14 +1,16 @@
-import { and, desc, eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
-import { LimitOption } from "@/services/types";
+import { CommonApiOptions } from "@/services/types";
+
+import { convertOrderByToSql } from "../utils/convertOrderByToSql";
 
 type dbGetEntriesProps = Partial<
   Pick<Entry, "ownerId" | "id" | "status" | "notebookId">
 > &
-  LimitOption;
+  CommonApiOptions<typeof entries>;
 
 export const dbGetEntries = async ({
   ownerId,
@@ -16,6 +18,8 @@ export const dbGetEntries = async ({
   status,
   notebookId,
   limit = 50,
+  offset = 0,
+  orderBy,
 }: dbGetEntriesProps): Promise<Entry[]> => {
   const andClauses = [];
   if (ownerId) andClauses.push(eq(entries.ownerId, ownerId));
@@ -32,8 +36,9 @@ export const dbGetEntries = async ({
         },
       },
     },
-    orderBy: [desc(entries.createdAt)],
+    orderBy: convertOrderByToSql(entries, orderBy),
     limit,
+    offset,
   });
 
   const formattedData = result.map(

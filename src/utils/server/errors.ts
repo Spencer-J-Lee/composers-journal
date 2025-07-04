@@ -44,3 +44,20 @@ export const respondWithInvalidInfoError = (zodErr: ZodError) => {
     resData: { fields: fieldErrs },
   });
 };
+
+export const respondWithMissingPayloadError = () => {
+  return respondWithError({
+    status: 400,
+    userMsg: ERROR_MESSAGES.USER.TRY_AGAIN_LATER,
+    devMsg: ERROR_MESSAGES.DEV.MISSING_PAYLOAD,
+  });
+};
+
+export const respondWithInvalidJsonError = (err: unknown) => {
+  return respondWithError({
+    status: 400,
+    userMsg: ERROR_MESSAGES.USER.TRY_AGAIN_LATER,
+    devMsg: ERROR_MESSAGES.DEV.INVALID_JSON,
+    err,
+  });
+};

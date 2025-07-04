@@ -6,20 +6,18 @@ import {
   dbGetEntries,
   dbUpdateEntry,
 } from "@/db/queries/entries";
+import { entries as entriesTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server";
 import { entrySchema } from "@/models/Entry/schema";
-import { Status } from "@/models/types/status";
-import { limitSchema } from "@/schemas/limitSchema";
+import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
+import { OrderBy } from "@/types/query";
 import {
   respondWithError,
   respondWithInvalidInfoError,
+  respondWithInvalidJsonError,
+  respondWithMissingPayloadError,
   respondWithUnauthorized,
 } from "@/utils/server/errors";
-
-import {
-  getQueryInt,
-  getQueryValue,
-} from "../../../services/utils/searchParamsGetters";
 
 export const GET = async (req: NextRequest) => {
   const user = await getUserSS();
@@ -27,33 +25,40 @@ export const GET = async (req: NextRequest) => {
     return respondWithUnauthorized();
   }
 
-  try {
-    const { searchParams } = new URL(req.url);
-    const params = {
-      status: getQueryValue<Status>(searchParams, "status"),
-      notebookId: getQueryInt(searchParams, "notebookId"),
-      limit: getQueryInt(searchParams, "limit"),
-    };
+  const payloadStr = req.nextUrl.searchParams.get("payload");
+  if (!payloadStr) {
+    return respondWithMissingPayloadError();
+  }
 
+  let payload;
+  try {
+    payload = JSON.parse(payloadStr);
+  } catch (e) {
+    return respondWithInvalidJsonError(e);
+  }
+
+  try {
     const schema = entrySchema
       .pick({
         status: true,
         notebookId: true,
       })
-      .merge(limitSchema)
       .partial({
         status: true,
         notebookId: true,
-        limit: true,
-      });
-    const safeParams = schema.safeParse(params);
+      })
+      .merge(commonApiParamsSchema);
+
+    const safeParams = schema.safeParse(payload);
     if (!safeParams.success) {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
+    const { orderBy, ...rest } = safeParams.data;
     const entries = await dbGetEntries({
       ownerId: user.id,
-      ...safeParams.data,
+      orderBy: orderBy as OrderBy<typeof entriesTable>,
+      ...rest,
     });
 
     return new Response(JSON.stringify(entries), {

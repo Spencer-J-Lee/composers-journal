@@ -1,12 +1,20 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 
-import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
+import { DYNAMIC_TS_KEYS, STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { Entry } from "@/models/Entry";
+import { ENTRIES_PAGE_LIMIT } from "@/modules/entries/list/EntriesFilter/constants";
+import { EntryFilter } from "@/modules/entries/list/EntriesFilter/types";
 import {
   apiGetTrashedEntries,
   apiRestoreEntry,
   apiSoftDeleteEntry,
 } from "@/services/entries";
+import { apiGetFilteredEntriesPage } from "@/services/entries/get";
 
 export const useTrashedEntries = () => {
   return useQuery({
@@ -52,5 +60,20 @@ export const useSoftDeleteEntry = () => {
         queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
       });
     },
+  });
+};
+
+export const useInfEntryPages = (notebookId: number, filters: EntryFilter) => {
+  return useInfiniteQuery({
+    queryKey: DYNAMIC_TS_KEYS.ENTRIES_BY_FILTERS(notebookId, filters),
+    queryFn: async ({ pageParam }) =>
+      apiGetFilteredEntriesPage({
+        notebookId,
+        filters,
+        page: pageParam,
+        limit: ENTRIES_PAGE_LIMIT,
+      }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.nextPage,
   });
 };

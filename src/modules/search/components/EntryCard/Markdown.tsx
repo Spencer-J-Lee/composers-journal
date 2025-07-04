@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 type MarkdownProps = {
   markdown: string;

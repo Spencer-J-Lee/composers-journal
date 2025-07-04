@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Ref } from "react";
 import clsx from "clsx";
 
 import { ELEMENT_IDS } from "@/constants/elementIds";
@@ -9,11 +9,13 @@ import { PaddingSize } from "./types";
 type WorkspacePageWrapperProps = {
   children: ReactNode;
   paddingSize?: PaddingSize;
+  ref: Ref<HTMLElement | null>;
 };
 
 export const WorkspacePageWrapper = ({
   children,
   paddingSize = "default",
+  ref,
 }: WorkspacePageWrapperProps) => {
   return (
     <main
@@ -22,6 +24,7 @@ export const WorkspacePageWrapper = ({
         "bg-background-light h-screen flex-1 overflow-y-auto",
         paddingClassName[paddingSize],
       )}
+      ref={ref}
     >
       {children}
     </main>

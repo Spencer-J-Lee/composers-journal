@@ -41,6 +41,8 @@ export const ERROR_MESSAGES = {
   DEV: {
     UNAUTHORIZED: "User is not authorized.",
     INVALID_INFO: "The provided input is invalid for performing this action.",
+    MISSING_PAYLOAD: "Missing payload.",
+    INVALID_JSON: "Invalid JSON.",
 
     FETCH: {
       ENTRIES: "Error occurred while fetching entries.",
