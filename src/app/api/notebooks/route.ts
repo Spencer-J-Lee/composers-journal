@@ -11,17 +11,13 @@ import { dbDeleteNotebooks } from "@/db/queries/notebooks/delete";
 import { notebooks as notebooksTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server";
 import { notebookSchema } from "@/models/Notebook/schema";
-import { Status } from "@/models/types/status";
 import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
-import {
-  getQueryInt,
-  getQueryString,
-  getQueryValue,
-} from "@/services/utils/searchParamsGetters";
 import { OrderBy } from "@/types/query";
 import {
   respondWithError,
   respondWithInvalidInfoError,
+  respondWithInvalidJsonError,
+  respondWithMissingPayloadError,
   respondWithUnauthorized,
 } from "@/utils/server/errors";
 
@@ -31,15 +27,19 @@ export const GET = async (req: NextRequest) => {
     return respondWithUnauthorized();
   }
 
-  try {
-    const { searchParams } = new URL(req.url);
-    const params = {
-      id: getQueryInt(searchParams, "id"),
-      name: getQueryString(searchParams, "name"),
-      status: getQueryValue<Status>(searchParams, "status"),
-      limit: getQueryInt(searchParams, "limit"),
-    };
+  const payloadStr = req.nextUrl.searchParams.get("payload");
+  if (!payloadStr) {
+    return respondWithMissingPayloadError();
+  }
 
+  let payload;
+  try {
+    payload = JSON.parse(payloadStr);
+  } catch (e) {
+    return respondWithInvalidJsonError(e);
+  }
+
+  try {
     const schema = notebookSchema
       .pick({
         id: true,
@@ -53,7 +53,7 @@ export const GET = async (req: NextRequest) => {
       })
       .merge(commonApiParamsSchema);
 
-    const safeParams = schema.safeParse(params);
+    const safeParams = schema.safeParse(payload);
     if (!safeParams.success) {
       return respondWithInvalidInfoError(safeParams.error);
     }
