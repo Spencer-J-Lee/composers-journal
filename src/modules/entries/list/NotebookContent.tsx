@@ -31,7 +31,9 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     status,
   } = useInfEntryPages(notebookId, filters);
   const isFetchingNextPageRef = useRef(isFetchingNextPage);
+  const hasNextPageRef = useRef(hasNextPage);
   isFetchingNextPageRef.current = isFetchingNextPage;
+  hasNextPageRef.current = hasNextPage;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -43,6 +45,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
 
       if (
         !isFetchingNextPageRef.current &&
+        hasNextPageRef.current &&
         container.scrollTop >= triggerPoint
       ) {
         fetchNextPage();
