@@ -9,7 +9,7 @@ import { PaddingSize } from "./types";
 type WorkspacePageWrapperProps = {
   children: ReactNode;
   paddingSize?: PaddingSize;
-  ref: Ref<HTMLElement | null>;
+  ref?: Ref<HTMLElement | null>;
 };
 
 export const WorkspacePageWrapper = ({
