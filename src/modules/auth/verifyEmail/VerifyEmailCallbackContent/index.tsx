@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
-import { getUserCS } from "@/db/supabase/client";
+import { getUserCS } from "@/db/supabase/client/helpers";
 
 import { VerificationStatus } from "./types";
 import { VerifyEmailForm } from "../VerifyEmailForm";

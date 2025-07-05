@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { routes } from "@/constants/routes";
-import { getUserSS } from "@/db/supabase/server";
+import { getUserSS } from "@/db/supabase/server/helpers";
 
 /**
  *

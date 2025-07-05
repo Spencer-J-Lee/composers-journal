@@ -9,7 +9,7 @@ import { Button } from "@/components/buttons/Button";
 import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
-import { createClientCS } from "@/db/supabase/client";
+import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 import { ResetPasswordFormValues, resetPasswordSchema } from "./schema";

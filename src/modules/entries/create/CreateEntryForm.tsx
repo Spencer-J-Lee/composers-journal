@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { SUCCESS_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { STATUSES } from "@/models/types/status";
-import { apiCreateEntry } from "@/services/entries";
+import { apiCreateEntry } from "@/services/entries/create";
 import { showSuccessToast } from "@/utils/client/toasts";
 
 import { EntryForm } from "../components/EntryForm";

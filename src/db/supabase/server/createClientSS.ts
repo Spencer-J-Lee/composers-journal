@@ -1,7 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-import { getUserSS } from "./helpers";
 import { getSupabaseEnv } from "../helpers";
 
 /**
@@ -30,6 +29,3 @@ export const createClientSS = async () => {
     },
   });
 };
-
-// TODO: remove index files
-export { getUserSS };

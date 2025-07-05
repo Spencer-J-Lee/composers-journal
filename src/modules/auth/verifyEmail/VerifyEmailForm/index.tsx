@@ -11,7 +11,7 @@ import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
-import { createClientCS } from "@/db/supabase/client";
+import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { useCountdown } from "@/hooks/useCountdown";
 import { showErrorToast } from "@/utils/client/toasts";
 import { genFullSiteUrl } from "@/utils/client/urls";

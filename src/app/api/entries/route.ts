@@ -1,13 +1,11 @@
 import { NextRequest } from "next/server";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
-import {
-  dbCreateEntry,
-  dbGetEntries,
-  dbUpdateEntry,
-} from "@/db/queries/entries";
+import { dbCreateEntry } from "@/db/queries/entries/create";
+import { dbGetEntries } from "@/db/queries/entries/get";
+import { dbUpdateEntry } from "@/db/queries/entries/update";
 import { entries as entriesTable } from "@/db/schema";
-import { getUserSS } from "@/db/supabase/server";
+import { getUserSS } from "@/db/supabase/server/helpers";
 import { entrySchema } from "@/models/Entry/schema";
 import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
 import { OrderBy } from "@/types/query";

@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
-import { createClientCS } from "@/db/supabase/client";
+import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { IconButton } from "../iconButtons/IconButton";

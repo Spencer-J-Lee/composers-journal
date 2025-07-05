@@ -2,14 +2,12 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
-import {
-  dbCreateNotebook,
-  dbGetNotebooks,
-  dbUpdateNotebook,
-} from "@/db/queries/notebooks";
+import { dbCreateNotebook } from "@/db/queries/notebooks/create";
 import { dbDeleteNotebooks } from "@/db/queries/notebooks/delete";
+import { dbGetNotebooks } from "@/db/queries/notebooks/get";
+import { dbUpdateNotebook } from "@/db/queries/notebooks/update";
 import { notebooks as notebooksTable } from "@/db/schema";
-import { getUserSS } from "@/db/supabase/server";
+import { getUserSS } from "@/db/supabase/server/helpers";
 import { notebookSchema } from "@/models/Notebook/schema";
 import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
 import { OrderBy } from "@/types/query";

@@ -2,7 +2,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { Sidebar } from "@/components/Sidebar";
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
-import { dbGetNotebooks } from "@/db/queries/notebooks";
+import { dbGetNotebooks } from "@/db/queries/notebooks/get";
 import { STATUSES } from "@/models/types/status";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
 import { makeQueryClient } from "@/utils/server/makeQueryClient";

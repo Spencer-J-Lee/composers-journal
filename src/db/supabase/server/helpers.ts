@@ -1,6 +1,6 @@
 import { User } from "@supabase/supabase-js";
 
-import { createClientSS } from ".";
+import { createClientSS } from "./createClientSS";
 
 /**
  * Returns the current user.

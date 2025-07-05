@@ -1,8 +1,9 @@
 import { NextRequest } from "next/server";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
-import { dbCreateSavedItem, dbDeleteSavedItems } from "@/db/queries/savedItems";
-import { getUserSS } from "@/db/supabase/server";
+import { dbCreateSavedItem } from "@/db/queries/savedItems/create";
+import { dbDeleteSavedItems } from "@/db/queries/savedItems/delete";
+import { getUserSS } from "@/db/supabase/server/helpers";
 import { savedItemSchema } from "@/models/SavedItem/schema";
 import {
   respondWithError,

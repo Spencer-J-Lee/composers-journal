@@ -10,11 +10,10 @@ import { Entry } from "@/models/Entry";
 import { ENTRIES_PAGE_LIMIT } from "@/modules/entries/list/EntriesFilter/constants";
 import { EntryFilter } from "@/modules/entries/list/EntriesFilter/types";
 import {
+  apiGetFilteredEntriesPage,
   apiGetTrashedEntries,
-  apiRestoreEntry,
-  apiSoftDeleteEntry,
-} from "@/services/entries";
-import { apiGetFilteredEntriesPage } from "@/services/entries/get";
+} from "@/services/entries/get";
+import { apiRestoreEntry, apiSoftDeleteEntry } from "@/services/entries/update";
 
 export const useTrashedEntries = () => {
   return useQuery({

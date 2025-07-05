@@ -16,6 +16,7 @@ export {
   tags,
   tagsRelations,
 };
+
 const schemas = {
   entries,
   entriesRelations,

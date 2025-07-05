@@ -2,15 +2,17 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { Notebook } from "@/models/Notebook";
+import { apiCreateNotebook } from "@/services/notebooks/create";
 import {
   apiGetActiveNotebooks,
   apiGetTrashedNotebooks,
+} from "@/services/notebooks/get";
+import {
   apiRestoreNotebook,
   apiSoftDeleteNotebook,
   apiTrashNotebook,
   apiUpdateNotebook,
-} from "@/services/notebooks";
-import { apiCreateNotebook } from "@/services/notebooks/create";
+} from "@/services/notebooks/update";
 
 export const useActiveNotebooks = () => {
   return useQuery({

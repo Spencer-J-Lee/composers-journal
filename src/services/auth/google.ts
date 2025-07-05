@@ -1,4 +1,4 @@
-import { createClientCS } from "@/db/supabase/client";
+import { createClientCS } from "@/db/supabase/client/createClientCS";
 
 type GoogleCredentialResponse = {
   credential: string;

@@ -1,6 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
 
-import { getUserCS } from "./helpers";
 import { getSupabaseEnv } from "../helpers";
 
 /**
@@ -11,6 +10,3 @@ export const createClientCS = () => {
 
   return createBrowserClient(supabaseUrl, supabaseKey);
 };
-
-// TODO: remove index files
-export { getUserCS };

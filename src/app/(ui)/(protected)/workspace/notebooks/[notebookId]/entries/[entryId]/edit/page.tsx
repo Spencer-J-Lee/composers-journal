@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { dbGetEntries } from "@/db/queries/entries";
+import { dbGetEntries } from "@/db/queries/entries/get";
 import { EditEntryContent } from "@/modules/entries/edit/EditEntryContent";
 
 type EditEntryPageProps = {

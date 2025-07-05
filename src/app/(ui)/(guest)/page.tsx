@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
-import { getUserSS } from "@/db/supabase/server";
+import { getUserSS } from "@/db/supabase/server/helpers";
 
 const HomePage = async () => {
   const user = await getUserSS();

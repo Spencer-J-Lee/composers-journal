@@ -11,7 +11,7 @@ import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
-import { createClientCS } from "@/db/supabase/client";
+import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { LoginFormValues, loginSchema } from "./schema";

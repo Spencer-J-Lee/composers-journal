@@ -17,11 +17,9 @@ import {
 import { routes } from "@/constants/routes";
 import { useRestoreEntry, useSoftDeleteEntry } from "@/hooks/cache/entries";
 import { Entry } from "@/models/Entry";
-import { apiTrashEntry } from "@/services/entries";
-import {
-  apiCreateSavedEntry,
-  apiDeleteSavedEntry,
-} from "@/services/savedItems";
+import { apiTrashEntry } from "@/services/entries/update";
+import { apiCreateSavedEntry } from "@/services/savedItems/create";
+import { apiDeleteSavedEntry } from "@/services/savedItems/delete";
 import { isError } from "@/utils/client/isError";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 

@@ -1,8 +1,8 @@
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
-import { dbGetEntries } from "@/db/queries/entries";
-import { dbGetNotebooks } from "@/db/queries/notebooks";
+import { dbGetEntries } from "@/db/queries/entries/get";
+import { dbGetNotebooks } from "@/db/queries/notebooks/get";
 import { STATUSES } from "@/models/types/status";
 import { TrashContent } from "@/modules/trash/components/TrashContent";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";

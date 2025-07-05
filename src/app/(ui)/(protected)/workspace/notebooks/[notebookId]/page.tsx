@@ -2,7 +2,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { notFound } from "next/navigation";
 
 import { DYNAMIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
-import { dbGetEntries } from "@/db/queries/entries";
+import { dbGetEntries } from "@/db/queries/entries/get";
 import { getPaginationParams } from "@/getPaginationParams";
 import { STATUSES } from "@/models/types/status";
 import {
