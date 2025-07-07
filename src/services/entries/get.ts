@@ -5,6 +5,7 @@ import { STATUSES } from "@/models/types/status";
 import { EntryFilter } from "@/modules/entries/list/EntriesFilter/types";
 import { calcNextPage } from "@/utils/server/calcNextPage";
 
+import { EntryPage } from "./types";
 import { API_PATHS } from "../constants/apiPaths";
 import { CommonApiOptions } from "../types";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
@@ -37,10 +38,7 @@ export const apiGetFilteredEntriesPage = async ({
   page,
   filters,
   limit,
-}: apiGetFilteredEntriesPageProps): Promise<{
-  entries: Entry[];
-  nextPage: number | null;
-}> => {
+}: apiGetFilteredEntriesPageProps): Promise<EntryPage> => {
   const entries = await fetchWithErrorHandling<Entry[]>(
     genUrlWithSearchParams(API_PATHS.ENTRIES.ROOT, {
       notebookId,
