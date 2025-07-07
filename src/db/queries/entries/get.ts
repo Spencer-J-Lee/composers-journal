@@ -35,6 +35,7 @@ export const dbGetEntries = async ({
           tags: true,
         },
       },
+      savedItem: true,
     },
     orderBy: convertOrderByToSql(entries, orderBy),
     limit,
@@ -47,7 +48,7 @@ export const dbGetEntries = async ({
         ...props,
         createdAt: createdAt.toISOString(),
         updatedAt: updatedAt.toISOString(),
-
+        saved: !!props.savedItem,
         tags: entryTags.map((entryTag) => ({
           ...entryTag.tags,
           createdAt: createdAt.toISOString(),

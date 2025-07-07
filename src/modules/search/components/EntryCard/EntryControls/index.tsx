@@ -6,6 +6,7 @@ import {
   faTrashCan,
   faTrashCanArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
+import { QueryKey } from "@tanstack/react-query";
 
 import { IconButton } from "@/components/iconButtons/IconButton";
 import { LinkIconButton } from "@/components/iconButtons/LinkIconButton";
@@ -15,11 +16,14 @@ import {
   SUCCESS_MESSAGES,
 } from "@/constants/messages";
 import { routes } from "@/constants/routes";
-import { useRestoreEntry, useSoftDeleteEntry } from "@/hooks/cache/entries";
+import {
+  useRestoreEntry,
+  useSaveEntry,
+  useSoftDeleteEntry,
+  useUnsaveEntry,
+} from "@/hooks/cache/entries";
 import { Entry } from "@/models/Entry";
 import { apiTrashEntry } from "@/services/entries/update";
-import { apiCreateSavedEntry } from "@/services/savedItems/create";
-import { apiDeleteSavedEntry } from "@/services/savedItems/delete";
 import { isError } from "@/utils/client/isError";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
@@ -27,18 +31,23 @@ import { EntryControl } from "./types";
 
 type EntryControlsProps = {
   entry: Entry;
-
   controls: EntryControl[];
+  queryKey: QueryKey;
 };
 
-export const EntryControls = ({ entry, controls }: EntryControlsProps) => {
+export const EntryControls = ({
+  entry,
+  controls,
+  queryKey,
+}: EntryControlsProps) => {
   const { mutateAsync: restoreEntry } = useRestoreEntry();
   const { mutateAsync: softDeleteEntry } = useSoftDeleteEntry();
+  const { mutateAsync: saveEntry } = useSaveEntry(queryKey);
+  const { mutateAsync: unsaveEntry } = useUnsaveEntry(queryKey);
 
   const handleSaveEntry = async ({ id }: Entry) => {
     try {
-      // TODO: create mutation hook
-      await apiCreateSavedEntry(id);
+      await saveEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.CREATE.SAVED_ITEM.ENTRY);
     } catch (err) {
       console.error(err);
@@ -48,8 +57,7 @@ export const EntryControls = ({ entry, controls }: EntryControlsProps) => {
 
   const handleUnsaveEntry = async ({ id }: Entry) => {
     try {
-      // TODO: create mutation hook
-      await apiDeleteSavedEntry(id);
+      await unsaveEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.SAVED_ITEM.ENTRY);
     } catch (err) {
       console.error(err);

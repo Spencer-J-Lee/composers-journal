@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateSavedItem } from "@/db/queries/savedItems/create";
-import { dbDeleteSavedItems } from "@/db/queries/savedItems/delete";
+import { dbDeleteSavedItem } from "@/db/queries/savedItems/delete";
 import { getUserSS } from "@/db/supabase/server/helpers";
 import { savedItemSchema } from "@/models/SavedItem/schema";
 import {
@@ -64,10 +64,11 @@ export const DELETE = async (req: NextRequest) => {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    await dbDeleteSavedItems(safeParams.data);
+    const savedItem = await dbDeleteSavedItem(safeParams.data);
 
-    return new Response(null, {
-      status: 204,
+    return new Response(JSON.stringify(savedItem), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
     return respondWithError({

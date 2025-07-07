@@ -7,4 +7,5 @@ import { WithDateStrings } from "../types/status";
 
 export type Entry = WithDateStrings<InferSelectModel<typeof entries>> & {
   tags: Tag[];
+  saved: boolean;
 };

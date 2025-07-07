@@ -9,12 +9,12 @@ type apiDeleteSavedItemsProps = {
 
 // TODO: setup redux
 export const apiDeleteSavedItem = async (props: apiDeleteSavedItemsProps) => {
-  await fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
+  return await fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
     method: "DELETE",
     body: JSON.stringify(props),
   });
 };
 
 export const apiDeleteSavedEntry = async (entryId: SavedItem["entryId"]) => {
-  await apiDeleteSavedItem({ entryId });
+  return await apiDeleteSavedItem({ entryId });
 };

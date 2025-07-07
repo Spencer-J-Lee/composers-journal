@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { QueryKey } from "@tanstack/react-query";
 
 import { Card } from "@/components/Card";
 import { Entry } from "@/models/Entry";
@@ -13,12 +14,14 @@ import { EntryInfo } from "./EntryInfo";
 type EntryCardProps = {
   entry: Entry;
   controls: EntryControl[];
+  queryKey: QueryKey;
   defaultShowTags?: boolean;
 };
 
 export const EntryCard = ({
   entry,
   controls,
+  queryKey,
   defaultShowTags = false,
 }: EntryCardProps) => {
   const { tags } = entry;
@@ -27,7 +30,7 @@ export const EntryCard = ({
   return (
     <Card paddingSize="none">
       <div className="flex">
-        <EntryControls entry={entry} controls={controls} />
+        <EntryControls entry={entry} controls={controls} queryKey={queryKey} />
 
         <EntryInfo
           entry={entry}

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { faChevronDown,faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Collapsible } from "@/components/Collapsible";
 import { SimpleFilters } from "@/components/SimpleFilters";
 import { Typography } from "@/components/Typography";
+import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useTrashedEntries } from "@/hooks/cache/entries";
 import { useSortedEntries } from "@/modules/entries/hooks/useSortedEntries";
 import { EntryCard } from "@/modules/search/components/EntryCard";
@@ -34,7 +35,11 @@ export const EntriesSection = () => {
         <ul className="flex flex-col gap-4">
           {sortedEntries.map((entry) => (
             <li key={entry.id}>
-              <EntryCard entry={entry} controls={["restore", "delete"]} />
+              <EntryCard
+                entry={entry}
+                controls={["restore", "delete"]}
+                queryKey={STATIC_TS_KEYS.TRASHED_ENTRIES}
+              />
             </li>
           ))}
         </ul>

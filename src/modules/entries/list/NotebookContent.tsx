@@ -5,6 +5,7 @@ import debounce from "debounce";
 
 import { InformativeDivider } from "@/components/InformativeDivider";
 import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
+import { DYNAMIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useInfEntryPages } from "@/hooks/cache/entries";
 import { Notebook } from "@/models/Notebook";
 import { EntryCard } from "@/modules/search/components/EntryCard";
@@ -75,6 +76,10 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
                   <EntryCard
                     entry={entry}
                     controls={["edit", "saving", "trash"]}
+                    queryKey={DYNAMIC_TS_KEYS.ENTRIES_BY_FILTERS(
+                      entry.notebookId,
+                      filters,
+                    )}
                   />
                 </li>
               ))}
