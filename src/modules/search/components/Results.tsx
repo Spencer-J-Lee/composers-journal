@@ -23,10 +23,7 @@ export const Results = () => {
       <ul className="flex flex-col gap-4">
         {entries.map((entry) => (
           <li key={entry.id}>
-            <EntryCard
-              entry={entry}
-              controls={["edit", "save", "unsave", "trash"]}
-            />
+            <EntryCard entry={entry} controls={["edit", "saving", "trash"]} />
           </li>
         ))}
       </ul>

@@ -1,7 +1,1 @@
-export type EntryControl =
-  | "edit"
-  | "save"
-  | "unsave"
-  | "restore"
-  | "trash"
-  | "delete";
+export type EntryControl = "edit" | "saving" | "restore" | "trash" | "delete";

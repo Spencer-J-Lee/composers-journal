@@ -74,7 +74,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
                 <li key={entry.id}>
                   <EntryCard
                     entry={entry}
-                    controls={["edit", "save", "unsave", "trash"]}
+                    controls={["edit", "saving", "trash"]}
                   />
                 </li>
               ))}

@@ -108,18 +108,17 @@ export const EntryControls = ({ entry, controls }: EntryControlsProps) => {
         key="edit"
       />
     ),
-    save: (
-      <IconButton
-        faIcon={faBookmarkEmpty}
-        onClick={() => handleSaveEntry(entry)}
-        key="save"
-      />
-    ),
-    unsave: (
+    saving: entry.saved ? (
       <IconButton
         faIcon={faBookmark}
         onClick={() => handleUnsaveEntry(entry)}
         key="unsave"
+      />
+    ) : (
+      <IconButton
+        faIcon={faBookmarkEmpty}
+        onClick={() => handleSaveEntry(entry)}
+        key="save"
       />
     ),
     restore: (
