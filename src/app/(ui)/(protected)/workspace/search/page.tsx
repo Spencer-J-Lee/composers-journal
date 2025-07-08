@@ -1,7 +1,5 @@
-import { Results } from "@/modules/search/components/Results";
-
 const SearchPage = () => {
-  return <Results />;
+  return <div>search</div>;
 };
 
 export default SearchPage;

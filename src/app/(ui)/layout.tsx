@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Toaster } from "sonner";
 
-import { Footer } from "@/components/Footer";
 import Providers from "@/components/Providers";
 import { SkipToContent } from "@/components/SkipToContent";
 import { inter } from "@/styles/fonts";
