@@ -1,4 +1,4 @@
-import { JSX } from "react";
+import { JSX, useState } from "react";
 import { faBookmark as faBookmarkEmpty } from "@fortawesome/free-regular-svg-icons";
 import {
   faBookmark,
@@ -44,8 +44,17 @@ export const EntryControls = ({
   const { mutateAsync: softDeleteEntry } = useSoftDeleteEntry();
   const { mutateAsync: saveEntry } = useSaveEntry(queryKey);
   const { mutateAsync: unsaveEntry } = useUnsaveEntry(queryKey);
+  const [loadingState, setLoadingState] = useState({
+    saving: false,
+    unsaving: false,
+    restoring: false,
+    trashing: false,
+    deleting: false,
+  });
 
   const handleSaveEntry = async ({ id }: Entry) => {
+    setLoadingState((prev) => ({ ...prev, saving: true }));
+
     try {
       await saveEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.CREATE.SAVED_ITEM.ENTRY);
@@ -53,9 +62,13 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.CREATE.SAVED_ITEM.ENTRY);
     }
+
+    setLoadingState((prev) => ({ ...prev, saving: false }));
   };
 
   const handleUnsaveEntry = async ({ id }: Entry) => {
+    setLoadingState((prev) => ({ ...prev, unsaving: true }));
+
     try {
       await unsaveEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.SAVED_ITEM.ENTRY);
@@ -63,12 +76,15 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(isError(err) ? err.message : DEFAULT_ERROR_MSG);
     }
+
+    setLoadingState((prev) => ({ ...prev, unsaving: false }));
   };
 
   const handleRestoreEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Restore entry: ${title}?`)) {
       return;
     }
+    setLoadingState((prev) => ({ ...prev, restoring: true }));
 
     try {
       await restoreEntry(id);
@@ -77,12 +93,15 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.RESTORE.ENTRY);
     }
+
+    setLoadingState((prev) => ({ ...prev, restoring: false }));
   };
 
   const handleTrashEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Trash entry: ${title}?`)) {
       return;
     }
+    setLoadingState((prev) => ({ ...prev, trashing: true }));
 
     try {
       // TODO: create mutation hook
@@ -92,12 +111,15 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.TRASH.ENTRY);
     }
+
+    setLoadingState((prev) => ({ ...prev, trashing: false }));
   };
 
   const handleSoftDeleteEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Delete entry: ${title}?`)) {
       return;
     }
+    setLoadingState((prev) => ({ ...prev, deleting: true }));
 
     try {
       await softDeleteEntry(id);
@@ -106,26 +128,30 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.DELETE.ENTRY);
     }
+
+    setLoadingState((prev) => ({ ...prev, deleting: false }));
   };
 
   const controlMap: Record<EntryControl, JSX.Element> = {
     edit: (
       <LinkIconButton
-        faIcon={faEdit}
         href={routes.entryEdit(entry)}
+        faIcon={faEdit}
         key="edit"
       />
     ),
     saving: entry.saved ? (
       <IconButton
-        faIcon={faBookmark}
         onClick={() => handleUnsaveEntry(entry)}
+        faIcon={faBookmark}
+        loading={loadingState.unsaving}
         key="unsave"
       />
     ) : (
       <IconButton
-        faIcon={faBookmarkEmpty}
         onClick={() => handleSaveEntry(entry)}
+        faIcon={faBookmarkEmpty}
+        loading={loadingState.saving}
         key="save"
       />
     ),
@@ -133,21 +159,24 @@ export const EntryControls = ({
       <IconButton
         onClick={() => handleRestoreEntry(entry)}
         faIcon={faTrashCanArrowUp}
+        loading={loadingState.restoring}
         textVariant="positive"
         key="restore"
       />
     ),
     trash: (
       <IconButton
-        faIcon={faTrashCan}
-        textVariant="negative"
         onClick={() => handleTrashEntry(entry)}
+        faIcon={faTrashCan}
+        loading={loadingState.trashing}
+        textVariant="negative"
         key="trash"
       />
     ),
     delete: (
       <IconButton
         onClick={() => handleSoftDeleteEntry(entry)}
+        loading={loadingState.deleting}
         faIcon={faTrashCan}
         textVariant="negative"
         key="delete"

@@ -1,6 +1,6 @@
 export const PulsingEllipsis = () => {
   return (
-    <span className="space-x-0.5">
+    <span className="flex items-center gap-x-0.5">
       {Array(3)
         .fill(0)
         .map((_, i) => (

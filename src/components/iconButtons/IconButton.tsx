@@ -4,8 +4,12 @@ import clsx from "clsx";
 
 import { useIconButtonStyles } from "./hooks/useIconButtonStyles";
 import { BaseIconButtonProps } from "./types";
+import { PulsingEllipsis } from "../loaders/PulsingEllipsis";
 
-export type IconButtonProps = BaseIconButtonProps & ComponentProps<"button">;
+export type IconButtonProps = {
+  loading?: boolean;
+} & BaseIconButtonProps &
+  ComponentProps<"button">;
 
 export const IconButton = ({
   className,
@@ -13,6 +17,7 @@ export const IconButton = ({
   faIcon,
   textVariant = "default",
   isActive,
+  loading,
   ...props
 }: IconButtonProps) => {
   const { iconButtonClassName } = useIconButtonStyles({
@@ -24,10 +29,11 @@ export const IconButton = ({
   return (
     <button
       className={clsx(iconButtonClassName, className)}
+      disabled={loading}
       type={type}
       {...props}
     >
-      <FontAwesomeIcon icon={faIcon} />
+      {loading ? <PulsingEllipsis /> : <FontAwesomeIcon icon={faIcon} />}
     </button>
   );
 };
