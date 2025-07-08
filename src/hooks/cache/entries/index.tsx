@@ -15,7 +15,11 @@ import {
   apiGetFilteredEntriesPage,
   apiGetTrashedEntries,
 } from "@/services/entries/get";
-import { apiRestoreEntry, apiSoftDeleteEntry } from "@/services/entries/update";
+import {
+  apiRestoreEntry,
+  apiSoftDeleteEntry,
+  apiTrashEntry,
+} from "@/services/entries/update";
 import { apiCreateSavedEntry } from "@/services/savedItems/create";
 import { apiDeleteSavedEntry } from "@/services/savedItems/delete";
 
@@ -64,6 +68,30 @@ export const useSoftDeleteEntry = () => {
       queryClient.invalidateQueries({
         queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
       });
+    },
+  });
+};
+
+export const useTrashEntry = (queryKey: QueryKey, onSuccess?: () => void) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: apiTrashEntry,
+    onSuccess: (entry: Entry) => {
+      // Maximize UI update speed through manual data manipulation
+      queryClient.setQueryData<InfiniteEntriesCache>(queryKey, (prev) => {
+        if (!prev) return undefined;
+
+        return {
+          ...prev,
+          pages: [...prev.pages].map((page) => ({
+            ...page,
+            entries: page.entries.filter((en) => en.id !== entry.id),
+          })),
+        };
+      });
+
+      onSuccess?.();
     },
   });
 };
@@ -120,7 +148,11 @@ export const useUnsaveEntry = (queryKey: QueryKey) => {
   });
 };
 
-export const useInfEntryPages = (notebookId: number, filters: EntryFilter) => {
+export const useInfEntryPages = (
+  notebookId: number,
+  filters: EntryFilter,
+  offset: number,
+) => {
   return useInfiniteQuery({
     queryKey: DYNAMIC_TS_KEYS.ENTRIES_BY_FILTERS(notebookId, filters),
     queryFn: async ({ pageParam }) =>
@@ -129,6 +161,7 @@ export const useInfEntryPages = (notebookId: number, filters: EntryFilter) => {
         filters,
         page: pageParam,
         limit: ENTRIES_PAGE_LIMIT,
+        offset,
       }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => lastPage.nextPage,

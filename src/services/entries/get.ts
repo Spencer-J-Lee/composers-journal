@@ -31,6 +31,7 @@ type apiGetFilteredEntriesPageProps = {
   filters: EntryFilter;
   page: number;
   limit: number;
+  offset: number;
 };
 
 export const apiGetFilteredEntriesPage = async ({
@@ -38,13 +39,14 @@ export const apiGetFilteredEntriesPage = async ({
   page,
   filters,
   limit,
+  offset,
 }: apiGetFilteredEntriesPageProps): Promise<EntryPage> => {
   const entries = await fetchWithErrorHandling<Entry[]>(
     genUrlWithSearchParams(API_PATHS.ENTRIES.ROOT, {
       notebookId,
       status: STATUSES.ACTIVE,
       orderBy: filters.orderBy,
-      ...getPaginationParams(page, limit),
+      ...getPaginationParams(page, limit, offset),
     }),
   );
 

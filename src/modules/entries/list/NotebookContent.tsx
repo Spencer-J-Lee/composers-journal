@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import debounce from "debounce";
 
 import { InformativeDivider } from "@/components/InformativeDivider";
@@ -19,7 +19,8 @@ type NotebookContentProps = {
 };
 
 export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
-  const [filters] = useState<EntryFilter>(DEFAULT_ENTRY_FILTER);
+  const [filters, setFilters] = useState<EntryFilter>(DEFAULT_ENTRY_FILTER);
+  const [offset, setOffset] = useState(0);
   const containerRef = useRef<HTMLElement | null>(null);
 
   const {
@@ -30,7 +31,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfEntryPages(notebookId, filters);
+  } = useInfEntryPages(notebookId, filters, offset);
   const isFetchingNextPageRef = useRef(isFetchingNextPage);
   const hasNextPageRef = useRef(hasNextPage);
   isFetchingNextPageRef.current = isFetchingNextPage;
@@ -55,6 +56,15 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     container.addEventListener("scroll", handleFetchTrigger);
     return () => container.removeEventListener("scroll", handleFetchTrigger);
   }, [fetchNextPage]);
+
+  const decrementOffset = () => {
+    setOffset((prev) => prev - 1);
+  };
+
+  const handleFiltersChange = () => {
+    setOffset(0);
+    setFilters((prev) => prev);
+  };
 
   const renderContent = () => {
     // TODO: handle loading UI and error
@@ -82,6 +92,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
                       entry.notebookId,
                       filters,
                     )}
+                    onTrashSuccess={decrementOffset}
                   />
                 </li>
               ))}

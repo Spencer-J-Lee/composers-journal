@@ -16,6 +16,7 @@ type EntryCardProps = {
   controls: EntryControl[];
   queryKey: QueryKey;
   defaultShowTags?: boolean;
+  onTrashSuccess?: () => void;
 };
 
 export const EntryCard = ({
@@ -23,6 +24,7 @@ export const EntryCard = ({
   controls,
   queryKey,
   defaultShowTags = false,
+  onTrashSuccess,
 }: EntryCardProps) => {
   const { tags } = entry;
   const [showTags, setShowTags] = useState(defaultShowTags);
@@ -30,7 +32,12 @@ export const EntryCard = ({
   return (
     <Card paddingSize="none">
       <div className="flex">
-        <EntryControls entry={entry} controls={controls} queryKey={queryKey} />
+        <EntryControls
+          entry={entry}
+          controls={controls}
+          queryKey={queryKey}
+          onTrashSuccess={onTrashSuccess}
+        />
 
         <EntryInfo
           entry={entry}

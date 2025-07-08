@@ -20,10 +20,10 @@ import {
   useRestoreEntry,
   useSaveEntry,
   useSoftDeleteEntry,
+  useTrashEntry,
   useUnsaveEntry,
 } from "@/hooks/cache/entries";
 import { Entry } from "@/models/Entry";
-import { apiTrashEntry } from "@/services/entries/update";
 import { isError } from "@/utils/client/isError";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
@@ -33,17 +33,20 @@ type EntryControlsProps = {
   entry: Entry;
   controls: EntryControl[];
   queryKey: QueryKey;
+  onTrashSuccess?: () => void;
 };
 
 export const EntryControls = ({
   entry,
   controls,
   queryKey,
+  onTrashSuccess,
 }: EntryControlsProps) => {
   const { mutateAsync: restoreEntry } = useRestoreEntry();
   const { mutateAsync: softDeleteEntry } = useSoftDeleteEntry();
   const { mutateAsync: saveEntry } = useSaveEntry(queryKey);
   const { mutateAsync: unsaveEntry } = useUnsaveEntry(queryKey);
+  const { mutateAsync: trashEntry } = useTrashEntry(queryKey, onTrashSuccess);
   const [loadingState, setLoadingState] = useState({
     saving: false,
     unsaving: false,
@@ -104,8 +107,7 @@ export const EntryControls = ({
     setLoadingState((prev) => ({ ...prev, trashing: true }));
 
     try {
-      // TODO: create mutation hook
-      await apiTrashEntry(id);
+      await trashEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.TRASH.ENTRY);
     } catch (err) {
       console.error(err);
