@@ -1,8 +1,11 @@
 import { eq } from "drizzle-orm";
 
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
+
+import { dbGetEntryById } from "./get";
 
 type dbUpdateEntryProps = Pick<Entry, "id"> &
   Partial<Pick<Entry, "title" | "description" | "status" | "notebookId">>;
@@ -26,12 +29,11 @@ export const dbUpdateEntry = async ({
     .where(eq(entries.id, id))
     .returning();
 
-  return {
-    ...result[0],
-    createdAt: result[0].createdAt.toISOString(),
-    updatedAt: result[0].updatedAt.toISOString(),
+  const entry = await dbGetEntryById(result[0].id);
 
-    // TODO: figure out best way to pass tags here
-    tags: [],
-  };
+  if (!entry) {
+    throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
+  }
+
+  return entry;
 };

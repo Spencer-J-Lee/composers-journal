@@ -60,3 +60,8 @@ export const dbGetEntries = async ({
 
   return formattedData;
 };
+
+export const dbGetEntryById = async (id: Entry["id"]) => {
+  const res = await dbGetEntries({ id });
+  return res.length === 1 ? res[0] : null;
+};

@@ -3,6 +3,8 @@ import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 
+import { dbGetEntryById } from "./get";
+
 type dbCreateEntryProps = Pick<
   Entry,
   "ownerId" | "notebookId" | "title" | "description" | "status"
@@ -28,12 +30,11 @@ export const dbCreateEntry = async (
     throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
   }
 
-  return {
-    ...result[0],
-    createdAt: result[0].createdAt.toISOString(),
-    updatedAt: result[0].updatedAt.toISOString(),
+  const entry = await dbGetEntryById(result[0].id);
 
-    // TODO: figure out best way to pass tags here
-    tags: [],
-  };
+  if (!entry) {
+    throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
+  }
+
+  return entry;
 };
