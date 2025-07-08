@@ -38,6 +38,7 @@ const NotebookPage = async ({ params }: NotebookPageProps) => {
         ownerId: user.id,
         notebookId: parsedNotebookId,
         status: STATUSES.ACTIVE,
+        orderBy: DEFAULT_ENTRY_FILTER.orderBy,
         ...getPaginationParams(pageParam, ENTRIES_PAGE_LIMIT),
       });
 
