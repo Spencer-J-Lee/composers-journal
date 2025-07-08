@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import debounce from "debounce";
 
 import { InformativeDivider } from "@/components/InformativeDivider";
@@ -19,7 +19,7 @@ type NotebookContentProps = {
 };
 
 export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
-  const [filters, setFilters] = useState<EntryFilter>(DEFAULT_ENTRY_FILTER);
+  const [filters] = useState<EntryFilter>(DEFAULT_ENTRY_FILTER);
   const containerRef = useRef<HTMLElement | null>(null);
 
   const {
@@ -38,7 +38,6 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
 
   useEffect(() => {
     const container = containerRef.current;
-
     if (!container) return;
 
     const handleFetchTrigger = debounce(() => {
@@ -57,16 +56,19 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     return () => container.removeEventListener("scroll", handleFetchTrigger);
   }, [fetchNextPage]);
 
-  // TODO: handle loading UI and error
-  if (status === "pending") return "Loading...";
+  const renderContent = () => {
+    // TODO: handle loading UI and error
+    if (status === "pending") return "Loading...";
+    if (error) {
+      console.error(error);
+    }
 
-  // TODO: check if any entries exist for this notebook before showing empty
-  if (!data?.pages.length) {
-    return <NotebookEmptyState notebookId={notebookId} />;
-  }
+    // TODO: check if any entries exist for this notebook before showing empty
+    if (!data?.pages.length) {
+      return <NotebookEmptyState notebookId={notebookId} />;
+    }
 
-  return (
-    <WorkspacePageWrapper paddingSize="none" ref={containerRef}>
+    return (
       <div className="p-4">
         <ul className="space-y-4">
           {data.pages.map(({ entries }, i) => (
@@ -96,6 +98,12 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
         {/* TODO: handle loading UI */}
         <div>{isFetching ? "Fetching..." : null}</div>
       </div>
+    );
+  };
+
+  return (
+    <WorkspacePageWrapper paddingSize="none" ref={containerRef}>
+      {renderContent()}
     </WorkspacePageWrapper>
   );
 };
