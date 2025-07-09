@@ -19,7 +19,7 @@ export const Sidebar = () => {
       )}
     >
       <Link
-        href={routes.home()}
+        href={routes.workspace()}
         className="flex items-center justify-center px-5 py-3"
       >
         <Image
