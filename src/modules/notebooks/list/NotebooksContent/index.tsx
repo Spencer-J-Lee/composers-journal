@@ -1,6 +1,9 @@
 "use client";
 
+import clsx from "clsx";
+
 import { LinkButton } from "@/components/buttons/LinkButton";
+import { WORKSPACE_WRAPPER_PX } from "@/components/pageWrappers/WorkspacePageWrapper/styles";
 import { routes } from "@/constants/routes";
 import { useActiveNotebooks } from "@/hooks/cache/notebooks";
 
@@ -22,12 +25,17 @@ export const NotebooksContent = () => {
 
   return (
     <>
-      <div className="bg-background-light sticky top-0 flex items-center justify-between gap-x-4 p-4">
+      <div
+        className={clsx(
+          "bg-background-light sticky top-0 flex items-center justify-between gap-x-4 py-4",
+          WORKSPACE_WRAPPER_PX,
+        )}
+      >
         <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
         <LinkButton href={routes.notebookCreate()}>Create</LinkButton>
       </div>
 
-      <div className="px-4 pb-4">
+      <div className={clsx("pb-4", WORKSPACE_WRAPPER_PX)}>
         <ul className="flex flex-col gap-4">
           {sortedNotebooks.map((notebook) => (
             <li key={notebook.name}>

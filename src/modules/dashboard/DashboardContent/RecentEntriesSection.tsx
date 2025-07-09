@@ -19,7 +19,7 @@ export const RecentEntriesSection = () => {
   }
 
   return (
-    <CollapsibleSection title="Recent entries" className="mt-4">
+    <CollapsibleSection title="Recent entries">
       <ul className="space-y-4">
         {entries.map((entry) => (
           <li key={entry.id}>

@@ -8,7 +8,7 @@ import { RecentEntriesSection } from "./RecentEntriesSection";
  */
 export const DashboardContent = () => {
   return (
-    <div>
+    <div className="space-y-8">
       <section className="grid grid-cols-2 gap-4">
         <Card>
           <Typography variant="h3" className="mb-3">

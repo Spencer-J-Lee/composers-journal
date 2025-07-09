@@ -1,10 +1,12 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 import debounce from "debounce";
 
 import { InformativeDivider } from "@/components/InformativeDivider";
 import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
+import { WORKSPACE_WRAPPER_PX } from "@/components/pageWrappers/WorkspacePageWrapper/styles";
 import { DYNAMIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useInfEntryPages } from "@/hooks/cache/entries";
 import { Notebook } from "@/models/Notebook";
@@ -79,7 +81,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     }
 
     return (
-      <div className="p-4">
+      <div className={clsx("py-4", WORKSPACE_WRAPPER_PX)}>
         <ul className="space-y-4">
           {data.pages.map(({ entries }, i) => (
             <Fragment key={i}>

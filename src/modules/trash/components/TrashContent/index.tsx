@@ -18,7 +18,7 @@ export const TrashContent = () => {
 
   return (
     <WorkspacePageWrapper>
-      <div className="flex flex-col gap-y-5">
+      <div className="flex flex-col gap-y-8">
         <NotebooksSection />
         <EntriesSection />
       </div>

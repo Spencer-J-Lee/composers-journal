@@ -2,11 +2,11 @@ import { Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 
 import { Divider } from "@/components/Divider";
+import { Typography } from "@/components/Typography";
 import { Entry } from "@/models/Entry";
+import { formatDateString } from "@/utils/client/formatDate";
 
 import { Markdown } from "./Markdown";
-import { Typography } from "@/components/Typography";
-import { formatDateString } from "@/utils/client/formatDate";
 
 type EntryInfoProps = {
   entry: Entry;
