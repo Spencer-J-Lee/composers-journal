@@ -1,37 +1,37 @@
 export const ERROR_MESSAGES = {
   USER: {
-    TRY_AGAIN_LATER: "Something went wrong. Please try again later.",
-    TRY_AGAIN: "Something went wrong. Please try again.",
-    UNAUTHORIZED: "You do not have permission to perform this action.",
-    INVALID_INFO: "Some of the provided information is invalid.",
-    YOUTUBE_LINK: "Invalid YouTube link.",
+    TRY_AGAIN_LATER: "Something went wrong. Please try again later",
+    TRY_AGAIN: "Something went wrong. Please try again",
+    UNAUTHORIZED: "You do not have permission to perform this action",
+    INVALID_INFO: "Some of the provided information is invalid",
+    YOUTUBE_LINK: "Invalid YouTube link",
 
     FETCH: {
-      ENTRIES: "Failed to load your entries.",
-      NOTEBOOKS: "Failed to load your notebooks.",
+      ENTRIES: "Failed to load your entries",
+      NOTEBOOKS: "Failed to load your notebooks",
     },
     CREATE: {
-      ENTRY: "Failed to create your entry.",
-      NOTEBOOK: "Failed to create your notebook.",
+      ENTRY: "Failed to create your entry",
+      NOTEBOOK: "Failed to create your notebook",
       SAVED_ITEM: {
         ENTRY: "Failed to save your entry",
       },
     },
     UPDATE: {
-      ENTRY: "Failed to update your entry.",
-      NOTEBOOK: "Failed to update your notebook.",
+      ENTRY: "Failed to update your entry",
+      NOTEBOOK: "Failed to update your notebook",
     },
     TRASH: {
-      ENTRY: "Failed to trash your entry.",
+      ENTRY: "Failed to trash your entry",
       NOTEBOOK: "Failed to trash your notebook",
     },
     RESTORE: {
-      ENTRY: "Failed to restore your entry.",
+      ENTRY: "Failed to restore your entry",
       NOTEBOOK: "Failed to restore your notebook",
     },
     DELETE: {
-      ENTRY: "Failed to delete your entry.",
-      NOTEBOOK: "Failed to delete your notebook.",
+      ENTRY: "Failed to delete your entry",
+      NOTEBOOK: "Failed to delete your notebook",
       SAVED_ITEM: {
         ENTRY: "Failed to unsave your entry",
       },
@@ -73,33 +73,33 @@ export const ERROR_MESSAGES = {
 export const DEFAULT_ERROR_MSG = ERROR_MESSAGES.USER.TRY_AGAIN_LATER;
 
 export const SUCCESS_MESSAGES = {
-  PASSWORD_RESET: "Password updated.",
+  PASSWORD_RESET: "Password updated",
 
   USER: {
     CREATE: {
-      ENTRY: "Entry created.",
+      ENTRY: "Entry created",
       NOTEBOOK: "Notebook created",
       SAVED_ITEM: {
-        ENTRY: "Entry saved.",
+        ENTRY: "Entry saved",
       },
     },
     EDIT: {
-      ENTRY: "Entry updated.",
+      ENTRY: "Entry updated",
       NOTEBOOK: "Notebook saved",
     },
     TRASH: {
-      ENTRY: "Entry trashed.",
-      NOTEBOOK: "Notebook trashed.",
+      ENTRY: "Entry trashed",
+      NOTEBOOK: "Notebook trashed",
     },
     RESTORE: {
-      ENTRY: "Entry restored.",
-      NOTEBOOK: "Notebook restored.",
+      ENTRY: "Entry restored",
+      NOTEBOOK: "Notebook restored",
     },
     DELETE: {
-      ENTRY: "Entry deleted.",
-      NOTEBOOK: "Notebook deleted.",
+      ENTRY: "Entry deleted",
+      NOTEBOOK: "Notebook deleted",
       SAVED_ITEM: {
-        ENTRY: "Entry unsaved.",
+        ENTRY: "Entry unsaved",
       },
     },
   },
