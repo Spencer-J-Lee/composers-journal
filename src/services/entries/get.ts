@@ -1,3 +1,4 @@
+import { RECENTLY_UPDATED_ENTRIES_PARAMS } from "@/constants/entryParams";
 import { entries } from "@/db/schema";
 import { getPaginationParams } from "@/getPaginationParams";
 import { Entry } from "@/models/Entry";
@@ -54,4 +55,8 @@ export const apiGetFilteredEntriesPage = async ({
     entries,
     nextPage: calcNextPage(entries, page, limit),
   };
+};
+
+export const apiGetRecentlyUpdatedEntries = async () => {
+  return apiGetEntries(RECENTLY_UPDATED_ENTRIES_PARAMS);
 };

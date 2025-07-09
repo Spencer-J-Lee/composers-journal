@@ -7,6 +7,7 @@ const KEYS = {
   ENTRIES: "entries",
   ACTIVE: "active",
   TRASHED: "trashed",
+  RECENTLY_UPDATED: "recentlyUpdated",
 } as const;
 
 /**
@@ -17,6 +18,7 @@ export const STATIC_TS_KEYS: Record<string, QueryKey> = {
   TRASHED_NOTEBOOKS: [KEYS.NOTEBOOKS, KEYS.TRASHED],
 
   TRASHED_ENTRIES: [KEYS.ENTRIES, KEYS.TRASHED],
+  RECENTLY_UPDATED_ENTRIES: [KEYS.ENTRIES, KEYS.RECENTLY_UPDATED],
 } as const;
 
 /**

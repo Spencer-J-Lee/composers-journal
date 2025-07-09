@@ -13,6 +13,7 @@ import { ENTRIES_PAGE_LIMIT } from "@/modules/entries/list/EntriesFilter/constan
 import { EntryFilter } from "@/modules/entries/list/EntriesFilter/types";
 import {
   apiGetFilteredEntriesPage,
+  apiGetRecentlyUpdatedEntries,
   apiGetTrashedEntries,
 } from "@/services/entries/get";
 import {
@@ -165,5 +166,12 @@ export const useInfEntryPages = (
       }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => lastPage.nextPage,
+  });
+};
+
+export const useRecentlyUpdatedEntries = () => {
+  return useQuery({
+    queryKey: STATIC_TS_KEYS.RECENTLY_UPDATED_ENTRIES,
+    queryFn: () => apiGetRecentlyUpdatedEntries(),
   });
 };

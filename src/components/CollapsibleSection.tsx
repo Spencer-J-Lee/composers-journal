@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
-import { faChevronDown,faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
 
 import { Collapsible } from "./Collapsible";
 import { Typography } from "./Typography";
@@ -8,16 +9,18 @@ import { Typography } from "./Typography";
 type CollapsibleSectionProps = {
   title: string;
   children: ReactNode;
+  className?: string;
 };
 
 export const CollapsibleSection = ({
   title,
   children,
+  className,
 }: CollapsibleSectionProps) => {
   const [show, setShow] = useState(true);
 
   return (
-    <section>
+    <section className={clsx(className)}>
       <button
         className="mb-2 flex w-full items-center gap-x-3 rounded text-left"
         onClick={() => setShow((prev) => !prev)}
