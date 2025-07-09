@@ -14,7 +14,7 @@ export const StyledLink = ({
   ...props
 }: StyledLinkProps) => {
   const finalClassName = clsx(
-    "font-semibold hover:underline text-accent-link",
+    "font-semibold hover:underline text-accent-link cursor-pointer",
     className,
   );
 
