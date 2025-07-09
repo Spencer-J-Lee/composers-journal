@@ -8,6 +8,7 @@ export type TypographyVariant =
   | "subtitle"
   | "body"
   | "bodySmall"
+  | "smallMuted"
   | "divider";
 
 export type TypographyHtmlTag =

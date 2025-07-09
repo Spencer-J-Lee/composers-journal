@@ -5,6 +5,8 @@ import { Divider } from "@/components/Divider";
 import { Entry } from "@/models/Entry";
 
 import { Markdown } from "./Markdown";
+import { Typography } from "@/components/Typography";
+import { formatDateString } from "@/utils/client/formatDate";
 
 type EntryInfoProps = {
   entry: Entry;
@@ -19,21 +21,27 @@ export const EntryInfo = ({
   setShowTags,
   className,
 }: EntryInfoProps) => {
-  const { title, description, tags, createdAt } = entry;
+  const { title, description, tags, createdAt, updatedAt } = entry;
 
   return (
     <div className={clsx("flex flex-1 flex-col p-4", className)}>
       {/* TODO: make sure tag hierarchy is in order */}
-      <h2 className="mb-1 text-xl font-semibold">{title}</h2>
+      <Typography variant="h4" className="mb-1">
+        {title}
+      </Typography>
 
       <Divider className="my-2" />
 
       <Markdown markdown={description} className="mb-2" />
 
       <div className="mt-auto flex justify-between gap-10">
-        <small className="text-text-muted">
-          Created: {new Date(createdAt).toLocaleDateString()}
-        </small>
+        <Typography
+          variant="smallMuted"
+          className="flex items-center gap-x-1.5"
+        >
+          <span>Created: {formatDateString(createdAt)}</span>•
+          <span>Updated: {formatDateString(updatedAt)}</span>
+        </Typography>
 
         {tags && tags.length > 0 && (
           <button

@@ -25,7 +25,10 @@ export const dbUpdateEntry = async ({
 
   const result = await db
     .update(entries)
-    .set(newVals)
+    .set({
+      ...newVals,
+      updatedAt: new Date(),
+    })
     .where(eq(entries.id, id))
     .returning();
 
