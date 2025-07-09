@@ -54,6 +54,7 @@ export const EntryControls = ({
     trashing: false,
     deleting: false,
   });
+  const actionPending = Object.values(loadingState).some((state) => state);
 
   const handleSaveEntry = async ({ id }: Entry) => {
     setLoadingState((prev) => ({ ...prev, saving: true }));
@@ -146,6 +147,7 @@ export const EntryControls = ({
       <IconButton
         onClick={() => handleUnsaveEntry(entry)}
         loading={loadingState.unsaving}
+        disabled={actionPending}
         faIcon={faBookmark}
         key="unsave"
       />
@@ -153,6 +155,7 @@ export const EntryControls = ({
       <IconButton
         onClick={() => handleSaveEntry(entry)}
         loading={loadingState.saving}
+        disabled={actionPending}
         faIcon={faBookmarkEmpty}
         key="save"
       />
@@ -161,6 +164,7 @@ export const EntryControls = ({
       <IconButton
         onClick={() => handleRestoreEntry(entry)}
         loading={loadingState.restoring}
+        disabled={actionPending}
         faIcon={faTrashCanArrowUp}
         textVariant="positive"
         key="restore"
@@ -170,6 +174,7 @@ export const EntryControls = ({
       <IconButton
         onClick={() => handleTrashEntry(entry)}
         loading={loadingState.trashing}
+        disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
         key="trash"
@@ -179,6 +184,7 @@ export const EntryControls = ({
       <IconButton
         onClick={() => handleSoftDeleteEntry(entry)}
         loading={loadingState.deleting}
+        disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
         key="delete"

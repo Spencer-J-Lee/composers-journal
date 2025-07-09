@@ -38,6 +38,7 @@ export const NotebookControls = ({
     trashing: false,
     deleting: false,
   });
+  const actionPending = Object.values(loadingState).some((state) => state);
 
   const handleRestoreNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Restore notebook: ${name}?`)) {
@@ -100,6 +101,7 @@ export const NotebookControls = ({
       <IconButton
         onClick={() => handleRestoreNotebook(notebook)}
         loading={loadingState.restoring}
+        disabled={actionPending}
         faIcon={faTrashCanArrowUp}
         textVariant="positive"
         key="restore"
@@ -109,6 +111,7 @@ export const NotebookControls = ({
       <IconButton
         onClick={() => handleTrashNotebook(notebook)}
         loading={loadingState.trashing}
+        disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
         key="trash"
@@ -118,6 +121,7 @@ export const NotebookControls = ({
       <IconButton
         onClick={() => handleSoftDeleteNotebook(notebook)}
         loading={loadingState.deleting}
+        disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
         key="delete"
