@@ -36,7 +36,7 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
       isItalic: context.editor?.isActive("italic"),
       isUnderline: context.editor?.isActive("underline"),
       isStrike: context.editor?.isActive("strike"),
-      isHeading1: context.editor?.isActive("heading", { level: 1 }),
+      isHeading3: context.editor?.isActive("heading", { level: 3 }),
       isBulletList: context.editor?.isActive("bulletList"),
       isOrderedList: context.editor?.isActive("orderedList"),
       isBlockquote: context.editor?.isActive("blockquote"),
@@ -87,12 +87,12 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
         <RichTextMenuButton
           faIcon={faHeading}
           onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
           disabled={
-            !editor.can().chain().focus().toggleHeading({ level: 1 }).run()
+            !editor.can().chain().focus().toggleHeading({ level: 3 }).run()
           }
-          isActive={editorState.isHeading1}
+          isActive={editorState.isHeading3}
         />
       </RichTextButtonGroup>
 
