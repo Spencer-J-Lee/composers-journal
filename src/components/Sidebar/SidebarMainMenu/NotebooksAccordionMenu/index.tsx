@@ -34,7 +34,6 @@ export const NotebooksAccordionMenu = () => {
         >
           Notebooks
         </SidebarLinkButton>
-        <SidebarLinkIconButton href={routes.notebookCreate()} faIcon={faPlus} />
         {!!notebooks?.length && (
           <IconButton
             faIcon={show ? faChevronUp : faChevronDown}

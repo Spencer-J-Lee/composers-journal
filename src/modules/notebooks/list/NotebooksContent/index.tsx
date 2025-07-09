@@ -1,5 +1,7 @@
 "use client";
 
+import { LinkButton } from "@/components/buttons/LinkButton";
+import { routes } from "@/constants/routes";
 import { useActiveNotebooks } from "@/hooks/cache/notebooks";
 
 import { SimpleFilters } from "../../../../components/SimpleFilters";
@@ -20,8 +22,9 @@ export const NotebooksContent = () => {
 
   return (
     <>
-      <div className="bg-background-light sticky top-0 p-4">
+      <div className="bg-background-light sticky top-0 flex items-center justify-between gap-x-4 p-4">
         <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
+        <LinkButton href={routes.notebookCreate()}>Create</LinkButton>
       </div>
 
       <div className="px-4 pb-4">
