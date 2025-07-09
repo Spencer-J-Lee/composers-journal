@@ -21,7 +21,7 @@ export const WorkspacePageWrapper = ({
     <main
       id={ELEMENT_IDS.MAIN_CONTENT}
       className={clsx(
-        "bg-background-light h-screen flex-1 overflow-y-auto",
+        "bg-background-light h-screen flex-1 overflow-y-scroll",
         paddingClassName[paddingSize],
       )}
       ref={ref}
