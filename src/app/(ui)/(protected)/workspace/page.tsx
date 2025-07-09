@@ -12,7 +12,7 @@ const WorkspacePage = async () => {
   const user = await getUserSSOrRedirect();
   const queryClient = makeQueryClient();
 
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.RECENTLY_UPDATED_ENTRIES,
     queryFn: async () =>
       dbGetEntries({
