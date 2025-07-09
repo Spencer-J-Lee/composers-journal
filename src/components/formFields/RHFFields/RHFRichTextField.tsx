@@ -9,6 +9,7 @@ type RHFRichTextFieldProps = {
   placeholder?: string;
   editable?: boolean;
   showMenuBar?: boolean;
+  editorClassName?: string;
 };
 
 export const RHFRichTextField = ({
@@ -16,6 +17,7 @@ export const RHFRichTextField = ({
   placeholder,
   editable = true,
   showMenuBar,
+  editorClassName,
 }: RHFRichTextFieldProps) => {
   const {
     control,
@@ -32,7 +34,7 @@ export const RHFRichTextField = ({
   });
 
   return (
-    <div>
+    <>
       <RichTextField
         value={value}
         placeholder={placeholder}
@@ -40,8 +42,9 @@ export const RHFRichTextField = ({
         onChange={onChange}
         editable={editable}
         showMenuBar={showMenuBar}
+        editorClassName={editorClassName}
       />
       <FieldError show={!!error}>{error}</FieldError>
-    </div>
+    </>
   );
 };

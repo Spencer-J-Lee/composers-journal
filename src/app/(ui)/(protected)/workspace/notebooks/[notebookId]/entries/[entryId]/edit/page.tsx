@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { dbGetEntries } from "@/db/queries/entries/get";
 import { EditEntryContent } from "@/modules/entries/edit/EditEntryContent";
 
@@ -19,7 +20,11 @@ const EditEntryPage = async ({ params }: EditEntryPageProps) => {
     notFound();
   }
 
-  return <EditEntryContent entry={entry} />;
+  return (
+    <WorkspacePageWrapper>
+      <EditEntryContent entry={entry} />
+    </WorkspacePageWrapper>
+  );
 };
 
 export default EditEntryPage;

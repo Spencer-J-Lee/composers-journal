@@ -14,6 +14,7 @@ export type RichTextFieldProps = {
   hasError?: boolean;
   editable?: boolean;
   showMenuBar?: boolean;
+  editorClassName?: string;
   onChange: (value: string) => void;
 };
 
@@ -23,6 +24,7 @@ export const RichTextField = ({
   hasError,
   editable = true,
   showMenuBar,
+  editorClassName,
   onChange,
 }: RichTextFieldProps) => {
   const editor = useEditor({
@@ -30,7 +32,7 @@ export const RichTextField = ({
     content: value,
     editorProps: {
       attributes: {
-        class: "min-h-52 markdown-container",
+        class: "markdown-container h-full",
       },
     },
     immediatelyRender: false,
@@ -47,15 +49,16 @@ export const RichTextField = ({
   }, [editor, editable]);
 
   return (
-    <div className="relative">
+    <>
       {editable && showMenuBar && <RichTextMenuBar editor={editor} />}
       <EditorContent
         editor={editor}
         className={clsx(
-          "border",
+          "rounded-sm border",
           hasError ? "border-negative" : "border-transparent",
+          editorClassName,
         )}
       />
-    </div>
+    </>
   );
 };

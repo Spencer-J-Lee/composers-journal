@@ -13,7 +13,7 @@ export const GhostTextField = ({
     <input
       {...props}
       className={clsx(
-        "w-full",
+        "w-full rounded-sm",
         { "outline-negative outline": hasError },
         className,
       )}

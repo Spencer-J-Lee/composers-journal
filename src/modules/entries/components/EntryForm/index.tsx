@@ -53,21 +53,23 @@ export const EntryForm = ({
         onSubmit={methods.handleSubmit(handleSubmit)}
         className="flex h-full flex-col"
       >
-        <div className="mb-5 w-full flex-1 space-y-4">
+        <div className="mb-4">
           <RHFGhostTextField
             name="title"
             className="text-4xl"
             placeholder="Title"
           />
-          <RHFRichTextField
-            name="description"
-            placeholder="Start writing your entry..."
-            showMenuBar
-          />
         </div>
 
+        <RHFRichTextField
+          name="description"
+          placeholder="Start writing your entry..."
+          editorClassName="flex-1 overflow-y-auto"
+          showMenuBar
+        />
+
         <Card
-          className="sticky bottom-0 flex items-center justify-between gap-x-10"
+          className="sticky bottom-0 mt-3 flex items-center justify-between gap-x-10"
           paddingSize="sm"
         >
           <ul>Tags placeholder</ul>
