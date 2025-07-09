@@ -38,6 +38,9 @@
 .markdown-container li {
   margin: 0.25em 0;
 }
+.markdown-container li:first-child {
+  margin-top: 0;
+}
 
 .markdown-container blockquote {
   @apply border-accent border-l-4 italic;
