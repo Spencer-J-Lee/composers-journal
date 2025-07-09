@@ -53,6 +53,7 @@ export const RichTextField = ({
       {editable && showMenuBar && <RichTextMenuBar editor={editor} />}
       <EditorContent
         editor={editor}
+        spellCheck={false}
         className={clsx(
           "rounded-sm border",
           hasError ? "border-negative" : "border-transparent",
