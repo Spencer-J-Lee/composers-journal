@@ -10,8 +10,8 @@ type EditNotebookContentProps = {
 
 export const EditNotebookContent = ({ notebook }: EditNotebookContentProps) => {
   return (
-    <div className="flex min-h-full w-full items-center justify-center">
-      <div className="flex flex-col items-center">
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="w-full max-w-80">
         <EditNotebookForm notebook={notebook} />
       </div>
     </div>

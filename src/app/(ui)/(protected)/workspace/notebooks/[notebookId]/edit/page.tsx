@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { dbGetActiveNotebookById } from "@/db/queries/notebooks/get";
 import { EditNotebookContent } from "@/modules/notebooks/edit/EditNotebookContent";
 
@@ -19,7 +20,11 @@ const EditNotebookPage = async ({ params }: EditNotebookPageProps) => {
     notFound();
   }
 
-  return <EditNotebookContent notebook={notebook} />;
+  return (
+    <WorkspacePageWrapper>
+      <EditNotebookContent notebook={notebook} />
+    </WorkspacePageWrapper>
+  );
 };
 
 export default EditNotebookPage;
