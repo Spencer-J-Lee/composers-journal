@@ -33,7 +33,11 @@ export const IconButton = ({
       type={type}
       {...props}
     >
-      {loading ? <PulsingEllipsis /> : <FontAwesomeIcon icon={faIcon} />}
+      {loading ? (
+        <PulsingEllipsis variant={textVariant} />
+      ) : (
+        <FontAwesomeIcon icon={faIcon} />
+      )}
     </button>
   );
 };

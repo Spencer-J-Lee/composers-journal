@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX } from "react";
+import { JSX, useState } from "react";
 import {
   faEdit,
   faTrashCan,
@@ -33,11 +33,17 @@ export const NotebookControls = ({
   const { mutateAsync: restoreNotebook } = useRestoreNotebook();
   const { mutateAsync: softDeleteNotebook } = useSoftDeleteNotebook();
   const { mutateAsync: trashNotebook } = useTrashNotebook();
+  const [loadingState, setLoadingState] = useState({
+    restoring: false,
+    trashing: false,
+    deleting: false,
+  });
 
   const handleRestoreNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Restore notebook: ${name}?`)) {
       return;
     }
+    setLoadingState((prev) => ({ ...prev, restoring: true }));
 
     try {
       await restoreNotebook(id);
@@ -46,12 +52,15 @@ export const NotebookControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.RESTORE.NOTEBOOK);
     }
+
+    setLoadingState((prev) => ({ ...prev, restoring: false }));
   };
 
   const handleTrashNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Trash notebook: ${name}?`)) {
       return;
     }
+    setLoadingState((prev) => ({ ...prev, trashing: true }));
 
     try {
       await trashNotebook(id);
@@ -60,12 +69,14 @@ export const NotebookControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.TRASH.NOTEBOOK);
     }
+    setLoadingState((prev) => ({ ...prev, trashing: false }));
   };
 
   const handleSoftDeleteNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Delete notebook: ${name}?`)) {
       return;
     }
+    setLoadingState((prev) => ({ ...prev, deleting: true }));
 
     try {
       await softDeleteNotebook(id);
@@ -74,6 +85,7 @@ export const NotebookControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.DELETE.NOTEBOOK);
     }
+    setLoadingState((prev) => ({ ...prev, deleting: false }));
   };
 
   const controlMap: Record<NotebookControl, JSX.Element> = {
@@ -87,6 +99,7 @@ export const NotebookControls = ({
     restore: (
       <IconButton
         onClick={() => handleRestoreNotebook(notebook)}
+        loading={loadingState.restoring}
         faIcon={faTrashCanArrowUp}
         textVariant="positive"
         key="restore"
@@ -95,6 +108,7 @@ export const NotebookControls = ({
     trash: (
       <IconButton
         onClick={() => handleTrashNotebook(notebook)}
+        loading={loadingState.trashing}
         faIcon={faTrashCan}
         textVariant="negative"
         key="trash"
@@ -103,6 +117,7 @@ export const NotebookControls = ({
     delete: (
       <IconButton
         onClick={() => handleSoftDeleteNotebook(notebook)}
+        loading={loadingState.deleting}
         faIcon={faTrashCan}
         textVariant="negative"
         key="delete"

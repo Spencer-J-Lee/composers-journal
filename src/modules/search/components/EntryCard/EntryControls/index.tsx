@@ -145,23 +145,23 @@ export const EntryControls = ({
     saving: entry.saved ? (
       <IconButton
         onClick={() => handleUnsaveEntry(entry)}
-        faIcon={faBookmark}
         loading={loadingState.unsaving}
+        faIcon={faBookmark}
         key="unsave"
       />
     ) : (
       <IconButton
         onClick={() => handleSaveEntry(entry)}
-        faIcon={faBookmarkEmpty}
         loading={loadingState.saving}
+        faIcon={faBookmarkEmpty}
         key="save"
       />
     ),
     restore: (
       <IconButton
         onClick={() => handleRestoreEntry(entry)}
-        faIcon={faTrashCanArrowUp}
         loading={loadingState.restoring}
+        faIcon={faTrashCanArrowUp}
         textVariant="positive"
         key="restore"
       />
@@ -169,8 +169,8 @@ export const EntryControls = ({
     trash: (
       <IconButton
         onClick={() => handleTrashEntry(entry)}
-        faIcon={faTrashCan}
         loading={loadingState.trashing}
+        faIcon={faTrashCan}
         textVariant="negative"
         key="trash"
       />

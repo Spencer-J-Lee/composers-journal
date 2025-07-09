@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { CreateEntryContent } from "@/modules/entries/create/CreateEntryContent";
 
 type CreateEntryPageProps = {
@@ -14,7 +15,11 @@ const CreateEntryPage = async ({ params }: CreateEntryPageProps) => {
     notFound();
   }
 
-  return <CreateEntryContent notebookId={parsedNotebookId} />;
+  return (
+    <WorkspacePageWrapper>
+      <CreateEntryContent notebookId={parsedNotebookId} />
+    </WorkspacePageWrapper>
+  );
 };
 
 export default CreateEntryPage;
