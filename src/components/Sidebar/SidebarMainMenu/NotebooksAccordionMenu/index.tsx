@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   faBook,
   faChevronDown,
@@ -11,6 +11,7 @@ import {
 import { Collapsible } from "@/components/Collapsible";
 import { routes } from "@/constants/routes";
 import { useActiveNotebooks } from "@/hooks/cache/notebooks";
+import { showErrorToast } from "@/utils/client/toasts";
 
 import { TreeBranch } from "./TreeBranch";
 import { IconButton } from "../../../iconButtons/IconButton";
@@ -18,11 +19,15 @@ import { SidebarLinkButton } from "../../SidebarLinkButton";
 import { SidebarLinkIconButton } from "../../SidebarLinkIconButton";
 
 export const NotebooksAccordionMenu = () => {
-  const { data: notebooks, isPending } = useActiveNotebooks();
+  const { data: notebooks, error } = useActiveNotebooks();
   const [show, setShow] = useState(true);
 
-  // TODO: handle loading UI and error
-  if (isPending) return "Loading...";
+  useEffect(() => {
+    if (error) {
+      console.error(error);
+      showErrorToast(error.message);
+    }
+  }, [error]);
 
   return (
     <div>
@@ -34,7 +39,7 @@ export const NotebooksAccordionMenu = () => {
         >
           Notebooks
         </SidebarLinkButton>
-        {!!notebooks?.length && (
+        {notebooks && notebooks.length > 0 && (
           <IconButton
             faIcon={show ? faChevronUp : faChevronDown}
             onClick={() => setShow((prev) => !prev)}
@@ -42,7 +47,7 @@ export const NotebooksAccordionMenu = () => {
         )}
       </div>
 
-      {!!notebooks?.length && (
+      {notebooks && notebooks.length > 0 && (
         <Collapsible show={show}>
           <ul className="space-y-1.5 pt-1.5">
             {notebooks.map((notebook, i) => (
