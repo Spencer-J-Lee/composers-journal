@@ -1,0 +1,41 @@
+import { repeatRender } from "@/utils/client/repeatRender";
+
+import { Divider } from "../Divider";
+import { ShimmerLoader } from "../ShimmerLoader";
+
+type ShimmerEntryCardProps = {
+  numControls: number;
+};
+
+export const ShimmerEntryCard = ({ numControls }: ShimmerEntryCardProps) => {
+  return (
+    <div className="bg-surface border-border rounded border shadow-sm">
+      <div className="flex">
+        <div className="flex flex-col items-center gap-1 p-2">
+          {repeatRender(numControls, (i) => (
+            <ShimmerLoader className="h-9 w-9" key={i} />
+          ))}
+        </div>
+        <div className="border-border flex flex-1 flex-col border-l p-4">
+          <ShimmerLoader typographyVariant="h4" className="w-1/2" />
+
+          <Divider className="my-3" />
+
+          <div className="mb-3 space-y-2">
+            <ShimmerLoader typographyVariant="body" fullWidth />
+            <ShimmerLoader typographyVariant="body" fullWidth />
+            <ShimmerLoader typographyVariant="body" fullWidth />
+          </div>
+
+          <div className="mt-auto flex justify-between gap-10">
+            <ShimmerLoader
+              typographyVariant="smallMuted"
+              className="max-w-96"
+              fullWidth
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
