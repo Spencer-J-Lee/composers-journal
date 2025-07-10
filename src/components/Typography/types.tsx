@@ -19,4 +19,5 @@ export type TypographyHtmlTag =
   | "h5"
   | "h6"
   | "p"
-  | "small";
+  | "small"
+  | "div";

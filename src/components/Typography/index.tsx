@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
 
-import { typographyHtmlTags,typographyStyles } from "./constants";
+import { typographyHtmlTags, typographyStyles } from "./constants";
 import { TypographyHtmlTag, TypographyVariant } from "./types";
 
 type TypographyProps = {

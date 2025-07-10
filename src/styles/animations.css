@@ -12,3 +12,18 @@
     transform: scale(1);
   }
 }
+
+@keyframes shimmer-l-to-r {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  75% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}

@@ -51,6 +51,11 @@
   --color-negative-text: #f57976;
   --color-disabled: #73767c;
 
+  /* === Shimmer Loader Colors === */
+  --color-skeleton-background: #40434b;
+  --color-shimmer-background: rgb(225 225 225 / 8%);
+  --color-shimmer-fallback: #494c55;
+
   /* === Accessibility === */
   --color-accessibility: #5865f2;
 
@@ -60,6 +65,7 @@
 
   /* === Animation === */
   --animate-pulsing-ellipsis: pulsing-ellipsis 1.4s ease-in-out infinite;
+  --animate-shimmer-l-to-r: shimmer-l-to-r 1.4s ease-in-out infinite;
 
   /**
    * THEME: Caffe Latte (inactive)
