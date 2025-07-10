@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 import { variantClassNames } from "@/components/buttons/hooks/useButtonStyles/styles";
 
-import { textVariantClassName } from "./styles";
+import { textVariantClassName, widthHeightClassName } from "./styles";
 import { IconButtonTextVariant } from "../../types";
 
 type UseIconButtonStylesProps = {
@@ -18,7 +18,8 @@ export const useIconButtonStyles = ({
 }: UseIconButtonStylesProps) => {
   return {
     iconButtonClassName: clsx(
-      "h-9 w-9 flex justify-center rounded items-center",
+      "flex justify-center rounded items-center",
+      widthHeightClassName,
       disabled
         ? [
             "bg-surface-disabled cursor-not-allowed",
