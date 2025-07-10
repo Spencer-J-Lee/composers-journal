@@ -25,7 +25,7 @@ export const RecentEntriesSection = () => {
       return (
         <ul className="space-y-4">
           <li>
-            <ShimmerEntryCard numControls={1} />
+            <ShimmerEntryCard controlsCount={1} />
           </li>
         </ul>
       );

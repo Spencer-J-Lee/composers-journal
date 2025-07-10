@@ -1,23 +1,17 @@
-import { repeatRender } from "@/utils/client/repeatRender";
-
-import { ShimmerIconButton } from "./ShimmerIconButton";
+import { ShimmerCardControls } from "./ShimmerCardControls";
 import { Card } from "../Card";
 import { Divider } from "../Divider";
 import { ShimmerLoader } from "../ShimmerLoader";
 
 type ShimmerEntryCardProps = {
-  numControls: number;
+  controlsCount: number;
 };
 
-export const ShimmerEntryCard = ({ numControls }: ShimmerEntryCardProps) => {
+export const ShimmerEntryCard = ({ controlsCount }: ShimmerEntryCardProps) => {
   return (
     <Card paddingSize="none">
       <div className="flex">
-        <div className="flex flex-col items-center gap-1 p-2">
-          {repeatRender(numControls, (i) => (
-            <ShimmerIconButton key={i} />
-          ))}
-        </div>
+        <ShimmerCardControls count={controlsCount} />
 
         <div className="border-border flex flex-1 flex-col border-l p-4">
           <ShimmerLoader typographyVariant="h4" className="w-1/2" />
