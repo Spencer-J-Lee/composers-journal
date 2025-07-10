@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import clsx from "clsx";
 
 import { Divider } from "@/components/Divider";
 import { Typography } from "@/components/Typography";
@@ -12,19 +11,13 @@ type EntryInfoProps = {
   entry: Entry;
   showTags: boolean;
   setShowTags: Dispatch<SetStateAction<boolean>>;
-  className?: string;
 };
 
-export const EntryInfo = ({
-  entry,
-  showTags,
-  setShowTags,
-  className,
-}: EntryInfoProps) => {
+export const EntryInfo = ({ entry, showTags, setShowTags }: EntryInfoProps) => {
   const { title, description, tags, createdAt, updatedAt } = entry;
 
   return (
-    <div className={clsx("flex flex-1 flex-col p-4", className)}>
+    <div className="border-border flex flex-1 flex-col border-l p-4">
       {/* TODO: make sure tag hierarchy is in order */}
       <Typography variant="h4" className="mb-1">
         {title}

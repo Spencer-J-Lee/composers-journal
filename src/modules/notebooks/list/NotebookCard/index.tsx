@@ -15,7 +15,7 @@ export const NotebookCard = ({ notebook, controls }: NotebookCardProps) => {
     <Card paddingSize="none">
       <div className="flex">
         <NotebookControls notebook={notebook} controls={controls} />
-        <NotebookInfo notebook={notebook} className="border-border border-l" />
+        <NotebookInfo notebook={notebook} />
       </div>
     </Card>
   );

@@ -43,7 +43,6 @@ export const EntryCard = ({
           entry={entry}
           showTags={showTags}
           setShowTags={setShowTags}
-          className="border-border border-l"
         />
       </div>
 
