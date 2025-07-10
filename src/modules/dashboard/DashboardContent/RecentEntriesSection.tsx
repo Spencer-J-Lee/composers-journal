@@ -34,7 +34,7 @@ export const RecentEntriesSection = () => {
     if (error) {
       return (
         <Typography variant="smallMuted">
-          Failed to load recent entries.
+          Failed to load recent entries
         </Typography>
       );
     }
