@@ -11,7 +11,7 @@ type ShimmerButtonProps = {
 };
 
 export const ShimmerButton = ({
-  size,
+  size = "md",
   fullWidth,
   className,
 }: ShimmerButtonProps) => {
