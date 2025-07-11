@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { getUserSS } from "@/db/supabase/server/helpers";
@@ -19,6 +20,7 @@ const GuestLayout = async ({
     <>
       <Navbar />
       {children}
+      <Footer />
     </>
   );
 };
