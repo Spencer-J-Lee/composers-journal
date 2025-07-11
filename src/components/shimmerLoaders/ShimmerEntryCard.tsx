@@ -14,7 +14,11 @@ export const ShimmerEntryCard = ({ controlsCount }: ShimmerEntryCardProps) => {
         <ShimmerCardControls count={controlsCount} />
 
         <div className="border-border flex flex-1 flex-col border-l p-4">
-          <ShimmerLoader typographyVariant="h4" className="w-1/2" />
+          <ShimmerLoader
+            typographyVariant="h4"
+            className="max-w-10/12"
+            fullWidth
+          />
 
           <Divider className="my-3" />
 
