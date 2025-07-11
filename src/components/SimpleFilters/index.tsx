@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 import { Button } from "@/components/buttons/Button";
 
+import { SORT_OPTIONS } from "./constants";
 import { SortBy } from "./types";
 
 type SimpleFiltersProps = {
@@ -12,14 +13,6 @@ type SimpleFiltersProps = {
   setSortBy: Dispatch<SetStateAction<SortBy>>;
   className?: string;
 };
-
-const SORT_OPTIONS: {
-  label: string;
-  value: SortBy;
-}[] = [
-  { label: "Latest", value: "latest" },
-  { label: "Oldest", value: "oldest" },
-];
 
 export const SimpleFilters = ({
   sortBy,
