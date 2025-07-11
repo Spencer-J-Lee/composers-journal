@@ -1,5 +1,7 @@
 import clsx from "clsx";
 
+import { repeatRender } from "@/utils/client/repeatRender";
+
 import { ShimmerButton } from "./ShimmerButton";
 
 type ShimmerSimpleFiltersProps = {
@@ -10,10 +12,10 @@ export const ShimmerSimpleFilters = ({
   className,
 }: ShimmerSimpleFiltersProps) => {
   return (
-    <div className={clsx("flex gap-2", className)}>
-      <ShimmerButton size="sm" className="max-w-15" fullWidth />
-      <ShimmerButton size="sm" className="max-w-15" fullWidth />
-      <ShimmerButton size="sm" className="max-w-15" fullWidth />
+    <div className={clsx("flex items-center gap-x-2", className)}>
+      {repeatRender(3, (i) => (
+        <ShimmerButton size="sm" className="w-15" key={i} />
+      ))}
     </div>
   );
 };
