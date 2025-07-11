@@ -20,7 +20,7 @@ export const EmptyState = ({
   children,
 }: EmptyStateProps) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center text-center">
       <Image
         src={src}
         alt={alt}
