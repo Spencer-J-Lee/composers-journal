@@ -12,7 +12,7 @@ export const StickyTopBar = ({ children, className }: StickyTopBarProps) => {
   return (
     <div
       className={clsx(
-        "bg-background-light sticky top-0 gap-x-4 py-4",
+        "bg-surface border-accent sticky top-0 gap-x-4 border-l-4 py-4 shadow-md",
         WORKSPACE_WRAPPER_PX,
         className,
       )}
