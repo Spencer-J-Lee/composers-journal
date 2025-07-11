@@ -9,19 +9,26 @@ import { NotebooksSection } from "./NotebooksSection";
 import { TrashEmptyState } from "../TrashEmptyState";
 
 export const TrashContent = () => {
-  const { data: notebooks } = useTrashedNotebooks();
-  const { data: entries } = useTrashedEntries();
+  const { data: notebooks, isSuccess: isNotebooksSuccess } =
+    useTrashedNotebooks();
+  const { data: entries, isSuccess: isEntriesSuccess } = useTrashedEntries();
 
-  if (!notebooks?.length && !entries?.length) {
-    return <TrashEmptyState />;
-  }
+  const isEmpty =
+    isNotebooksSuccess &&
+    isEntriesSuccess &&
+    notebooks.length === 0 &&
+    entries.length === 0;
 
   return (
     <WorkspacePageWrapper>
-      <div className="flex flex-col gap-y-8">
-        <NotebooksSection />
-        <EntriesSection />
-      </div>
+      {isEmpty ? (
+        <TrashEmptyState />
+      ) : (
+        <div className="flex flex-col gap-y-8">
+          <NotebooksSection />
+          <EntriesSection />
+        </div>
+      )}
     </WorkspacePageWrapper>
   );
 };
