@@ -1,4 +1,5 @@
 import { StyledLink } from "./StyledLink";
+import { Typography } from "./Typography";
 
 export const Footer = () => {
   const genExternalLink = (text: string, href: string) => {
@@ -26,14 +27,14 @@ export const Footer = () => {
   return (
     <footer className="bg-background">
       <div className="m-auto max-w-screen-xl px-5 py-3 lg:px-11">
-        <p>
+        <Typography variant="body">
           Built with {links.next}, {links.tailwind}. Deployed with{" "}
           {links.vercel}.
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="body">
           Illustrations by {links.illustrations_credit}, shared on Figma
           Community. Used under the {links.cc_by_4}.
-        </p>
+        </Typography>
       </div>
     </footer>
   );

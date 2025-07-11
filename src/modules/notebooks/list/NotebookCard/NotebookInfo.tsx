@@ -1,3 +1,4 @@
+import { Typography } from "@/components/Typography";
 import { Notebook } from "@/models/Notebook";
 
 type NotebookInfoProps = {
@@ -9,12 +10,14 @@ export const NotebookInfo = ({ notebook }: NotebookInfoProps) => {
 
   return (
     <div className="border-border flex flex-1 flex-col border-l p-4">
-      <h2 className="mb-1 text-xl font-semibold">{name}</h2>
+      <Typography variant="h4" className="mb-1">
+        {name}
+      </Typography>
 
       <div className="mt-auto">
-        <small className="text-text-muted">
+        <Typography variant="smallMuted">
           Created: {new Date(createdAt).toLocaleDateString()}
-        </small>
+        </Typography>
       </div>
     </div>
   );
