@@ -7,6 +7,7 @@ import { LinkButton } from "@/components/buttons/LinkButton";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { WorkspaceContentWrapper } from "@/components/contentWrappers/WorkspaceContentWrapper";
 import { InformativeDivider } from "@/components/InformativeDivider";
+import { CircleLoader } from "@/components/loaders/CircleLoader";
 import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { StickyTopBar } from "@/components/StickyTopBar";
 import { Typography } from "@/components/Typography";
@@ -131,8 +132,11 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
           </InformativeDivider>
         )}
 
-        {/* TODO: handle loading UI */}
-        <div>{isFetching ? "Fetching..." : null}</div>
+        {isFetching && (
+          <div className="my-5 flex items-center justify-center">
+            <CircleLoader />
+          </div>
+        )}
       </WorkspaceContentWrapper>
     </WorkspacePageWrapper>
   );

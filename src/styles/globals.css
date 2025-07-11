@@ -66,6 +66,7 @@
   /* === Animation === */
   --animate-pulsing-ellipsis: pulsing-ellipsis 1.4s ease-in-out infinite;
   --animate-shimmer-l-to-r: shimmer-l-to-r 1.4s ease-in-out infinite;
+  --animate-spin: spin 1s infinite linear;
 
   /**
    * THEME: Caffe Latte (inactive)
