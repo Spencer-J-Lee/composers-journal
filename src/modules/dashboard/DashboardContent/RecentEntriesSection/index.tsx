@@ -2,15 +2,15 @@
 
 import { useEffect } from "react";
 
+import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { CollapsibleSection } from "@/components/CollapsibleSection";
 import { ShimmerEntryCard } from "@/components/shimmerLoaders/ShimmerEntryCard";
 import { Typography } from "@/components/Typography";
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useRecentlyUpdatedEntries } from "@/hooks/cache/entries";
 import { EntryCard } from "@/modules/search/components/EntryCard";
-import { showErrorToast } from "@/utils/client/toasts";
-import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { EntryControl } from "@/modules/search/components/EntryCard/EntryControls/types";
+import { showErrorToast } from "@/utils/client/toasts";
 
 export const RecentEntriesSection = () => {
   const {
