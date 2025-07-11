@@ -20,7 +20,7 @@ export const RecentEntriesSection = () => {
     isError,
     isSuccess,
   } = useRecentlyUpdatedEntries();
-  const entryControls: EntryControl[] = ["edit"];
+  const entryControls: EntryControl[] = ["edit", "saving"];
 
   useEffect(() => {
     if (error) {
