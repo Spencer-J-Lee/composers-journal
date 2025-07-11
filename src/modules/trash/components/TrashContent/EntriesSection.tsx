@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { Button } from "@/components/buttons/Button";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { CollapsibleSection } from "@/components/CollapsibleSection";
 import { ShimmerEntryCard } from "@/components/shimmerLoaders/ShimmerEntryCard";
@@ -59,11 +60,13 @@ export const EntriesSection = () => {
 
       {isSuccess && entries.length > 0 && (
         <>
-          <SimpleFilters
-            sortBy={sortBy}
-            setSortBy={setSortBy}
-            className="mb-4"
-          />
+          <div className="mb-4 flex items-center justify-between gap-x-10">
+            <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
+            {/* TODO: hook up Delete all functionality */}
+            <Button size="sm" variant="negative">
+              Delete all
+            </Button>
+          </div>
           <CardResultsWrapper>
             {sortedEntries.map((entry) => (
               <li key={entry.id}>
