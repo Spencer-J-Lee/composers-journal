@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { CollapsibleSection } from "@/components/CollapsibleSection";
 import { ShimmerEntryCard } from "@/components/shimmerLoaders/ShimmerEntryCard";
 import { ShimmerSimpleFilters } from "@/components/shimmerLoaders/ShimmerSimpleFilters";
@@ -8,10 +10,18 @@ import { useTrashedEntries } from "@/hooks/cache/entries";
 import { useSortedEntries } from "@/modules/entries/hooks/useSortedEntries";
 import { EntryCard } from "@/modules/search/components/EntryCard";
 import { repeatRender } from "@/utils/client/repeatRender";
+import { showErrorToast } from "@/utils/client/toasts";
 
 export const EntriesSection = () => {
   const { data: entries, isPending, error } = useTrashedEntries();
   const { sortBy, setSortBy, sortedEntries } = useSortedEntries(entries);
+
+  useEffect(() => {
+    if (error) {
+      console.error(error);
+      showErrorToast(error.message);
+    }
+  }, [error]);
 
   const renderContent = () => {
     if (isPending) {

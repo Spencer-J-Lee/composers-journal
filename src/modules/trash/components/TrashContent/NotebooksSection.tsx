@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { CollapsibleSection } from "@/components/CollapsibleSection";
 import { ShimmerNotebookCard } from "@/components/shimmerLoaders/ShimmerNotebookCard";
 import { ShimmerSimpleFilters } from "@/components/shimmerLoaders/ShimmerSimpleFilters";
@@ -7,10 +9,18 @@ import { useTrashedNotebooks } from "@/hooks/cache/notebooks";
 import { useSortedNotebooks } from "@/modules/notebooks/hooks/useSortedNotebooks";
 import { NotebookCard } from "@/modules/notebooks/list/NotebookCard";
 import { repeatRender } from "@/utils/client/repeatRender";
+import { showErrorToast } from "@/utils/client/toasts";
 
 export const NotebooksSection = () => {
   const { data: notebooks, isPending, error } = useTrashedNotebooks();
   const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
+
+  useEffect(() => {
+    if (error) {
+      console.error(error);
+      showErrorToast(error.message);
+    }
+  }, [error]);
 
   const renderContent = () => {
     if (isPending) {
