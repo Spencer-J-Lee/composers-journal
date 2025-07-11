@@ -7,7 +7,6 @@ type apiDeleteSavedItemsProps = {
   entryId: SavedItem["entryId"];
 };
 
-// TODO: setup redux
 export const apiDeleteSavedItem = async (props: apiDeleteSavedItemsProps) => {
   return await fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
     method: "DELETE",
