@@ -19,7 +19,7 @@ export const ShimmerLoader = ({
   return (
     <div
       className={clsx(
-        "bg-skeleton-background relative overflow-hidden rounded-md",
+        "bg-skeleton-background pointer-events-none relative select-none overflow-hidden rounded-md",
         { "w-full": fullWidth },
         className,
       )}
