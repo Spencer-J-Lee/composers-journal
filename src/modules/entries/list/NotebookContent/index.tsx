@@ -39,6 +39,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     isFetching,
     isFetchingNextPage,
     isPending,
+    isError,
     isSuccess,
   } = useInfEntryPages(notebookId, filters, offset);
   const isFetchingNextPageRef = useRef(isFetchingNextPage);
@@ -98,11 +99,11 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
       </StickyTopBar>
 
       <WorkspaceContentWrapper>
-        {error && (
+        {isError && (
           <Typography variant="smallMuted">Failed to load entries</Typography>
         )}
 
-        {data && (
+        {isSuccess && data && (
           <CardResultsWrapper>
             {data.pages.map(({ entries }, i) => (
               <Fragment key={i}>
