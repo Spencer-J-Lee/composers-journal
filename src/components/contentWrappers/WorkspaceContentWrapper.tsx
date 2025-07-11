@@ -1,7 +1,10 @@
 import { ReactNode } from "react";
 import clsx from "clsx";
 
-import { WORKSPACE_WRAPPER_PX } from "../pageWrappers/WorkspacePageWrapper/styles";
+import {
+  WORKSPACE_WRAPPER_PX,
+  WORKSPACE_WRAPPER_PY,
+} from "../pageWrappers/WorkspacePageWrapper/styles";
 
 type WorkspaceContentWrapperProps = {
   children: ReactNode;
@@ -13,5 +16,9 @@ type WorkspaceContentWrapperProps = {
 export const WorkspaceContentWrapper = ({
   children,
 }: WorkspaceContentWrapperProps) => {
-  return <div className={clsx("pb-4", WORKSPACE_WRAPPER_PX)}>{children}</div>;
+  return (
+    <div className={clsx(WORKSPACE_WRAPPER_PX, WORKSPACE_WRAPPER_PY)}>
+      {children}
+    </div>
+  );
 };
