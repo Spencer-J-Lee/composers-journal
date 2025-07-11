@@ -5,7 +5,6 @@ import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
 type apiCreateSavedItemProps = Pick<SavedItem, "entryId">;
 
-// TODO: setup redux
 export const apiCreateSavedItem = async (
   props: apiCreateSavedItemProps,
 ): Promise<SavedItem> => {

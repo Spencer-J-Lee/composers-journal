@@ -8,7 +8,6 @@ type apiCreateEntryProps = Pick<
   "notebookId" | "title" | "description" | "status"
 >;
 
-// TODO: setup redux
 export const apiCreateEntry = async (
   props: apiCreateEntryProps,
 ): Promise<Entry> => {

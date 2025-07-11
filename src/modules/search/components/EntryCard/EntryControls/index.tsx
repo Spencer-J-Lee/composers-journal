@@ -194,7 +194,6 @@ export const EntryControls = ({
 
   return (
     <div className="flex flex-col items-center gap-1 p-2">
-      {/* TODO: add logic for bookmark dual state */}
       {controls.map((control) => controlMap[control])}
     </div>
   );
