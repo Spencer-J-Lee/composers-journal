@@ -1,4 +1,4 @@
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import { faBookmark as faBookmarkEmpty } from "@fortawesome/free-regular-svg-icons";
 import {
   faBookmark,

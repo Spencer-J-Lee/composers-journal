@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
-import { dbGetEntries } from "@/db/queries/entries/get";
+import { dbGetActiveEntryById } from "@/db/queries/entries/get";
 import { EditEntryContent } from "@/modules/entries/edit/EditEntryContent";
 
 type EditEntryPageProps = {
@@ -15,7 +15,7 @@ const EditEntryPage = async ({ params }: EditEntryPageProps) => {
     notFound();
   }
 
-  const entry = (await dbGetEntries({ id: parsedEntryId }))[0];
+  const entry = await dbGetActiveEntryById(parsedEntryId);
   if (!entry) {
     notFound();
   }

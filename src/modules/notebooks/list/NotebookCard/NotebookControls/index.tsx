@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import {
   faEdit,
   faTrashCan,

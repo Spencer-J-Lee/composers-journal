@@ -8,6 +8,7 @@ import { entries as entriesTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server/helpers";
 import { entrySchema } from "@/models/Entry/schema";
 import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
+import { idsSchema } from "@/schemas/idsSchema";
 import { OrderBy } from "@/types/query";
 import {
   respondWithError,
@@ -45,7 +46,8 @@ export const GET = async (req: NextRequest) => {
         status: true,
         notebookId: true,
       })
-      .merge(commonApiParamsSchema);
+      .merge(commonApiParamsSchema)
+      .merge(idsSchema);
 
     const safeParams = schema.safeParse(payload);
     if (!safeParams.success) {

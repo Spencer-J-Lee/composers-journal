@@ -1,20 +1,23 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
+import { STATUSES } from "@/models/types/status";
 import { CommonApiOptions } from "@/services/types";
+import { withFirstResult } from "@/utils/server/withFirstResults";
 
 import { convertOrderByToSql } from "../utils/convertOrderByToSql";
 
-type dbGetEntriesProps = Partial<
-  Pick<Entry, "ownerId" | "id" | "status" | "notebookId">
+type dbGetEntriesProps = { ids: Entry["id"][] } & Partial<
+  Pick<Entry, "ownerId" | "status" | "notebookId">
 > &
   CommonApiOptions<typeof entries>;
 
 export const dbGetEntries = async ({
   ownerId,
-  id,
+  ids,
   status,
   notebookId,
   limit = 50,
@@ -23,7 +26,7 @@ export const dbGetEntries = async ({
 }: dbGetEntriesProps): Promise<Entry[]> => {
   const andClauses = [];
   if (ownerId) andClauses.push(eq(entries.ownerId, ownerId));
-  if (id) andClauses.push(eq(entries.id, id));
+  if (ids) andClauses.push(inArray(entries.id, ids));
   if (status) andClauses.push(eq(entries.status, status));
   if (notebookId) andClauses.push(eq(entries.notebookId, notebookId));
 
@@ -62,6 +65,15 @@ export const dbGetEntries = async ({
 };
 
 export const dbGetEntryById = async (id: Entry["id"]) => {
-  const res = await dbGetEntries({ id });
-  return res.length === 1 ? res[0] : null;
+  return withFirstResult(
+    () => dbGetEntries({ ids: [id] }),
+    ERROR_MESSAGES.DEV.FETCH.NO_ENTRY(id),
+  );
+};
+
+export const dbGetActiveEntryById = async (id: Entry["id"]) => {
+  return withFirstResult(
+    () => dbGetEntries({ ids: [id], status: STATUSES.ACTIVE }),
+    ERROR_MESSAGES.DEV.FETCH.NO_ENTRY(id),
+  );
 };
