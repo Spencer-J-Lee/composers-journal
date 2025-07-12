@@ -1,5 +1,4 @@
 import { NextRequest } from "next/server";
-import { z } from "zod";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateNotebook } from "@/db/queries/notebooks/create";
@@ -10,6 +9,7 @@ import { notebooks as notebooksTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server/helpers";
 import { notebookSchema } from "@/models/Notebook/schema";
 import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
+import { idsSchema } from "@/schemas/idsSchema";
 import { OrderBy } from "@/types/query";
 import {
   respondWithError,
@@ -18,7 +18,6 @@ import {
   respondWithMissingPayloadError,
   respondWithUnauthorized,
 } from "@/utils/server/errors";
-import { idsSchema } from "@/schemas/idsSchema";
 
 export const GET = async (req: NextRequest) => {
   const user = await getUserSS();
@@ -148,8 +147,8 @@ export const PATCH = async (req: NextRequest) => {
   } catch (err) {
     return respondWithError({
       status: 500,
-      userMsg: ERROR_MESSAGES.USER.UPDATE.NOTEBOOK,
-      devMsg: ERROR_MESSAGES.DEV.UPDATE.NOTEBOOK,
+      userMsg: ERROR_MESSAGES.USER.UPDATE.NOTEBOOKS,
+      devMsg: ERROR_MESSAGES.DEV.UPDATE.NOTEBOOKS,
       err,
     });
   }

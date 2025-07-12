@@ -1,10 +1,10 @@
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types/status";
+import { withFirstResult } from "@/utils/server/withFirstResults";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
-import { ERROR_MESSAGES } from "@/constants/messages";
-import { withFirstResult } from "@/utils/server/withFirstResults";
 
 type EditableProps = Partial<Pick<Notebook, "name" | "status">>;
 
@@ -71,4 +71,14 @@ export const apiSoftDeleteNotebook = async (
       }),
     ERROR_MESSAGES.DEV.UPDATE.NO_NOTEBOOK(id),
   );
+};
+
+// TODO: create mutation hook and hook up to delete trash button
+export const apiSoftDeleteNotebooks = async (
+  ids: Notebook["id"][],
+): Promise<Notebook[]> => {
+  return apiUpdateNotebooks({
+    ids,
+    status: STATUSES.DELETED,
+  });
 };

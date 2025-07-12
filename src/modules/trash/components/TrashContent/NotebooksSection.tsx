@@ -7,22 +7,29 @@ import { ShimmerNotebookCard } from "@/components/shimmerLoaders/ShimmerNotebook
 import { ShimmerSimpleFilters } from "@/components/shimmerLoaders/ShimmerSimpleFilters";
 import { SimpleFilters } from "@/components/SimpleFilters";
 import { Typography } from "@/components/Typography";
-import { useTrashedNotebooks } from "@/hooks/cache/notebooks";
+import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
+import {
+  useSoftDeleteNotebooks,
+  useTrashedNotebooks,
+} from "@/hooks/cache/notebooks";
+import { Notebook } from "@/models/Notebook";
 import { useSortedNotebooks } from "@/modules/notebooks/hooks/useSortedNotebooks";
 import { NotebookCard } from "@/modules/notebooks/list/NotebookCard";
 import { NotebookControl } from "@/modules/notebooks/list/NotebookCard/NotebookControls/types";
 import { repeatRender } from "@/utils/client/repeatRender";
-import { showErrorToast } from "@/utils/client/toasts";
+import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 export const NotebooksSection = () => {
   const {
     data: notebooks,
     error,
-    isPending,
+    isPending: isNotebooksPending,
     isError,
     isSuccess,
   } = useTrashedNotebooks();
   const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
+  const { mutateAsync: softDeleteNotebooks, isPending: isDeletePending } =
+    useSoftDeleteNotebooks();
   const notebookControls: NotebookControl[] = ["restore", "delete"];
 
   useEffect(() => {
@@ -32,9 +39,23 @@ export const NotebooksSection = () => {
     }
   }, [error]);
 
+  const handleSoftDeleteNotebooks = async (notebooks: Notebook[]) => {
+    if (!confirm(`Delete notebooks?`)) {
+      return;
+    }
+
+    try {
+      await softDeleteNotebooks(notebooks.map((nb) => nb.id));
+      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.NOTEBOOKS);
+    } catch (err) {
+      console.error(err);
+      showErrorToast(ERROR_MESSAGES.USER.DELETE.NOTEBOOKS);
+    }
+  };
+
   return (
     <CollapsibleSection title="Notebooks">
-      {isPending && (
+      {isNotebooksPending && (
         <>
           <ShimmerSimpleFilters className="mb-4" />
           <CardResultsWrapper>
@@ -61,8 +82,12 @@ export const NotebooksSection = () => {
         <>
           <div className="mb-4 flex items-center justify-between gap-x-10">
             <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
-            {/* TODO: hook up Delete all functionality */}
-            <Button size="sm" variant="negative">
+            <Button
+              onClick={() => handleSoftDeleteNotebooks(notebooks)}
+              loading={isDeletePending}
+              size="sm"
+              variant="negative"
+            >
               Delete all
             </Button>
           </div>

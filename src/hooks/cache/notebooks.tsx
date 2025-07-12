@@ -10,6 +10,7 @@ import {
 import {
   apiRestoreNotebook,
   apiSoftDeleteNotebook,
+  apiSoftDeleteNotebooks,
   apiTrashNotebook,
   apiUpdateNotebook,
 } from "@/services/notebooks/update";
@@ -109,6 +110,23 @@ export const useSoftDeleteNotebook = () => {
         STATIC_TS_KEYS.TRASHED_NOTEBOOKS,
         (prev) => (prev ? prev.filter((nb) => nb.id !== notebook.id) : []),
       );
+
+      // Ensure data integrity with follow-up revalidation
+      queryClient.invalidateQueries({
+        queryKey: STATIC_TS_KEYS.TRASHED_NOTEBOOKS,
+      });
+    },
+  });
+};
+
+export const useSoftDeleteNotebooks = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: apiSoftDeleteNotebooks,
+    onSuccess: () => {
+      // Maximize UI update speed through manual data manipulation
+      queryClient.removeQueries({ queryKey: STATIC_TS_KEYS.TRASHED_NOTEBOOKS });
 
       // Ensure data integrity with follow-up revalidation
       queryClient.invalidateQueries({

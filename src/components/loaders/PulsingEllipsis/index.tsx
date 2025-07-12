@@ -12,7 +12,7 @@ export const PulsingEllipsis = ({
   variant = "default",
   isInline,
 }: PulsingEllipsisProps) => {
-  let animation = Array(3)
+  const animation = Array(3)
     .fill(0)
     .map((_, i) => (
       <span
