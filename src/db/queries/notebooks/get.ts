@@ -1,26 +1,28 @@
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, inArray } from "drizzle-orm";
 
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 import { Status, STATUSES } from "@/models/types/status";
 import { CommonApiOptions } from "@/services/types";
+import { withFirstResult } from "@/utils/server/withFirstResults";
 
-type dbGetNotebooksProps = Partial<
-  Pick<Notebook, "ownerId" | "id" | "name" | "status">
+type dbGetNotebooksProps = { ids: Notebook["id"][] } & Partial<
+  Pick<Notebook, "ownerId" | "name" | "status">
 > &
   CommonApiOptions<typeof notebooks>;
 
 export const dbGetNotebooks = async ({
   ownerId,
-  id,
+  ids,
   name,
   status,
   limit = 50,
 }: dbGetNotebooksProps): Promise<Notebook[]> => {
   const andClauses = [];
   if (ownerId) andClauses.push(eq(notebooks.ownerId, ownerId));
-  if (id) andClauses.push(eq(notebooks.id, id));
+  if (ids) andClauses.push(inArray(notebooks.id, ids));
   if (name) andClauses.push(eq(notebooks.name, name));
   if (status) andClauses.push(eq(notebooks.status, status));
 
@@ -39,6 +41,8 @@ export const dbGetNotebooks = async ({
 };
 
 export const dbGetActiveNotebookById = async (id: Notebook["id"]) => {
-  const res = await dbGetNotebooks({ id, status: STATUSES.ACTIVE });
-  return res.length === 1 ? res[0] : null;
+  return withFirstResult(
+    () => dbGetNotebooks({ ids: [id], status: STATUSES.ACTIVE }),
+    ERROR_MESSAGES.DEV.FETCH.NO_NOTEBOOK(id),
+  );
 };

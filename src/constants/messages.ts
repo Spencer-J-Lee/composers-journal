@@ -48,6 +48,7 @@ export const ERROR_MESSAGES = {
     FETCH: {
       ENTRIES: "Error occurred while fetching entries.",
       NOTEBOOKS: "Error occurred while fetching notebooks.",
+      NO_NOTEBOOK: (id: number) => `Notebook with ID ${id} was not returned.`,
     },
     CREATE: {
       ENTRY: "Error occurred while creating entry.",

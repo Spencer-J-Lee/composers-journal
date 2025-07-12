@@ -40,16 +40,15 @@ export const GET = async (req: NextRequest) => {
   try {
     const schema = notebookSchema
       .pick({
-        id: true,
         name: true,
         status: true,
       })
       .partial({
-        id: true,
         name: true,
         status: true,
       })
-      .merge(commonApiParamsSchema);
+      .merge(commonApiParamsSchema)
+      .merge(idsSchema);
 
     const safeParams = schema.safeParse(payload);
     if (!safeParams.success) {
