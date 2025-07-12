@@ -7,31 +7,49 @@ import { ShimmerEntryCard } from "@/components/shimmerLoaders/ShimmerEntryCard";
 import { ShimmerSimpleFilters } from "@/components/shimmerLoaders/ShimmerSimpleFilters";
 import { SimpleFilters } from "@/components/SimpleFilters";
 import { Typography } from "@/components/Typography";
+import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
-import { useTrashedEntries } from "@/hooks/cache/entries";
+import { useSoftDeleteEntries, useTrashedEntries } from "@/hooks/cache/entries";
+import { useLogError } from "@/hooks/useLogError";
+import { Entry } from "@/models/Entry";
 import { useSortedEntries } from "@/modules/entries/hooks/useSortedEntries";
 import { EntryCard } from "@/modules/search/components/EntryCard";
 import { EntryControl } from "@/modules/search/components/EntryCard/EntryControls/types";
 import { repeatRender } from "@/utils/client/repeatRender";
-import { showErrorToast } from "@/utils/client/toasts";
+import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 export const EntriesSection = () => {
   const {
     data: entries,
-    error,
+    error: entriesError,
     isPending,
     isError,
     isSuccess,
   } = useTrashedEntries();
+  const {
+    mutateAsync: softDeleteEntries,
+    isPending: isSoftDeletePending,
+    error: softDeleteError,
+  } = useSoftDeleteEntries();
   const { sortBy, setSortBy, sortedEntries } = useSortedEntries(entries);
   const entryControls: EntryControl[] = ["restore", "delete"];
 
-  useEffect(() => {
-    if (error) {
-      console.error(error);
-      showErrorToast(error.message);
+  useLogError(entriesError);
+  useLogError(softDeleteError);
+
+  const handleSoftDeleteEntries = async (entries: Entry[]) => {
+    if (!confirm(`Delete entries?`)) {
+      return;
     }
-  }, [error]);
+
+    try {
+      await softDeleteEntries(entries.map((nb) => nb.id));
+      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.ENTRIES);
+    } catch (err) {
+      console.error(err);
+      showErrorToast(ERROR_MESSAGES.USER.DELETE.ENTRIES);
+    }
+  };
 
   return (
     <CollapsibleSection title="Entries">
@@ -62,8 +80,12 @@ export const EntriesSection = () => {
         <>
           <div className="mb-4 flex items-center justify-between gap-x-10">
             <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
-            {/* TODO: hook up Delete all functionality */}
-            <Button size="sm" variant="negative">
+            <Button
+              onClick={() => handleSoftDeleteEntries(entries)}
+              loading={isSoftDeletePending}
+              size="sm"
+              variant="negative"
+            >
               Delete all
             </Button>
           </div>

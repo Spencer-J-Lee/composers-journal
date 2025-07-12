@@ -18,6 +18,7 @@ import {
 } from "@/services/entries/get";
 import {
   apiRestoreEntry,
+  apiSoftDeleteEntries,
   apiSoftDeleteEntry,
   apiTrashEntry,
 } from "@/services/entries/update";
@@ -64,6 +65,24 @@ export const useSoftDeleteEntry = () => {
         STATIC_TS_KEYS.TRASHED_ENTRIES,
         (prev) => (prev ? prev.filter((en) => en.id !== entry.id) : []),
       );
+
+      // Ensure data integrity with follow-up revalidation
+      queryClient.invalidateQueries({
+        queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
+      });
+    },
+  });
+};
+
+export const useSoftDeleteEntries = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: apiSoftDeleteEntries,
+    onSuccess: () => {
+      // TODO: redo this based on docs https://tanstack.com/query/v4/docs/framework/react/guides/optimistic-updates
+      // Maximize UI update speed through manual data manipulation
+      queryClient.removeQueries({ queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES });
 
       // Ensure data integrity with follow-up revalidation
       queryClient.invalidateQueries({

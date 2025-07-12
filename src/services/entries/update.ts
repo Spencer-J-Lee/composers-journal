@@ -52,4 +52,14 @@ export const apiSoftDeleteEntry = async (id: Entry["id"]): Promise<Entry> => {
         status: STATUSES.DELETED,
       }),
     ERROR_MESSAGES.DEV.UPDATE.NO_ENTRY(id),
+  );
+};
+
+export const apiSoftDeleteEntries = async (
+  ids: Entry["id"][],
+): Promise<Entry[]> => {
+  return apiUpdateEntries({
+    ids,
+    status: STATUSES.DELETED,
+  });
 };
