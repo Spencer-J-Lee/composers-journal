@@ -73,7 +73,6 @@ export const apiSoftDeleteNotebook = async (
   );
 };
 
-// TODO: create mutation hook and hook up to delete trash button
 export const apiSoftDeleteNotebooks = async (
   ids: Notebook["id"][],
 ): Promise<Notebook[]> => {

@@ -8,7 +8,7 @@ import { Status, STATUSES } from "@/models/types/status";
 import { CommonApiOptions } from "@/services/types";
 import { withFirstResult } from "@/utils/server/withFirstResults";
 
-type dbGetNotebooksProps = { ids: Notebook["id"][] } & Partial<
+type dbGetNotebooksProps = { ids?: Notebook["id"][] } & Partial<
   Pick<Notebook, "ownerId" | "name" | "status">
 > &
   CommonApiOptions<typeof notebooks>;
