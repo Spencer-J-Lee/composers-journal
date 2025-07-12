@@ -88,7 +88,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     return <NotebookPendingState notebookId={notebookId} />;
   }
 
-  if (isSuccess && data.pages.length === 0) {
+  if (isSuccess && data.pages[0].entries.length === 0) {
     return <NotebookEmptyState notebookId={notebookId} />;
   }
 
@@ -104,7 +104,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
           <Typography variant="smallMuted">Failed to load entries</Typography>
         )}
 
-        {isSuccess && data && (
+        {isSuccess && data.pages[0].entries.length > 0 && (
           <CardResultsWrapper>
             {data.pages.map(({ entries }, i) => (
               <Fragment key={i}>
