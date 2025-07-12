@@ -1,17 +1,18 @@
-import { eq } from "drizzle-orm";
+import { inArray } from "drizzle-orm";
 
 import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 
-type dbUpdateNotebookProps = Pick<Notebook, "id"> &
-  Partial<Pick<Notebook, "name" | "status">>;
+type dbUpdateNotebooksProps = {
+  ids: Notebook["id"][];
+} & Partial<Pick<Notebook, "name" | "status">>;
 
-export const dbUpdateNotebook = async ({
-  id,
+export const dbUpdateNotebooks = async ({
+  ids,
   name,
   status,
-}: dbUpdateNotebookProps): Promise<Notebook> => {
+}: dbUpdateNotebooksProps): Promise<Notebook[]> => {
   const newVals = Object.fromEntries(
     Object.entries({ name, status }).filter(([, val]) => val !== undefined),
   ) as Partial<Pick<Notebook, "name" | "status">>;
@@ -22,12 +23,12 @@ export const dbUpdateNotebook = async ({
       ...newVals,
       updatedAt: new Date(),
     })
-    .where(eq(notebooks.id, id))
+    .where(inArray(notebooks.id, ids))
     .returning();
 
-  return {
-    ...result[0],
-    createdAt: result[0].createdAt.toISOString(),
-    updatedAt: result[0].updatedAt.toISOString(),
-  };
+  return result.map((notebook) => ({
+    ...notebook,
+    createdAt: notebook.createdAt.toISOString(),
+    updatedAt: notebook.updatedAt.toISOString(),
+  }));
 };

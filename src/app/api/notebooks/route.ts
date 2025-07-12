@@ -5,7 +5,7 @@ import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateNotebook } from "@/db/queries/notebooks/create";
 import { dbDeleteNotebooks } from "@/db/queries/notebooks/delete";
 import { dbGetNotebooks } from "@/db/queries/notebooks/get";
-import { dbUpdateNotebook } from "@/db/queries/notebooks/update";
+import { dbUpdateNotebooks } from "@/db/queries/notebooks/update";
 import { notebooks as notebooksTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server/helpers";
 import { notebookSchema } from "@/models/Notebook/schema";
@@ -18,6 +18,7 @@ import {
   respondWithMissingPayloadError,
   respondWithUnauthorized,
 } from "@/utils/server/errors";
+import { idsSchema } from "@/schemas/idsSchema";
 
 export const GET = async (req: NextRequest) => {
   const user = await getUserSS();
@@ -125,21 +126,22 @@ export const PATCH = async (req: NextRequest) => {
 
     const schema = notebookSchema
       .pick({
-        id: true,
         name: true,
         status: true,
       })
-      .partial({ name: true, status: true });
+      .partial({ name: true, status: true })
+      .merge(idsSchema);
+
     const safeParams = schema.safeParse(body);
     if (!safeParams.success) {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    const notebook = await dbUpdateNotebook({
+    const notebooks = await dbUpdateNotebooks({
       ...safeParams.data,
     });
 
-    return new Response(JSON.stringify(notebook), {
+    return new Response(JSON.stringify(notebooks), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
@@ -162,10 +164,7 @@ export const DELETE = async (req: NextRequest) => {
   try {
     const body = await req.json();
 
-    const schema = z.object({
-      ids: z.array(z.number()),
-    });
-    const safeParams = schema.safeParse(body);
+    const safeParams = idsSchema.safeParse(body);
     if (!safeParams.success) {
       return respondWithInvalidInfoError(safeParams.error);
     }

@@ -3,14 +3,15 @@ import { STATUSES } from "@/models/types/status";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
+import { ERROR_MESSAGES } from "@/constants/messages";
+import { withFirstResult } from "@/utils/server/withFirstResults";
 
-type apiUpdateNotebookProps = Pick<Notebook, "id"> &
-  Partial<Pick<Notebook, "name" | "status">>;
+type EditableProps = Partial<Pick<Notebook, "name" | "status">>;
 
-export const apiUpdateNotebook = async (
-  props: apiUpdateNotebookProps,
-): Promise<Notebook> => {
-  return await fetchWithErrorHandling<Notebook>(API_PATHS.NOTEBOOKS.ROOT, {
+export const apiUpdateNotebooks = async (
+  props: { ids: Notebook["id"][] } & EditableProps,
+): Promise<Notebook[]> => {
+  return fetchWithErrorHandling<Notebook[]>(API_PATHS.NOTEBOOKS.ROOT, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -19,29 +20,55 @@ export const apiUpdateNotebook = async (
   });
 };
 
+export const apiUpdateNotebook = async ({
+  id,
+  ...rest
+}: Pick<Notebook, "id"> & EditableProps): Promise<Notebook> => {
+  return withFirstResult(
+    () =>
+      apiUpdateNotebooks({
+        ids: [id],
+        ...rest,
+      }),
+    ERROR_MESSAGES.DEV.UPDATE.NO_NOTEBOOK(id),
+  );
+};
+
 export const apiRestoreNotebook = async (
   id: Notebook["id"],
 ): Promise<Notebook> => {
-  return apiUpdateNotebook({
-    id,
-    status: STATUSES.ACTIVE,
-  });
+  return withFirstResult(
+    () =>
+      apiUpdateNotebooks({
+        ids: [id],
+        status: STATUSES.ACTIVE,
+      }),
+    ERROR_MESSAGES.DEV.UPDATE.NO_NOTEBOOK(id),
+  );
 };
 
 export const apiTrashNotebook = async (
   id: Notebook["id"],
 ): Promise<Notebook> => {
-  return apiUpdateNotebook({
-    id,
-    status: STATUSES.TRASHED,
-  });
+  return withFirstResult(
+    () =>
+      apiUpdateNotebooks({
+        ids: [id],
+        status: STATUSES.TRASHED,
+      }),
+    ERROR_MESSAGES.DEV.UPDATE.NO_NOTEBOOK(id),
+  );
 };
 
 export const apiSoftDeleteNotebook = async (
   id: Notebook["id"],
 ): Promise<Notebook> => {
-  return apiUpdateNotebook({
-    id,
-    status: STATUSES.DELETED,
-  });
+  return withFirstResult(
+    () =>
+      apiUpdateNotebooks({
+        ids: [id],
+        status: STATUSES.DELETED,
+      }),
+    ERROR_MESSAGES.DEV.UPDATE.NO_NOTEBOOK(id),
+  );
 };

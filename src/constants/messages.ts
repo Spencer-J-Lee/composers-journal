@@ -58,6 +58,8 @@ export const ERROR_MESSAGES = {
     UPDATE: {
       ENTRY: "Error occurred while updating entry.",
       NOTEBOOK: "Error occurred while updating notebook.",
+      NO_NOTEBOOK: (id: number) =>
+        `Notebook with ID ${id} was updated, but no data was returned.`,
     },
     DELETE: {
       ENTRY: "Error occurred while deleting entry.",
