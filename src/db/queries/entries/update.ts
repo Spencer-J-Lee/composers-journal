@@ -1,22 +1,23 @@
-import { eq } from "drizzle-orm";
+import { inArray } from "drizzle-orm";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
 import { entries } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 
-import { dbGetEntryById } from "./get";
+import { dbGetEntries } from "./get";
 
-type dbUpdateEntryProps = Pick<Entry, "id"> &
-  Partial<Pick<Entry, "title" | "description" | "status" | "notebookId">>;
+type dbUpdateEntriesProps = { ids: Entry["id"][] } & Partial<
+  Pick<Entry, "title" | "description" | "status" | "notebookId">
+>;
 
-export const dbUpdateEntry = async ({
-  id,
+export const dbUpdateEntries = async ({
+  ids,
   title,
   description,
   status,
   notebookId,
-}: dbUpdateEntryProps): Promise<Entry> => {
+}: dbUpdateEntriesProps): Promise<Entry[]> => {
   const newVals = Object.fromEntries(
     Object.entries({ title, description, status, notebookId }).filter(
       ([, val]) => val !== undefined,
@@ -29,14 +30,16 @@ export const dbUpdateEntry = async ({
       ...newVals,
       updatedAt: new Date(),
     })
-    .where(eq(entries.id, id))
+    .where(inArray(entries.id, ids))
     .returning();
 
-  const entry = await dbGetEntryById(result[0].id);
+  const joinedEntries = await dbGetEntries({
+    ids: result.map((entry) => entry.id),
+  });
 
-  if (!entry) {
+  if (!joinedEntries) {
     throw new Error(ERROR_MESSAGES.DEV.DB_RETURNED_EMPTY);
   }
 
-  return entry;
+  return joinedEntries;
 };

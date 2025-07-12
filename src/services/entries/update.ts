@@ -1,16 +1,19 @@
+import { ERROR_MESSAGES } from "@/constants/messages";
 import { Entry } from "@/models/Entry";
 import { STATUSES } from "@/models/types/status";
+import { withFirstResult } from "@/utils/server/withFirstResults";
 
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-type apiUpdateEntryProps = Pick<Entry, "id"> &
-  Partial<Pick<Entry, "title" | "description" | "status" | "notebookId">>;
+type apiUpdateEntriesProps = { ids: Entry["id"][] } & Partial<
+  Pick<Entry, "title" | "description" | "status" | "notebookId">
+>;
 
-export const apiUpdateEntry = async (
-  props: apiUpdateEntryProps,
-): Promise<Entry> => {
-  return await fetchWithErrorHandling<Entry>(API_PATHS.ENTRIES.ROOT, {
+export const apiUpdateEntries = async (
+  props: apiUpdateEntriesProps,
+): Promise<Entry[]> => {
+  return await fetchWithErrorHandling<Entry[]>(API_PATHS.ENTRIES.ROOT, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -20,22 +23,33 @@ export const apiUpdateEntry = async (
 };
 
 export const apiRestoreEntry = async (id: Entry["id"]): Promise<Entry> => {
-  return apiUpdateEntry({
-    id,
-    status: STATUSES.ACTIVE,
-  });
+  return withFirstResult(
+    () =>
+      apiUpdateEntries({
+        ids: [id],
+        status: STATUSES.ACTIVE,
+      }),
+    ERROR_MESSAGES.DEV.UPDATE.NO_ENTRY(id),
+  );
 };
 
 export const apiTrashEntry = async (id: Entry["id"]): Promise<Entry> => {
-  return apiUpdateEntry({
-    id,
-    status: STATUSES.TRASHED,
-  });
+  return withFirstResult(
+    () =>
+      apiUpdateEntries({
+        ids: [id],
+        status: STATUSES.TRASHED,
+      }),
+    ERROR_MESSAGES.DEV.UPDATE.NO_ENTRY(id),
+  );
 };
 
 export const apiSoftDeleteEntry = async (id: Entry["id"]): Promise<Entry> => {
-  return apiUpdateEntry({
-    id,
-    status: STATUSES.DELETED,
-  });
+  return withFirstResult(
+    () =>
+      apiUpdateEntries({
+        ids: [id],
+        status: STATUSES.DELETED,
+      }),
+    ERROR_MESSAGES.DEV.UPDATE.NO_ENTRY(id),
 };

@@ -3,12 +3,12 @@ import { NextRequest } from "next/server";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateEntry } from "@/db/queries/entries/create";
 import { dbGetEntries } from "@/db/queries/entries/get";
-import { dbUpdateEntry } from "@/db/queries/entries/update";
+import { dbUpdateEntries } from "@/db/queries/entries/update";
 import { entries as entriesTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server/helpers";
 import { entrySchema } from "@/models/Entry/schema";
 import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
-import { idsSchema } from "@/schemas/idsSchema";
+import { idsOptionalSchema, idsSchema } from "@/schemas/idsSchema";
 import { OrderBy } from "@/types/query";
 import {
   respondWithError,
@@ -47,7 +47,7 @@ export const GET = async (req: NextRequest) => {
         notebookId: true,
       })
       .merge(commonApiParamsSchema)
-      .merge(idsSchema);
+      .merge(idsOptionalSchema);
 
     const safeParams = schema.safeParse(payload);
     if (!safeParams.success) {
@@ -125,7 +125,6 @@ export const PATCH = async (req: NextRequest) => {
 
     const schema = entrySchema
       .pick({
-        id: true,
         title: true,
         description: true,
         status: true,
@@ -136,13 +135,15 @@ export const PATCH = async (req: NextRequest) => {
         description: true,
         status: true,
         notebookId: true,
-      });
+      })
+      .merge(idsSchema);
+
     const safeParams = schema.safeParse(body);
     if (!safeParams.success) {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    const entry = await dbUpdateEntry(safeParams.data);
+    const entry = await dbUpdateEntries(safeParams.data);
 
     return new Response(JSON.stringify(entry), {
       status: 200,

@@ -31,6 +31,7 @@ export const ERROR_MESSAGES = {
     },
     DELETE: {
       ENTRY: "Failed to delete your entry",
+      ENTRIES: "Failed to delete your entries",
       NOTEBOOK: "Failed to delete your notebook",
       NOTEBOOKS: "Failed to delete your notebooks",
       SAVED_ITEM: {
@@ -60,6 +61,8 @@ export const ERROR_MESSAGES = {
     },
     UPDATE: {
       ENTRY: "Error occurred while updating entry.",
+      NO_ENTRY: (id: number) =>
+        `Entry with ID ${id} was updated, but no data was returned.`,
       NOTEBOOKS: "Error occurred while updating notebooks.",
       NO_NOTEBOOK: (id: number) =>
         `Notebook with ID ${id} was updated, but no data was returned.`,
@@ -102,6 +105,7 @@ export const SUCCESS_MESSAGES = {
     },
     DELETE: {
       ENTRY: "Entry deleted",
+      ENTRIES: "Entries deleted",
       NOTEBOOK: "Notebook deleted",
       NOTEBOOKS: "Notebooks deleted",
       SAVED_ITEM: {
