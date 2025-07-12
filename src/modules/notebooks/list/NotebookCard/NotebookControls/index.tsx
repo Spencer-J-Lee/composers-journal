@@ -30,21 +30,19 @@ export const NotebookControls = ({
   notebook,
   controls,
 }: NotebookControlsProps) => {
-  const { mutateAsync: restoreNotebook } = useRestoreNotebook();
-  const { mutateAsync: softDeleteNotebook } = useSoftDeleteNotebook();
-  const { mutateAsync: trashNotebook } = useTrashNotebook();
-  const [loadingState, setLoadingState] = useState({
-    restoring: false,
-    trashing: false,
-    deleting: false,
-  });
-  const actionPending = Object.values(loadingState).some((state) => state);
+  const { mutateAsync: restoreNotebook, isPending: isRestorePending } =
+    useRestoreNotebook();
+  const { mutateAsync: softDeleteNotebook, isPending: isSoftDeletePending } =
+    useSoftDeleteNotebook();
+  const { mutateAsync: trashNotebook, isPending: isTrashPending } =
+    useTrashNotebook();
+  const actionPending =
+    isRestorePending || isSoftDeletePending || isTrashPending;
 
   const handleRestoreNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Restore notebook: ${name}?`)) {
       return;
     }
-    setLoadingState((prev) => ({ ...prev, restoring: true }));
 
     try {
       await restoreNotebook(id);
@@ -53,15 +51,12 @@ export const NotebookControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.RESTORE.NOTEBOOK);
     }
-
-    setLoadingState((prev) => ({ ...prev, restoring: false }));
   };
 
   const handleTrashNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Trash notebook: ${name}?`)) {
       return;
     }
-    setLoadingState((prev) => ({ ...prev, trashing: true }));
 
     try {
       await trashNotebook(id);
@@ -70,14 +65,12 @@ export const NotebookControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.TRASH.NOTEBOOK);
     }
-    setLoadingState((prev) => ({ ...prev, trashing: false }));
   };
 
   const handleSoftDeleteNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Delete notebook: ${name}?`)) {
       return;
     }
-    setLoadingState((prev) => ({ ...prev, deleting: true }));
 
     try {
       await softDeleteNotebook(id);
@@ -86,7 +79,6 @@ export const NotebookControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.DELETE.NOTEBOOK);
     }
-    setLoadingState((prev) => ({ ...prev, deleting: false }));
   };
 
   const controlMap: Record<NotebookControl, JSX.Element> = {
@@ -100,7 +92,7 @@ export const NotebookControls = ({
     restore: (
       <IconButton
         onClick={() => handleRestoreNotebook(notebook)}
-        loading={loadingState.restoring}
+        loading={isRestorePending}
         disabled={actionPending}
         faIcon={faTrashCanArrowUp}
         textVariant="positive"
@@ -110,7 +102,7 @@ export const NotebookControls = ({
     trash: (
       <IconButton
         onClick={() => handleTrashNotebook(notebook)}
-        loading={loadingState.trashing}
+        loading={isTrashPending}
         disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
@@ -120,7 +112,7 @@ export const NotebookControls = ({
     delete: (
       <IconButton
         onClick={() => handleSoftDeleteNotebook(notebook)}
-        loading={loadingState.deleting}
+        loading={isSoftDeletePending}
         disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"

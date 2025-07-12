@@ -42,23 +42,26 @@ export const EntryControls = ({
   queryKey,
   onTrashSuccess,
 }: EntryControlsProps) => {
-  const { mutateAsync: restoreEntry } = useRestoreEntry();
-  const { mutateAsync: softDeleteEntry } = useSoftDeleteEntry();
-  const { mutateAsync: saveEntry } = useSaveEntry(queryKey);
-  const { mutateAsync: unsaveEntry } = useUnsaveEntry(queryKey);
-  const { mutateAsync: trashEntry } = useTrashEntry(queryKey, onTrashSuccess);
-  const [loadingState, setLoadingState] = useState({
-    saving: false,
-    unsaving: false,
-    restoring: false,
-    trashing: false,
-    deleting: false,
-  });
-  const actionPending = Object.values(loadingState).some((state) => state);
+  const { mutateAsync: restoreEntry, isPending: isRestorePending } =
+    useRestoreEntry();
+  const { mutateAsync: softDeleteEntry, isPending: isSoftDeletePending } =
+    useSoftDeleteEntry();
+  const { mutateAsync: saveEntry, isPending: isSavePending } =
+    useSaveEntry(queryKey);
+  const { mutateAsync: unsaveEntry, isPending: isUnsavePending } =
+    useUnsaveEntry(queryKey);
+  const { mutateAsync: trashEntry, isPending: isTrashPending } = useTrashEntry(
+    queryKey,
+    onTrashSuccess,
+  );
+  const actionPending =
+    isRestorePending ||
+    isSoftDeletePending ||
+    isSavePending ||
+    isUnsavePending ||
+    isTrashPending;
 
   const handleSaveEntry = async ({ id }: Entry) => {
-    setLoadingState((prev) => ({ ...prev, saving: true }));
-
     try {
       await saveEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.CREATE.SAVED_ITEM.ENTRY);
@@ -66,13 +69,9 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.CREATE.SAVED_ITEM.ENTRY);
     }
-
-    setLoadingState((prev) => ({ ...prev, saving: false }));
   };
 
   const handleUnsaveEntry = async ({ id }: Entry) => {
-    setLoadingState((prev) => ({ ...prev, unsaving: true }));
-
     try {
       await unsaveEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.SAVED_ITEM.ENTRY);
@@ -80,15 +79,12 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(isError(err) ? err.message : DEFAULT_ERROR_MSG);
     }
-
-    setLoadingState((prev) => ({ ...prev, unsaving: false }));
   };
 
   const handleRestoreEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Restore entry: ${title}?`)) {
       return;
     }
-    setLoadingState((prev) => ({ ...prev, restoring: true }));
 
     try {
       await restoreEntry(id);
@@ -97,15 +93,12 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.RESTORE.ENTRY);
     }
-
-    setLoadingState((prev) => ({ ...prev, restoring: false }));
   };
 
   const handleTrashEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Trash entry: ${title}?`)) {
       return;
     }
-    setLoadingState((prev) => ({ ...prev, trashing: true }));
 
     try {
       await trashEntry(id);
@@ -114,15 +107,12 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.TRASH.ENTRY);
     }
-
-    setLoadingState((prev) => ({ ...prev, trashing: false }));
   };
 
   const handleSoftDeleteEntry = async ({ id, title }: Entry) => {
     if (!confirm(`Delete entry: ${title}?`)) {
       return;
     }
-    setLoadingState((prev) => ({ ...prev, deleting: true }));
 
     try {
       await softDeleteEntry(id);
@@ -131,8 +121,6 @@ export const EntryControls = ({
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.DELETE.ENTRY);
     }
-
-    setLoadingState((prev) => ({ ...prev, deleting: false }));
   };
 
   const controlMap: Record<EntryControl, JSX.Element> = {
@@ -146,7 +134,7 @@ export const EntryControls = ({
     saving: entry.saved ? (
       <IconButton
         onClick={() => handleUnsaveEntry(entry)}
-        loading={loadingState.unsaving}
+        loading={isUnsavePending}
         disabled={actionPending}
         faIcon={faBookmark}
         key="unsave"
@@ -154,7 +142,7 @@ export const EntryControls = ({
     ) : (
       <IconButton
         onClick={() => handleSaveEntry(entry)}
-        loading={loadingState.saving}
+        loading={isSavePending}
         disabled={actionPending}
         faIcon={faBookmarkEmpty}
         key="save"
@@ -163,7 +151,7 @@ export const EntryControls = ({
     restore: (
       <IconButton
         onClick={() => handleRestoreEntry(entry)}
-        loading={loadingState.restoring}
+        loading={isRestorePending}
         disabled={actionPending}
         faIcon={faTrashCanArrowUp}
         textVariant="positive"
@@ -173,7 +161,7 @@ export const EntryControls = ({
     trash: (
       <IconButton
         onClick={() => handleTrashEntry(entry)}
-        loading={loadingState.trashing}
+        loading={isTrashPending}
         disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
@@ -183,7 +171,7 @@ export const EntryControls = ({
     delete: (
       <IconButton
         onClick={() => handleSoftDeleteEntry(entry)}
-        loading={loadingState.deleting}
+        loading={isSoftDeletePending}
         disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
