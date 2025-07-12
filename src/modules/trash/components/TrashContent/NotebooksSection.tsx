@@ -28,7 +28,7 @@ export const NotebooksSection = () => {
     isSuccess,
   } = useTrashedNotebooks();
   const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
-  const { mutateAsync: softDeleteNotebooks, isPending: isDeletePending } =
+  const { mutateAsync: softDeleteNotebooks, isPending: isSoftDeletePending } =
     useSoftDeleteNotebooks();
   const notebookControls: NotebookControl[] = ["restore", "delete"];
 
@@ -84,7 +84,7 @@ export const NotebooksSection = () => {
             <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
             <Button
               onClick={() => handleSoftDeleteNotebooks(notebooks)}
-              loading={isDeletePending}
+              loading={isSoftDeletePending}
               size="sm"
               variant="negative"
             >
