@@ -36,7 +36,7 @@ export const Button = ({
       type={type}
       {...props}
     >
-      {loading ? <PulsingEllipsis /> : children}
+      {loading ? <PulsingEllipsis isInline /> : children}
     </button>
   );
 };
