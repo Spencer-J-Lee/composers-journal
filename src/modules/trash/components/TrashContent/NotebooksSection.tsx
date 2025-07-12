@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { Button } from "@/components/buttons/Button";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { CollapsibleSection } from "@/components/CollapsibleSection";
@@ -12,6 +10,7 @@ import {
   useSoftDeleteNotebooks,
   useTrashedNotebooks,
 } from "@/hooks/cache/notebooks";
+import { useLogError } from "@/hooks/useLogError";
 import { Notebook } from "@/models/Notebook";
 import { useSortedNotebooks } from "@/modules/notebooks/hooks/useSortedNotebooks";
 import { NotebookCard } from "@/modules/notebooks/list/NotebookCard";
@@ -22,22 +21,21 @@ import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 export const NotebooksSection = () => {
   const {
     data: notebooks,
-    error,
+    error: notebooksError,
     isPending: isNotebooksPending,
     isError,
     isSuccess,
   } = useTrashedNotebooks();
+  const {
+    mutateAsync: softDeleteNotebooks,
+    isPending: isSoftDeletePending,
+    error: softDeleteError,
+  } = useSoftDeleteNotebooks();
   const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
-  const { mutateAsync: softDeleteNotebooks, isPending: isSoftDeletePending } =
-    useSoftDeleteNotebooks();
   const notebookControls: NotebookControl[] = ["restore", "delete"];
 
-  useEffect(() => {
-    if (error) {
-      console.error(error);
-      showErrorToast(error.message);
-    }
-  }, [error]);
+  useLogError(notebooksError);
+  useLogError(softDeleteError);
 
   const handleSoftDeleteNotebooks = async (notebooks: Notebook[]) => {
     if (!confirm(`Delete notebooks?`)) {

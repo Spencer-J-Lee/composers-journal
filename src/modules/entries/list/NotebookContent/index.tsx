@@ -14,9 +14,9 @@ import { Typography } from "@/components/Typography";
 import { routes } from "@/constants/routes";
 import { DYNAMIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useInfEntryPages } from "@/hooks/cache/entries";
+import { useLogError } from "@/hooks/useLogError";
 import { Notebook } from "@/models/Notebook";
 import { EntryCard } from "@/modules/search/components/EntryCard";
-import { showErrorToast } from "@/utils/client/toasts";
 
 import { NotebookPendingState } from "./NotebookPendingState";
 import { DEFAULT_ENTRY_FILTER } from "../EntriesFilter/constants";
@@ -48,6 +48,8 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
   isFetchingNextPageRef.current = isFetchingNextPage;
   hasNextPageRef.current = hasNextPage;
 
+  useLogError(error);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -67,13 +69,6 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     container.addEventListener("scroll", handleFetchTrigger);
     return () => container.removeEventListener("scroll", handleFetchTrigger);
   }, [fetchNextPage]);
-
-  useEffect(() => {
-    if (error) {
-      console.error(error);
-      showErrorToast(error.message);
-    }
-  }, [error]);
 
   const decrementOffset = () => {
     setOffset((prev) => prev - 1);

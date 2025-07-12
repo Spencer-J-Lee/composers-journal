@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { Button } from "@/components/buttons/Button";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { CollapsibleSection } from "@/components/CollapsibleSection";

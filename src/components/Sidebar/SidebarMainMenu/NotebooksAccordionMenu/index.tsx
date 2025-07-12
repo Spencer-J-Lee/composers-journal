@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   faBook,
   faChevronDown,
@@ -11,7 +11,7 @@ import {
 import { Collapsible } from "@/components/Collapsible";
 import { routes } from "@/constants/routes";
 import { useActiveNotebooks } from "@/hooks/cache/notebooks";
-import { showErrorToast } from "@/utils/client/toasts";
+import { useLogError } from "@/hooks/useLogError";
 
 import { TreeBranch } from "./TreeBranch";
 import { IconButton } from "../../../iconButtons/IconButton";
@@ -22,12 +22,7 @@ export const NotebooksAccordionMenu = () => {
   const { data: notebooks, error } = useActiveNotebooks();
   const [show, setShow] = useState(true);
 
-  useEffect(() => {
-    if (error) {
-      console.error(error);
-      showErrorToast(error.message);
-    }
-  }, [error]);
+  useLogError(error);
 
   return (
     <div>

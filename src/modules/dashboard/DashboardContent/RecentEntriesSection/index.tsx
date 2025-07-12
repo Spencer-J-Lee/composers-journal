@@ -1,16 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
-
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { CollapsibleSection } from "@/components/CollapsibleSection";
 import { ShimmerEntryCard } from "@/components/shimmerLoaders/ShimmerEntryCard";
 import { Typography } from "@/components/Typography";
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useRecentlyUpdatedEntries } from "@/hooks/cache/entries";
+import { useLogError } from "@/hooks/useLogError";
 import { EntryCard } from "@/modules/search/components/EntryCard";
 import { EntryControl } from "@/modules/search/components/EntryCard/EntryControls/types";
-import { showErrorToast } from "@/utils/client/toasts";
 
 export const RecentEntriesSection = () => {
   const {
@@ -22,12 +20,7 @@ export const RecentEntriesSection = () => {
   } = useRecentlyUpdatedEntries();
   const entryControls: EntryControl[] = ["edit", "saving"];
 
-  useEffect(() => {
-    if (error) {
-      console.error(error);
-      showErrorToast(error.message);
-    }
-  }, [error]);
+  useLogError(error);
 
   return (
     <CollapsibleSection title="Recent entries">

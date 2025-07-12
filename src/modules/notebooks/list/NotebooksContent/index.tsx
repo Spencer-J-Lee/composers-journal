@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-
 import { LinkButton } from "@/components/buttons/LinkButton";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { WorkspaceContentWrapper } from "@/components/contentWrappers/WorkspaceContentWrapper";
@@ -10,7 +8,7 @@ import { StickyTopBar } from "@/components/StickyTopBar";
 import { Typography } from "@/components/Typography";
 import { routes } from "@/constants/routes";
 import { useActiveNotebooks } from "@/hooks/cache/notebooks";
-import { showErrorToast } from "@/utils/client/toasts";
+import { useLogError } from "@/hooks/useLogError";
 
 import { NotebooksPendingState } from "./NotebooksPendingState";
 import { SimpleFilters } from "../../../../components/SimpleFilters";
@@ -30,12 +28,7 @@ export const NotebooksContent = () => {
   const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
   const notebookControls: NotebookControl[] = ["edit", "trash"];
 
-  useEffect(() => {
-    if (error) {
-      console.error(error);
-      showErrorToast(error.message);
-    }
-  }, [error]);
+  useLogError(error);
 
   if (isPending) {
     return <NotebooksPendingState notebookControls={notebookControls} />;
