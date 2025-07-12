@@ -10,7 +10,7 @@ import { withFirstResult } from "@/utils/server/withFirstResults";
 
 import { convertOrderByToSql } from "../utils/convertOrderByToSql";
 
-type dbGetEntriesProps = { ids: Entry["id"][] } & Partial<
+type dbGetEntriesProps = { ids?: Entry["id"][] } & Partial<
   Pick<Entry, "ownerId" | "status" | "notebookId">
 > &
   CommonApiOptions<typeof entries>;
@@ -64,16 +64,16 @@ export const dbGetEntries = async ({
   return formattedData;
 };
 
-export const dbGetEntryById = async (id: Entry["id"]) => {
+export const dbGetEntryById = async (
+  id: Entry["id"],
+  options?: Partial<Pick<Entry, "status">>,
+) => {
   return withFirstResult(
-    () => dbGetEntries({ ids: [id] }),
+    () => dbGetEntries({ ids: [id], status: options?.status }),
     ERROR_MESSAGES.DEV.FETCH.NO_ENTRY(id),
   );
 };
 
 export const dbGetActiveEntryById = async (id: Entry["id"]) => {
-  return withFirstResult(
-    () => dbGetEntries({ ids: [id], status: STATUSES.ACTIVE }),
-    ERROR_MESSAGES.DEV.FETCH.NO_ENTRY(id),
-  );
+  return dbGetEntryById(id, { status: STATUSES.ACTIVE });
 };
