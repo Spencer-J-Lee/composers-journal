@@ -9,7 +9,7 @@ import { notebooks as notebooksTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server/helpers";
 import { notebookSchema } from "@/models/Notebook/schema";
 import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
-import { idsSchema } from "@/schemas/idsSchema";
+import { idsOptionalSchema, idsSchema } from "@/schemas/idsSchema";
 import { OrderBy } from "@/types/query";
 import {
   respondWithError,
@@ -48,7 +48,7 @@ export const GET = async (req: NextRequest) => {
         status: true,
       })
       .merge(commonApiParamsSchema)
-      .merge(idsSchema);
+      .merge(idsOptionalSchema);
 
     const safeParams = schema.safeParse(payload);
     if (!safeParams.success) {
