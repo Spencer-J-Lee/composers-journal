@@ -112,5 +112,6 @@ export const SUCCESS_MESSAGES = {
         ENTRY: "Entry unsaved",
       },
     },
+    TRASH_EMPTIED: "Trash emptied",
   },
 } as const;
