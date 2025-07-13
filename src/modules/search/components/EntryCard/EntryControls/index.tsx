@@ -23,7 +23,6 @@ import {
   useTrashEntry,
   useUnsaveEntry,
 } from "@/hooks/cache/entries";
-import { useLogError } from "@/hooks/useLogError";
 import { Entry } from "@/models/Entry";
 import { isError } from "@/utils/client/isError";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
@@ -43,43 +42,24 @@ export const EntryControls = ({
   queryKey,
   onTrashSuccess,
 }: EntryControlsProps) => {
-  const {
-    mutateAsync: restoreEntry,
-    isPending: isRestorePending,
-    error: restoreError,
-  } = useRestoreEntry();
-  const {
-    mutateAsync: softDeleteEntry,
-    isPending: isSoftDeletePending,
-    error: softDeleteError,
-  } = useSoftDeleteEntry();
-  const {
-    mutateAsync: saveEntry,
-    isPending: isSavePending,
-    error: saveError,
-  } = useSaveEntry(queryKey);
-  const {
-    mutateAsync: unsaveEntry,
-    isPending: isUnsavePending,
-    error: unsaveError,
-  } = useUnsaveEntry(queryKey);
-  const {
-    mutateAsync: trashEntry,
-    isPending: isTrashPending,
-    error: trashError,
-  } = useTrashEntry(queryKey, onTrashSuccess);
+  const { mutateAsync: restoreEntry, isPending: isRestorePending } =
+    useRestoreEntry();
+  const { mutateAsync: softDeleteEntry, isPending: isSoftDeletePending } =
+    useSoftDeleteEntry();
+  const { mutateAsync: saveEntry, isPending: isSavePending } =
+    useSaveEntry(queryKey);
+  const { mutateAsync: unsaveEntry, isPending: isUnsavePending } =
+    useUnsaveEntry(queryKey);
+  const { mutateAsync: trashEntry, isPending: isTrashPending } = useTrashEntry(
+    queryKey,
+    onTrashSuccess,
+  );
   const actionPending =
     isRestorePending ||
     isSoftDeletePending ||
     isSavePending ||
     isUnsavePending ||
     isTrashPending;
-
-  useLogError(restoreError);
-  useLogError(softDeleteError);
-  useLogError(saveError);
-  useLogError(unsaveError);
-  useLogError(trashError);
 
   const handleSaveEntry = async ({ id }: Entry) => {
     try {

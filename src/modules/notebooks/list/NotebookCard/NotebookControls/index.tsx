@@ -16,7 +16,6 @@ import {
   useSoftDeleteNotebook,
   useTrashNotebook,
 } from "@/hooks/cache/notebooks";
-import { useLogError } from "@/hooks/useLogError";
 import { Notebook } from "@/models/Notebook";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
@@ -31,27 +30,14 @@ export const NotebookControls = ({
   notebook,
   controls,
 }: NotebookControlsProps) => {
-  const {
-    mutateAsync: restoreNotebook,
-    isPending: isRestorePending,
-    error: restoreError,
-  } = useRestoreNotebook();
-  const {
-    mutateAsync: softDeleteNotebook,
-    isPending: isSoftDeletePending,
-    error: softDeleteError,
-  } = useSoftDeleteNotebook();
-  const {
-    mutateAsync: trashNotebook,
-    isPending: isTrashPending,
-    error: trashError,
-  } = useTrashNotebook();
+  const { mutateAsync: restoreNotebook, isPending: isRestorePending } =
+    useRestoreNotebook();
+  const { mutateAsync: softDeleteNotebook, isPending: isSoftDeletePending } =
+    useSoftDeleteNotebook();
+  const { mutateAsync: trashNotebook, isPending: isTrashPending } =
+    useTrashNotebook();
   const actionPending =
     isRestorePending || isSoftDeletePending || isTrashPending;
-
-  useLogError(restoreError);
-  useLogError(softDeleteError);
-  useLogError(trashError);
 
   const handleRestoreNotebook = async ({ id, name }: Notebook) => {
     if (!confirm(`Restore notebook: ${name}?`)) {

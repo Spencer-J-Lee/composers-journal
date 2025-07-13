@@ -24,16 +24,12 @@ export const EntriesSection = () => {
     isError,
     isSuccess,
   } = useTrashedEntries();
-  const {
-    mutateAsync: softDeleteEntries,
-    isPending: isSoftDeletePending,
-    error: softDeleteError,
-  } = useSoftDeleteEntries();
+  const { mutateAsync: softDeleteEntries, isPending: isSoftDeletePending } =
+    useSoftDeleteEntries();
   const { sortBy, setSortBy, sortedEntries } = useSortedEntries(entries);
   const entryControls: EntryControl[] = ["restore", "delete"];
 
   useLogError(entriesError);
-  useLogError(softDeleteError);
 
   const handleSoftDeleteEntries = async (entries: Entry[]) => {
     if (!confirm(`Delete entries?`)) {

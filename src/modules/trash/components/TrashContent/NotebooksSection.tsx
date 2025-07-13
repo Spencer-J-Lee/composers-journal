@@ -26,16 +26,12 @@ export const NotebooksSection = () => {
     isError,
     isSuccess,
   } = useTrashedNotebooks();
-  const {
-    mutateAsync: softDeleteNotebooks,
-    isPending: isSoftDeletePending,
-    error: softDeleteError,
-  } = useSoftDeleteNotebooks();
+  const { mutateAsync: softDeleteNotebooks, isPending: isSoftDeletePending } =
+    useSoftDeleteNotebooks();
   const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
   const notebookControls: NotebookControl[] = ["restore", "delete"];
 
   useLogError(notebooksError);
-  useLogError(softDeleteError);
 
   const handleSoftDeleteNotebooks = async (notebooks: Notebook[]) => {
     if (!confirm(`Delete notebooks?`)) {
