@@ -126,7 +126,10 @@ export const useSoftDeleteNotebooks = () => {
     mutationFn: apiSoftDeleteNotebooks,
     onSuccess: () => {
       // Maximize UI update speed through manual data manipulation
-      queryClient.removeQueries({ queryKey: STATIC_TS_KEYS.TRASHED_NOTEBOOKS });
+      queryClient.setQueryData<Notebook[]>(
+        STATIC_TS_KEYS.TRASHED_NOTEBOOKS,
+        [],
+      );
 
       // Ensure data integrity with follow-up revalidation
       queryClient.invalidateQueries({

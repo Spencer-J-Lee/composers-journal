@@ -81,7 +81,7 @@ export const useSoftDeleteEntries = () => {
     mutationFn: apiSoftDeleteEntries,
     onSuccess: () => {
       // Maximize UI update speed through manual data manipulation
-      queryClient.removeQueries({ queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES });
+      queryClient.setQueryData<Entry[]>(STATIC_TS_KEYS.TRASHED_ENTRIES, []);
 
       // Ensure data integrity with follow-up revalidation
       queryClient.invalidateQueries({
