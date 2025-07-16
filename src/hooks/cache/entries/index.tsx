@@ -80,7 +80,6 @@ export const useSoftDeleteEntries = () => {
   return useMutation({
     mutationFn: apiSoftDeleteEntries,
     onSuccess: () => {
-      // TODO: redo this based on docs https://tanstack.com/query/v4/docs/framework/react/guides/optimistic-updates
       // Maximize UI update speed through manual data manipulation
       queryClient.removeQueries({ queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES });
 
@@ -112,6 +111,7 @@ export const useTrashEntry = (queryKey: QueryKey, onSuccess?: () => void) => {
       });
 
       onSuccess?.();
+      // TODO: do I want to revalidate infinite query here?
     },
   });
 };
@@ -139,6 +139,8 @@ export const useSaveEntry = (queryKey: QueryKey) => {
         };
       });
     },
+
+    // TODO: do I want to revalidate infinite query here?
   });
 };
 
@@ -164,6 +166,8 @@ export const useUnsaveEntry = (queryKey: QueryKey) => {
           })),
         };
       });
+
+      // TODO: do I want to revalidate infinite query here?
     },
   });
 };

@@ -42,6 +42,7 @@ export const NotebooksContent = () => {
     <WorkspacePageWrapper paddingSize="none">
       <StickyTopBar className="flex items-center justify-between">
         <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
+        {/* TODO: implement re-order feature for notebooks */}
         <LinkButton href={routes.notebookCreate()}>Create</LinkButton>
       </StickyTopBar>
 
