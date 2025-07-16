@@ -9,6 +9,6 @@ export const entrySchema = z.object({
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
   status: z.string().refine(isStatus, { message: "Invalid status" }),
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
 });
