@@ -1,1 +1,1 @@
-export type PaddingSize = "default" | "none";
+export type PaddingSize = "md" | "sm" | "none";

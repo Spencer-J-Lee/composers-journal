@@ -14,7 +14,7 @@ type WorkspacePageWrapperProps = {
 
 export const WorkspacePageWrapper = ({
   children,
-  paddingSize = "default",
+  paddingSize = "md",
   ref,
 }: WorkspacePageWrapperProps) => {
   return (
