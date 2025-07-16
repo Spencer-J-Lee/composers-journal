@@ -11,28 +11,28 @@ export const variantClassNames: Record<
 > = {
   default: {
     base: "bg-accent text-text",
-    disabled: "bg-accent-disabled cursor-not-allowed text-text-disabled",
+    disabled: "bg-accent-disabled",
     notActive:
       "hover:brightness-90 focus-visible:brightness-90 active:brightness-80",
     active: "brightness-80",
   },
   positive: {
     base: "bg-positive text-text",
-    disabled: "bg-positive-disabled cursor-not-allowed text-text-disabled",
+    disabled: "bg-positive-disabled",
     notActive:
       "hover:brightness-90 focus-visible:brightness-90 active:brightness-80",
     active: "brightness-80",
   },
   negative: {
     base: "bg-negative text-text",
-    disabled: "bg-negative-disabled cursor-not-allowed text-text-disabled",
+    disabled: "bg-negative-disabled",
     notActive:
       "hover:brightness-90 focus-visible:brightness-90 active:brightness-80",
     active: "brightness-80",
   },
   ghost: {
     base: "bg-surface text-text",
-    disabled: "bg-surface-disabled cursor-not-allowed text-text-disabled",
+    disabled: "bg-surface-disabled",
     notActive:
       "hover:brightness-125 focus-visible:brightness-125 active:brightness-[1.4]",
     active: "brightness-[1.4]",

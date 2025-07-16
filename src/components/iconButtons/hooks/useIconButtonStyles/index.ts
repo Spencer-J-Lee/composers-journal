@@ -1,11 +1,10 @@
 import clsx from "clsx";
 
-import { variantClassNames } from "@/components/buttons/hooks/useButtonStyles/styles";
-
-import { textVariantClassName, widthHeightClassName } from "./styles";
+import { calcVariantClassName } from "./helpers";
+import { widthHeightClassName } from "./styles";
 import { IconButtonTextVariant } from "../../types";
 
-type UseIconButtonStylesProps = {
+export type UseIconButtonStylesProps = {
   textVariant: IconButtonTextVariant;
   isActive?: boolean;
   disabled?: boolean;
@@ -16,22 +15,17 @@ export const useIconButtonStyles = ({
   isActive,
   disabled,
 }: UseIconButtonStylesProps) => {
+  const baseClassName = "flex justify-center rounded items-center";
+
   return {
     iconButtonClassName: clsx(
-      "flex justify-center rounded items-center",
+      baseClassName,
       widthHeightClassName,
-      disabled
-        ? [
-            "bg-surface-disabled cursor-not-allowed",
-            textVariantClassName[textVariant].disabled,
-          ]
-        : [
-            "bg-surface",
-            textVariantClassName[textVariant].base,
-            isActive
-              ? variantClassNames.ghost.active
-              : variantClassNames.ghost.notActive,
-          ],
+      calcVariantClassName({
+        textVariant,
+        isActive,
+        disabled,
+      }),
     ),
   };
 };
