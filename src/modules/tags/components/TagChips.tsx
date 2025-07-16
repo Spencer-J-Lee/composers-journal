@@ -8,9 +8,9 @@ type TagsProps = {
   className?: string;
 };
 
-export const Tags = ({ tags, className }: TagsProps) => {
+export const TagChips = ({ tags, className }: TagsProps) => {
   return (
-    <ul className={clsx("flex flex-wrap gap-2 p-2", className)}>
+    <ul className={clsx("flex gap-2", className)}>
       {tags.map((tag) => (
         <li key={tag.id}>
           <Chip text={tag.name} />
