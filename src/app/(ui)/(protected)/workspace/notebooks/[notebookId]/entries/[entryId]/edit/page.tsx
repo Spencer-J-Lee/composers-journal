@@ -21,7 +21,7 @@ const EditEntryPage = async ({ params }: EditEntryPageProps) => {
   }
 
   return (
-    <WorkspacePageWrapper>
+    <WorkspacePageWrapper paddingSize="sm">
       <EditEntryContent entry={entry} />
     </WorkspacePageWrapper>
   );

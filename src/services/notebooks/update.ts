@@ -6,10 +6,10 @@ import { withFirstResult } from "@/utils/server/withFirstResults";
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-type EditableProps = Partial<Pick<Notebook, "name" | "status">>;
+type EditableParams = Partial<Pick<Notebook, "name" | "status">>;
 
 export const apiUpdateNotebooks = async (
-  props: { ids: Notebook["id"][] } & EditableProps,
+  props: { ids: Notebook["id"][] } & EditableParams,
 ): Promise<Notebook[]> => {
   return fetchWithErrorHandling<Notebook[]>(API_PATHS.NOTEBOOKS.ROOT, {
     method: "PATCH",
@@ -23,7 +23,7 @@ export const apiUpdateNotebooks = async (
 export const apiUpdateNotebook = async ({
   id,
   ...rest
-}: Pick<Notebook, "id"> & EditableProps): Promise<Notebook> => {
+}: Pick<Notebook, "id"> & EditableParams): Promise<Notebook> => {
   return withFirstResult(
     () =>
       apiUpdateNotebooks({
