@@ -2,14 +2,16 @@ import clsx from "clsx";
 
 import { ButtonSize, ButtonVariant } from "@/components/buttons/types";
 
-import { sizeClassName, variantClassNames } from "./styles";
+import { calcVariantClassName } from "./helpers";
+import { sizeClassName } from "./styles";
 
-type useButtonStylesProps = {
+export type useButtonStylesProps = {
   size: ButtonSize;
   variant: ButtonVariant;
   fullWidth?: boolean;
   isActive?: boolean;
   disabled?: boolean;
+  loading?: boolean;
 };
 
 export const useButtonStyles = ({
@@ -18,22 +20,23 @@ export const useButtonStyles = ({
   fullWidth,
   isActive,
   disabled,
+  loading,
 }: useButtonStylesProps) => {
+  const baseClassName =
+    "font-inter rounded tracking-widest font-semibold block relative";
+  const widthClassName = fullWidth ? "w-full" : "";
+
   return {
     buttonClassName: clsx(
-      "font-inter rounded tracking-widest font-semibold block",
+      baseClassName,
       sizeClassName[size],
-      {
-        "w-full": fullWidth,
-      },
-      disabled
-        ? variantClassNames[variant].disabled
-        : [
-            variantClassNames[variant].base,
-            isActive
-              ? variantClassNames[variant].active
-              : variantClassNames[variant].notActive,
-          ],
+      widthClassName,
+      calcVariantClassName({
+        variant,
+        isActive,
+        disabled,
+        loading,
+      }),
     ),
   };
 };

@@ -3,9 +3,9 @@
 import { ComponentProps } from "react";
 import clsx from "clsx";
 
-import { useButtonStyles } from "./hooks/useButtonStyles";
-import { BaseButtonProps } from "./types";
-import { PulsingEllipsis } from "../loaders/PulsingEllipsis";
+import { ButtonLoadingOverlay } from "./ButtonLoadingOverlay";
+import { useButtonStyles } from "../hooks/useButtonStyles";
+import { BaseButtonProps } from "../types";
 
 export type ButtonProps = BaseButtonProps & ComponentProps<"button">;
 
@@ -27,6 +27,7 @@ export const Button = ({
     fullWidth,
     disabled,
     isActive,
+    loading,
   });
 
   return (
@@ -36,7 +37,9 @@ export const Button = ({
       type={type}
       {...props}
     >
-      {loading ? <PulsingEllipsis isInline /> : children}
+      {children}
+
+      {loading && <ButtonLoadingOverlay variant={variant} loading={loading} />}
     </button>
   );
 };
