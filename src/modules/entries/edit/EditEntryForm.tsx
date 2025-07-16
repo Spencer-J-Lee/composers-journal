@@ -36,6 +36,7 @@ export const EditEntryForm = ({ entry }: EditEntryFormProps) => {
       defaultValues={{
         title: entry.title,
         description: entry.description,
+        tags: entry.tags,
       }}
     />
   );

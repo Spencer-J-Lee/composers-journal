@@ -9,6 +9,7 @@ import { Card } from "@/components/Card";
 import { RHFGhostTextField } from "@/components/formFields/RHFFields/RHFGhostTextField";
 import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
+import { Tags } from "@/modules/tags/components/Tags";
 import { isError } from "@/utils/client/isError";
 import { showErrorToast } from "@/utils/client/toasts";
 
@@ -72,7 +73,7 @@ export const EntryForm = ({
           className="sticky bottom-0 mt-3 flex items-center justify-between gap-x-10"
           paddingSize="sm"
         >
-          <ul>Tags placeholder</ul>
+          <Tags tags={methods.getValues().tags} />
 
           <Button type="submit" loading={loading}>
             {submitText}
