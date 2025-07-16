@@ -7,8 +7,8 @@ import { Typography } from "@/components/Typography";
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useRecentlyUpdatedEntries } from "@/hooks/cache/entries";
 import { useLogError } from "@/hooks/useLogError";
-import { EntryCard } from "@/modules/search/components/EntryCard";
-import { EntryControl } from "@/modules/search/components/EntryCard/EntryControls/types";
+import { EntryCard } from "@/modules/entries/components/EntryCard";
+import { EntryControl } from "@/modules/entries/components/EntryCard/EntryControls/types";
 
 export const RecentEntriesSection = () => {
   const {

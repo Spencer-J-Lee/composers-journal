@@ -16,7 +16,7 @@ import { DYNAMIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useInfEntryPages } from "@/hooks/cache/entries";
 import { useLogError } from "@/hooks/useLogError";
 import { Notebook } from "@/models/Notebook";
-import { EntryCard } from "@/modules/search/components/EntryCard";
+import { EntryCard } from "@/modules/entries/components/EntryCard";
 
 import { NotebookPendingState } from "./NotebookPendingState";
 import { DEFAULT_ENTRY_FILTER } from "../EntriesFilter/constants";

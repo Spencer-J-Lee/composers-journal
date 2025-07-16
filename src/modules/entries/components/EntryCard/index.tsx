@@ -19,9 +19,6 @@ type EntryCardProps = {
   onTrashSuccess?: () => void;
 };
 
-/**
- * TODO: move this to entries module
- */
 export const EntryCard = ({
   entry,
   controls,

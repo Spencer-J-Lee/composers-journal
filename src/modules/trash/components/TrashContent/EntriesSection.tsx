@@ -10,9 +10,9 @@ import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useSoftDeleteEntries, useTrashedEntries } from "@/hooks/cache/entries";
 import { useLogError } from "@/hooks/useLogError";
 import { Entry } from "@/models/Entry";
+import { EntryCard } from "@/modules/entries/components/EntryCard";
+import { EntryControl } from "@/modules/entries/components/EntryCard/EntryControls/types";
 import { useSortedEntries } from "@/modules/entries/hooks/useSortedEntries";
-import { EntryCard } from "@/modules/search/components/EntryCard";
-import { EntryControl } from "@/modules/search/components/EntryCard/EntryControls/types";
 import { repeatRender } from "@/utils/client/repeatRender";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
