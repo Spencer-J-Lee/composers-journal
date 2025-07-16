@@ -6,14 +6,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/buttons/Button";
 import { Card } from "@/components/Card";
+import { Divider } from "@/components/Divider";
 import { RHFGhostTextField } from "@/components/formFields/RHFFields/RHFGhostTextField";
 import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";
-import { Tags } from "@/modules/tags/components/Tags";
 import { isError } from "@/utils/client/isError";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { entryFormSchema, EntryFormValues } from "./schema";
+import { TagsEditor } from "./TagsEditor";
 
 type EntryFormProps = {
   onSubmit: (data: EntryFormValues) => Promise<void>;
@@ -70,10 +71,15 @@ export const EntryForm = ({
         />
 
         <Card
-          className="sticky bottom-0 mt-3 flex items-center justify-between gap-x-10"
+          className="sticky bottom-0 mt-3 flex items-center"
           paddingSize="sm"
         >
-          <Tags tags={methods.getValues().tags} />
+          <TagsEditor
+            tags={methods.getValues("tags")}
+            className="flex-overflow-fix flex-1"
+          />
+
+          <Divider orientation="vertical" className="mx-4" flexChild />
 
           <Button type="submit" loading={loading}>
             {submitText}

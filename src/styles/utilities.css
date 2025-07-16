@@ -11,3 +11,16 @@
 @utility flex-overflow-fix {
   min-width: 0;
 }
+
+@utility hide-scrollbar {
+  /* Chrome, Safari, Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* IE and Edge */
+  -ms-overflow-style: none;
+
+  /* Firefox */
+  scrollbar-width: none;
+}

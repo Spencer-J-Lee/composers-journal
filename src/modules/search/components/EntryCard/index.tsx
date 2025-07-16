@@ -5,7 +5,7 @@ import { QueryKey } from "@tanstack/react-query";
 
 import { Card } from "@/components/Card";
 import { Entry } from "@/models/Entry";
-import { Tags } from "@/modules/tags/components/Tags";
+import { TagChips } from "@/modules/tags/components/TagChips";
 
 import { EntryControls } from "./EntryControls";
 import { EntryControl } from "./EntryControls/types";
@@ -19,6 +19,9 @@ type EntryCardProps = {
   onTrashSuccess?: () => void;
 };
 
+/**
+ * TODO: move this to entries module
+ */
 export const EntryCard = ({
   entry,
   controls,
@@ -47,7 +50,9 @@ export const EntryCard = ({
       </div>
 
       {tags.length > 0 && showTags && (
-        <Tags tags={tags} className="border-border border-t" />
+        <div className="border-border border-t p-2">
+          <TagChips tags={tags} />
+        </div>
       )}
     </Card>
   );
