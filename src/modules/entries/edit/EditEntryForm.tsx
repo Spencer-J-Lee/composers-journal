@@ -19,10 +19,7 @@ export const EditEntryForm = ({ entry }: EditEntryFormProps) => {
   const router = useRouter();
 
   const handleSubmit = async (data: EntryFormValues) => {
-    await apiUpdateEntry({
-      id: entry.id,
-      ...data,
-    });
+    await apiUpdateEntry(entry.id, data);
 
     // TODO: handle Tag update
     // TODO: handle entryTag update

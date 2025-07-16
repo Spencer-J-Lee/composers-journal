@@ -6,9 +6,11 @@ import { withFirstResult } from "@/utils/server/withFirstResults";
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-type apiUpdateEntriesProps = { ids: Entry["id"][] } & Partial<
+type EditableParams = Partial<
   Pick<Entry, "title" | "description" | "status" | "notebookId">
 >;
+
+type apiUpdateEntriesProps = { ids: Entry["id"][] } & EditableParams;
 
 export const apiUpdateEntries = async (
   props: apiUpdateEntriesProps,
@@ -20,6 +22,20 @@ export const apiUpdateEntries = async (
     },
     body: JSON.stringify(props),
   });
+};
+
+export const apiUpdateEntry = async (
+  id: Entry["id"],
+  params: EditableParams,
+): Promise<Entry> => {
+  return withFirstResult(
+    () =>
+      apiUpdateEntries({
+        ids: [id],
+        ...params,
+      }),
+    ERROR_MESSAGES.DEV.UPDATE.NO_ENTRY(id),
+  );
 };
 
 export const apiRestoreEntry = async (id: Entry["id"]): Promise<Entry> => {
