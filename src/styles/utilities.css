@@ -7,3 +7,7 @@
 @utility z-sticky-top-bar {
   z-index: 1;
 }
+
+@utility flex-overflow-fix {
+  min-width: 0;
+}

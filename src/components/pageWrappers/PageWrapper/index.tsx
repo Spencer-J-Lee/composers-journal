@@ -21,7 +21,7 @@ export const PageWrapper = ({
     <main
       id={ELEMENT_IDS.MAIN_CONTENT}
       className={clsx(
-        "min-h-[calc(100vh)-var(--navbar-height)] min-w-0",
+        "flex-overflow-fix min-h-[calc(100vh)-var(--navbar-height)]",
         className,
       )}
     >
