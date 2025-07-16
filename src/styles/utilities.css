@@ -4,3 +4,6 @@
 @utility z-navbar {
   z-index: 1000;
 }
+@utility z-sticky-top-bar {
+  z-index: 1;
+}
