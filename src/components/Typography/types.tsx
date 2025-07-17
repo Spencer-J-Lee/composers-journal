@@ -9,6 +9,8 @@ export type TypographyVariant =
   | "body"
   | "bodySmall"
   | "smallMuted"
+  | "emptyState"
+  | "fallback"
   | "divider";
 
 export type TypographyHtmlTag =

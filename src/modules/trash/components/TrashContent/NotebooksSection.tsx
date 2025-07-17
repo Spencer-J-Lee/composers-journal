@@ -63,13 +63,13 @@ export const NotebooksSection = () => {
       )}
 
       {isError && (
-        <Typography variant="smallMuted">
+        <Typography variant="fallback">
           Failed to load trashed notebooks
         </Typography>
       )}
 
       {isSuccess && notebooks.length === 0 && (
-        <Typography variant="smallMuted">No trashed notebooks</Typography>
+        <Typography variant="emptyState">No trashed notebooks</Typography>
       )}
 
       {isSuccess && notebooks.length > 0 && (

@@ -12,6 +12,8 @@ export const typographyHtmlTags: Record<TypographyVariant, TypographyHtmlTag> =
     body: "p",
     bodySmall: "small",
     smallMuted: "small",
+    emptyState: "p",
+    fallback: "p",
     divider: "p",
   };
 
@@ -26,5 +28,7 @@ export const typographyStyles: Record<TypographyVariant, string> = {
   body: "text-base font-normal text-text",
   bodySmall: "text-sm font-normal text-text",
   smallMuted: "text-sm font-normal text-text-muted",
+  emptyState: "text-sm font-normal text-text-muted italic",
+  fallback: "text-sm font-normal text-negative italic",
   divider: "text-sm font-medium italic text-text-muted-divider",
 };

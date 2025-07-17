@@ -48,7 +48,7 @@ export const NotebooksContent = () => {
 
       <WorkspaceContentWrapper>
         {isError && (
-          <Typography variant="smallMuted">Failed to load notebooks</Typography>
+          <Typography variant="fallback">Failed to load notebooks</Typography>
         )}
 
         {isSuccess && notebooks.length > 0 && (

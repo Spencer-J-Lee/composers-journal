@@ -61,13 +61,13 @@ export const EntriesSection = () => {
       )}
 
       {isError && (
-        <Typography variant="smallMuted">
+        <Typography variant="fallback">
           Failed to load trashed entries
         </Typography>
       )}
 
       {isSuccess && entries.length === 0 && (
-        <Typography variant="smallMuted">No trashed entries</Typography>
+        <Typography variant="emptyState">No trashed entries</Typography>
       )}
 
       {isSuccess && entries.length > 0 && (

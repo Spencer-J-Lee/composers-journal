@@ -33,13 +33,13 @@ export const RecentEntriesSection = () => {
       )}
 
       {isError && (
-        <Typography variant="smallMuted">
+        <Typography variant="fallback">
           Failed to load recent entries
         </Typography>
       )}
 
       {isSuccess && entries.length === 0 && (
-        <Typography variant="smallMuted">No recent entries</Typography>
+        <Typography variant="emptyState">No recent entries</Typography>
       )}
 
       {isSuccess && entries.length > 0 && (

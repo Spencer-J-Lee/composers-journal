@@ -98,7 +98,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
 
       <WorkspaceContentWrapper>
         {isError && (
-          <Typography variant="smallMuted">Failed to load entries</Typography>
+          <Typography variant="fallback">Failed to load entries</Typography>
         )}
 
         {isSuccess && data.pages[0].entries.length > 0 && (
