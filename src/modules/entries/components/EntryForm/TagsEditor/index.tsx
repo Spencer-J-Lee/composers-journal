@@ -1,11 +1,11 @@
-import { faTags } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 
 import { Divider } from "@/components/Divider";
-import { IconButton } from "@/components/iconButtons/IconButton";
 import { Typography } from "@/components/Typography";
 import { Tag } from "@/models/Tag";
 import { TagChips } from "@/modules/tags/components/TagChips";
+
+import { TagsDialog } from "./TagsDialog";
 
 type TagsEditorProps = {
   tags: Tag[];
@@ -15,7 +15,7 @@ type TagsEditorProps = {
 export const TagsEditor = ({ tags, className }: TagsEditorProps) => {
   return (
     <div className={clsx("flex items-center", className)}>
-      <IconButton faIcon={faTags} className="shrink-0" />
+      <TagsDialog />
 
       <Divider orientation="vertical" flexChild className="ml-2 mr-4" />
 
