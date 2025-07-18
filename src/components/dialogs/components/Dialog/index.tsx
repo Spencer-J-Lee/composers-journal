@@ -2,11 +2,13 @@ import { ReactNode, useState } from "react";
 import { Root, Trigger } from "@radix-ui/react-dialog";
 
 import { DialogContent } from "./DialogContent";
+import { DialogSize } from "./DialogContent/types";
 
-type DialogProps = {
+export type DialogProps = {
   trigger: ReactNode;
   title: string;
   description?: string;
+  size: DialogSize;
   children: ReactNode;
 };
 
@@ -15,6 +17,7 @@ export const Dialog = ({
   title,
   description,
   children,
+  size,
 }: DialogProps) => {
   const [open, setOpen] = useState(false);
 
@@ -24,17 +27,13 @@ export const Dialog = ({
         {trigger}
       </Trigger>
 
-      <DialogContent open={open} title={title} description={description}>
+      <DialogContent
+        open={open}
+        title={title}
+        description={description}
+        size={size}
+      >
         {children}
-
-        {/* TODO: implement dialog actions */}
-        {/* <div className="mt-[25px] flex justify-end">
-          <Dialog.Close asChild>
-            <button>
-              Save changes
-            </button>
-          </Dialog.Close>
-        </div> */}
       </DialogContent>
     </Root>
   );

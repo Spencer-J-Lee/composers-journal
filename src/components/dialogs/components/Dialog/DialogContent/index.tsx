@@ -16,11 +16,14 @@ import { typographyStyles } from "@/components/Typography/constants";
 
 import { contentVariants } from "./constants";
 import { DialogOverlay } from "./DialogOverlay";
+import { sizeClassName } from "./styles";
+import { DialogSize } from "./types";
 
 type DialogContentProps = {
   open: boolean;
   title: string;
   description?: string;
+  size: DialogSize;
   children: ReactNode;
 };
 
@@ -29,14 +32,18 @@ export const DialogContent = ({
   title,
   description,
   children,
+  size,
 }: DialogContentProps) => {
+  const baseContentClassName =
+    "fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2";
+
   return (
     <Portal forceMount>
       <DialogOverlay open={open} />
 
       <AnimatePresence>
         {open && (
-          <Content className="fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-[500px] -translate-x-1/2 -translate-y-1/2">
+          <Content className={clsx(baseContentClassName, sizeClassName[size])}>
             <motion.div
               variants={contentVariants}
               initial="hidden"
@@ -49,14 +56,16 @@ export const DialogContent = ({
                     {title}
                   </Title>
 
-                  <Close asChild>
+                  {/* <Close asChild>
                     <IconButton faIcon={faXmark} />
-                  </Close>
+                  </Close> */}
                 </div>
 
-                <Description className={typographyStyles.body}>
-                  {description}
-                </Description>
+                {description && (
+                  <Description className={typographyStyles.body}>
+                    {description}
+                  </Description>
+                )}
 
                 {children}
               </Card>

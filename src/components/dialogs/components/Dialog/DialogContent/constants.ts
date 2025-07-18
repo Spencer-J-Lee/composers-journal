@@ -17,7 +17,7 @@ export const contentVariants: Variants = {
   },
   exit: {
     opacity: 0,
-    scale: 1.05,
+    scale: 0.95,
     y: -25,
     transition: {
       duration: 0.25,
