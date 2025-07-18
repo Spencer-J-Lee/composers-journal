@@ -25,6 +25,7 @@ type DialogContentProps = {
   description?: string;
   size: DialogSize;
   children: ReactNode;
+  hideClose?: boolean;
 };
 
 export const DialogContent = ({
@@ -33,6 +34,7 @@ export const DialogContent = ({
   description,
   children,
   size,
+  hideClose,
 }: DialogContentProps) => {
   const baseContentClassName =
     "fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2";
@@ -56,9 +58,11 @@ export const DialogContent = ({
                     {title}
                   </Title>
 
-                  {/* <Close asChild>
-                    <IconButton faIcon={faXmark} />
-                  </Close> */}
+                  {!hideClose && (
+                    <Close asChild>
+                      <IconButton faIcon={faXmark} />
+                    </Close>
+                  )}
                 </div>
 
                 {description && (

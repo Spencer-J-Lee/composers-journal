@@ -10,6 +10,7 @@ export type DialogProps = {
   description?: string;
   size: DialogSize;
   children: ReactNode;
+  hideClose?: boolean;
 };
 
 export const Dialog = ({
@@ -18,6 +19,7 @@ export const Dialog = ({
   description,
   children,
   size,
+  hideClose,
 }: DialogProps) => {
   const [open, setOpen] = useState(false);
 
@@ -32,6 +34,7 @@ export const Dialog = ({
         title={title}
         description={description}
         size={size}
+        hideClose={hideClose}
       >
         {children}
       </DialogContent>
