@@ -1,4 +1,8 @@
 @layer base {
+  i {
+    @apply italic;
+  }
+
   :not(input):focus-visible {
     @apply outline-accessibility outline-2 outline-offset-2;
   }
