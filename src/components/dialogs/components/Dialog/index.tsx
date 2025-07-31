@@ -1,33 +1,37 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { Root, Trigger } from "@radix-ui/react-dialog";
 
 import { DialogContent } from "./DialogContent";
 import { DialogSize } from "./DialogContent/types";
 
 export type DialogProps = {
-  trigger: ReactNode;
-  title: string;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  title: ReactNode;
   description?: string;
   size: DialogSize;
-  children: ReactNode;
   hideClose?: boolean;
+  trigger?: ReactNode;
+  children: ReactNode;
 };
 
 export const Dialog = ({
-  trigger,
+  open,
+  setOpen,
   title,
   description,
-  children,
   size,
   hideClose,
+  trigger,
+  children,
 }: DialogProps) => {
-  const [open, setOpen] = useState(false);
-
   return (
     <Root open={open} onOpenChange={setOpen}>
-      <Trigger asChild onClick={() => setOpen(true)}>
-        {trigger}
-      </Trigger>
+      {trigger && (
+        <Trigger asChild onClick={() => setOpen(true)}>
+          {trigger}
+        </Trigger>
+      )}
 
       <DialogContent
         open={open}

@@ -19,9 +19,9 @@ import { DialogOverlay } from "./DialogOverlay";
 import { sizeClassName } from "./styles";
 import { DialogSize } from "./types";
 
-type DialogContentProps = {
+export type DialogContentProps = {
   open: boolean;
-  title: string;
+  title: ReactNode;
   description?: string;
   size: DialogSize;
   children: ReactNode;
@@ -54,9 +54,11 @@ export const DialogContent = ({
             >
               <Card paddingSize="lg">
                 <div className="mb-2 flex justify-between gap-x-1">
-                  <Title className={clsx(typographyStyles.h3, "flex-1")}>
-                    {title}
-                  </Title>
+                  {title && (
+                    <Title className={clsx(typographyStyles.h3, "flex-1")}>
+                      {title}
+                    </Title>
+                  )}
 
                   {!hideClose && (
                     <Close asChild>

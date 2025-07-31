@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Toaster } from "sonner";
 
+import { AlertDialog } from "@/components/dialogs/AlertDialog/AlertDialog";
 import Providers from "@/components/Providers";
 import { SkipToContent } from "@/components/SkipToContent";
 import { inter } from "@/styles/fonts";
@@ -36,6 +37,7 @@ const RootLayout = ({
           <SkipToContent />
           {children}
           <Toaster richColors />
+          <AlertDialog />
         </Providers>
       </body>
     </html>

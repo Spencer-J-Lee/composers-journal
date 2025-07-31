@@ -1,7 +1,21 @@
 import { ButtonVariant } from "@/components/buttons/types";
 
-export type AlertAction = {
+type AlertActionBase = {
+  key: string;
   text: string;
   variant: ButtonVariant;
-  onClick: () => unknown;
 };
+
+type SyncAlertAction = AlertActionBase & {
+  type: "sync";
+  onConfirm: () => void;
+};
+
+export type AsyncAlertAction = AlertActionBase & {
+  type: "async";
+  onConfirm: () => Promise<unknown>;
+  successMsg: string;
+  errMsg: string;
+};
+
+export type AlertAction = SyncAlertAction | AsyncAlertAction;
