@@ -6,13 +6,13 @@ import { AlertAction } from "@/components/dialogs/AlertDialog/types";
 type AlertState = {
   open: boolean;
   title: ReactNode;
-  description?: string;
+  description?: ReactNode;
   actions: AlertAction[];
 
   setOpen: (open: boolean) => void;
   openAlert: (options: {
     title: ReactNode;
-    description?: string;
+    description?: ReactNode;
     actions: AlertAction[];
   }) => void;
 };

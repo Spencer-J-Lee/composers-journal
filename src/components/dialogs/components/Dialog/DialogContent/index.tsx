@@ -22,7 +22,7 @@ import { DialogSize } from "./types";
 export type DialogContentProps = {
   open: boolean;
   title: ReactNode;
-  description?: string;
+  description?: ReactNode;
   size: DialogSize;
   children: ReactNode;
   hideClose?: boolean;

@@ -8,7 +8,7 @@ export type DialogProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
   title: ReactNode;
-  description?: string;
+  description?: ReactNode;
   size: DialogSize;
   hideClose?: boolean;
   trigger?: ReactNode;
