@@ -39,11 +39,7 @@ export const NotebookControls = ({
   const actionPending =
     isRestorePending || isSoftDeletePending || isTrashPending;
 
-  const handleRestoreNotebook = async ({ id, name }: Notebook) => {
-    if (!confirm(`Restore notebook: ${name}?`)) {
-      return;
-    }
-
+  const handleRestoreNotebook = async ({ id }: Notebook) => {
     try {
       await restoreNotebook(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.RESTORE.NOTEBOOK);

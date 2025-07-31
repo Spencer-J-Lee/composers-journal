@@ -81,11 +81,7 @@ export const EntryControls = ({
     }
   };
 
-  const handleRestoreEntry = async ({ id, title }: Entry) => {
-    if (!confirm(`Restore entry: ${title}?`)) {
-      return;
-    }
-
+  const handleRestoreEntry = async ({ id }: Entry) => {
     try {
       await restoreEntry(id);
       showSuccessToast(SUCCESS_MESSAGES.USER.RESTORE.ENTRY);
