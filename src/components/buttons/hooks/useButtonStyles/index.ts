@@ -23,7 +23,7 @@ export const useButtonStyles = ({
   loading,
 }: useButtonStylesProps) => {
   const baseClassName =
-    "font-inter rounded tracking-widest font-semibold block relative";
+    "font-inter rounded tracking-widest font-bold block relative";
   const widthClassName = fullWidth ? "w-full" : "";
 
   return {
