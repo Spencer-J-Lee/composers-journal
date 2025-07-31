@@ -114,6 +114,10 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
                         entry.notebookId,
                         filters,
                       )}
+                      datesToDisplay={{
+                        createdAt: true,
+                        updatedAt: true,
+                      }}
                       onTrashSuccess={decrementOffset}
                     />
                   </li>

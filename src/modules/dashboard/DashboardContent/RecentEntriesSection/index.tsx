@@ -50,6 +50,10 @@ export const RecentEntriesSection = () => {
                 entry={entry}
                 controls={entryControls}
                 queryKey={STATIC_TS_KEYS.RECENTLY_UPDATED_ENTRIES}
+                datesToDisplay={{
+                  createdAt: true,
+                  updatedAt: true,
+                }}
               />
             </li>
           ))}

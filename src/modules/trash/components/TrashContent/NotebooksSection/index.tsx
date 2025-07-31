@@ -106,7 +106,13 @@ export const NotebooksSection = () => {
           <CardResultsWrapper>
             {sortedNotebooks.map((notebook) => (
               <li key={notebook.id}>
-                <NotebookCard notebook={notebook} controls={notebookControls} />
+                <NotebookCard
+                  notebook={notebook}
+                  controls={notebookControls}
+                  datesToDisplay={{
+                    updatedAt: true,
+                  }}
+                />
               </li>
             ))}
           </CardResultsWrapper>

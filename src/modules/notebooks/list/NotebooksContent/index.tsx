@@ -65,7 +65,13 @@ export const NotebooksContent = () => {
           <CardResultsWrapper>
             {sortedNotebooks.map((notebook) => (
               <li key={notebook.name}>
-                <NotebookCard notebook={notebook} controls={notebookControls} />
+                <NotebookCard
+                  notebook={notebook}
+                  controls={notebookControls}
+                  datesToDisplay={{
+                    createdAt: true,
+                  }}
+                />
               </li>
             ))}
           </CardResultsWrapper>

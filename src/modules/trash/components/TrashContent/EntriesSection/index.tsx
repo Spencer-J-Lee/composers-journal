@@ -108,6 +108,9 @@ export const EntriesSection = () => {
                   entry={entry}
                   controls={entryControls}
                   queryKey={STATIC_TS_KEYS.TRASHED_ENTRIES}
+                  datesToDisplay={{
+                    updatedAt: true,
+                  }}
                 />
               </li>
             ))}

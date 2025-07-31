@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 
+import { DateDisplay } from "@/components/DateDisplay";
+import { DatesToDisplay } from "@/components/DateDisplay/types";
 import { Divider } from "@/components/Divider";
 import { Typography } from "@/components/Typography";
 import { Entry } from "@/models/Entry";
-import { STATUSES } from "@/models/types/status";
-import { formatDateString } from "@/utils/client/formatDate";
 
 import { Markdown } from "./Markdown";
 
@@ -12,10 +12,16 @@ type EntryInfoProps = {
   entry: Entry;
   showTags: boolean;
   setShowTags: Dispatch<SetStateAction<boolean>>;
+  datesToDisplay?: DatesToDisplay;
 };
 
-export const EntryInfo = ({ entry, showTags, setShowTags }: EntryInfoProps) => {
-  const { title, description, tags, createdAt, updatedAt } = entry;
+export const EntryInfo = ({
+  entry,
+  showTags,
+  setShowTags,
+  datesToDisplay,
+}: EntryInfoProps) => {
+  const { title, description, tags, createdAt, updatedAt, status } = entry;
 
   return (
     <div className="border-border flex flex-1 flex-col border-l p-4">
@@ -33,11 +39,12 @@ export const EntryInfo = ({ entry, showTags, setShowTags }: EntryInfoProps) => {
           variant="smallMuted"
           className="flex items-center gap-x-1.5"
         >
-          <span>Created: {formatDateString(createdAt)}</span>•
-          <span>
-            {entry.status === STATUSES.TRASHED ? "Trashed" : "Updated"}:{" "}
-            {formatDateString(updatedAt)}
-          </span>
+          <DateDisplay
+            createdAt={createdAt}
+            updatedAt={updatedAt}
+            status={status}
+            datesToDisplay={datesToDisplay}
+          />
         </Typography>
 
         {tags && tags.length > 0 && (

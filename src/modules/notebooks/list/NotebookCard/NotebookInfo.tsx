@@ -1,17 +1,21 @@
 import Link from "next/link";
 
+import { DateDisplay } from "@/components/DateDisplay";
+import { DatesToDisplay } from "@/components/DateDisplay/types";
 import { Typography } from "@/components/Typography";
 import { routes } from "@/constants/routes";
 import { Notebook } from "@/models/Notebook";
-import { STATUSES } from "@/models/types/status";
-import { formatDateString } from "@/utils/client/formatDate";
 
 type NotebookInfoProps = {
   notebook: Notebook;
+  datesToDisplay?: DatesToDisplay;
 };
 
-export const NotebookInfo = ({ notebook }: NotebookInfoProps) => {
-  const { name, createdAt, updatedAt } = notebook;
+export const NotebookInfo = ({
+  notebook,
+  datesToDisplay,
+}: NotebookInfoProps) => {
+  const { name, createdAt, updatedAt, status } = notebook;
 
   return (
     <div className="border-border flex flex-1 flex-col items-start border-l p-4">
@@ -27,10 +31,12 @@ export const NotebookInfo = ({ notebook }: NotebookInfoProps) => {
           variant="smallMuted"
           className="flex items-center gap-x-1.5"
         >
-          <span>Created: {formatDateString(createdAt)}</span>•
-          {notebook.status === STATUSES.TRASHED && (
-            <span>Trashed: {formatDateString(updatedAt)}</span>
-          )}
+          <DateDisplay
+            createdAt={createdAt}
+            updatedAt={updatedAt}
+            status={status}
+            datesToDisplay={datesToDisplay}
+          />
         </Typography>
       </div>
     </div>
