@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Divider } from "@/components/Divider";
 import { Typography } from "@/components/Typography";
 import { Entry } from "@/models/Entry";
+import { STATUSES } from "@/models/types/status";
 import { formatDateString } from "@/utils/client/formatDate";
 
 import { Markdown } from "./Markdown";
@@ -33,7 +34,10 @@ export const EntryInfo = ({ entry, showTags, setShowTags }: EntryInfoProps) => {
           className="flex items-center gap-x-1.5"
         >
           <span>Created: {formatDateString(createdAt)}</span>•
-          <span>Updated: {formatDateString(updatedAt)}</span>
+          <span>
+            {entry.status === STATUSES.TRASHED ? "Trashed" : "Updated"}:{" "}
+            {formatDateString(updatedAt)}
+          </span>
         </Typography>
 
         {tags && tags.length > 0 && (
