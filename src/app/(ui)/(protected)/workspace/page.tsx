@@ -12,7 +12,9 @@ const WorkspacePage = async () => {
   const user = await getUserSSOrRedirect();
   const queryClient = makeQueryClient();
 
-  await queryClient.prefetchQuery({
+  // TODO: figure out how to prefetch without flashing loading state
+  // or hydration mismatch
+  queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.RECENTLY_UPDATED_ENTRIES,
     queryFn: async () =>
       dbGetEntries({

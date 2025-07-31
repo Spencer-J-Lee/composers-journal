@@ -28,7 +28,9 @@ const NotebookPage = async ({ params }: NotebookPageProps) => {
   const user = await getUserSSOrRedirect();
   const queryClient = makeQueryClient();
 
-  await queryClient.prefetchInfiniteQuery({
+  // TODO: figure out how to prefetch without flashing loading state
+  // or hydration mismatch
+  queryClient.prefetchInfiniteQuery({
     queryKey: DYNAMIC_TS_KEYS.ENTRIES_BY_FILTERS(
       parsedNotebookId,
       DEFAULT_ENTRY_FILTER,

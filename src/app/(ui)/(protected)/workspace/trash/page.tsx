@@ -12,7 +12,9 @@ const TrashPage = async () => {
   const user = await getUserSSOrRedirect();
   const queryClient = makeQueryClient();
 
-  const fetchNotebooks = queryClient.prefetchQuery({
+  // TODO: figure out how to prefetch without flashing loading state
+  // or hydration mismatch
+  queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.TRASHED_NOTEBOOKS,
     queryFn: () =>
       dbGetNotebooks({
@@ -21,7 +23,9 @@ const TrashPage = async () => {
       }),
   });
 
-  const fetchEntries = queryClient.prefetchQuery({
+  // TODO: figure out how to prefetch without flashing loading state
+  // or hydration mismatch
+  queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
     queryFn: () =>
       dbGetEntries({
@@ -29,8 +33,6 @@ const TrashPage = async () => {
         status: STATUSES.TRASHED,
       }),
   });
-
-  await Promise.all([fetchNotebooks, fetchEntries]);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
