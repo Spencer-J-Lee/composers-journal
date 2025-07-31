@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { showErrorToast } from "@/utils/client/toasts";
 
-export const handleErrorLogging = (error: unknown) => {
+const handleErrorLogging = (error: unknown) => {
   if (!error) return;
 
   const message =
@@ -17,6 +17,9 @@ export const handleErrorLogging = (error: unknown) => {
   showErrorToast(message);
 };
 
+/**
+ * This hook is intended to be used with TanStack Query hooks
+ */
 export const useLogError = (error: unknown) => {
   useEffect(() => {
     handleErrorLogging(error);
