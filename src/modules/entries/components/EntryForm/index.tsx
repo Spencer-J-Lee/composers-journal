@@ -79,7 +79,7 @@ export const EntryForm = ({
             className="flex-overflow-fix flex-1"
           />
 
-          <Divider orientation="vertical" className="mx-4" flexChild />
+          <Divider orientation="vertical" className="ml-4 mr-2" flexChild />
 
           <Button type="submit" loading={loading}>
             {submitText}

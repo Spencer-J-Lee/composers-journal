@@ -10,6 +10,9 @@ import { AlertAction } from "./types";
 import { Button } from "../../buttons/Button";
 import { Dialog } from "../components/Dialog";
 
+/**
+ * Global alert dialog intended to be used via the `useAlert` hook.
+ */
 export const AlertDialog = () => {
   const [loading, setLoading] = useState<Record<string, boolean>>({});
   const { open, title, description, actions, setOpen } = useAlert();
