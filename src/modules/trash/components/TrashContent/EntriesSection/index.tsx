@@ -11,16 +11,18 @@ import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useSoftDeleteEntries, useTrashedEntries } from "@/hooks/cache/entries";
 import { useAlert } from "@/hooks/useAlert";
 import { useLogError } from "@/hooks/useLogError";
+import { useSorted } from "@/hooks/useSorted";
 import { Entry } from "@/models/Entry";
 import { EntryCard } from "@/modules/entries/components/EntryCard";
 import { EntryControl } from "@/modules/entries/components/EntryCard/EntryControls/types";
-import { useSortedEntries } from "@/modules/entries/hooks/useSortedEntries";
 import { repeatRender } from "@/utils/client/repeatRender";
+
+import { TRASHED_ENTRIES_SORT_OPTIONS } from "./constants";
 
 export const EntriesSection = () => {
   const { openAlert } = useAlert();
   const {
-    data: entries,
+    data: entries = [],
     error: entriesError,
     isPending,
     isError,
@@ -28,7 +30,11 @@ export const EntriesSection = () => {
   } = useTrashedEntries();
   const { mutateAsync: softDeleteEntries, isPending: isSoftDeletePending } =
     useSoftDeleteEntries();
-  const { sortBy, setSortBy, sortedEntries } = useSortedEntries(entries);
+  const {
+    sortBy,
+    setSortBy,
+    sorted: sortedEntries,
+  } = useSorted<Entry>(entries, TRASHED_ENTRIES_SORT_OPTIONS[0]);
   const entryControls: EntryControl[] = ["restore", "delete"];
 
   useLogError(entriesError);
@@ -81,7 +87,11 @@ export const EntriesSection = () => {
       {isSuccess && entries.length > 0 && (
         <>
           <div className="mb-4 flex items-center justify-between gap-x-10">
-            <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
+            <SimpleFilters
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              options={TRASHED_ENTRIES_SORT_OPTIONS}
+            />
             <Button
               onClick={() => handleSoftDeleteEntries(entries)}
               loading={isSoftDeletePending}

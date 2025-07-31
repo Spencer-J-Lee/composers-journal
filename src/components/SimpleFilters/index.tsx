@@ -1,50 +1,40 @@
 import { Dispatch, SetStateAction } from "react";
-import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 
 import { Button } from "@/components/buttons/Button";
 
-import { SORT_OPTIONS } from "./constants";
-import { SortBy } from "./types";
+import { SortBy, SortByOption } from "./types";
 
-type SimpleFiltersProps = {
-  sortBy: SortBy;
-  setSortBy: Dispatch<SetStateAction<SortBy>>;
+type SimpleFiltersProps<T> = {
+  sortBy: SortBy<T>;
+  setSortBy: Dispatch<SetStateAction<SortBy<T>>>;
+  options: SortByOption<T>[];
   className?: string;
 };
 
-export const SimpleFilters = ({
+export const SimpleFilters = <T,>({
   sortBy,
   setSortBy,
+  options,
   className,
-}: SimpleFiltersProps) => {
-  const isNameSort = sortBy === "name asc" || sortBy === "name desc";
-  const handleNameSort = () => {
-    setSortBy(sortBy === "name desc" ? "name asc" : "name desc");
-  };
-
+}: SimpleFiltersProps<T>) => {
   return (
     <div className={clsx("flex gap-2", className)}>
-      {SORT_OPTIONS.map(({ label, value }) => (
-        <Button
-          key={value}
-          size="sm"
-          onClick={() => setSortBy(value)}
-          variant={sortBy === value ? "positive" : "ghost"}
-        >
-          {label}
-        </Button>
-      ))}
+      {options.map(({ label, key, direction, type }) => {
+        const isActive = sortBy.key === key && sortBy.direction === direction;
 
-      <Button
-        size="sm"
-        onClick={handleNameSort}
-        variant={isNameSort ? "positive" : "ghost"}
-      >
-        Name {sortBy === "name desc" && <FontAwesomeIcon icon={faArrowDown} />}
-        {sortBy === "name asc" && <FontAwesomeIcon icon={faArrowUp} />}
-      </Button>
+        return (
+          <Button
+            key={`${String(key)}-${direction}`}
+            size="sm"
+            onClick={() => setSortBy({ key, direction, type })}
+            variant={isActive ? "positive" : "ghost"}
+            className={clsx({ "pointer-events-none": isActive })}
+          >
+            {label}
+          </Button>
+        );
+      })}
     </div>
   );
 };

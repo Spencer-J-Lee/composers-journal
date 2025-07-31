@@ -13,16 +13,18 @@ import {
 } from "@/hooks/cache/notebooks";
 import { useAlert } from "@/hooks/useAlert";
 import { useLogError } from "@/hooks/useLogError";
+import { useSorted } from "@/hooks/useSorted";
 import { Notebook } from "@/models/Notebook";
-import { useSortedNotebooks } from "@/modules/notebooks/hooks/useSortedNotebooks";
 import { NotebookCard } from "@/modules/notebooks/list/NotebookCard";
 import { NotebookControl } from "@/modules/notebooks/list/NotebookCard/NotebookControls/types";
 import { repeatRender } from "@/utils/client/repeatRender";
 
+import { TRASHED_NOTEBOOKS_SORT_OPTIONS } from "./constants";
+
 export const NotebooksSection = () => {
   const { openAlert } = useAlert();
   const {
-    data: notebooks,
+    data: notebooks = [],
     error: notebooksError,
     isPending: isNotebooksPending,
     isError,
@@ -30,7 +32,11 @@ export const NotebooksSection = () => {
   } = useTrashedNotebooks();
   const { mutateAsync: softDeleteNotebooks, isPending: isSoftDeletePending } =
     useSoftDeleteNotebooks();
-  const { sortBy, setSortBy, sortedNotebooks } = useSortedNotebooks(notebooks);
+  const {
+    sortBy,
+    setSortBy,
+    sorted: sortedNotebooks,
+  } = useSorted<Notebook>(notebooks, TRASHED_NOTEBOOKS_SORT_OPTIONS[0]);
   const notebookControls: NotebookControl[] = ["restore", "delete"];
 
   useLogError(notebooksError);
@@ -83,7 +89,11 @@ export const NotebooksSection = () => {
       {isSuccess && notebooks.length > 0 && (
         <>
           <div className="mb-4 flex items-center justify-between gap-x-10">
-            <SimpleFilters sortBy={sortBy} setSortBy={setSortBy} />
+            <SimpleFilters
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              options={TRASHED_NOTEBOOKS_SORT_OPTIONS}
+            />
             <Button
               onClick={() => handleSoftDeleteNotebooks(notebooks)}
               loading={isSoftDeletePending}
