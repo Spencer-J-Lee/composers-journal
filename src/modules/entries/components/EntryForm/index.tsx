@@ -75,7 +75,7 @@ export const EntryForm = ({
           paddingSize="sm"
         >
           <TagsEditor
-            tags={methods.getValues("tags")}
+            tags={methods.getValues("tags") || []}
             className="flex-overflow-fix flex-1"
           />
 
