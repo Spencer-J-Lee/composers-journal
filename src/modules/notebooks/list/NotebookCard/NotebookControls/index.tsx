@@ -7,6 +7,7 @@ import {
   faTrashCanArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { commonAlertActions } from "@/components/dialogs/AlertDialog/constants";
 import { IconButton } from "@/components/iconButtons/IconButton";
 import { LinkIconButton } from "@/components/iconButtons/LinkIconButton";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
@@ -16,7 +17,9 @@ import {
   useSoftDeleteNotebook,
   useTrashNotebook,
 } from "@/hooks/cache/notebooks";
+import { useAlert } from "@/hooks/useAlert";
 import { Notebook } from "@/models/Notebook";
+import { genDeleteMsg } from "@/utils/client/messages";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 import { NotebookControl } from "./types";
@@ -30,6 +33,7 @@ export const NotebookControls = ({
   notebook,
   controls,
 }: NotebookControlsProps) => {
+  const { openAlert } = useAlert();
   const { mutateAsync: restoreNotebook, isPending: isRestorePending } =
     useRestoreNotebook();
   const { mutateAsync: softDeleteNotebook, isPending: isSoftDeletePending } =
@@ -50,31 +54,44 @@ export const NotebookControls = ({
   };
 
   const handleTrashNotebook = async ({ id, name }: Notebook) => {
-    if (!confirm(`Trash notebook: ${name}?`)) {
-      return;
-    }
-
-    try {
-      await trashNotebook(id);
-      showSuccessToast(SUCCESS_MESSAGES.USER.TRASH.NOTEBOOK);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.TRASH.NOTEBOOK);
-    }
+    openAlert({
+      title: (
+        <>
+          Trash <i>{name}</i>?
+        </>
+      ),
+      actions: [
+        commonAlertActions.cancel,
+        {
+          type: "async",
+          key: "confirm",
+          text: "Confirm",
+          variant: "negative",
+          onConfirm: () => trashNotebook(id),
+          successMsg: SUCCESS_MESSAGES.USER.TRASH.NOTEBOOK,
+          errMsg: ERROR_MESSAGES.USER.TRASH.NOTEBOOK,
+        },
+      ],
+    });
   };
 
   const handleSoftDeleteNotebook = async ({ id, name }: Notebook) => {
-    if (!confirm(`Delete notebook: ${name}?`)) {
-      return;
-    }
-
-    try {
-      await softDeleteNotebook(id);
-      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.NOTEBOOK);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.DELETE.NOTEBOOK);
-    }
+    openAlert({
+      title: "Are you sure?",
+      description: genDeleteMsg(name),
+      actions: [
+        commonAlertActions.cancel,
+        {
+          type: "async",
+          key: "confirm",
+          text: "Confirm",
+          variant: "negative",
+          onConfirm: () => softDeleteNotebook(id),
+          successMsg: SUCCESS_MESSAGES.USER.DELETE.NOTEBOOK,
+          errMsg: ERROR_MESSAGES.USER.DELETE.NOTEBOOK,
+        },
+      ],
+    });
   };
 
   const controlMap: Record<NotebookControl, JSX.Element> = {

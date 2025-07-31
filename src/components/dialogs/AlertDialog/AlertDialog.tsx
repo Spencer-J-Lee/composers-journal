@@ -3,7 +3,8 @@
 import { useState } from "react";
 
 import { useAlert } from "@/hooks/useAlert";
-import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
+import { handleErrorLogging } from "@/hooks/useLogError";
+import { showSuccessToast } from "@/utils/client/toasts";
 
 import { isAsyncAlertAction } from "./helpers";
 import { AlertAction } from "./types";
@@ -25,8 +26,7 @@ export const AlertDialog = () => {
         showSuccessToast(action.successMsg);
         setOpen(false);
       } catch (err) {
-        console.error(err);
-        showErrorToast(action.errMsg);
+        handleErrorLogging(err);
       }
 
       setLoading((prev) => ({ ...prev, [key]: false }));

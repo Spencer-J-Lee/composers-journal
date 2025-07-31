@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { QueryKey } from "@tanstack/react-query";
 
+import { commonAlertActions } from "@/components/dialogs/AlertDialog/constants";
 import { IconButton } from "@/components/iconButtons/IconButton";
 import { LinkIconButton } from "@/components/iconButtons/LinkIconButton";
 import {
@@ -23,8 +24,10 @@ import {
   useTrashEntry,
   useUnsaveEntry,
 } from "@/hooks/cache/entries";
+import { useAlert } from "@/hooks/useAlert";
 import { Entry } from "@/models/Entry";
 import { isError } from "@/utils/client/isError";
+import { genDeleteMsg } from "@/utils/client/messages";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 import { EntryControl } from "./types";
@@ -42,6 +45,7 @@ export const EntryControls = ({
   queryKey,
   onTrashSuccess,
 }: EntryControlsProps) => {
+  const { openAlert } = useAlert();
   const { mutateAsync: restoreEntry, isPending: isRestorePending } =
     useRestoreEntry();
   const { mutateAsync: softDeleteEntry, isPending: isSoftDeletePending } =
@@ -92,31 +96,44 @@ export const EntryControls = ({
   };
 
   const handleTrashEntry = async ({ id, title }: Entry) => {
-    if (!confirm(`Trash entry: ${title}?`)) {
-      return;
-    }
-
-    try {
-      await trashEntry(id);
-      showSuccessToast(SUCCESS_MESSAGES.USER.TRASH.ENTRY);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.TRASH.ENTRY);
-    }
+    openAlert({
+      title: (
+        <>
+          Trash <i>{title}</i>?
+        </>
+      ),
+      actions: [
+        commonAlertActions.cancel,
+        {
+          type: "async",
+          key: "confirm",
+          text: "Confirm",
+          variant: "negative",
+          onConfirm: () => trashEntry(id),
+          successMsg: SUCCESS_MESSAGES.USER.TRASH.ENTRY,
+          errMsg: ERROR_MESSAGES.USER.TRASH.ENTRY,
+        },
+      ],
+    });
   };
 
   const handleSoftDeleteEntry = async ({ id, title }: Entry) => {
-    if (!confirm(`Delete entry: ${title}?`)) {
-      return;
-    }
-
-    try {
-      await softDeleteEntry(id);
-      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.ENTRY);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.DELETE.ENTRY);
-    }
+    openAlert({
+      title: "Are you sure?",
+      description: genDeleteMsg(title),
+      actions: [
+        commonAlertActions.cancel,
+        {
+          type: "async",
+          key: "confirm",
+          text: "Confirm",
+          variant: "negative",
+          onConfirm: () => softDeleteEntry(id),
+          successMsg: SUCCESS_MESSAGES.USER.DELETE.ENTRY,
+          errMsg: ERROR_MESSAGES.USER.DELETE.ENTRY,
+        },
+      ],
+    });
   };
 
   const controlMap: Record<EntryControl, JSX.Element> = {

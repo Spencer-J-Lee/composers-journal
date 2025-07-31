@@ -1,6 +1,7 @@
 import { Button } from "@/components/buttons/Button";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { CollapsibleSection } from "@/components/CollapsibleSection";
+import { commonAlertActions } from "@/components/dialogs/AlertDialog/constants";
 import { ShimmerEntryCard } from "@/components/shimmerLoaders/ShimmerEntryCard";
 import { ShimmerSimpleFilters } from "@/components/shimmerLoaders/ShimmerSimpleFilters";
 import { SimpleFilters } from "@/components/SimpleFilters";
@@ -8,15 +9,16 @@ import { Typography } from "@/components/Typography";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { useSoftDeleteEntries, useTrashedEntries } from "@/hooks/cache/entries";
+import { useAlert } from "@/hooks/useAlert";
 import { useLogError } from "@/hooks/useLogError";
 import { Entry } from "@/models/Entry";
 import { EntryCard } from "@/modules/entries/components/EntryCard";
 import { EntryControl } from "@/modules/entries/components/EntryCard/EntryControls/types";
 import { useSortedEntries } from "@/modules/entries/hooks/useSortedEntries";
 import { repeatRender } from "@/utils/client/repeatRender";
-import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 export const EntriesSection = () => {
+  const { openAlert } = useAlert();
   const {
     data: entries,
     error: entriesError,
@@ -32,17 +34,23 @@ export const EntriesSection = () => {
   useLogError(entriesError);
 
   const handleSoftDeleteEntries = async (entries: Entry[]) => {
-    if (!confirm(`Delete entries?`)) {
-      return;
-    }
-
-    try {
-      await softDeleteEntries(entries.map((nb) => nb.id));
-      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.ENTRIES);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.DELETE.ENTRIES);
-    }
+    openAlert({
+      title: "Are you sure?",
+      description:
+        "This will permanently delete all trashed entries and cannot be undone.",
+      actions: [
+        commonAlertActions.cancel,
+        {
+          type: "async",
+          key: "confirm",
+          text: "Confirm",
+          variant: "negative",
+          onConfirm: () => softDeleteEntries(entries.map((en) => en.id)),
+          successMsg: SUCCESS_MESSAGES.USER.DELETE.ENTRIES,
+          errMsg: ERROR_MESSAGES.USER.DELETE.ENTRIES,
+        },
+      ],
+    });
   };
 
   return (

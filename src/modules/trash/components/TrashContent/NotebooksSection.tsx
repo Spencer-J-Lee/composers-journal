@@ -1,6 +1,7 @@
 import { Button } from "@/components/buttons/Button";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { CollapsibleSection } from "@/components/CollapsibleSection";
+import { commonAlertActions } from "@/components/dialogs/AlertDialog/constants";
 import { ShimmerNotebookCard } from "@/components/shimmerLoaders/ShimmerNotebookCard";
 import { ShimmerSimpleFilters } from "@/components/shimmerLoaders/ShimmerSimpleFilters";
 import { SimpleFilters } from "@/components/SimpleFilters";
@@ -10,15 +11,16 @@ import {
   useSoftDeleteNotebooks,
   useTrashedNotebooks,
 } from "@/hooks/cache/notebooks";
+import { useAlert } from "@/hooks/useAlert";
 import { useLogError } from "@/hooks/useLogError";
 import { Notebook } from "@/models/Notebook";
 import { useSortedNotebooks } from "@/modules/notebooks/hooks/useSortedNotebooks";
 import { NotebookCard } from "@/modules/notebooks/list/NotebookCard";
 import { NotebookControl } from "@/modules/notebooks/list/NotebookCard/NotebookControls/types";
 import { repeatRender } from "@/utils/client/repeatRender";
-import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 export const NotebooksSection = () => {
+  const { openAlert } = useAlert();
   const {
     data: notebooks,
     error: notebooksError,
@@ -34,17 +36,23 @@ export const NotebooksSection = () => {
   useLogError(notebooksError);
 
   const handleSoftDeleteNotebooks = async (notebooks: Notebook[]) => {
-    if (!confirm(`Delete notebooks?`)) {
-      return;
-    }
-
-    try {
-      await softDeleteNotebooks(notebooks.map((nb) => nb.id));
-      showSuccessToast(SUCCESS_MESSAGES.USER.DELETE.NOTEBOOKS);
-    } catch (err) {
-      console.error(err);
-      showErrorToast(ERROR_MESSAGES.USER.DELETE.NOTEBOOKS);
-    }
+    openAlert({
+      title: "Are you sure?",
+      description:
+        "This will permanently delete all trashed notebooks and cannot be undone.",
+      actions: [
+        commonAlertActions.cancel,
+        {
+          type: "async",
+          key: "confirm",
+          text: "Confirm",
+          variant: "negative",
+          onConfirm: () => softDeleteNotebooks(notebooks.map((nb) => nb.id)),
+          successMsg: SUCCESS_MESSAGES.USER.DELETE.NOTEBOOKS,
+          errMsg: ERROR_MESSAGES.USER.DELETE.NOTEBOOKS,
+        },
+      ],
+    });
   };
 
   return (
