@@ -52,7 +52,7 @@ export const DialogContent = ({
               animate="visible"
               exit="exit"
             >
-              <Card paddingSize="md">
+              <Card paddingSize="lg">
                 <div className="mb-2 flex justify-between gap-x-1">
                   <Title className={clsx(typographyStyles.h3, "flex-1")}>
                     {title}
