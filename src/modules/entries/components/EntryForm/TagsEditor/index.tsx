@@ -23,6 +23,7 @@ export const TagsEditor = ({ tags, className }: TagsEditorProps) => {
         <TagChips
           tags={tags}
           className="flex-overflow-fix hide-scrollbar -m-4 flex-1 overflow-x-auto text-nowrap p-4"
+          noWrap
         />
       ) : (
         <Typography variant="emptyState">No tags</Typography>
