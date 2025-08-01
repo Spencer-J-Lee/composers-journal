@@ -9,6 +9,7 @@ export const ERROR_MESSAGES = {
     FETCH: {
       ENTRIES: "Failed to load your entries",
       NOTEBOOKS: "Failed to load your notebooks",
+      TAGS: "Failed to load tags",
     },
     CREATE: {
       ENTRY: "Failed to create your entry",
@@ -52,6 +53,7 @@ export const ERROR_MESSAGES = {
       NO_ENTRY: (id: number) => `Entry with ID ${id} was not returned.`,
       NOTEBOOKS: "Error occurred while fetching notebooks.",
       NO_NOTEBOOK: (id: number) => `Notebook with ID ${id} was not returned.`,
+      TAGS: "Error occurred while fetching tags.",
     },
     CREATE: {
       ENTRY: "Error occurred while creating entry.",
