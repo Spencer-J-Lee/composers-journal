@@ -5,7 +5,7 @@ import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { Dialog } from "@/components/dialogs/components/Dialog";
 import { Select } from "@/components/formFields/Select";
 import { IconButton } from "@/components/iconButtons/IconButton";
-import { ShimmerNotebookCard } from "@/components/shimmerLoaders/ShimmerNotebookCard";
+import { ShimmerSelect } from "@/components/shimmerLoaders/ShimmerSelect";
 import { Typography } from "@/components/Typography";
 import { useTags } from "@/hooks/cache/tags";
 import { useLogError } from "@/hooks/useLogError";
@@ -96,10 +96,7 @@ export const TagsDialog = ({ initialTags }: TagsDialogProps) => {
       // ]}
     >
       <div>
-        {isPending && (
-          // TODO:  create shimmer
-          <ShimmerNotebookCard controlsCount={2} />
-        )}
+        {isPending && <ShimmerSelect />}
 
         {isSuccess && (
           <Select
