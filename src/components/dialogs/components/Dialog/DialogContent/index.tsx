@@ -45,7 +45,10 @@ export const DialogContent = ({
 
       <AnimatePresence>
         {open && (
-          <Content className={clsx(baseContentClassName, sizeClassName[size])}>
+          <Content
+            className={clsx(baseContentClassName, sizeClassName[size])}
+            aria-describedby={undefined}
+          >
             <motion.div
               variants={contentVariants}
               initial="hidden"
