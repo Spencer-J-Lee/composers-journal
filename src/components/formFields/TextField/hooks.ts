@@ -4,6 +4,9 @@ type useTextFieldStylesProps = {
   hasError?: boolean;
 };
 
+/**
+ * Changes to styling in this hook should be reflected in `Select` component
+ */
 export const useTextFieldStyles = ({ hasError }: useTextFieldStylesProps) => {
   return {
     textFieldClassName: clsx(
