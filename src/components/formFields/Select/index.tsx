@@ -11,6 +11,11 @@ type SelectProps<Option, IsMulti extends boolean = false> = ReactSelectProps<
   IsMulti
 >;
 
+/**
+ * TODO: Fix bug where the first option is highlighted for a split second
+ * once another option is chosen. Possibly due to options getting re-rendered
+ * after the chosen option is removed from the list.
+ */
 export const Select = <Option, IsMulti extends boolean = false>(
   props: SelectProps<Option, IsMulti>,
 ) => {
