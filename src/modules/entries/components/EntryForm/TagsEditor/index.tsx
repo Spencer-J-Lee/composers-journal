@@ -17,7 +17,7 @@ export const TagsEditor = ({ tags, className }: TagsEditorProps) => {
     <div className={clsx("flex items-center", className)}>
       <TagsDialog />
 
-      <Divider orientation="vertical" flexChild className="ml-2 mr-4" />
+      <Divider orientation="vertical" flexChild className="ml-2 mr-3" />
 
       {tags.length > 0 ? (
         <TagChips
