@@ -5,6 +5,7 @@ import { EntryFilter } from "@/modules/entries/list/EntriesFilter/types";
 const KEYS = {
   NOTEBOOKS: "notebooks",
   ENTRIES: "entries",
+  TAGS: "tags",
   ACTIVE: "active",
   TRASHED: "trashed",
   RECENTLY_UPDATED: "recentlyUpdated",
@@ -19,6 +20,8 @@ export const STATIC_TS_KEYS: Record<string, QueryKey> = {
 
   TRASHED_ENTRIES: [KEYS.ENTRIES, KEYS.TRASHED],
   RECENTLY_UPDATED_ENTRIES: [KEYS.ENTRIES, KEYS.RECENTLY_UPDATED],
+
+  TAGS: [KEYS.TAGS],
 } as const;
 
 /**
