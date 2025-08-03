@@ -15,7 +15,7 @@ type TagsEditorProps = {
 export const TagsEditor = ({ tags, className }: TagsEditorProps) => {
   return (
     <div className={clsx("flex items-center", className)}>
-      <TagsDialog />
+      <TagsDialog initialTags={tags} />
 
       <Divider orientation="vertical" flexChild className="ml-2 mr-3" />
 
