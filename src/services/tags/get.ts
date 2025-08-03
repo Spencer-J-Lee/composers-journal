@@ -6,12 +6,11 @@ import { CommonApiOptions } from "../types";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 import { genUrlWithSearchParams } from "../utils/genUrlWithSearchParams";
 
-export type apiGetTags = {
-  searchStr?: string;
-  notIds?: number[];
-} & CommonApiOptions<typeof tags>;
+export type apiGetTagsProps = CommonApiOptions<typeof tags>;
 
-export const apiGetTags = async (props: apiGetTags): Promise<Tag[]> => {
+export const apiGetTags = async (
+  props: apiGetTagsProps = {},
+): Promise<Tag[]> => {
   return await fetchWithErrorHandling<Tag[]>(
     genUrlWithSearchParams(API_PATHS.TAGS.ROOT, props),
   );

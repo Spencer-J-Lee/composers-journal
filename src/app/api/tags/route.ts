@@ -1,5 +1,4 @@
 import { NextRequest } from "next/server";
-import { z } from "zod";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbGetTags } from "@/db/queries/tags/get";
@@ -34,12 +33,7 @@ export const GET = async (req: NextRequest) => {
   }
 
   try {
-    const schema = z
-      .object({
-        searchStr: z.string().optional(),
-        notIds: z.array(z.number()).optional(),
-      })
-      .merge(commonApiParamsSchema);
+    const schema = commonApiParamsSchema;
 
     const safeParams = schema.safeParse(payload);
     if (!safeParams.success) {
