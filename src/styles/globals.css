@@ -33,6 +33,7 @@
   /* === Input === */
   --color-input-background: #27282d;
   --color-input-border: #404147;
+  --color-input-border-hover: #62748e;
   --color-input-border-focus: #7bb0f5;
 
   /* === Borders === */
