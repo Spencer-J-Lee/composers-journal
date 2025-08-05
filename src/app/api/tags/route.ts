@@ -1,6 +1,8 @@
 import { NextRequest } from "next/server";
+import { z } from "zod";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
+import { dbCreateTags } from "@/db/queries/tags/create";
 import { dbGetTags } from "@/db/queries/tags/get";
 import { tags as tagsTable } from "@/db/schema";
 import { getUserSS } from "@/db/supabase/server/helpers";
@@ -61,41 +63,42 @@ export const GET = async (req: NextRequest) => {
   }
 };
 
-// export const POST = async (req: NextRequest) => {
-//   const user = await getUserSS();
-//   if (!user) {
-//     return respondWithUnauthorized();
-//   }
+export const POST = async (req: NextRequest) => {
+  const user = await getUserSS();
+  if (!user) {
+    return respondWithUnauthorized();
+  }
 
-//   try {
-//     const body = await req.json();
+  try {
+    const body = await req.json();
 
-//     const schema = entrySchema.pick({
-//       notebookId: true,
-//       title: true,
-//       description: true,
-//       status: true,
-//     });
-//     const safeParams = schema.safeParse(body);
-//     if (!safeParams.success) {
-//       return respondWithInvalidInfoError(safeParams.error);
-//     }
+    const schema = z.array(
+      z.object({
+        name: z.string(),
+      }),
+    );
+    const safeParams = schema.safeParse(body);
+    if (!safeParams.success) {
+      return respondWithInvalidInfoError(safeParams.error);
+    }
 
-//     const entry = await dbCreateEntry({
-//       ownerId: user.id,
-//       ...safeParams.data,
-//     });
+    const tags = await dbCreateTags(
+      safeParams.data.map(({ name }) => ({
+        ownerId: user.id,
+        name,
+      })),
+    );
 
-//     return new Response(JSON.stringify(entry), {
-//       status: 200,
-//       headers: { "Content-Type": "application/json" },
-//     });
-//   } catch (err) {
-//     return respondWithError({
-//       status: 500,
-//       userMsg: ERROR_MESSAGES.USER.CREATE.ENTRY,
-//       devMsg: ERROR_MESSAGES.DEV.CREATE.ENTRY,
-//       err,
-//     });
-//   }
-// };
+    return new Response(JSON.stringify(tags), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err) {
+    return respondWithError({
+      status: 500,
+      userMsg: ERROR_MESSAGES.USER.CREATE.TAGS,
+      devMsg: ERROR_MESSAGES.DEV.CREATE.TAGS,
+      err,
+    });
+  }
+};

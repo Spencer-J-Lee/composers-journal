@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 
 import { Status, STATUSES } from "@/models/types/status";
 import { formatDateString } from "@/utils/client/formatDate";
@@ -42,10 +42,10 @@ export const DateDisplay = ({
   return (
     <>
       {dateDisplayEls.map((el, i) => (
-        <>
+        <Fragment key={i}>
           {i > 0 && <span>•</span>}
           {el}
-        </>
+        </Fragment>
       ))}
     </>
   );

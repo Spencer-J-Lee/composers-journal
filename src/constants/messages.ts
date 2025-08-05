@@ -13,6 +13,7 @@ export const ERROR_MESSAGES = {
     },
     CREATE: {
       ENTRY: "Failed to create your entry",
+      TAGS: "Failed to create your tags",
       NOTEBOOK: "Failed to create your notebook",
       SAVED_ITEM: {
         ENTRY: "Failed to save your entry",
@@ -57,6 +58,7 @@ export const ERROR_MESSAGES = {
     },
     CREATE: {
       ENTRY: "Error occurred while creating entry.",
+      TAGS: "Error occurred while creating tags.",
       NOTEBOOK: "Error occurred while creating notebook.",
       SAVED_ITEM: {
         ENTRY: "Error occurred while creating saved entry item.",
