@@ -16,7 +16,7 @@ const CreateEntryPage = async ({ params }: CreateEntryPageProps) => {
   }
 
   return (
-    <WorkspacePageWrapper>
+    <WorkspacePageWrapper paddingSize="sm">
       <CreateEntryContent notebookId={parsedNotebookId} />
     </WorkspacePageWrapper>
   );
