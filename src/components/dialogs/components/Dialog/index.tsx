@@ -3,6 +3,7 @@ import { Root, Trigger } from "@radix-ui/react-dialog";
 
 import { DialogContent } from "./DialogContent";
 import { DialogSize } from "./DialogContent/types";
+import { DialogAction } from "../../AlertDialog/types";
 
 export type DialogProps = {
   open: boolean;
@@ -10,6 +11,7 @@ export type DialogProps = {
   title: ReactNode;
   description?: ReactNode;
   size: DialogSize;
+  actions?: DialogAction[];
   hideClose?: boolean;
   trigger?: ReactNode;
   children: ReactNode;
@@ -21,6 +23,7 @@ export const Dialog = ({
   title,
   description,
   size,
+  actions,
   hideClose,
   trigger,
   children,
@@ -35,9 +38,11 @@ export const Dialog = ({
 
       <DialogContent
         open={open}
+        setOpen={setOpen}
         title={title}
         description={description}
         size={size}
+        actions={actions}
         hideClose={hideClose}
       >
         {children}

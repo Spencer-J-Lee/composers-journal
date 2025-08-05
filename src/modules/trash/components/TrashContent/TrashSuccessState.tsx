@@ -1,6 +1,6 @@
 import { Button } from "@/components/buttons/Button";
 import { WorkspaceContentWrapper } from "@/components/contentWrappers/WorkspaceContentWrapper";
-import { commonAlertActions } from "@/components/dialogs/AlertDialog/constants";
+import { commonDialogActions } from "@/components/dialogs/AlertDialog/constants";
 import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { StickyTopBar } from "@/components/StickyTopBar";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
@@ -36,7 +36,7 @@ export const TrashSuccessState = ({
       description:
         "This will permanently delete all trashed items and cannot be undone.",
       actions: [
-        commonAlertActions.cancel,
+        commonDialogActions.cancel,
         {
           type: "async",
           key: "confirm",

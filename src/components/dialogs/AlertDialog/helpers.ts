@@ -1,7 +1,7 @@
-import { AlertAction, AsyncAlertAction } from "./types";
+import { AsyncDialogAction,DialogAction } from "./types";
 
-export const isAsyncAlertAction = (
-  action: AlertAction,
-): action is AsyncAlertAction => {
+export const isAsyncDialogAction = (
+  action: DialogAction,
+): action is AsyncDialogAction => {
   return action.type === "async";
 };

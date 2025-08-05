@@ -1,7 +1,7 @@
 import { Button } from "@/components/buttons/Button";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { CollapsibleSection } from "@/components/CollapsibleSection";
-import { commonAlertActions } from "@/components/dialogs/AlertDialog/constants";
+import { commonDialogActions } from "@/components/dialogs/AlertDialog/constants";
 import { ShimmerEntryCard } from "@/components/shimmerLoaders/ShimmerEntryCard";
 import { ShimmerSimpleFilters } from "@/components/shimmerLoaders/ShimmerSimpleFilters";
 import { SimpleFilters } from "@/components/SimpleFilters";
@@ -45,7 +45,7 @@ export const EntriesSection = () => {
       description:
         "This will permanently delete all trashed entries and cannot be undone.",
       actions: [
-        commonAlertActions.cancel,
+        commonDialogActions.cancel,
         {
           type: "async",
           key: "confirm",

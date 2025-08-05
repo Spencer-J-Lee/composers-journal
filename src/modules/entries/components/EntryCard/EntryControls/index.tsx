@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { QueryKey } from "@tanstack/react-query";
 
-import { commonAlertActions } from "@/components/dialogs/AlertDialog/constants";
+import { commonDialogActions } from "@/components/dialogs/AlertDialog/constants";
 import { IconButton } from "@/components/iconButtons/IconButton";
 import { LinkIconButton } from "@/components/iconButtons/LinkIconButton";
 import {
@@ -103,7 +103,7 @@ export const EntryControls = ({
         </>
       ),
       actions: [
-        commonAlertActions.cancel,
+        commonDialogActions.cancel,
         {
           type: "async",
           key: "confirm",
@@ -122,7 +122,7 @@ export const EntryControls = ({
       title: "Are you sure?",
       description: genDeleteMsg(title),
       actions: [
-        commonAlertActions.cancel,
+        commonDialogActions.cancel,
         {
           type: "async",
           key: "confirm",

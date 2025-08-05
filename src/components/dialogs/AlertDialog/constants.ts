@@ -1,6 +1,6 @@
-import { AlertAction } from "./types";
+import { DialogAction } from "./types";
 
-export const commonAlertActions: Record<string, AlertAction> = {
+export const commonDialogActions: Record<string, DialogAction> = {
   cancel: {
     type: "sync",
     key: "cancel",

@@ -11,29 +11,35 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Card } from "@/components/Card";
+import { DialogAction } from "@/components/dialogs/AlertDialog/types";
 import { IconButton } from "@/components/iconButtons/IconButton";
 import { typographyStyles } from "@/components/Typography/constants";
 
 import { contentVariants } from "./constants";
+import { DialogActions } from "./DialogActions";
 import { DialogOverlay } from "./DialogOverlay";
 import { sizeClassName } from "./styles";
 import { DialogSize } from "./types";
 
 export type DialogContentProps = {
   open: boolean;
+  setOpen: (open: boolean) => void;
   title: ReactNode;
   description?: ReactNode;
   size: DialogSize;
+  actions?: DialogAction[];
   children: ReactNode;
   hideClose?: boolean;
 };
 
 export const DialogContent = ({
   open,
+  setOpen,
   title,
   description,
   children,
   size,
+  actions,
   hideClose,
 }: DialogContentProps) => {
   const baseContentClassName =
@@ -77,6 +83,10 @@ export const DialogContent = ({
                 )}
 
                 {children}
+
+                {actions && (
+                  <DialogActions setOpen={setOpen} actions={actions} />
+                )}
               </Card>
             </motion.div>
           </Content>

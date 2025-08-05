@@ -1,19 +1,19 @@
 import { ReactNode } from "react";
 import { create } from "zustand";
 
-import { AlertAction } from "@/components/dialogs/AlertDialog/types";
+import { DialogAction } from "@/components/dialogs/AlertDialog/types";
 
 type AlertState = {
   open: boolean;
   title: ReactNode;
   description?: ReactNode;
-  actions: AlertAction[];
+  actions: DialogAction[];
 
   setOpen: (open: boolean) => void;
   openAlert: (options: {
     title: ReactNode;
     description?: ReactNode;
-    actions: AlertAction[];
+    actions: DialogAction[];
   }) => void;
 };
 

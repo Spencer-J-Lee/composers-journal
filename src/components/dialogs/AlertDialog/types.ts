@@ -1,21 +1,21 @@
 import { ButtonVariant } from "@/components/buttons/types";
 
-type AlertActionBase = {
+type DialogActionBase = {
   key: string;
   text: string;
   variant: ButtonVariant;
 };
 
-type SyncAlertAction = AlertActionBase & {
+type SyncDialogAction = DialogActionBase & {
   type: "sync";
   onConfirm: () => void;
 };
 
-export type AsyncAlertAction = AlertActionBase & {
+export type AsyncDialogAction = DialogActionBase & {
   type: "async";
   onConfirm: () => Promise<unknown>;
   successMsg: string;
   errMsg: string;
 };
 
-export type AlertAction = SyncAlertAction | AsyncAlertAction;
+export type DialogAction = SyncDialogAction | AsyncDialogAction;

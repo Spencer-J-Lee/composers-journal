@@ -7,7 +7,7 @@ import {
   faTrashCanArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { commonAlertActions } from "@/components/dialogs/AlertDialog/constants";
+import { commonDialogActions } from "@/components/dialogs/AlertDialog/constants";
 import { IconButton } from "@/components/iconButtons/IconButton";
 import { LinkIconButton } from "@/components/iconButtons/LinkIconButton";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
@@ -61,7 +61,7 @@ export const NotebookControls = ({
         </>
       ),
       actions: [
-        commonAlertActions.cancel,
+        commonDialogActions.cancel,
         {
           type: "async",
           key: "confirm",
@@ -80,7 +80,7 @@ export const NotebookControls = ({
       title: "Are you sure?",
       description: genDeleteMsg(name),
       actions: [
-        commonAlertActions.cancel,
+        commonDialogActions.cancel,
         {
           type: "async",
           key: "confirm",
