@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/buttons/Button";
@@ -19,7 +19,7 @@ import { TagsEditor } from "./TagsEditor";
 type EntryFormProps = {
   onSubmit: (data: EntryFormValues) => Promise<void>;
   submitText: string;
-  defaultValues?: Partial<EntryFormValues>;
+  defaultValues?: EntryFormValues;
 };
 
 export const EntryForm = ({
@@ -32,15 +32,17 @@ export const EntryForm = ({
     resolver: zodResolver(entryFormSchema),
     defaultValues,
   });
+  const tagOptions = useWatch({
+    name: "tagOptions",
+    control: methods.control,
+    defaultValue: [],
+  });
 
   const handleSubmit = async (data: EntryFormValues) => {
     setLoading(true);
 
     try {
       await onSubmit(data);
-
-      // TODO: handle Tag creation
-      // TODO: handle entryTag creation
     } catch (err) {
       console.error(err);
       showErrorToast(isError(err) ? err.message : DEFAULT_ERROR_MSG);
@@ -75,7 +77,10 @@ export const EntryForm = ({
           paddingSize="sm"
         >
           <TagsEditor
-            tags={methods.getValues("tags") || []}
+            tagOptions={tagOptions}
+            onConfirm={(newVal) => {
+              methods.setValue("tagOptions", newVal);
+            }}
             className="flex-overflow-fix flex-1"
           />
 

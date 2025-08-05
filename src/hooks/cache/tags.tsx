@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
-import { apiGetTags, apiGetTagsProps } from "@/services/tags/get";
 import { apiCreateTags } from "@/services/tags/create";
+import { apiGetTags, apiGetTagsProps } from "@/services/tags/get";
 
 export const useTags = (params?: apiGetTagsProps) => {
   return useQuery({

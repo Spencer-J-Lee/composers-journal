@@ -2,26 +2,31 @@ import clsx from "clsx";
 
 import { Divider } from "@/components/Divider";
 import { Typography } from "@/components/Typography";
-import { Tag } from "@/models/Tag";
 import { TagChips } from "@/modules/tags/components/TagChips";
 
 import { TagsDialog } from "./TagsDialog";
+import { TagOption } from "./TagsDialog/types";
 
 type TagsEditorProps = {
-  tags: Tag[];
+  tagOptions: TagOption[];
   className?: string;
+  onConfirm: (newVal: TagOption[]) => void;
 };
 
-export const TagsEditor = ({ tags, className }: TagsEditorProps) => {
+export const TagsEditor = ({
+  tagOptions,
+  className,
+  onConfirm,
+}: TagsEditorProps) => {
   return (
     <div className={clsx("flex items-center", className)}>
-      <TagsDialog initialTags={tags} />
+      <TagsDialog initialTagOptions={tagOptions} onConfirm={onConfirm} />
 
       <Divider orientation="vertical" flexChild className="ml-2 mr-3" />
 
-      {tags.length > 0 ? (
+      {tagOptions.length > 0 ? (
         <TagChips
-          tags={tags}
+          tags={tagOptions.map((op) => ({ name: op.label }))}
           className="flex-overflow-fix hide-scrollbar -m-4 flex-1 overflow-x-auto text-nowrap p-4"
           noWrap
         />

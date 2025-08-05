@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
-import { createFilter, OnChangeValue } from "react-select";
+import { ActionMeta, createFilter, OnChangeValue } from "react-select";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 
+import { commonDialogActions } from "@/components/dialogs/AlertDialog/constants";
 import { Dialog } from "@/components/dialogs/components/Dialog";
 import { Select } from "@/components/formFields/Select";
 import { IconButton } from "@/components/iconButtons/IconButton";
@@ -9,7 +10,6 @@ import { ShimmerSelect } from "@/components/shimmerLoaders/ShimmerSelect";
 import { Typography } from "@/components/Typography";
 import { useTags } from "@/hooks/cache/tags";
 import { useLogError } from "@/hooks/useLogError";
-import { Tag } from "@/models/Tag";
 
 import { tagsToOptions } from "./helpers";
 import { TagOption } from "./types";
@@ -17,10 +17,14 @@ import { TagOption } from "./types";
 const filter = createFilter<TagOption>();
 
 type TagsDialogProps = {
-  initialTags: Tag[];
+  initialTagOptions: TagOption[];
+  onConfirm: (newVal: TagOption[]) => void;
 };
 
-export const TagsDialog = ({ initialTags }: TagsDialogProps) => {
+export const TagsDialog = ({
+  initialTagOptions,
+  onConfirm,
+}: TagsDialogProps) => {
   const {
     data: tags,
     error,
@@ -33,9 +37,8 @@ export const TagsDialog = ({ initialTags }: TagsDialogProps) => {
   const [open, setOpen] = useState(false);
   const [searchStr, setSearchStr] = useState("");
   const [newOptionId, setNewOptionId] = useState(-1);
-  const [selected, setSelected] = useState<readonly TagOption[]>(
-    tagsToOptions(initialTags),
-  );
+  const [selected, setSelected] =
+    useState<readonly TagOption[]>(initialTagOptions);
 
   const tagOptions = useMemo(() => {
     return tags ? tagsToOptions(tags) : [];
@@ -57,7 +60,6 @@ export const TagsDialog = ({ initialTags }: TagsDialogProps) => {
         label: searchStr,
         isNew: true,
       });
-      setNewOptionId((prev) => prev - 1);
     }
 
     return filtered;
@@ -65,18 +67,18 @@ export const TagsDialog = ({ initialTags }: TagsDialogProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchStr, tagOptions]);
 
-  const handleChange = (newVal: OnChangeValue<TagOption, true>) => {
+  const handleChange = (
+    newVal: OnChangeValue<TagOption, true>,
+    actionMeta: ActionMeta<TagOption>,
+  ) => {
+    if (actionMeta.action === "select-option" && actionMeta.option?.isNew) {
+      setNewOptionId((prev) => prev - 1);
+    }
     setSelected(newVal);
   };
 
   const handleInputChange = (newVal: string) => {
     setSearchStr(newVal);
-  };
-
-  // TODO: handle saving
-  const handleSave = () => {
-    // create new tags if there are any
-    // call onConfirm and pass array of new tags
   };
 
   return (
@@ -86,14 +88,16 @@ export const TagsDialog = ({ initialTags }: TagsDialogProps) => {
       trigger={<IconButton faIcon={faTags} className="shrink-0" />}
       title="Tags Editor"
       size="md"
-      // actions={[
-      //   commonAlertActions.cancel,
-      //   {
-      //     text: "Save",
-      //     variant: "default",
-      //     onClick: () => null,
-      //   },
-      // ]}
+      actions={[
+        commonDialogActions.cancel,
+        {
+          type: "sync",
+          key: "save",
+          text: "Save",
+          variant: "default",
+          onConfirm: () => onConfirm([...selected]),
+        },
+      ]}
     >
       <div>
         {isPending && <ShimmerSelect />}
