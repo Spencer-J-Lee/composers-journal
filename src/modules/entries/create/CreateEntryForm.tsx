@@ -31,10 +31,10 @@ export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
       ...rest,
     });
 
-    const newTagOptions: TagOption[] = tagOptions.filter((op) => op.isNew);
+    const newTagOptions: TagOption[] = tagOptions.filter(({ isNew }) => isNew);
     const newTags = await createTags(
-      newTagOptions.map((op) => ({
-        name: op.label,
+      newTagOptions.map(({ label }) => ({
+        name: label,
       })),
     );
 
