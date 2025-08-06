@@ -18,6 +18,7 @@ export const ButtonLoadingOverlay = ({
           variant,
           loading,
           isActive: false,
+          disabled: false,
         }),
       )}
     >

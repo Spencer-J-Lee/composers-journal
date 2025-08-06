@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 import { variantClassNames } from "./styles";
 
-import { useButtonStylesProps } from ".";
+import { UseButtonStylesProps } from ".";
 
 export const calcVariantClassName = ({
   variant,
@@ -10,7 +10,7 @@ export const calcVariantClassName = ({
   disabled,
   loading,
 }: Pick<
-  useButtonStylesProps,
+  UseButtonStylesProps,
   "variant" | "isActive" | "disabled" | "loading"
 >) => {
   if (disabled || loading) {
