@@ -8,10 +8,10 @@ import { RichTextMenuButton } from "./RichTextMenuButton";
 
 type SetLinkButtonProps = {
   editor: Editor | null;
-  isActive: boolean;
+  active: boolean;
 };
 
-export const SetLinkButton = ({ editor, isActive }: SetLinkButtonProps) => {
+export const SetLinkButton = ({ editor, active }: SetLinkButtonProps) => {
   if (!editor) {
     return null;
   }
@@ -44,7 +44,7 @@ export const SetLinkButton = ({ editor, isActive }: SetLinkButtonProps) => {
   };
 
   return (
-    <RichTextMenuButton faIcon={faLink} onClick={setLink} isActive={isActive}>
+    <RichTextMenuButton faIcon={faLink} onClick={setLink} active={active}>
       Set link
     </RichTextMenuButton>
   );

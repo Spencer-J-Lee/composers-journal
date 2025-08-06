@@ -17,7 +17,7 @@ export const ButtonLoadingOverlay = ({
         calcVariantClassName({
           variant,
           loading,
-          isActive: false,
+          active: false,
           disabled: false,
         }),
       )}

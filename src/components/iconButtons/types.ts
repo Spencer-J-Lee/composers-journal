@@ -5,5 +5,5 @@ export type IconButtonTextVariant = "default" | "positive" | "negative";
 export type BaseIconButtonProps = {
   faIcon: IconProp;
   textVariant?: IconButtonTextVariant;
-  isActive?: boolean;
+  active?: boolean;
 };

@@ -6,5 +6,5 @@ export type BaseButtonProps = {
   variant?: ButtonVariant;
   fullWidth?: boolean;
   loading?: boolean;
-  isActive?: boolean;
+  active?: boolean;
 };

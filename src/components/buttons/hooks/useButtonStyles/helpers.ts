@@ -6,12 +6,12 @@ import { UseButtonStylesProps } from ".";
 
 export const calcVariantClassName = ({
   variant,
-  isActive,
+  active,
   disabled,
   loading,
 }: Pick<
   UseButtonStylesProps,
-  "variant" | "isActive" | "disabled" | "loading"
+  "variant" | "active" | "disabled" | "loading"
 >) => {
   if (disabled || loading) {
     return clsx(
@@ -22,7 +22,7 @@ export const calcVariantClassName = ({
 
   return clsx([
     variantClassNames[variant].base,
-    isActive
+    active
       ? variantClassNames[variant].active
       : variantClassNames[variant].notActive,
   ]);

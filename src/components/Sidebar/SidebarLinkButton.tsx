@@ -10,7 +10,7 @@ export const SidebarLinkButton = ({
   className,
   ...props
 }: SidebarLinkButtonProps) => {
-  const { activeClassName, isActive } = useSidebarLinkProps(props.href);
+  const { activeClassName, active } = useSidebarLinkProps(props.href);
 
   return (
     <LinkButton
@@ -23,7 +23,7 @@ export const SidebarLinkButton = ({
         className,
       )}
       variant="ghost"
-      isActive={isActive}
+      active={active}
       {...props}
     >
       {children}

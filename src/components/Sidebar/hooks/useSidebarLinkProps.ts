@@ -5,6 +5,6 @@ export const useSidebarLinkProps = (route: string) => {
 
   return {
     activeClassName: pathname === route ? "pointer-events-none" : "",
-    isActive: pathname === route,
+    active: pathname === route,
   };
 };

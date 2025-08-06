@@ -8,9 +8,9 @@ import { UseIconButtonStylesProps } from ".";
 
 export const calcVariantClassName = ({
   textVariant,
-  isActive,
+  active,
   disabled,
-}: Pick<UseIconButtonStylesProps, "textVariant" | "isActive" | "disabled">) => {
+}: Pick<UseIconButtonStylesProps, "textVariant" | "active" | "disabled">) => {
   if (disabled) {
     return clsx(
       "bg-surface-disabled cursor-not-allowed",
@@ -21,8 +21,6 @@ export const calcVariantClassName = ({
   return clsx([
     "bg-surface",
     textVariantClassName[textVariant].base,
-    isActive
-      ? variantClassNames.ghost.active
-      : variantClassNames.ghost.notActive,
+    active ? variantClassNames.ghost.active : variantClassNames.ghost.notActive,
   ]);
 };

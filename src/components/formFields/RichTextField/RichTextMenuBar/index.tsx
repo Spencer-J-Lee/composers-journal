@@ -59,25 +59,25 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
           faIcon={faBold}
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editor.can().chain().focus().toggleBold().run()}
-          isActive={editorState.isBold}
+          active={editorState.isBold}
         />
         <RichTextMenuButton
           faIcon={faItalic}
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
-          isActive={editorState.isItalic}
+          active={editorState.isItalic}
         />
         <RichTextMenuButton
           faIcon={faUnderline}
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           disabled={!editor.can().chain().focus().toggleUnderline().run()}
-          isActive={editorState.isUnderline}
+          active={editorState.isUnderline}
         />
         <RichTextMenuButton
           faIcon={faStrikethrough}
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={!editor.can().chain().focus().toggleStrike().run()}
-          isActive={editorState.isStrike}
+          active={editorState.isStrike}
         />
       </RichTextButtonGroup>
 
@@ -92,7 +92,7 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
           disabled={
             !editor.can().chain().focus().toggleHeading({ level: 3 }).run()
           }
-          isActive={editorState.isHeading3}
+          active={editorState.isHeading3}
         />
       </RichTextButtonGroup>
 
@@ -102,12 +102,12 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
         <RichTextMenuButton
           faIcon={faListUl}
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          isActive={editorState.isBulletList}
+          active={editorState.isBulletList}
         />
         <RichTextMenuButton
           faIcon={faListOl}
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          isActive={editorState.isOrderedList}
+          active={editorState.isOrderedList}
         />
       </RichTextButtonGroup>
 
@@ -117,14 +117,14 @@ export const RichTextMenuBar = ({ editor }: RichTextMenuBarProps) => {
         <RichTextMenuButton
           faIcon={faQuoteRight}
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          isActive={editorState.isBlockquote}
+          active={editorState.isBlockquote}
         />
       </RichTextButtonGroup>
 
       <Divider orientation="vertical" flexChild className="mx-3" />
 
       <RichTextButtonGroup>
-        <SetLinkButton editor={editor} isActive={!!editorState.isLink} />
+        <SetLinkButton editor={editor} active={!!editorState.isLink} />
         <AddYouTubeButton editor={editor} />
       </RichTextButtonGroup>
 

@@ -9,7 +9,7 @@ export type UseButtonStylesProps = {
   size: ButtonSize;
   variant: ButtonVariant;
   fullWidth?: boolean;
-  isActive?: boolean;
+  active?: boolean;
   disabled?: boolean;
   loading?: boolean;
 };
@@ -18,7 +18,7 @@ export const useButtonStyles = ({
   size,
   variant,
   fullWidth,
-  isActive,
+  active,
   disabled,
   loading,
 }: UseButtonStylesProps) => {
@@ -33,7 +33,7 @@ export const useButtonStyles = ({
       widthClassName,
       calcVariantClassName({
         variant,
-        isActive,
+        active,
         disabled,
         loading,
       }),

@@ -25,14 +25,14 @@ export const LinkButton = ({
   variant = "default",
   fullWidth,
   className,
-  isActive,
+  active,
   ...props
 }: LinkButtonProps) => {
   const { buttonClassName } = useButtonStyles({
     size,
     variant,
     fullWidth,
-    isActive,
+    active,
   });
 
   return (

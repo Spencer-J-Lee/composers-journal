@@ -5,12 +5,10 @@ import { PulsingEllipsisVariant } from "./types";
 
 type PulsingEllipsisProps = {
   variant?: PulsingEllipsisVariant;
-  isInline?: boolean;
 };
 
 export const PulsingEllipsis = ({
   variant = "default",
-  isInline,
 }: PulsingEllipsisProps) => {
   const animation = Array(3)
     .fill(0)
@@ -24,10 +22,6 @@ export const PulsingEllipsis = ({
         key={i}
       />
     ));
-
-  if (isInline) {
-    return <span className="space-x-0.5">{animation}</span>;
-  }
 
   return <div className="flex items-center gap-x-0.5">{animation}</div>;
 };

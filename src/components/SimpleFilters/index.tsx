@@ -21,15 +21,15 @@ export const SimpleFilters = <T,>({
   return (
     <div className={clsx("flex gap-2", className)}>
       {options.map(({ label, key, direction, type }) => {
-        const isActive = sortBy.key === key && sortBy.direction === direction;
+        const active = sortBy.key === key && sortBy.direction === direction;
 
         return (
           <Button
             key={`${String(key)}-${direction}`}
             size="sm"
             onClick={() => setSortBy({ key, direction, type })}
-            variant={isActive ? "positive" : "ghost"}
-            className={clsx({ "pointer-events-none": isActive })}
+            variant={active ? "positive" : "ghost"}
+            className={clsx({ "pointer-events-none": active })}
           >
             {label}
           </Button>

@@ -6,13 +6,13 @@ import { IconButtonTextVariant } from "../../types";
 
 export type UseIconButtonStylesProps = {
   textVariant: IconButtonTextVariant;
-  isActive?: boolean;
+  active?: boolean;
   disabled?: boolean;
 };
 
 export const useIconButtonStyles = ({
   textVariant,
-  isActive,
+  active,
   disabled,
 }: UseIconButtonStylesProps) => {
   const baseClassName = "flex justify-center rounded items-center";
@@ -23,7 +23,7 @@ export const useIconButtonStyles = ({
       widthHeightClassName,
       calcVariantClassName({
         textVariant,
-        isActive,
+        active,
         disabled,
       }),
     ),

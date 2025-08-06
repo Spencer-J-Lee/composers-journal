@@ -14,12 +14,12 @@ export const SidebarLinkIconButton = ({
   className,
   ...props
 }: SidebarLinkIconButtonProps) => {
-  const { activeClassName, isActive } = useSidebarLinkProps(props.href);
+  const { activeClassName, active } = useSidebarLinkProps(props.href);
 
   return (
     <LinkIconButton
       className={clsx(activeClassName, className)}
-      isActive={isActive}
+      active={active}
       {...props}
     />
   );
