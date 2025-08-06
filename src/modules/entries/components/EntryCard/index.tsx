@@ -4,13 +4,14 @@ import { useState } from "react";
 import { QueryKey } from "@tanstack/react-query";
 
 import { Card } from "@/components/Card";
+import { Collapsible } from "@/components/Collapsible";
+import { DatesToDisplay } from "@/components/DateDisplay/types";
 import { Entry } from "@/models/Entry";
 import { TagChips } from "@/modules/tags/components/TagChips";
 
 import { EntryControls } from "./EntryControls";
 import { EntryControl } from "./EntryControls/types";
 import { EntryInfo } from "./EntryInfo";
-import { DatesToDisplay } from "@/components/DateDisplay/types";
 
 type EntryCardProps = {
   entry: Entry;
@@ -50,11 +51,11 @@ export const EntryCard = ({
         />
       </div>
 
-      {tags.length > 0 && showTags && (
+      <Collapsible show={tags.length > 0 && showTags}>
         <div className="border-border border-t p-2">
           <TagChips tags={tags} />
         </div>
-      )}
+      </Collapsible>
     </Card>
   );
 };
