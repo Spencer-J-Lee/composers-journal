@@ -7,6 +7,7 @@ import { routes } from "@/constants/routes";
 import { useCreateTags } from "@/hooks/cache/tags";
 import { STATUSES } from "@/models/types/status";
 import { apiCreateEntry } from "@/services/entries/create";
+import { apiCreateEntryTags } from "@/services/entryTags/create";
 import { showSuccessToast } from "@/utils/client/toasts";
 
 import { EntryForm } from "../components/EntryForm";
@@ -37,13 +38,17 @@ export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
       })),
     );
 
-    // // TODO: handle entryTag creation
-    // const entryTags = await apiCreateEntryTags([
-    //   {
-    //     tagId: number,
-    //     entryId: number,
-    //   }
-    // ])
+    const tagIds: number[] = newTags.map(({ id }) => id);
+    tagOptions.forEach(({ value }) => {
+      if (value > 0) tagIds.push(value);
+    });
+
+    await apiCreateEntryTags(
+      tagIds.map((id) => ({
+        entryId: entry.id,
+        tagId: id,
+      })),
+    );
 
     showSuccessToast(SUCCESS_MESSAGES.USER.CREATE.ENTRY);
 

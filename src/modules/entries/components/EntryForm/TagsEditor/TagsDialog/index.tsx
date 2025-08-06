@@ -92,8 +92,8 @@ export const TagsDialog = ({
         commonDialogActions.cancel,
         {
           type: "sync",
-          key: "save",
-          text: "Save",
+          key: "apply",
+          text: "Apply",
           variant: "default",
           onConfirm: () => onConfirm([...selected]),
         },
