@@ -25,24 +25,29 @@ export const CreateEntryForm = ({ notebookId }: CreateEntryFormProps) => {
   const handleSubmit = async (data: EntryFormValues) => {
     const { tagOptions, ...rest } = data;
 
-    const entry = await apiCreateEntry({
+    // Create entry
+    const createEntry = apiCreateEntry({
       notebookId,
       status: STATUSES.ACTIVE,
       ...rest,
     });
 
+    // Create new tags
     const newTagOptions: TagOption[] = tagOptions.filter(({ isNew }) => isNew);
-    const newTags = await createTags(
+    const createNewTags = createTags(
       newTagOptions.map(({ label }) => ({
         name: label,
       })),
     );
 
+    // Await creation of pivotal data
+    const [entry, newTags] = await Promise.all([createEntry, createNewTags]);
+
+    // Create entry-tag relations
     const tagIds: number[] = newTags.map(({ id }) => id);
     tagOptions.forEach(({ value }) => {
       if (value > 0) tagIds.push(value);
     });
-
     await apiCreateEntryTags(
       tagIds.map((id) => ({
         entryId: entry.id,
