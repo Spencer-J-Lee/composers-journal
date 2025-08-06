@@ -30,12 +30,15 @@ export const EntryForm = ({
   const [loading, setLoading] = useState(false);
   const methods = useForm<EntryFormValues>({
     resolver: zodResolver(entryFormSchema),
-    defaultValues,
+    defaultValues: {
+      title: defaultValues?.title ?? "",
+      description: defaultValues?.description ?? "",
+      tagOptions: defaultValues?.tagOptions ?? [],
+    },
   });
   const tagOptions = useWatch({
     name: "tagOptions",
     control: methods.control,
-    defaultValue: [],
   });
 
   const handleSubmit = async (data: EntryFormValues) => {
