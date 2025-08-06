@@ -3,13 +3,13 @@ import { EntryTag } from "@/models/EntryTag";
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-type apiDeleteEntryTagsProps = {
+type ApiDeleteEntryTagsProps = {
   entryId?: EntryTag["entryId"];
   ids?: EntryTag["tagId"][];
 };
 
 export const apiDeleteEntryTags = async (
-  props: apiDeleteEntryTagsProps,
+  props: ApiDeleteEntryTagsProps,
 ): Promise<void> => {
   await fetchWithErrorHandling<void>(API_PATHS.ENTRIES.TAGS, {
     method: "DELETE",

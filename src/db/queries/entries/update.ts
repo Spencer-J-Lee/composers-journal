@@ -7,7 +7,7 @@ import { Entry } from "@/models/Entry";
 
 import { dbGetEntries } from "./get";
 
-type dbUpdateEntriesProps = { ids: Entry["id"][] } & Partial<
+type DbUpdateEntriesProps = { ids: Entry["id"][] } & Partial<
   Pick<Entry, "title" | "description" | "status" | "notebookId">
 >;
 
@@ -17,7 +17,7 @@ export const dbUpdateEntries = async ({
   description,
   status,
   notebookId,
-}: dbUpdateEntriesProps): Promise<Entry[]> => {
+}: DbUpdateEntriesProps): Promise<Entry[]> => {
   const newVals = Object.fromEntries(
     Object.entries({ title, description, status, notebookId }).filter(
       ([, val]) => val !== undefined,

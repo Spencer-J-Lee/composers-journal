@@ -5,13 +5,13 @@ import { Entry } from "@/models/Entry";
 
 import { dbGetEntryById } from "./get";
 
-type dbCreateEntryProps = Pick<
+type DbCreateEntryProps = Pick<
   Entry,
   "ownerId" | "notebookId" | "title" | "description" | "status"
 >;
 
 export const dbCreateEntry = async (
-  props: dbCreateEntryProps,
+  props: DbCreateEntryProps,
 ): Promise<Entry> => {
   const now = new Date();
 

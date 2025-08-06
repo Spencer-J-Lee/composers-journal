@@ -4,13 +4,13 @@ import { db } from "@/db";
 import { savedItems } from "@/db/schema";
 import { SavedItem } from "@/models/SavedItem";
 
-type dbDeleteSavedItemProps = {
+type DbDeleteSavedItemProps = {
   entryId: SavedItem["entryId"];
 };
 
 export const dbDeleteSavedItem = async ({
   entryId,
-}: dbDeleteSavedItemProps) => {
+}: DbDeleteSavedItemProps) => {
   const result = await db
     .delete(savedItems)
     .where(eq(savedItems.entryId, entryId))

@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { entryTags } from "@/db/schema";
 import { EntryTag } from "@/models/EntryTag";
 
-type dbDeleteEntryTagsProps = {
+type DbDeleteEntryTagsProps = {
   entryId?: EntryTag["entryId"];
   ids?: EntryTag["tagId"][];
 };
@@ -12,7 +12,7 @@ type dbDeleteEntryTagsProps = {
 export const dbDeleteEntryTags = async ({
   entryId,
   ids,
-}: dbDeleteEntryTagsProps) => {
+}: DbDeleteEntryTagsProps) => {
   const andClauses = [];
   if (entryId) andClauses.push(eq(entryTags.entryId, entryId));
   if (ids) andClauses.push(inArray(entryTags.tagId, ids));

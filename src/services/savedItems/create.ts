@@ -3,10 +3,10 @@ import { SavedItem } from "@/models/SavedItem";
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-type apiCreateSavedItemProps = Pick<SavedItem, "entryId">;
+type ApiCreateSavedItemProps = Pick<SavedItem, "entryId">;
 
 export const apiCreateSavedItem = async (
-  props: apiCreateSavedItemProps,
+  props: ApiCreateSavedItemProps,
 ): Promise<SavedItem> => {
   return await fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
     method: "POST",

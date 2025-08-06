@@ -3,13 +3,13 @@ import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 
-type dbCreateNotebookProps = Pick<Notebook, "ownerId" | "name" | "status">;
+type DbCreateNotebookProps = Pick<Notebook, "ownerId" | "name" | "status">;
 
 export const dbCreateNotebook = async ({
   ownerId,
   name,
   status,
-}: dbCreateNotebookProps): Promise<Notebook> => {
+}: DbCreateNotebookProps): Promise<Notebook> => {
   const now = new Date();
 
   const result = await db

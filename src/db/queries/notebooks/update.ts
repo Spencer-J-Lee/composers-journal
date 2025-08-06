@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 
-type dbUpdateNotebooksProps = {
+type DbUpdateNotebooksProps = {
   ids: Notebook["id"][];
 } & Partial<Pick<Notebook, "name" | "status">>;
 
@@ -12,7 +12,7 @@ export const dbUpdateNotebooks = async ({
   ids,
   name,
   status,
-}: dbUpdateNotebooksProps): Promise<Notebook[]> => {
+}: DbUpdateNotebooksProps): Promise<Notebook[]> => {
   const newVals = Object.fromEntries(
     Object.entries({ name, status }).filter(([, val]) => val !== undefined),
   ) as Partial<Pick<Notebook, "name" | "status">>;

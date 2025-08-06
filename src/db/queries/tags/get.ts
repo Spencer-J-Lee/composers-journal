@@ -7,7 +7,7 @@ import { CommonApiOptions } from "@/services/types";
 
 import { convertOrderByToSql } from "../utils/convertOrderByToSql";
 
-type dbGetTagsProps = Partial<Pick<Tag, "ownerId">> &
+type DbGetTagsProps = Partial<Pick<Tag, "ownerId">> &
   CommonApiOptions<typeof tags>;
 
 export const dbGetTags = async ({
@@ -15,7 +15,7 @@ export const dbGetTags = async ({
   limit = 50,
   offset = 0,
   orderBy,
-}: dbGetTagsProps): Promise<Tag[]> => {
+}: DbGetTagsProps): Promise<Tag[]> => {
   const andClauses = [];
   if (ownerId) andClauses.push(eq(tags.ownerId, ownerId));
 

@@ -12,11 +12,11 @@ import { CommonApiOptions } from "../types";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 import { genUrlWithSearchParams } from "../utils/genUrlWithSearchParams";
 
-export type apiGetEntriesProps = Partial<Pick<Entry, "notebookId" | "status">> &
+export type ApiGetEntriesProps = Partial<Pick<Entry, "notebookId" | "status">> &
   CommonApiOptions<typeof entries>;
 
 export const apiGetEntries = async (
-  props: apiGetEntriesProps,
+  props: ApiGetEntriesProps,
 ): Promise<Entry[]> => {
   return await fetchWithErrorHandling<Entry[]>(
     genUrlWithSearchParams(API_PATHS.ENTRIES.ROOT, props),
@@ -27,7 +27,7 @@ export const apiGetTrashedEntries = async () => {
   return apiGetEntries({ status: STATUSES.TRASHED });
 };
 
-type apiGetFilteredEntriesPageProps = {
+type ApiGetFilteredEntriesPageProps = {
   notebookId: Entry["notebookId"];
   filters: EntryFilter;
   page: number;
@@ -41,7 +41,7 @@ export const apiGetFilteredEntriesPage = async ({
   filters,
   limit,
   offset,
-}: apiGetFilteredEntriesPageProps): Promise<EntryPage> => {
+}: ApiGetFilteredEntriesPageProps): Promise<EntryPage> => {
   const entries = await fetchWithErrorHandling<Entry[]>(
     genUrlWithSearchParams(API_PATHS.ENTRIES.ROOT, {
       notebookId,

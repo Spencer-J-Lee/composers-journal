@@ -3,12 +3,12 @@ import { db } from "@/db";
 import { savedItems } from "@/db/schema";
 import { SavedItem } from "@/models/SavedItem";
 
-type dbCreateSavedItemProps = Pick<SavedItem, "ownerId" | "entryId">;
+type DbCreateSavedItemProps = Pick<SavedItem, "ownerId" | "entryId">;
 
 export const dbCreateSavedItem = async ({
   ownerId,
   entryId,
-}: dbCreateSavedItemProps): Promise<SavedItem> => {
+}: DbCreateSavedItemProps): Promise<SavedItem> => {
   const now = new Date();
 
   const result = await db

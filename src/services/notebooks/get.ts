@@ -7,13 +7,13 @@ import { CommonApiOptions } from "../types";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 import { genUrlWithSearchParams } from "../utils/genUrlWithSearchParams";
 
-export type apiGetNotebooksProps = Partial<
+export type ApiGetNotebooksProps = Partial<
   Pick<Notebook, "id" | "name" | "status">
 > &
   CommonApiOptions<typeof notebooks>;
 
 export const apiGetNotebooks = async (
-  props: apiGetNotebooksProps,
+  props: ApiGetNotebooksProps,
 ): Promise<Notebook[]> => {
   return await fetchWithErrorHandling<Notebook[]>(
     genUrlWithSearchParams(API_PATHS.NOTEBOOKS.ROOT, props),

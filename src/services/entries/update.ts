@@ -10,10 +10,10 @@ type EditableParams = Partial<
   Pick<Entry, "title" | "description" | "status" | "notebookId">
 >;
 
-type apiUpdateEntriesProps = { ids: Entry["id"][] } & EditableParams;
+type ApiUpdateEntriesProps = { ids: Entry["id"][] } & EditableParams;
 
 export const apiUpdateEntries = async (
-  props: apiUpdateEntriesProps,
+  props: ApiUpdateEntriesProps,
 ): Promise<Entry[]> => {
   return await fetchWithErrorHandling<Entry[]>(API_PATHS.ENTRIES.ROOT, {
     method: "PATCH",

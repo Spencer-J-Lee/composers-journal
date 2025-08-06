@@ -10,7 +10,7 @@ import { withFirstResult } from "@/utils/server/withFirstResults";
 
 import { convertOrderByToSql } from "../utils/convertOrderByToSql";
 
-type dbGetEntriesProps = { ids?: Entry["id"][] } & Partial<
+type DbGetEntriesProps = { ids?: Entry["id"][] } & Partial<
   Pick<Entry, "ownerId" | "status" | "notebookId">
 > &
   CommonApiOptions<typeof entries>;
@@ -23,7 +23,7 @@ export const dbGetEntries = async ({
   limit = 50,
   offset = 0,
   orderBy,
-}: dbGetEntriesProps): Promise<Entry[]> => {
+}: DbGetEntriesProps): Promise<Entry[]> => {
   const andClauses = [];
   if (ownerId) andClauses.push(eq(entries.ownerId, ownerId));
   if (ids) andClauses.push(inArray(entries.id, ids));

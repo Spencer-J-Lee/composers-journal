@@ -4,10 +4,10 @@ import { db } from "@/db";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 
-type dbDeleteNotebooksProps = {
+type DbDeleteNotebooksProps = {
   ids: Notebook["id"][];
 };
 
-export const dbDeleteNotebooks = async ({ ids }: dbDeleteNotebooksProps) => {
+export const dbDeleteNotebooks = async ({ ids }: DbDeleteNotebooksProps) => {
   await db.delete(notebooks).where(inArray(notebooks.id, ids));
 };

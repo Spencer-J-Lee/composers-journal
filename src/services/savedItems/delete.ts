@@ -3,11 +3,11 @@ import { SavedItem } from "@/models/SavedItem";
 import { API_PATHS } from "../constants/apiPaths";
 import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
-type apiDeleteSavedItemsProps = {
+type ApiDeleteSavedItemsProps = {
   entryId: SavedItem["entryId"];
 };
 
-export const apiDeleteSavedItem = async (props: apiDeleteSavedItemsProps) => {
+export const apiDeleteSavedItem = async (props: ApiDeleteSavedItemsProps) => {
   return await fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
     method: "DELETE",
     body: JSON.stringify(props),

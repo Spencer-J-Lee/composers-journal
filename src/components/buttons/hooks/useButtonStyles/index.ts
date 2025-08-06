@@ -5,7 +5,7 @@ import { ButtonSize, ButtonVariant } from "@/components/buttons/types";
 import { calcVariantClassName } from "./helpers";
 import { sizeClassName } from "./styles";
 
-export type useButtonStylesProps = {
+export type UseButtonStylesProps = {
   size: ButtonSize;
   variant: ButtonVariant;
   fullWidth?: boolean;
@@ -21,7 +21,7 @@ export const useButtonStyles = ({
   isActive,
   disabled,
   loading,
-}: useButtonStylesProps) => {
+}: UseButtonStylesProps) => {
   const baseClassName =
     "font-inter rounded tracking-widest font-bold block relative";
   const widthClassName = fullWidth ? "w-full" : "";

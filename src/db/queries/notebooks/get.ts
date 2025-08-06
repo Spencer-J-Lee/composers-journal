@@ -8,7 +8,7 @@ import { Status, STATUSES } from "@/models/types/status";
 import { CommonApiOptions } from "@/services/types";
 import { withFirstResult } from "@/utils/server/withFirstResults";
 
-type dbGetNotebooksProps = { ids?: Notebook["id"][] } & Partial<
+type DbGetNotebooksProps = { ids?: Notebook["id"][] } & Partial<
   Pick<Notebook, "ownerId" | "name" | "status">
 > &
   CommonApiOptions<typeof notebooks>;
@@ -19,7 +19,7 @@ export const dbGetNotebooks = async ({
   name,
   status,
   limit = 50,
-}: dbGetNotebooksProps): Promise<Notebook[]> => {
+}: DbGetNotebooksProps): Promise<Notebook[]> => {
   const andClauses = [];
   if (ownerId) andClauses.push(eq(notebooks.ownerId, ownerId));
   if (ids) andClauses.push(inArray(notebooks.id, ids));

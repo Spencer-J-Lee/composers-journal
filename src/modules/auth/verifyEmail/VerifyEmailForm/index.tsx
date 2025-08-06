@@ -24,8 +24,8 @@ export const VerifyEmailForm = () => {
   const [loading, setLoading] = useState(false);
   const { count, startCountdown } = useCountdown();
   const methods = useForm<VerifyEmailFormValues>({
-    defaultValues: { email: searchParams.get(QUERY_KEYS.EMAIL) ?? "" },
     resolver: zodResolver(verifyEmailSchema),
+    defaultValues: { email: searchParams.get(QUERY_KEYS.EMAIL) ?? "" },
   });
 
   const onSubmit = async (data: VerifyEmailFormValues) => {
