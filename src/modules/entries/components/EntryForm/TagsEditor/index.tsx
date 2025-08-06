@@ -27,7 +27,7 @@ export const TagsEditor = ({
       {tagOptions.length > 0 ? (
         <TagChips
           tags={tagOptions.map((op) => ({ name: op.label }))}
-          className="flex-overflow-fix hide-scrollbar -m-4 flex-1 overflow-x-auto text-nowrap p-4"
+          className="flex-overflow-fix hide-scrollbar flex-1 overflow-x-auto text-nowrap"
           noWrap
         />
       ) : (
