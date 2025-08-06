@@ -36,6 +36,7 @@ export const ERROR_MESSAGES = {
     DELETE: {
       ENTRY: "Failed to delete your entry",
       ENTRIES: "Failed to delete your entries",
+      ENTRY_TAGS: "Failed to delete your entry-tag relations",
       NOTEBOOK: "Failed to delete your notebook",
       NOTEBOOKS: "Failed to delete your notebooks",
       SAVED_ITEM: {
@@ -76,6 +77,7 @@ export const ERROR_MESSAGES = {
     },
     DELETE: {
       ENTRY: "Error occurred while deleting entry.",
+      ENTRY_TAGS: "Error occurred while deleting entry tags.",
       NOTEBOOK: "Error occurred while deleting notebook.",
       SAVED_ITEM: {
         ENTRY: "Error occurred while deleting saved entry item.",
