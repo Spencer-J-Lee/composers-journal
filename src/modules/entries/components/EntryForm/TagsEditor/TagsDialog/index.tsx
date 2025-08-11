@@ -36,20 +36,23 @@ export const TagsDialog = ({
 
   const [open, setOpen] = useState(false);
   const [searchStr, setSearchStr] = useState("");
-  const [newOptionId, setNewOptionId] = useState(-1);
   const [selected, setSelected] =
     useState<readonly TagOption[]>(initialTagOptions);
+  // Used to ensure placeholder tags don't have overlapping values
+  const [newOptionId, setNewOptionId] = useState(-1);
 
   const tagOptions = useMemo(() => {
     return tags ? tagsToOptions(tags) : [];
   }, [tags]);
 
   const filteredOptions = useMemo(() => {
+    // Get filtered options based on default react-select search functionality
     const filtered = tagOptions.filter((option) => {
       const { value, label } = option;
       return filter({ value: String(value), label, data: option }, searchStr);
     });
 
+    // Push placeholder tag if searched option doesn't already exist
     if (
       searchStr &&
       !tagOptions.some((option) => option.label === searchStr) &&
@@ -63,14 +66,13 @@ export const TagsDialog = ({
     }
 
     return filtered;
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchStr, tagOptions]);
+  }, [searchStr, tagOptions, selected]);
 
   const handleChange = (
     newVal: OnChangeValue<TagOption, true>,
     actionMeta: ActionMeta<TagOption>,
   ) => {
+    // If placeholder option is chosen, decrement newOptionId
     if (actionMeta.action === "select-option" && actionMeta.option?.isNew) {
       setNewOptionId((prev) => prev - 1);
     }
@@ -106,15 +108,15 @@ export const TagsDialog = ({
           <Select
             value={selected}
             options={filteredOptions}
+            onInputChange={handleInputChange}
+            onChange={handleChange}
+            placeholder="Search or add tags"
+            noOptionsMessage={() => "No tags found"}
             formatOptionLabel={(option, { context }) => {
               return context === "menu" && option.isNew
                 ? `Create tag "${option.label}"`
                 : option.label;
             }}
-            onInputChange={handleInputChange}
-            onChange={handleChange}
-            placeholder="Search or add tags"
-            noOptionsMessage={() => "No tags found"}
             closeMenuOnSelect={false}
             isMulti
           />
