@@ -66,6 +66,7 @@ export const TagsDialog = ({
     }
 
     return filtered;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchStr, tagOptions, selected]);
 
   const handleChange = (
