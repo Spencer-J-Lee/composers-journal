@@ -71,7 +71,9 @@ export const EntryForm = ({
         <RHFRichTextField
           name="description"
           placeholder="Start writing your entry..."
-          editorClassName="flex-1 overflow-y-auto"
+          // Padding and negative margin are used here to prevent highlighted
+          // video outlines from getting cut off
+          editorClassName="flex-1 overflow-y-auto p-1 -m-1"
           showMenuBar
         />
 
