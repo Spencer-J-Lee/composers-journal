@@ -5,7 +5,9 @@ import { useState } from "react";
 import { Button } from "@/components/buttons/Button";
 import { isAsyncDialogAction } from "@/components/dialogs/AlertDialog/helpers";
 import { DialogAction } from "@/components/dialogs/AlertDialog/types";
-import { showErrorToast,showSuccessToast } from "@/utils/client/toasts";
+import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
+
+import { DialogActionsWrapper } from "./DialogActionsWrapper";
 
 type DialogActionsProps = {
   setOpen: (open: boolean) => void;
@@ -39,7 +41,7 @@ export const DialogActions = ({ setOpen, actions }: DialogActionsProps) => {
   };
 
   return (
-    <div className="mt-6 flex justify-end gap-x-2">
+    <DialogActionsWrapper>
       {actions.map((action) => (
         <Button
           key={action.key}
@@ -50,6 +52,6 @@ export const DialogActions = ({ setOpen, actions }: DialogActionsProps) => {
           {action.text}
         </Button>
       ))}
-    </div>
+    </DialogActionsWrapper>
   );
 };
