@@ -14,7 +14,7 @@ export type DialogProps = {
   actions?: DialogAction[];
   hideClose?: boolean;
   trigger?: ReactNode;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export const Dialog = ({

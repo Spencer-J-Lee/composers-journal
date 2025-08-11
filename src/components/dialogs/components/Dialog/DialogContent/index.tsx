@@ -28,7 +28,7 @@ export type DialogContentProps = {
   description?: ReactNode;
   size: DialogSize;
   actions?: DialogAction[];
-  children: ReactNode;
+  children?: ReactNode;
   hideClose?: boolean;
 };
 
