@@ -54,7 +54,11 @@ export const DialogContent = ({
         {open && (
           // TODO: add option to keep dialog open even when clicking outside
           <Content
-            className={clsx(baseContentClassName, sizeClassName[size])}
+            className={clsx(
+              baseContentClassName,
+              sizeClassName[size],
+              "z-dialog-content",
+            )}
             aria-describedby={undefined}
           >
             <motion.div

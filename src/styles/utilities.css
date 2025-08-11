@@ -1,6 +1,12 @@
 @utility z-skip-to-content {
   z-index: 9999;
 }
+@utility z-dialog-overlay {
+  z-index: 9000;
+}
+@utility z-dialog-content {
+  z-index: 9001;
+}
 @utility z-navbar {
   z-index: 1000;
 }
