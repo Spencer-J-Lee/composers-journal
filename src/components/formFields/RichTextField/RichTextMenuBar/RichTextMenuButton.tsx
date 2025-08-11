@@ -6,7 +6,7 @@ import {
 } from "@/components/iconButtons/IconButton";
 
 type RichTextMenuButtonProps = {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 } & Omit<IconButtonProps, "textVariant">;
 
 export const RichTextMenuButton = ({
