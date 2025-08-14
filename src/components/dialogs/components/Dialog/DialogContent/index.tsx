@@ -65,7 +65,6 @@ export const DialogContent = ({
 
       <AnimatePresence>
         {open && (
-          // TODO: add option to keep dialog open even when clicking outside
           <Content
             className={clsx(
               baseContentClassName,
