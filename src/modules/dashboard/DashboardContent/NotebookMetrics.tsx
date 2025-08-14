@@ -32,8 +32,12 @@ export const NotebookMetrics = () => {
       {isSuccess && (
         <ul className="space-y-2">
           <li>
-            <Typography variant="smallMuted"># of notebooks:</Typography>
-            <Typography variant="body">{data.totalNotebooks}</Typography>
+            <Typography variant="smallMuted">Active notebooks:</Typography>
+            <Typography variant="body">{data.activeNotebooks}</Typography>
+          </li>
+          <li>
+            <Typography variant="smallMuted">Trashed notebooks:</Typography>
+            <Typography variant="body">{data.trashedNotebooks}</Typography>
           </li>
           {!!data.largestNotebook && (
             <li>

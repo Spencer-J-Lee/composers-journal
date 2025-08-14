@@ -57,12 +57,18 @@ type DbGetNotebookMetricsProps = {
 export const dbGetNotebookMetrics = async ({
   ownerId,
 }: DbGetNotebookMetricsProps): Promise<NotebookMetrics> => {
-  const andClauses = [eq(notebooks.status, STATUSES.ACTIVE)];
-  if (ownerId) andClauses.push(eq(notebooks.ownerId, ownerId));
+  const ownerClause = eq(notebooks.ownerId, ownerId);
 
-  const totalNotebooks = await db.query.notebooks
+  const activeNotebooks = await db.query.notebooks
     .findMany({
-      where: and(...andClauses),
+      where: and(eq(notebooks.status, STATUSES.ACTIVE), ownerClause),
+      columns: { id: true },
+    })
+    .then((rows) => rows.length);
+
+  const trashedNotebooks = await db.query.notebooks
+    .findMany({
+      where: and(eq(notebooks.status, STATUSES.TRASHED), ownerClause),
       columns: { id: true },
     })
     .then((rows) => rows.length);
@@ -81,13 +87,14 @@ export const dbGetNotebookMetrics = async ({
         eq(entries.status, STATUSES.ACTIVE),
       ),
     )
-    .where(and(...andClauses))
+    .where(and(eq(notebooks.status, STATUSES.ACTIVE), ownerClause))
     .groupBy(notebooks.id, notebooks.name)
     .orderBy(desc(sql<number>`count(${entries.id})`))
     .limit(1);
 
   return {
-    totalNotebooks,
+    activeNotebooks,
+    trashedNotebooks,
     largestNotebook: largestNotebookRow[0]
       ? {
           id: largestNotebookRow[0].id,
