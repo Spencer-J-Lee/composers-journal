@@ -8,7 +8,7 @@ import { STATUSES } from "@/models/types/status";
 import { CommonApiOptions } from "@/services/types";
 import { withFirstResult } from "@/utils/server/withFirstResults";
 
-import { convertOrderByToSql } from "../utils/convertOrderByToSql";
+import { convertOrderByToSql } from "../../utils/convertOrderByToSql";
 
 type DbGetEntriesProps = { ids?: Entry["id"][] } & Partial<
   Pick<Entry, "ownerId" | "status" | "notebookId">
