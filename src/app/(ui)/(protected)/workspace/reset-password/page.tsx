@@ -3,6 +3,7 @@ import { ResetPasswordContent } from "@/modules/resetPassword/components/ResetPa
 
 /**
  * TODO: turn auth-related pages into a single page experience
+ * TODO: use CAPTCHA-based auth verification over dated email verification
  */
 const ResetPasswordPage = () => {
   return (

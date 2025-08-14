@@ -3,6 +3,7 @@ import { VerifyEmailContent } from "@/modules/auth/verifyEmail/VerifyEmailConten
 
 /**
  * TODO: turn auth-related pages into a single page experience
+ * TODO: use CAPTCHA-based auth verification over dated email verification
  */
 const VerifyEmailPage = () => {
   return (
