@@ -1,3 +1,4 @@
+import { NotebookMetrics } from "@/db/queries/notebooks/get/types";
 import { notebooks } from "@/db/schema";
 import { Notebook } from "@/models/Notebook";
 import { STATUSES } from "@/models/types/status";
@@ -26,4 +27,8 @@ export const apiGetActiveNotebooks = async (): Promise<Notebook[]> => {
 
 export const apiGetTrashedNotebooks = async (): Promise<Notebook[]> => {
   return apiGetNotebooks({ status: STATUSES.TRASHED });
+};
+
+export const apiGetNotebookMetrics = (): Promise<NotebookMetrics> => {
+  return fetchWithErrorHandling<NotebookMetrics>(API_PATHS.NOTEBOOKS.METRICS);
 };

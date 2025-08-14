@@ -5,6 +5,7 @@ import { Notebook } from "@/models/Notebook";
 import { apiCreateNotebook } from "@/services/notebooks/create";
 import {
   apiGetActiveNotebooks,
+  apiGetNotebookMetrics,
   apiGetTrashedNotebooks,
 } from "@/services/notebooks/get";
 import {
@@ -165,5 +166,12 @@ export const useEditNotebook = () => {
         queryKey: STATIC_TS_KEYS.ACTIVE_NOTEBOOKS,
       });
     },
+  });
+};
+
+export const useNotebookMetrics = () => {
+  return useQuery({
+    queryKey: STATIC_TS_KEYS.NOTEBOOK_METRICS,
+    queryFn: () => apiGetNotebookMetrics(),
   });
 };

@@ -1,6 +1,7 @@
 import { Card } from "@/components/Card";
 import { Typography } from "@/components/Typography";
 
+import { NotebookMetrics } from "./NotebookMetrics";
 import { RecentEntriesSection } from "./RecentEntriesSection";
 
 /**
@@ -10,22 +11,7 @@ export const DashboardContent = () => {
   return (
     <div className="space-y-8">
       <section className="grid grid-cols-2 gap-4">
-        <Card>
-          <Typography variant="h3" className="mb-3">
-            Notebook Metrics
-          </Typography>
-
-          <ul className="space-y-2">
-            <li>
-              <Typography variant="bodySmall"># of notebooks:</Typography>
-              <Typography variant="body">3</Typography>
-            </li>
-            <li>
-              <Typography variant="bodySmall">Largest notebook:</Typography>
-              <Typography variant="body">Composition (84 entries)</Typography>
-            </li>
-          </ul>
-        </Card>
+        <NotebookMetrics />
 
         <Card>
           <Typography variant="h3" className="mb-3">

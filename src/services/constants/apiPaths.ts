@@ -7,6 +7,7 @@ export const API_PATHS = {
   },
   NOTEBOOKS: {
     ROOT: "/api/notebooks",
+    METRICS: "/api/notebooks/metrics",
   },
   SAVED_ITEMS: {
     ROOT: "/api/saved-items",
