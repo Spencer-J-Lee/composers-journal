@@ -1,4 +1,5 @@
 import { RECENTLY_UPDATED_ENTRIES_PARAMS } from "@/constants/entryParams";
+import { EntryMetrics } from "@/db/queries/entries/get/types";
 import { entries } from "@/db/schema";
 import { getPaginationParams } from "@/getPaginationParams";
 import { Entry } from "@/models/Entry";
@@ -59,4 +60,8 @@ export const apiGetFilteredEntriesPage = async ({
 
 export const apiGetRecentlyUpdatedEntries = async () => {
   return apiGetEntries(RECENTLY_UPDATED_ENTRIES_PARAMS);
+};
+
+export const apiGetEntryMetrics = (): Promise<EntryMetrics> => {
+  return fetchWithErrorHandling<EntryMetrics>(API_PATHS.ENTRIES.METRICS);
 };

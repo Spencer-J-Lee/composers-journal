@@ -3,7 +3,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { RECENTLY_UPDATED_ENTRIES_PARAMS } from "@/constants/entryParams";
 import { STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
-import { dbGetEntries } from "@/db/queries/entries/get";
+import { dbGetEntries, dbGetEntryMetrics } from "@/db/queries/entries/get";
 import { dbGetNotebookMetrics } from "@/db/queries/notebooks/get";
 import { DashboardContent } from "@/modules/dashboard/DashboardContent";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
@@ -29,6 +29,13 @@ const WorkspacePage = async () => {
   queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.NOTEBOOK_METRICS,
     queryFn: async () => dbGetNotebookMetrics({ ownerId: user.id }),
+  });
+
+  // TODO: figure out how to prefetch without flashing loading state
+  // or hydration mismatch
+  queryClient.prefetchQuery({
+    queryKey: STATIC_TS_KEYS.ENTRY_METRICS,
+    queryFn: async () => dbGetEntryMetrics({ ownerId: user.id }),
   });
 
   return (

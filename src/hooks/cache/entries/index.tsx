@@ -12,6 +12,7 @@ import { SavedItem } from "@/models/SavedItem";
 import { ENTRIES_PAGE_LIMIT } from "@/modules/entries/list/EntriesFilter/constants";
 import { EntryFilter } from "@/modules/entries/list/EntriesFilter/types";
 import {
+  apiGetEntryMetrics,
   apiGetFilteredEntriesPage,
   apiGetRecentlyUpdatedEntries,
   apiGetTrashedEntries,
@@ -196,5 +197,12 @@ export const useRecentlyUpdatedEntries = () => {
   return useQuery({
     queryKey: STATIC_TS_KEYS.RECENTLY_UPDATED_ENTRIES,
     queryFn: () => apiGetRecentlyUpdatedEntries(),
+  });
+};
+
+export const useEntryMetrics = () => {
+  return useQuery({
+    queryKey: STATIC_TS_KEYS.ENTRY_METRICS,
+    queryFn: () => apiGetEntryMetrics(),
   });
 };

@@ -1,13 +1,15 @@
-import { and, eq, inArray } from "drizzle-orm";
+import { User } from "@supabase/supabase-js";
+import { and, count, desc, eq, gte, inArray, sql } from "drizzle-orm";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
-import { entries } from "@/db/schema";
+import { entries, entryTags, tags } from "@/db/schema";
 import { Entry } from "@/models/Entry";
 import { STATUSES } from "@/models/types/status";
 import { CommonApiOptions } from "@/services/types";
 import { withFirstResult } from "@/utils/server/withFirstResults";
 
+import { EntryMetrics } from "./types";
 import { convertOrderByToSql } from "../../utils/convertOrderByToSql";
 
 type DbGetEntriesProps = { ids?: Entry["id"][] } & Partial<
@@ -76,4 +78,58 @@ export const dbGetEntryById = async (
 
 export const dbGetActiveEntryById = async (id: Entry["id"]) => {
   return dbGetEntryById(id, { status: STATUSES.ACTIVE });
+};
+
+type DbGetEntryMetricsProps = {
+  ownerId: User["id"];
+};
+
+export const dbGetEntryMetrics = async ({
+  ownerId,
+}: DbGetEntryMetricsProps): Promise<EntryMetrics> => {
+  const ownerClause = eq(entries.ownerId, ownerId);
+
+  const activeEntries = await db.query.entries
+    .findMany({
+      where: and(eq(entries.status, STATUSES.ACTIVE), ownerClause),
+      columns: { id: true },
+    })
+    .then((rows) => rows.length);
+
+  const trashedEntries = await db.query.entries
+    .findMany({
+      where: and(eq(entries.status, STATUSES.TRASHED), ownerClause),
+      columns: { id: true },
+    })
+    .then((rows) => rows.length);
+
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  const recentEntries = await db.query.entries
+    .findMany({
+      where: and(gte(entries.createdAt, thirtyDaysAgo), ownerClause),
+      columns: { id: true },
+    })
+    .then((rows) => rows.length);
+
+  const topTags = await db
+    .select({
+      id: tags.id,
+      name: tags.name,
+      usageCount: count(entryTags.entryId).as("usageCount"),
+    })
+    .from(entryTags)
+    .innerJoin(tags, eq(entryTags.tagId, tags.id))
+    .innerJoin(entries, eq(entryTags.entryId, entries.id))
+    .where(and(ownerClause, eq(entries.status, STATUSES.ACTIVE)))
+    .groupBy(tags.id, tags.name)
+    .orderBy(desc(sql<number>`count(${entryTags.entryId})`))
+    .limit(3);
+
+  return {
+    activeEntries,
+    trashedEntries,
+    recentEntries,
+    topTags,
+  };
 };

@@ -2,6 +2,7 @@ export const API_PATHS = {
   USER: "/api/user",
   ENTRIES: {
     ROOT: "/api/entries",
+    METRICS: "/api/entries/metrics",
     MEDIA: "/api/entry-media",
     TAGS: "/api/entry-tags",
   },
