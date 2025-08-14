@@ -38,7 +38,7 @@ export const TagsDialog = ({
   const [searchStr, setSearchStr] = useState("");
   const [selected, setSelected] =
     useState<readonly TagOption[]>(initialTagOptions);
-  // Used to ensure placeholder tags don't have overlapping values
+  // Used to ensure placeholder tags don't have overlapping ids
   const [newOptionId, setNewOptionId] = useState(-1);
 
   const tagOptions = useMemo(() => {
@@ -73,7 +73,7 @@ export const TagsDialog = ({
     newVal: OnChangeValue<TagOption, true>,
     actionMeta: ActionMeta<TagOption>,
   ) => {
-    // If placeholder option is chosen, decrement newOptionId
+    // If placeholder option is chosen, ensure next placeholder has unique id
     if (actionMeta.action === "select-option" && actionMeta.option?.isNew) {
       setNewOptionId((prev) => prev - 1);
     }
