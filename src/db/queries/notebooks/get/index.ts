@@ -57,7 +57,7 @@ type DbGetNotebookMetricsProps = {
 export const dbGetNotebookMetrics = async ({
   ownerId,
 }: DbGetNotebookMetricsProps): Promise<NotebookMetrics> => {
-  const andClauses = [];
+  const andClauses = [eq(notebooks.status, STATUSES.ACTIVE)];
   if (ownerId) andClauses.push(eq(notebooks.ownerId, ownerId));
 
   const totalNotebooks = await db.query.notebooks
@@ -67,18 +67,23 @@ export const dbGetNotebookMetrics = async ({
     })
     .then((rows) => rows.length);
 
-  const COUNT_KEY = "entryCount";
   const largestNotebookRow = await db
     .select({
       id: notebooks.id,
       name: notebooks.name,
-      [COUNT_KEY]: count(entries.id).as(COUNT_KEY),
+      entryCount: count(entries.id),
     })
     .from(notebooks)
-    .leftJoin(entries, eq(notebooks.id, entries.notebookId))
+    .leftJoin(
+      entries,
+      and(
+        eq(notebooks.id, entries.notebookId),
+        eq(entries.status, STATUSES.ACTIVE),
+      ),
+    )
     .where(and(...andClauses))
-    .groupBy(notebooks.id)
-    .orderBy(desc(sql`${COUNT_KEY}`))
+    .groupBy(notebooks.id, notebooks.name)
+    .orderBy(desc(sql<number>`count(${entries.id})`))
     .limit(1);
 
   return {
