@@ -15,6 +15,7 @@ export type DialogProps = {
   hideClose?: boolean;
   trigger?: ReactNode;
   children?: ReactNode;
+  persistent?: boolean;
 };
 
 export const Dialog = ({
@@ -27,6 +28,7 @@ export const Dialog = ({
   hideClose,
   trigger,
   children,
+  persistent,
 }: DialogProps) => {
   return (
     <Root open={open} onOpenChange={setOpen}>
@@ -44,6 +46,7 @@ export const Dialog = ({
         size={size}
         actions={actions}
         hideClose={hideClose}
+        persistent={persistent}
       >
         {children}
       </DialogContent>

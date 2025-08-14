@@ -31,6 +31,11 @@ export type DialogContentProps = {
   actions?: DialogAction[];
   children?: ReactNode;
   hideClose?: boolean;
+
+  /** When true, the dialog must be closed via explicit action
+   * (e.g., close button or action button).
+   * */
+  persistent?: boolean;
 };
 
 export const DialogContent = ({
@@ -42,9 +47,17 @@ export const DialogContent = ({
   size,
   actions,
   hideClose,
+  persistent,
 }: DialogContentProps) => {
   const baseContentClassName =
     "fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2";
+
+  const overlayBehavior = persistent
+    ? {
+        onPointerDownOutside: (e: Event) => e.preventDefault(),
+        onInteractOutside: (e: Event) => e.preventDefault(),
+      }
+    : {};
 
   return (
     <Portal forceMount>
@@ -60,6 +73,7 @@ export const DialogContent = ({
               "z-dialog-content",
             )}
             aria-describedby={undefined}
+            {...overlayBehavior}
           >
             <motion.div
               variants={contentVariants}

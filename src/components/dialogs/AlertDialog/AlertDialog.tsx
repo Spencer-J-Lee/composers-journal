@@ -19,6 +19,7 @@ export const AlertDialog = () => {
       actions={actions}
       size="sm"
       hideClose
+      persistent
     />
   );
 };

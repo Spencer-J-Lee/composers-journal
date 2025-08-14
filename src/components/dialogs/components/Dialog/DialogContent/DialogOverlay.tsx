@@ -14,7 +14,8 @@ export const DialogOverlay = ({ open }: DialogOverlayProps) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          {/* TODO: fix issue where top bar in trash page overlaps this overlay */}
+          {/* TODO: fix issue where top bar in trash
+           page overlaps this overlay */}
           <Overlay className="z-dialog-overlay fixed inset-0 bg-black/60" />
         </motion.div>
       )}
