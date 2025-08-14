@@ -24,7 +24,9 @@ export const NotebookMetrics = () => {
       </Typography>
 
       {isError && (
-        <Typography variant="fallback">Failed to load entries</Typography>
+        <Typography variant="fallback">
+          Failed to load notebook metrics
+        </Typography>
       )}
 
       {isSuccess && (
