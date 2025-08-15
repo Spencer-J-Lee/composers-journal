@@ -7,7 +7,9 @@ import { useEntryMetrics } from "@/hooks/cache/entries";
 import { useLogError } from "@/hooks/useLogError";
 import { TagChips } from "@/modules/tags/components/TagChips";
 
-export const EntryMetrics = () => {
+import { MetricsGrid } from "./MetricsGrid";
+
+export const EntryMetricsCard = () => {
   const { data, error, isPending, isError, isSuccess } = useEntryMetrics();
   useLogError(error);
 
@@ -26,33 +28,33 @@ export const EntryMetrics = () => {
       )}
 
       {isSuccess && (
-        <ul className="space-y-2">
-          <li>
-            <Typography variant="smallMuted">Active entries:</Typography>
-            <Typography variant="body">{data.activeEntries}</Typography>
-          </li>
-          <li>
-            <Typography variant="smallMuted">Trashed entries:</Typography>
-            <Typography variant="body">{data.trashedEntries}</Typography>
-          </li>
-          <li>
-            <Typography variant="smallMuted">
-              New entries (last 30 days):
-            </Typography>
-            <Typography variant="body">{data.recentEntries}</Typography>
-          </li>
-          <li>
-            <Typography variant="smallMuted">Most used tags:</Typography>
-            <Typography variant="body">
-              <TagChips
-                tags={data.topTags.map(({ name, usageCount }) => ({
-                  name: `${name}: ${usageCount}`,
-                }))}
-                className="mt-1"
-              />
-            </Typography>
-          </li>
-        </ul>
+        <MetricsGrid
+          data={[
+            {
+              title: "Active entries",
+              content: data.activeEntries,
+            },
+            {
+              title: "Trashed entries",
+              content: data.trashedEntries,
+            },
+            {
+              title: "New entries (last 30 days)",
+              content: data.recentEntries,
+            },
+            {
+              title: "Most used tags",
+              content: (
+                <TagChips
+                  tags={data.topTags.map(({ name, usageCount }) => ({
+                    name: `${name}: ${usageCount}`,
+                  }))}
+                  className="mt-1"
+                />
+              ),
+            },
+          ]}
+        />
       )}
     </Card>
   );

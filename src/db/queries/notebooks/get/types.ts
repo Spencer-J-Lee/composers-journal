@@ -1,5 +1,6 @@
 export type NotebookMetrics = {
-  totalNotebooks: number;
+  activeNotebooks: number;
+  trashedNotebooks: number;
   largestNotebook: {
     id: number;
     name: string;

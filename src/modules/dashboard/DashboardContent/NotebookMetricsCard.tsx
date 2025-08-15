@@ -6,16 +6,51 @@ import { Card } from "@/components/Card";
 import { ShimmerMetricsCard } from "@/components/shimmerLoaders/ShimmerMetricsCard";
 import { Typography } from "@/components/Typography";
 import { routes } from "@/constants/routes";
+import { NotebookMetrics } from "@/db/queries/notebooks/get/types";
 import { useNotebookMetrics } from "@/hooks/cache/notebooks";
 import { useLogError } from "@/hooks/useLogError";
 
-export const NotebookMetrics = () => {
+import { MetricsData, MetricsGrid } from "./MetricsGrid";
+
+export const NotebookMetricsCard = () => {
   const { data, error, isPending, isError, isSuccess } = useNotebookMetrics();
   useLogError(error);
 
   if (isPending) {
-    return <ShimmerMetricsCard itemCount={2} />;
+    return <ShimmerMetricsCard itemCount={3} />;
   }
+
+  const getMetricsData = (metrics: NotebookMetrics) => {
+    const data: MetricsData[] = [
+      {
+        title: "Active notebooks",
+        content: metrics.activeNotebooks,
+      },
+      {
+        title: "Trashed notebooks",
+        content: metrics.trashedNotebooks,
+      },
+    ];
+
+    if (metrics.largestNotebook) {
+      data.push({
+        title: "Largest notebook",
+        content: (
+          <>
+            <Link
+              href={routes.notebook(metrics.largestNotebook.id)}
+              className="hover:underline"
+            >
+              {metrics.largestNotebook.name}
+            </Link>{" "}
+            ({metrics.largestNotebook.entryCount} entries)
+          </>
+        ),
+      });
+    }
+
+    return data;
+  };
 
   return (
     <Card>
@@ -29,32 +64,7 @@ export const NotebookMetrics = () => {
         </Typography>
       )}
 
-      {isSuccess && (
-        <ul className="space-y-2">
-          <li>
-            <Typography variant="smallMuted">Active notebooks:</Typography>
-            <Typography variant="body">{data.activeNotebooks}</Typography>
-          </li>
-          <li>
-            <Typography variant="smallMuted">Trashed notebooks:</Typography>
-            <Typography variant="body">{data.trashedNotebooks}</Typography>
-          </li>
-          {!!data.largestNotebook && (
-            <li>
-              <Typography variant="smallMuted">Largest notebook:</Typography>
-              <Typography variant="body">
-                <Link
-                  href={routes.notebook(data.largestNotebook.id)}
-                  className="hover:underline"
-                >
-                  {data.largestNotebook.name}
-                </Link>{" "}
-                ({data.largestNotebook.entryCount} entries)
-              </Typography>
-            </li>
-          )}
-        </ul>
-      )}
+      {isSuccess && <MetricsGrid data={getMetricsData(data)} />}
     </Card>
   );
 };
