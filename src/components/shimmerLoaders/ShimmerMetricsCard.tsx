@@ -12,7 +12,12 @@ export const ShimmerMetricsCard = ({ itemCount }: ShimmerMetricsCardProps) => {
     <Card>
       <ShimmerLoader typographyVariant="h3" className="mb-3 max-w-48" />
 
-      <ul className="space-y-2">
+      <ul
+        className="grid gap-2"
+        style={{
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(248px, 100%), 1fr",
+        }}
+      >
         {repeatRender(itemCount, () => (
           <li>
             <ShimmerLoader
