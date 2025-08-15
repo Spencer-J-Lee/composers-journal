@@ -46,7 +46,7 @@ export const NotebooksAccordionMenu = () => {
         <Collapsible show={show}>
           <ul className="space-y-1.5 pt-1.5">
             {notebooks.map((notebook, i) => (
-              <li key={notebook.name} className="flex items-center">
+              <li key={notebook.id} className="flex items-center">
                 <TreeBranch
                   variant={i === notebooks.length - 1 ? "bottom" : "middle"}
                   className="-my-2 ml-5"

@@ -12,8 +12,8 @@ type TagsProps = {
 export const TagChips = ({ tags, className, noWrap }: TagsProps) => {
   return (
     <ul className={clsx("flex gap-2", { "flex-wrap": !noWrap }, className)}>
-      {tags.map((tag) => (
-        <li key={tag.name}>
+      {tags.map((tag, i) => (
+        <li key={i}>
           <Chip text={tag.name} />
         </li>
       ))}

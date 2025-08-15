@@ -64,7 +64,7 @@ export const NotebooksContent = () => {
         {isSuccess && notebooks.length > 0 && (
           <CardResultsWrapper>
             {sortedNotebooks.map((notebook) => (
-              <li key={notebook.name}>
+              <li key={notebook.id}>
                 <NotebookCard
                   notebook={notebook}
                   controls={notebookControls}
