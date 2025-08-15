@@ -16,11 +16,11 @@ export const MetricsGrid = ({ data }: MetricsGridProps) => {
     <ul
       className="grid gap-2"
       style={{
-        gridTemplateColumns: "repeat(auto-fit, minmax(min(248px, 100%), 1fr",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(248px, 100%), 1fr)",
       }}
     >
-      {data.map(({ title, content }) => (
-        <li key={title}>
+      {data.map(({ title, content }, i) => (
+        <li key={i}>
           <Typography variant="smallMuted">{title}</Typography>
           <Typography variant="body" htmlTag="div">
             {content}
