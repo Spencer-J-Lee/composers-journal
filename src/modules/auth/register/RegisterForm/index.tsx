@@ -6,14 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
+import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { routes } from "@/constants/routes";
-import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { showErrorToast } from "@/utils/client/toasts";
-import { genFullSiteUrl } from "@/utils/client/urls";
 
 import { RegisterFormValues, registerSchema } from "./schema";
 
@@ -23,6 +22,11 @@ export const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
   const methods = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      captchaToken: "",
+    },
   });
 
   const onSubmit = async (data: RegisterFormValues) => {
@@ -35,9 +39,7 @@ export const RegisterForm = () => {
       email: data.email,
       password: data.password,
       options: {
-        emailRedirectTo: genFullSiteUrl(
-          routes.verifyEmailCallback(DEFAULT_PROTECTED_ROUTE),
-        ),
+        captchaToken: data.captchaToken,
       },
     });
 
@@ -45,7 +47,7 @@ export const RegisterForm = () => {
       console.error(error);
       showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN_LATER);
     } else {
-      router.push(routes.verifyEmail(data.email));
+      router.push(routes.notebooks());
     }
 
     setLoading(false);
@@ -58,6 +60,8 @@ export const RegisterForm = () => {
           <RHFTextField type="email" name="email" label="Email" required />
           <RHFPasswordField name="password" required />
         </div>
+
+        <RHFCaptcha name="captchaToken" />
 
         <Button type="submit" loading={loading} fullWidth>
           Register
