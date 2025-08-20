@@ -9,7 +9,7 @@ import { routes } from "@/constants/routes";
 
 import { SidebarMainMenu } from "./SidebarMainMenu";
 import { SidebarUserMenu } from "./SidebarUserMenu";
-import { Divider } from "../Divider";
+import { Divider } from "../dividers/Divider";
 
 export const Sidebar = () => {
   return (

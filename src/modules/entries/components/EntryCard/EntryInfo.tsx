@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { DateDisplay } from "@/components/DateDisplay";
 import { DatesToDisplay } from "@/components/DateDisplay/types";
-import { Divider } from "@/components/Divider";
+import { Divider } from "@/components/dividers/Divider";
 import { Typography } from "@/components/Typography";
 import { Entry } from "@/models/Entry";
 

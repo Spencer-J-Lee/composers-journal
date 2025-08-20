@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/buttons/Button";
 import { Card } from "@/components/Card";
-import { Divider } from "@/components/Divider";
+import { Divider } from "@/components/dividers/Divider";
 import { RHFGhostTextField } from "@/components/formFields/RHFFields/RHFGhostTextField";
 import { RHFRichTextField } from "@/components/formFields/RHFFields/RHFRichTextField";
 import { DEFAULT_ERROR_MSG } from "@/constants/messages";

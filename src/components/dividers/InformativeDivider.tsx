@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import clsx from "clsx";
 
 import { Divider } from "./Divider";
-import { Typography } from "./Typography";
+import { Typography } from "../Typography";
 
 type InformativeDividerProps = {
   children: ReactNode;

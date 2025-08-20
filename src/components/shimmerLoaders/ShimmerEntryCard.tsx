@@ -1,6 +1,6 @@
 import { ShimmerCardControls } from "./ShimmerCardControls";
 import { Card } from "../Card";
-import { Divider } from "../Divider";
+import { Divider } from "../dividers/Divider";
 import { ShimmerLoader } from "../ShimmerLoader";
 
 type ShimmerEntryCardProps = {

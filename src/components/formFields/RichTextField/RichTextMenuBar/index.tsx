@@ -13,7 +13,7 @@ import {
 import { Editor, useEditorState } from "@tiptap/react";
 
 import { Card } from "@/components/Card";
-import { Divider } from "@/components/Divider";
+import { Divider } from "@/components/dividers/Divider";
 
 import { AddYouTubeButton } from "./AddYouTubeButton";
 import { RichTextMenuButton } from "./RichTextMenuButton";

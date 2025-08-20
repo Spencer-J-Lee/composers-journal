@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { Divider } from "@/components/Divider";
+import { Divider } from "@/components/dividers/Divider";
 import { Typography } from "@/components/Typography";
 import { TagChips } from "@/modules/tags/components/TagChips";
 

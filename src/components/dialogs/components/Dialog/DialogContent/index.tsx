@@ -12,7 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { Card } from "@/components/Card";
 import { DialogAction } from "@/components/dialogs/AlertDialog/types";
-import { Divider } from "@/components/Divider";
+import { Divider } from "@/components/dividers/Divider";
 import { IconButton } from "@/components/iconButtons/IconButton";
 import { typographyStyles } from "@/components/Typography/constants";
 
