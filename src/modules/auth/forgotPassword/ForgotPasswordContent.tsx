@@ -8,7 +8,7 @@ export const ForgotPasswordContent = () => {
     <>
       <p>{"We'll"} send you an email with a login link.</p>
       <ForgotPasswordForm />
-      <div>
+      <div className="mt-2">
         Remembered your password?{" "}
         <StyledLink href={routes.login()}>Log In</StyledLink>
       </div>

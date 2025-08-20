@@ -26,6 +26,7 @@ export const RHFCaptcha = ({ name }: RHFCaptchaProps) => {
         siteKey={siteKey}
         onSuccess={(token) => setValue(name, token)}
         options={{
+          theme: "light",
           size: "flexible",
         }}
       />

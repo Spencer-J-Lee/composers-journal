@@ -30,5 +30,5 @@ export const typographyStyles: Record<TypographyVariant, string> = {
   smallMuted: "text-sm font-normal text-text-muted",
   emptyState: "text-sm font-normal text-text-muted italic",
   fallback: "text-sm font-normal text-negative italic",
-  divider: "text-sm font-medium italic text-text-muted-divider",
+  divider: "text-sm font-semibold italic text-text-muted-divider",
 };

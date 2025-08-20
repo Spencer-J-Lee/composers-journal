@@ -26,7 +26,7 @@ export const Footer = () => {
 
   return (
     <footer className="bg-background">
-      <div className="m-auto max-w-screen-xl px-5 lg:px-11 lg:py-8">
+      <div className="max-w-screen-3xl m-auto px-5 lg:px-11 lg:py-8">
         <Typography variant="body">
           Built with {links.next}, {links.tailwind}. Deployed with{" "}
           {links.vercel}.
