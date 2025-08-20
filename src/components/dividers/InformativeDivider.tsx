@@ -15,11 +15,11 @@ export const InformativeDivider = ({
 }: InformativeDividerProps) => {
   return (
     <div className={clsx("flex items-center gap-x-4", className)}>
-      <Divider />
+      <Divider size="md" />
       <Typography variant="divider" className="text-nowrap">
         {children}
       </Typography>
-      <Divider />
+      <Divider size="md" />
     </div>
   );
 };
