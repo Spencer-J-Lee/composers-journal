@@ -3,7 +3,6 @@ import { LoginContent } from "@/modules/auth/login/LoginContent";
 
 /**
  * TODO: turn auth-related pages into a single page experience
- * TODO: use CAPTCHA-based auth verification over dated email verification
  */
 const LoginPage = () => {
   return (

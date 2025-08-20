@@ -11,7 +11,7 @@ type WorkspaceContentWrapperProps = {
 };
 
 /**
- * Intended to be used with WorkspaceWrapper with `paddingSize="none"`
+ * Intended to be used with WorkspacePageWrapper with `paddingSize="none"`
  */
 export const WorkspaceContentWrapper = ({
   children,
