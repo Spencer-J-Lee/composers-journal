@@ -67,15 +67,20 @@ export const LoginForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="mb-5 w-full space-y-4">
           <RHFTextField type="email" name="email" label="Email" required />
-          <RHFTextField
-            type="password"
-            name="password"
-            label="Password"
-            required
-          />
-          <StyledLink href={routes.forgotPassword(watchedEmail)}>
-            Forgot password?
-          </StyledLink>
+          <div>
+            <RHFTextField
+              type="password"
+              name="password"
+              label="Password"
+              required
+            />
+            <StyledLink
+              href={routes.forgotPassword(watchedEmail)}
+              className="mt-1 inline-block"
+            >
+              Forgot password?
+            </StyledLink>
+          </div>
         </div>
 
         <Button type="submit" loading={loading} fullWidth>
