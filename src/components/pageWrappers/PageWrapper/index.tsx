@@ -28,7 +28,7 @@ export const PageWrapper = ({
         className,
       )}
     >
-      <div className={clsx("w-full", maxWidthClassName[maxWidth])}>
+      <div className={clsx("mx-auto w-full", maxWidthClassName[maxWidth])}>
         {children}
       </div>
     </main>
