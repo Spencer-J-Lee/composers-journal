@@ -28,7 +28,9 @@ export const NotebookForm = ({
 
   const methods = useForm<NotebookFormValues>({
     resolver: zodResolver(notebookFormSchema),
-    defaultValues,
+    defaultValues: {
+      name: defaultValues?.name ?? "",
+    },
   });
 
   const validateNameUnique = async (val: string) => {

@@ -22,6 +22,10 @@ export const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const methods = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
   const watchedEmail = useWatch({
     control: methods.control,
