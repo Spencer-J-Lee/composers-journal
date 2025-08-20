@@ -1,6 +1,6 @@
 import { createClientCS } from "@/db/supabase/client/createClientCS";
 
-type GoogleCredentialResponse = {
+export type GoogleCredentialResponse = {
   credential: string;
   select_by: string;
   clientId?: string;
@@ -8,6 +8,7 @@ type GoogleCredentialResponse = {
 
 export const handleSignInWithGoogle = async (
   response: GoogleCredentialResponse,
+  onSuccess: () => void,
 ) => {
   const supabase = createClientCS();
   const { error } = await supabase.auth.signInWithIdToken({
@@ -16,6 +17,8 @@ export const handleSignInWithGoogle = async (
   });
 
   if (error) {
-    console.error(error);
+    console.error("Google sign-in failed:", error);
+  } else {
+    onSuccess();
   }
 };

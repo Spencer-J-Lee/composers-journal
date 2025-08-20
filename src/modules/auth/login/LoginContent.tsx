@@ -14,6 +14,10 @@ export const LoginContent = () => {
         Need an account?{" "}
         <StyledLink href={routes.register()}>Register</StyledLink>
       </div>
+
+      <InformativeDivider className="my-5">or</InformativeDivider>
+
+      <GSIButton />
     </AuthWrapper>
   );
 };
