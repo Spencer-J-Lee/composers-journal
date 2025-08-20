@@ -59,9 +59,8 @@ export const RegisterForm = () => {
         <div className="mb-5 w-full space-y-4">
           <RHFTextField type="email" name="email" label="Email" required />
           <RHFPasswordField name="password" required />
+          <RHFCaptcha name="captchaToken" />
         </div>
-
-        <RHFCaptcha name="captchaToken" />
 
         <Button type="submit" loading={loading} fullWidth>
           Register

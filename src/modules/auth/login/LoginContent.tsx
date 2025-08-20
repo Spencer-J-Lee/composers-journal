@@ -9,7 +9,7 @@ export const LoginContent = () => {
     <>
       <LoginForm />
       <GSIButton />
-      <div>
+      <div className="mt-2">
         Need an account?{" "}
         <StyledLink href={routes.register()}>Register</StyledLink>
       </div>

@@ -7,7 +7,7 @@ export const RegisterContent = () => {
   return (
     <>
       <RegisterForm />
-      <div>
+      <div className="mt-2">
         Already have an account?{" "}
         <StyledLink href={routes.login()}>Log In</StyledLink>
       </div>
