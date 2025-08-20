@@ -9,6 +9,9 @@
   /* === Layout === */
   --navbar-height: 60px;
 
+  /* === Breakpoints === */
+  --breakpoint-3xl: 120rem;
+
   /* === Typography === */
   --font-inter: var(--font-inter), sans-serif;
 
