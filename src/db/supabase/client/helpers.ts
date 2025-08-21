@@ -4,7 +4,7 @@ import { createClientCS } from "./createClientCS";
 
 /**
  * Returns the current user.
- * Should only be used on server-side.
+ * Should only be used on client-side.
  */
 export const getUserCS = async (): Promise<User | null> => {
   const supabase = await createClientCS();

@@ -5,7 +5,7 @@ import { ButtonSize } from "../buttons/types";
 import { ShimmerLoader } from "../ShimmerLoader";
 
 type ShimmerButtonProps = {
-  size: ButtonSize;
+  size?: ButtonSize;
   fullWidth?: boolean;
   className?: string;
 };
