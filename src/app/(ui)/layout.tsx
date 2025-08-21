@@ -30,8 +30,14 @@ const RootLayout = ({
       >
         <Providers>
           <SkipToContent />
-          {children}
+
+          {/* 
+            Toaster should always be placed above children otherwise messages
+            will not show if toast is called on initial page load.
+           */}
           <Toaster richColors />
+
+          {children}
           <AlertDialog />
         </Providers>
       </body>
