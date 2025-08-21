@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
+import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
@@ -26,6 +27,7 @@ export const LoginForm = () => {
     defaultValues: {
       email: "",
       password: "",
+      captchaToken: "",
     },
   });
   const watchedEmail = useWatch({
@@ -39,6 +41,9 @@ export const LoginForm = () => {
     const { error } = await supabase.auth.signInWithPassword({
       email: data.email,
       password: data.password,
+      options: {
+        captchaToken: data.captchaToken,
+      },
     });
 
     if (
