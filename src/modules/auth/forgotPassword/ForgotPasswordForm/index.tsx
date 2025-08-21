@@ -13,7 +13,7 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { useCountdown } from "@/hooks/useCountdown";
-import { showErrorToast } from "@/utils/client/toasts";
+import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 import { genFullSiteUrl } from "@/utils/client/urls";
 
 import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
@@ -44,6 +44,7 @@ export const ForgotPasswordForm = () => {
       showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN_LATER);
     } else {
       startCountdown(10);
+      showSuccessToast("Reset link has been sent.");
     }
 
     setLoading(false);
