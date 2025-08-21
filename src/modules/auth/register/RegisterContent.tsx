@@ -3,15 +3,17 @@ import { routes } from "@/constants/routes";
 
 import { RegisterForm } from "./RegisterForm";
 import { AuthWrapper } from "../components/AuthWrapper";
+import { FormFooter } from "../components/FormFooter";
 
 export const RegisterContent = () => {
   return (
     <AuthWrapper>
       <RegisterForm />
-      <div className="mt-2">
+
+      <FormFooter>
         Already have an account?{" "}
         <StyledLink href={routes.login()}>Log In</StyledLink>
-      </div>
+      </FormFooter>
     </AuthWrapper>
   );
 };

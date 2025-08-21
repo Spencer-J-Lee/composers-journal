@@ -3,16 +3,18 @@ import { routes } from "@/constants/routes";
 
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
 import { AuthWrapper } from "../components/AuthWrapper";
+import { FormFooter } from "../components/FormFooter";
 
 export const ForgotPasswordContent = () => {
   return (
     <AuthWrapper>
       <p>{"We'll"} send you an email with a login link.</p>
       <ForgotPasswordForm />
-      <div className="mt-2">
+
+      <FormFooter>
         Remembered your password?{" "}
         <StyledLink href={routes.login()}>Log In</StyledLink>
-      </div>
+      </FormFooter>
     </AuthWrapper>
   );
 };
