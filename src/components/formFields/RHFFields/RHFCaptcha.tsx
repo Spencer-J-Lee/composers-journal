@@ -40,9 +40,12 @@ export const RHFCaptcha = ({ name }: RHFCaptchaProps) => {
         siteKey={siteKey}
         onSuccess={handleSuccess}
         options={{
-          theme: "light",
+          theme: "auto",
           size: "flexible",
+          appearance: "interaction-only",
         }}
+        // Need this to override the default height on invisible turnstiles
+        style={{ height: 0 }}
       />
       <FieldError show={!!error}>{error}</FieldError>
     </div>
