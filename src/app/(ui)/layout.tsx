@@ -26,10 +26,6 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <head>
-        <Script src="https://accounts.google.com/gsi/client" async />
-      </head>
-
       <body
         className={`${inter.variable} bg-background text-text h-auto min-h-screen antialiased`}
       >
