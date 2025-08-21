@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 
 import { CooldownButton } from "@/components/buttons/CooldownButton";
+import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
@@ -26,6 +27,7 @@ export const ForgotPasswordForm = () => {
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: searchParams.get(QUERY_KEYS.EMAIL) ?? "",
+      captchaToken: "",
     },
   });
 
@@ -34,6 +36,7 @@ export const ForgotPasswordForm = () => {
 
     const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
       redirectTo: genFullSiteUrl(routes.resetPassword()),
+      captchaToken: data.captchaToken,
     });
 
     if (error) {
@@ -51,6 +54,7 @@ export const ForgotPasswordForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="mb-5 w-full space-y-4">
           <RHFTextField type="email" name="email" label="Email" required />
+          <RHFCaptcha name="captchaToken" />
         </div>
 
         <CooldownButton
