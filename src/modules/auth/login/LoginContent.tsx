@@ -19,7 +19,7 @@ export const LoginContent = () => {
 
       <InformativeDivider className="my-5">or</InformativeDivider>
 
-      <GSIButton />
+      <GSIButton redirectTo={routes.workspace()} />
     </AuthWrapper>
   );
 };

@@ -3,17 +3,21 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-import { routes } from "@/constants/routes";
 import { handleSignInWithGoogle } from "@/services/auth/google";
 
 import { themeMap } from "./constants";
 
 type GSIButtonProps = {
+  redirectTo: string;
   variant?: "white" | "blue" | "black";
   className?: string;
 };
 
-export const GSIButton = ({ variant = "white", className }: GSIButtonProps) => {
+export const GSIButton = ({
+  redirectTo,
+  variant = "white",
+  className,
+}: GSIButtonProps) => {
   const router = useRouter();
   const buttonRef = useRef<HTMLDivElement>(null);
 
@@ -57,9 +61,7 @@ export const GSIButton = ({ variant = "white", className }: GSIButtonProps) => {
       window.google?.accounts.id.initialize({
         client_id: clientId,
         callback: (response) => {
-          handleSignInWithGoogle(response, () =>
-            router.push(routes.workspace()),
-          );
+          handleSignInWithGoogle(response, () => router.push(redirectTo));
         },
       });
 
@@ -75,8 +77,8 @@ export const GSIButton = ({ variant = "white", className }: GSIButtonProps) => {
         });
       }
     });
-  }, [variant, router]);
+  }, [redirectTo, variant, router]);
 
   // Google injects an iframe into this div when renderButton is called.
-  return <div ref={buttonRef} className={className}></div>;
+  return <div ref={buttonRef} className={className} />;
 };
