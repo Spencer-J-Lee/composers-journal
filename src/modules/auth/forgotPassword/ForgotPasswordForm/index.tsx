@@ -17,6 +17,7 @@ import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 import { genFullSiteUrl } from "@/utils/client/urls";
 
 import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
+import { FieldsWrapper } from "../../components/FieldsWrapper";
 
 export const ForgotPasswordForm = () => {
   const supabase = createClientCS();
@@ -53,10 +54,10 @@ export const ForgotPasswordForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <div className="mb-5 w-full space-y-4">
+        <FieldsWrapper>
           <RHFTextField type="email" name="email" label="Email" required />
           <RHFCaptcha name="captchaToken" />
-        </div>
+        </FieldsWrapper>
 
         <CooldownButton
           type="submit"

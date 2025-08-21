@@ -15,6 +15,7 @@ import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { LoginFormValues, loginSchema } from "./schema";
+import { FieldsWrapper } from "../../components/FieldsWrapper";
 
 export const LoginForm = () => {
   const supabase = createClientCS();
@@ -65,7 +66,7 @@ export const LoginForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <div className="mb-5 w-full space-y-4">
+        <FieldsWrapper>
           <RHFTextField type="email" name="email" label="Email" required />
           <div>
             <RHFTextField
@@ -81,7 +82,8 @@ export const LoginForm = () => {
               Forgot password?
             </StyledLink>
           </div>
-        </div>
+          <RHFCaptcha name="captchaToken" />
+        </FieldsWrapper>
 
         <Button type="submit" loading={loading} fullWidth>
           Log In

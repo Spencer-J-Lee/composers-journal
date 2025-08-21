@@ -1,3 +1,4 @@
+import { FieldsWrapper } from "@/modules/auth/components/FieldsWrapper";
 import { repeatRender } from "@/utils/client/repeatRender";
 
 import { ShimmerButton } from "./ShimmerButton";
@@ -10,11 +11,11 @@ type ShimmerFormProps = {
 export const ShimmerForm = ({ fieldCount }: ShimmerFormProps) => {
   return (
     <div>
-      <div className="mb-5 w-full space-y-4">
+      <FieldsWrapper>
         {repeatRender(fieldCount, () => (
           <ShimmerFormField />
         ))}
-      </div>
+      </FieldsWrapper>
 
       <ShimmerButton fullWidth />
     </div>

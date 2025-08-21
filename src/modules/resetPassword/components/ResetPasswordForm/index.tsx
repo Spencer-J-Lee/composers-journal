@@ -10,6 +10,7 @@ import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordF
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "@/constants/messages";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
+import { FieldsWrapper } from "@/modules/auth/components/FieldsWrapper";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 
 import { ResetPasswordFormValues, resetPasswordSchema } from "./schema";
@@ -44,9 +45,9 @@ export const ResetPasswordForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <div className="mb-5 w-full space-y-4">
+        <FieldsWrapper>
           <RHFPasswordField name="password" required />
-        </div>
+        </FieldsWrapper>
 
         <Button type="submit" loading={loading} fullWidth>
           Reset

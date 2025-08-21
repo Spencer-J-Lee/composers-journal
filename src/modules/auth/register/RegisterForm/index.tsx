@@ -15,6 +15,7 @@ import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { RegisterFormValues, registerSchema } from "./schema";
+import { FieldsWrapper } from "../../components/FieldsWrapper";
 
 export const RegisterForm = () => {
   const supabase = createClientCS();
@@ -56,11 +57,11 @@ export const RegisterForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <div className="mb-5 w-full space-y-4">
+        <FieldsWrapper>
           <RHFTextField type="email" name="email" label="Email" required />
           <RHFPasswordField name="password" required />
           <RHFCaptcha name="captchaToken" />
-        </div>
+        </FieldsWrapper>
 
         <Button type="submit" loading={loading} fullWidth>
           Register
