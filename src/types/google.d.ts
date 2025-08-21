@@ -15,6 +15,7 @@ declare global {
               theme?: "outline" | "filled_blue" | "filled_black";
               width?: number;
               logo_alignment?: "left" | "center";
+              text?: "signin_with" | "signup_with" | "continue_with" | "signin";
             },
           ) => void;
         };

@@ -74,6 +74,7 @@ export const GSIButton = ({
           theme: themeMap[variant],
           width: 400,
           logo_alignment: "center",
+          text: "continue_with",
         });
       }
     });

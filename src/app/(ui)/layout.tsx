@@ -1,6 +1,5 @@
 import { config } from "@fortawesome/fontawesome-svg-core";
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Toaster } from "sonner";
 
 import { AlertDialog } from "@/components/dialogs/AlertDialog/AlertDialog";
