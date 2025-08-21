@@ -3,11 +3,15 @@ import { ResetPasswordContent } from "@/modules/resetPassword/components/ResetPa
 
 /**
  * TODO: turn auth-related pages into a single page experience
+ *
+ * This must remain a guest route because Supabase OTP auth finalizes on the
+ * client. Marking it as protected would trigger unwanted redirects before
+ * auth completes.
  */
 const ResetPasswordPage = () => {
   return (
     <PageWrapper maxWidth="md">
-      <ResetPasswordContent />;
+      <ResetPasswordContent />
     </PageWrapper>
   );
 };
