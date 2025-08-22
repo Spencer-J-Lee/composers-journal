@@ -46,7 +46,6 @@ export const ResetPasswordContent = () => {
   if (!isPending && user) {
     return (
       <>
-        <p>Choose a new password</p>
         <ResetPasswordForm />
       </>
     );

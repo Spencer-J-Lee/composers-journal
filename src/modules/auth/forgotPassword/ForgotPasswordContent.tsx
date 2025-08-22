@@ -8,7 +8,6 @@ import { FormFooter } from "../components/FormFooter";
 export const ForgotPasswordContent = () => {
   return (
     <AuthWrapper>
-      <p>{"We'll"} send you an email with a login link.</p>
       <ForgotPasswordForm />
 
       <FormFooter>
