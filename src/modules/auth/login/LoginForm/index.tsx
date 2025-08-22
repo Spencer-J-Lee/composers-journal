@@ -87,8 +87,9 @@ export const LoginForm = () => {
               Forgot password?
             </StyledLink>
           </div>
-          <RHFCaptcha name="captchaToken" />
         </FieldsWrapper>
+
+        <RHFCaptcha name="captchaToken" invisible />
 
         <Button type="submit" loading={loading} fullWidth>
           Log In

@@ -56,8 +56,9 @@ export const ForgotPasswordForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <FieldsWrapper>
           <RHFTextField type="email" name="email" label="Email" required />
-          <RHFCaptcha name="captchaToken" />
         </FieldsWrapper>
+
+        <RHFCaptcha name="captchaToken" invisible />
 
         <CooldownButton
           type="submit"

@@ -7,9 +7,10 @@ import { FieldError } from "../FieldError";
 
 export type RHFCaptchaProps = {
   name: string;
+  invisible?: boolean;
 };
 
-export const RHFCaptcha = ({ name }: RHFCaptchaProps) => {
+export const RHFCaptcha = ({ name, invisible }: RHFCaptchaProps) => {
   const {
     setValue,
     formState: { errors, submitCount, isSubmitSuccessful },
@@ -42,10 +43,10 @@ export const RHFCaptcha = ({ name }: RHFCaptchaProps) => {
         options={{
           theme: "auto",
           size: "flexible",
-          appearance: "interaction-only",
+          appearance: invisible ? "interaction-only" : "always",
         }}
         // Need this to override the default height on invisible turnstiles
-        style={{ height: 0 }}
+        style={invisible ? { height: 0 } : undefined}
       />
       <FieldError show={!!error}>{error}</FieldError>
     </div>
