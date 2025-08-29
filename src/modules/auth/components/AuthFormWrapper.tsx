@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
-type AuthWrapperProps = {
+type AuthFormWrapperProps = {
   children: ReactNode;
 };
 
-export const AuthWrapper = ({ children }: AuthWrapperProps) => {
+export const AuthFormWrapper = ({ children }: AuthFormWrapperProps) => {
   return <div className="max-w-[25rem]">{children}</div>;
 };

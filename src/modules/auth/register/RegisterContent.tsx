@@ -3,13 +3,13 @@ import { StyledLink } from "@/components/StyledLink";
 import { routes } from "@/constants/routes";
 
 import { RegisterForm } from "./RegisterForm";
-import { AuthWrapper } from "../components/AuthWrapper";
+import { AuthFormWrapper } from "../components/AuthFormWrapper";
 import { FormFooter } from "../components/FormFooter";
 import { GSIButton } from "../login/google/GSIButton";
 
 export const RegisterContent = () => {
   return (
-    <AuthWrapper>
+    <AuthFormWrapper>
       <RegisterForm />
 
       <FormFooter>
@@ -20,6 +20,6 @@ export const RegisterContent = () => {
       <InformativeDivider className="my-5">or</InformativeDivider>
 
       <GSIButton redirectTo={routes.notebooks()} />
-    </AuthWrapper>
+    </AuthFormWrapper>
   );
 };

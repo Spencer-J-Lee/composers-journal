@@ -4,12 +4,12 @@ import { routes } from "@/constants/routes";
 
 import { GSIButton } from "./google/GSIButton";
 import { LoginForm } from "./LoginForm";
-import { AuthWrapper } from "../components/AuthWrapper";
+import { AuthFormWrapper } from "../components/AuthFormWrapper";
 import { FormFooter } from "../components/FormFooter";
 
 export const LoginContent = () => {
   return (
-    <AuthWrapper>
+    <AuthFormWrapper>
       <LoginForm />
 
       <FormFooter>
@@ -20,6 +20,6 @@ export const LoginContent = () => {
       <InformativeDivider className="my-5">or</InformativeDivider>
 
       <GSIButton redirectTo={routes.workspace()} />
-    </AuthWrapper>
+    </AuthFormWrapper>
   );
 };
