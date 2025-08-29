@@ -1,5 +1,7 @@
+import { UnderConstructionPage } from "@/modules/underConstruction/UnderConstruction";
+
 const ProfilePage = () => {
-  return <div>Profile</div>;
+  return <UnderConstructionPage />;
 };
 
 export default ProfilePage;

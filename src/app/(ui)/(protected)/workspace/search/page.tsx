@@ -1,5 +1,7 @@
+import { UnderConstructionPage } from "@/modules/underConstruction/UnderConstruction";
+
 const SearchPage = () => {
-  return <div>search</div>;
+  return <UnderConstructionPage />;
 };
 
 export default SearchPage;

@@ -1,5 +1,7 @@
+import { UnderConstructionPage } from "@/modules/underConstruction/UnderConstruction";
+
 const SettingsPage = () => {
-  return <div>Settings</div>;
+  return <UnderConstructionPage />;
 };
 
 export default SettingsPage;
