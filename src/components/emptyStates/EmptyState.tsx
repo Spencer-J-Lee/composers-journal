@@ -7,6 +7,8 @@ export type EmptyStateProps = {
   imageData: {
     src: string;
     alt: string;
+    widthPx: number;
+    heightPx: number;
   };
   title: string;
   description: string;
@@ -14,7 +16,7 @@ export type EmptyStateProps = {
 };
 
 export const EmptyState = ({
-  imageData: { src, alt },
+  imageData: { src, alt, widthPx, heightPx },
   title,
   description,
   children,
@@ -24,8 +26,8 @@ export const EmptyState = ({
       <Image
         src={src}
         alt={alt}
-        width={200}
-        height={200}
+        width={widthPx}
+        height={heightPx}
         style={{ objectFit: "cover" }}
         className="mb-3"
       />
