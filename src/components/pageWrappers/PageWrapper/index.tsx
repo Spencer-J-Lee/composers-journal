@@ -21,14 +21,12 @@ export const PageWrapper = ({
     <main
       id={ELEMENT_IDS.MAIN_CONTENT}
       className={clsx(
-        "flex-overflow-fix bg-background-light",
+        "bg-background-light flex-overflow-fix flex min-h-[calc(100vh_-_var(--navbar-height))] flex-col",
         paddingClassName[paddingSize],
         className,
       )}
     >
-      <div className={clsx("mx-auto w-full", maxWidthClassName[maxWidth])}>
-        {children}
-      </div>
+      {children}
     </main>
   );
 };
