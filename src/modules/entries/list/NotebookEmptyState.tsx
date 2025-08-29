@@ -1,5 +1,5 @@
 import { LinkButton } from "@/components/buttons/LinkButton";
-import { WorkspaceEmptyState } from "@/components/emptyStates/WorkspaceEmptyState";
+import { WorkspaceEmptyStatePage } from "@/components/emptyStates/WorkspaceEmptyStatePage";
 import { ASSET_PATHS } from "@/constants/assetPaths";
 import { routes } from "@/constants/routes";
 
@@ -9,7 +9,7 @@ export type NotebookEmptyStateProps = {
 
 export const NotebookEmptyState = ({ notebookId }: NotebookEmptyStateProps) => {
   return (
-    <WorkspaceEmptyState
+    <WorkspaceEmptyStatePage
       imageData={{
         src: ASSET_PATHS.EMPTY_STATE_WRITING,
         alt: "Cartoon character writing lines with giant pencil.",
@@ -20,6 +20,6 @@ export const NotebookEmptyState = ({ notebookId }: NotebookEmptyStateProps) => {
       description="Start by creating a new one"
     >
       <LinkButton href={routes.entryCreate(notebookId)}>Get Started</LinkButton>
-    </WorkspaceEmptyState>
+    </WorkspaceEmptyStatePage>
   );
 };
