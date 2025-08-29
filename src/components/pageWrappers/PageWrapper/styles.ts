@@ -11,4 +11,5 @@ export const maxWidthClassName: Record<MaxWidth, string> = {
 
 export const paddingClassName: Record<PaddingSize, string> = {
   md: "lg:p-8 p-4",
+  none: "",
 };

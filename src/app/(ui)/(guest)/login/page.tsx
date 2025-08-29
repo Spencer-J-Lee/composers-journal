@@ -6,7 +6,7 @@ import { LoginContent } from "@/modules/auth/login/LoginContent";
  */
 const LoginPage = () => {
   return (
-    <PageWrapper>
+    <PageWrapper paddingSize="none">
       <LoginContent />
     </PageWrapper>
   );
