@@ -3,12 +3,11 @@ import clsx from "clsx";
 
 import { ELEMENT_IDS } from "@/constants/elementIds";
 
-import { maxWidthClassName, paddingClassName } from "./styles";
-import { MaxWidth, PaddingSize } from "./types";
+import { paddingClassName } from "./styles";
+import { PaddingSize } from "./types";
 
 type PageWrapperProps = {
   children: ReactNode;
-  maxWidth: MaxWidth;
   paddingSize?: PaddingSize;
   className?: string;
 };
@@ -16,7 +15,6 @@ type PageWrapperProps = {
 export const PageWrapper = ({
   children,
   className,
-  maxWidth,
   paddingSize = "md",
 }: PageWrapperProps) => {
   return (

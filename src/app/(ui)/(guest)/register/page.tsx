@@ -6,7 +6,7 @@ import { RegisterContent } from "@/modules/auth/register/RegisterContent";
  */
 const RegisterPage = () => {
   return (
-    <PageWrapper maxWidth="md">
+    <PageWrapper>
       <RegisterContent />
     </PageWrapper>
   );

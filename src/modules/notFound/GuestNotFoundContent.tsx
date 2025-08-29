@@ -9,7 +9,7 @@ import { emptyStateData } from "./constants";
 export const GuestNotFoundContent = () => {
   return (
     <GuestLayout>
-      <PageWrapper maxWidth="md">
+      <PageWrapper>
         <EmptyState {...emptyStateData}>
           <LinkButton href={routes.home()}>Go Home</LinkButton>
         </EmptyState>

@@ -6,7 +6,7 @@ import { ForgotPasswordContent } from "@/modules/auth/forgotPassword/ForgotPassw
  */
 const ForgotPasswordPage = () => {
   return (
-    <PageWrapper maxWidth="md">
+    <PageWrapper>
       <ForgotPasswordContent />
     </PageWrapper>
   );

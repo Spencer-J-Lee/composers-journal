@@ -10,7 +10,7 @@ import { ResetPasswordContent } from "@/modules/resetPassword/components/ResetPa
  */
 const ResetPasswordPage = () => {
   return (
-    <PageWrapper maxWidth="md">
+    <PageWrapper>
       <ResetPasswordContent />
     </PageWrapper>
   );
