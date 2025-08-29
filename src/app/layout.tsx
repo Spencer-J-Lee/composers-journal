@@ -7,9 +7,9 @@ import Providers from "@/components/Providers";
 import { SkipToContent } from "@/components/SkipToContent";
 import { inter } from "@/styles/fonts";
 
-import "../../styles/reset.css";
+import "../styles/reset.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import "../../styles/globals.css";
+import "../styles/globals.css";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
