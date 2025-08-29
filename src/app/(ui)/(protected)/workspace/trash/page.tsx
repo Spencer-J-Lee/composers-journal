@@ -12,9 +12,7 @@ const TrashPage = async () => {
   const user = await getUserSSOrRedirect();
   const queryClient = makeQueryClient();
 
-  // TODO: figure out how to prefetch without flashing loading state
-  // or hydration mismatch
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.TRASHED_NOTEBOOKS,
     queryFn: () =>
       dbGetNotebooks({
@@ -23,9 +21,7 @@ const TrashPage = async () => {
       }),
   });
 
-  // TODO: figure out how to prefetch without flashing loading state
-  // or hydration mismatch
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
     queryFn: () =>
       dbGetEntries({

@@ -13,9 +13,7 @@ const WorkspacePage = async () => {
   const user = await getUserSSOrRedirect();
   const queryClient = makeQueryClient();
 
-  // TODO: figure out how to prefetch without flashing loading state
-  // or hydration mismatch
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.RECENTLY_UPDATED_ENTRIES,
     queryFn: async () =>
       dbGetEntries({
@@ -24,16 +22,12 @@ const WorkspacePage = async () => {
       }),
   });
 
-  // TODO: figure out how to prefetch without flashing loading state
-  // or hydration mismatch
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.NOTEBOOK_METRICS,
     queryFn: async () => dbGetNotebookMetrics({ ownerId: user.id }),
   });
 
-  // TODO: figure out how to prefetch without flashing loading state
-  // or hydration mismatch
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: STATIC_TS_KEYS.ENTRY_METRICS,
     queryFn: async () => dbGetEntryMetrics({ ownerId: user.id }),
   });
