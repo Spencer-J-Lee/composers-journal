@@ -8,6 +8,6 @@ export const emptyStateData: EmptyStateProps = {
     widthPx: 200,
     heightPx: 192,
   },
-  title: "Under Construction",
+  title: "Page Under Construction",
   description: "Explore around and check back later!",
 };
