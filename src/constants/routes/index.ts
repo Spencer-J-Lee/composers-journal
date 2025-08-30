@@ -37,17 +37,24 @@ class Routes {
     return "/";
   }
 
-  login() {
-    return "/login";
-  }
-
-  register() {
-    return "/register";
+  /**
+   * The provided email will be used to prefill an email input
+   */
+  login(email?: string) {
+    const basePath = `/login`;
+    return email ? this.withQuery(basePath, { query: { email } }) : basePath;
   }
 
   /**
-   * The provided email will be used to prefill
-   * an email input on the Forgot Password page
+   * The provided email will be used to prefill an email input
+   */
+  register(email?: string) {
+    const basePath = `/register`;
+    return email ? this.withQuery(basePath, { query: { email } }) : basePath;
+  }
+
+  /**
+   * The provided email will be used to prefill an email input
    */
   forgotPassword(email?: string) {
     const basePath = `/forgot-password`;

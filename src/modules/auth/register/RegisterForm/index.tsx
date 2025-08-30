@@ -1,33 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
 import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
+import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
+import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { RegisterFormValues, registerSchema } from "./schema";
 import { FieldsWrapper } from "../../components/FieldsWrapper";
+import { FormFooter } from "../../components/FormFooter";
 
 export const RegisterForm = () => {
   const supabase = createClientCS();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const methods = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      email: "",
+      email: searchParams.get(QUERY_KEYS.EMAIL) ?? "",
       password: "",
       captchaToken: "",
     },
+  });
+  const watchedEmail = useWatch({
+    control: methods.control,
+    name: "email",
   });
 
   const onSubmit = async (data: RegisterFormValues) => {
@@ -67,6 +75,11 @@ export const RegisterForm = () => {
           Register
         </Button>
       </form>
+
+      <FormFooter>
+        Already have an account?{" "}
+        <StyledLink href={routes.login(watchedEmail)}>Log In</StyledLink>
+      </FormFooter>
     </FormProvider>
   );
 };

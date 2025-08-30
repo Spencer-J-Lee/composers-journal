@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
 import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
+import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
@@ -17,15 +18,17 @@ import { showErrorToast } from "@/utils/client/toasts";
 
 import { LoginFormValues, loginSchema } from "./schema";
 import { FieldsWrapper } from "../../components/FieldsWrapper";
+import { FormFooter } from "../../components/FormFooter";
 
 export const LoginForm = () => {
   const supabase = createClientCS();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const methods = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
+      email: searchParams.get(QUERY_KEYS.EMAIL) ?? "",
       password: "",
       captchaToken: "",
     },
@@ -95,6 +98,11 @@ export const LoginForm = () => {
           Log In
         </Button>
       </form>
+
+      <FormFooter>
+        Need an account?{" "}
+        <StyledLink href={routes.register(watchedEmail)}>Register</StyledLink>
+      </FormFooter>
     </FormProvider>
   );
 };
