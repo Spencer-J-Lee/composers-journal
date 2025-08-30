@@ -45,6 +45,10 @@ export const RHFCaptcha = ({ name, invisible }: RHFCaptchaProps) => {
           size: "flexible",
           appearance: invisible ? "interaction-only" : "always",
         }}
+        /**
+         * TODO: Find a solution that doesn't risk showing the user broken UI
+         * if the turnstile detects the user as a bot when they aren't
+         **/
         // Need this to override the default height on invisible turnstiles
         style={invisible ? { height: 0 } : undefined}
       />
