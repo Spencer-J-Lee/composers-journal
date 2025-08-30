@@ -6,7 +6,7 @@ import debounce from "debounce";
 import { LinkButton } from "@/components/buttons/LinkButton";
 import { CardResultsWrapper } from "@/components/CardResultsWrapper";
 import { WorkspaceContentWrapper } from "@/components/contentWrappers/WorkspaceContentWrapper";
-import { InformativeDivider } from "@/components/InformativeDivider";
+import { InformativeDivider } from "@/components/dividers/InformativeDivider";
 import { CircleLoader } from "@/components/loaders/CircleLoader";
 import { WorkspacePageWrapper } from "@/components/pageWrappers/WorkspacePageWrapper";
 import { StickyTopBar } from "@/components/StickyTopBar";
