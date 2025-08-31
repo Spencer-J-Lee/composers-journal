@@ -13,24 +13,24 @@ const WorkspacePage = async () => {
   const user = await getUserSSOrRedirect();
   const queryClient = makeQueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: STATIC_TS_KEYS.RECENTLY_UPDATED_ENTRIES,
-    queryFn: async () =>
-      dbGetEntries({
-        ownerId: user.id,
-        ...RECENTLY_UPDATED_ENTRIES_PARAMS,
-      }),
-  });
-
-  await queryClient.prefetchQuery({
-    queryKey: STATIC_TS_KEYS.NOTEBOOK_METRICS,
-    queryFn: async () => dbGetNotebookMetrics({ ownerId: user.id }),
-  });
-
-  await queryClient.prefetchQuery({
-    queryKey: STATIC_TS_KEYS.ENTRY_METRICS,
-    queryFn: async () => dbGetEntryMetrics({ ownerId: user.id }),
-  });
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: STATIC_TS_KEYS.RECENTLY_UPDATED_ENTRIES,
+      queryFn: async () =>
+        dbGetEntries({
+          ownerId: user.id,
+          ...RECENTLY_UPDATED_ENTRIES_PARAMS,
+        }),
+    }),
+    queryClient.prefetchQuery({
+      queryKey: STATIC_TS_KEYS.NOTEBOOK_METRICS,
+      queryFn: async () => dbGetNotebookMetrics({ ownerId: user.id }),
+    }),
+    queryClient.prefetchQuery({
+      queryKey: STATIC_TS_KEYS.ENTRY_METRICS,
+      queryFn: async () => dbGetEntryMetrics({ ownerId: user.id }),
+    }),
+  ]);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

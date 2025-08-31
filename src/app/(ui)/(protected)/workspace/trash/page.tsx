@@ -12,23 +12,24 @@ const TrashPage = async () => {
   const user = await getUserSSOrRedirect();
   const queryClient = makeQueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: STATIC_TS_KEYS.TRASHED_NOTEBOOKS,
-    queryFn: () =>
-      dbGetNotebooks({
-        ownerId: user.id,
-        status: STATUSES.TRASHED,
-      }),
-  });
-
-  await queryClient.prefetchQuery({
-    queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
-    queryFn: () =>
-      dbGetEntries({
-        ownerId: user.id,
-        status: STATUSES.TRASHED,
-      }),
-  });
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: STATIC_TS_KEYS.TRASHED_NOTEBOOKS,
+      queryFn: () =>
+        dbGetNotebooks({
+          ownerId: user.id,
+          status: STATUSES.TRASHED,
+        }),
+    }),
+    queryClient.prefetchQuery({
+      queryKey: STATIC_TS_KEYS.TRASHED_ENTRIES,
+      queryFn: () =>
+        dbGetEntries({
+          ownerId: user.id,
+          status: STATUSES.TRASHED,
+        }),
+    }),
+  ]);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
