@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ShimmerForm } from "@/components/shimmerLoaders/ShimmerForm";
 import { routes } from "@/constants/routes";
 import { useUser } from "@/hooks/useUser";
+import { AuthFormWrapper } from "@/modules/auth/components/AuthFormWrapper";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { ResetPasswordForm } from "./ResetPasswordForm";
@@ -43,13 +44,13 @@ export const ResetPasswordContent = () => {
     }
   }, [errorCode, router]);
 
-  if (!isPending && user) {
-    return (
-      <>
+  return (
+    <AuthFormWrapper>
+      {!isPending && user ? (
         <ResetPasswordForm />
-      </>
-    );
-  }
-
-  return <ShimmerForm fieldCount={1} />;
+      ) : (
+        <ShimmerForm fieldCount={1} />
+      )}
+    </AuthFormWrapper>
+  );
 };
