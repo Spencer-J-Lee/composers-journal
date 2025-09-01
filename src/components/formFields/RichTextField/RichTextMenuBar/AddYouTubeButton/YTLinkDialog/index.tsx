@@ -40,8 +40,8 @@ export const YTLinkDialog = ({ onConfirm }: YTLinkDialogProps) => {
       title="Embed YouTube Video"
       description={
         <>
-          Paste a YouTube link straight from your browser's address bar or by
-          right-clicking a video. <b>Links with timestamps are supported.</b>
+          Paste a YouTube link straight from your {`browser's`} address bar or
+          by right-clicking a video. <b>Links with timestamps are supported.</b>
         </>
       }
       size="md"

@@ -1,7 +1,4 @@
-import {
-  faMagnifyingGlass,
-  faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 import { routes } from "@/constants/routes";
 
