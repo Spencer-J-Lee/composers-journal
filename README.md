@@ -5,7 +5,9 @@ A Next.js journaling app tailored specifically for composers to draft, organize,
 ## Features
 
 ### Already Available
+
 - **Authentication**: Secure login to keep journals private.
+- **Single-page Auth Flow**: Navigate between login, register, and forgot password in a smooth, single page experience.
 - **Notebooks**: Create, edit, trash, restore, and permanently delete notebooks.
 - **Notebook Sorting**: Sort notebooks by different parameters.
 - **Entries**: Create, edit, trash, restore, and permanently delete entries.
@@ -17,11 +19,11 @@ A Next.js journaling app tailored specifically for composers to draft, organize,
 - **Recent Entries Section**: Quickly access your latest work.
 
 ### Currently Being Added
+
 - **Entry Filtering**: Quickly find entries by tags and bookmarks.
 - **Autosave Drafts**: Never lose your work while drafting entries.
 - **Music Notation in Rich Text**: Add snippets of musical notation directly into journal entries.
 - **Re-ordering Notebooks**: Re-order notebooks in your desired order.
-- **Single-page Auth Flow**: Navigate between login, register, and forgot password in a smooth, single page experience.
 
 ## Technologies Used
 
@@ -33,9 +35,9 @@ A Next.js journaling app tailored specifically for composers to draft, organize,
 
 ## Getting Started
 
-This project is **not runnable in local development** because it requires private security keys stored in `.env` files.  
+This project is **not runnable in local development** because it requires private security keys stored in `.env` files.
 
-The app will be available on a **production deployment website** (link coming soon).  
+The app will be available on a **production deployment website** (link coming soon).
 
 Stay tuned for updates once the production site is live!
 
