@@ -46,7 +46,10 @@ export const ResetPasswordContent = () => {
   }, [errorCode, router]);
 
   return (
-    <AuthFormWrapper>
+    <AuthFormWrapper
+      title="Reset Password"
+      subtitle="Choose a new password for your account"
+    >
       {!isPending && user ? (
         <FadeSlide>
           <ResetPasswordForm />

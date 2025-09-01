@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { FadeSlide } from "@/components/animations/FadeSlide";
 
+import { heroTextData } from "./constants";
 import { ForgotPasswordContent } from "./forgotPassword/ForgotPasswordContent";
 import { isAuthFlowRoute } from "./helpers";
 import { LoginContent } from "./login/LoginContent";
@@ -38,7 +39,10 @@ export const AuthFlow = ({ defaultFlowRoute }: AuthFlowProps) => {
   }, [pathname]);
 
   return (
-    <AuthFormWrapper>
+    <AuthFormWrapper
+      title={heroTextData[flow].title}
+      subtitle={heroTextData[flow].subtitle}
+    >
       {flow === AUTH_FLOW_ROUTES.LOGIN && (
         <FadeSlide>
           <LoginContent />

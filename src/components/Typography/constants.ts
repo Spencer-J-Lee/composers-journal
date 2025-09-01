@@ -24,7 +24,8 @@ export const typographyStyles: Record<TypographyVariant, string> = {
   h4: "text-xl font-medium leading-snug text-text",
   h5: "text-lg font-medium leading-normal text-text",
   h6: "text-base font-medium leading-normal text-text",
-  subtitle: "text-sm font-medium text-text-muted",
+  // TODO: [very low] decide on final color palette
+  subtitle: "text-base font-medium text-[#cacff2]",
   body: "text-base font-normal text-text",
   bodySmall: "text-sm font-normal text-text",
   smallMuted: "text-sm font-normal text-text-muted",

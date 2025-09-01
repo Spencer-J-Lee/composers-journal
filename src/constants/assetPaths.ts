@@ -8,4 +8,5 @@ export const ASSET_PATHS = {
   EMPTY_STATE_TRASH: "/assets/empty-state-trash.png",
   EMPTY_STATE_NOT_FOUND: "/assets/empty-state-not-found.png",
   EMPTY_STATE_UNDER_CONSTRUCTION: "/assets/empty-state-under-construction.png",
+  HELLO: "/assets/hello.png",
 } as const;
