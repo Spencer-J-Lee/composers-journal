@@ -8,7 +8,6 @@ import { useSearchParams } from "next/navigation";
 import { CooldownButton } from "@/components/buttons/CooldownButton";
 import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
-import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
@@ -19,7 +18,6 @@ import { genFullSiteUrl } from "@/utils/client/urls";
 
 import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
 import { FieldsWrapper } from "../../components/FieldsWrapper";
-import { FormFooter } from "../../components/FormFooter";
 
 export const ForgotPasswordForm = () => {
   const supabase = createClientCS();
@@ -75,11 +73,6 @@ export const ForgotPasswordForm = () => {
           Resend
         </CooldownButton>
       </form>
-
-      <FormFooter>
-        Remembered your password?{" "}
-        <StyledLink href={routes.login(watchedEmail)}>Log In</StyledLink>
-      </FormFooter>
     </FormProvider>
   );
 };

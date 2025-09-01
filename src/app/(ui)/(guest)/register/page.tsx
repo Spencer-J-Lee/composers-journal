@@ -1,13 +1,11 @@
 import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
-import { RegisterContent } from "@/modules/auth/register/RegisterContent";
+import { AuthFlow } from "@/modules/auth/AuthFlow";
+import { AUTH_FLOW_ROUTES } from "@/modules/auth/AuthFlow/types";
 
-/**
- * TODO: turn auth-related pages into a single page experience
- */
 const RegisterPage = () => {
   return (
     <PageWrapper paddingSize="none">
-      <RegisterContent />
+      <AuthFlow defaultFlowRoute={AUTH_FLOW_ROUTES.REGISTER} />
     </PageWrapper>
   );
 };

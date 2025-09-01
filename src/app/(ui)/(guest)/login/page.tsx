@@ -1,13 +1,11 @@
 import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
-import { LoginContent } from "@/modules/auth/login/LoginContent";
+import { AuthFlow } from "@/modules/auth/AuthFlow";
+import { AUTH_FLOW_ROUTES } from "@/modules/auth/AuthFlow/types";
 
-/**
- * TODO: turn auth-related pages into a single page experience
- */
 const LoginPage = () => {
   return (
     <PageWrapper paddingSize="none">
-      <LoginContent />
+      <AuthFlow defaultFlowRoute={AUTH_FLOW_ROUTES.LOGIN} />
     </PageWrapper>
   );
 };

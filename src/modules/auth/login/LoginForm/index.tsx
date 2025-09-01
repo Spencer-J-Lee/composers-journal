@@ -6,21 +6,24 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
+import { FakeLinkButton } from "@/components/buttons/FakeLinkButton";
 import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
-import { StyledLink } from "@/components/StyledLink";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
-import { routes } from "@/constants/routes";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { LoginFormValues, loginSchema } from "./schema";
+import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../../AuthFlow/types";
 import { FieldsWrapper } from "../../components/FieldsWrapper";
-import { FormFooter } from "../../components/FormFooter";
 
-export const LoginForm = () => {
+type LoginFormProps = {
+  onFlowChange: (newRoute: AuthFlowRoute) => void;
+};
+
+export const LoginForm = ({ onFlowChange }: LoginFormProps) => {
   const supabase = createClientCS();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -83,12 +86,12 @@ export const LoginForm = () => {
               label="Password"
               required
             />
-            <StyledLink
-              href={routes.forgotPassword(watchedEmail)}
-              className="mt-1 inline-block"
+
+            <FakeLinkButton
+              onClick={() => onFlowChange(AUTH_FLOW_ROUTES.FORGOT_PASSWORD)}
             >
               Forgot password?
-            </StyledLink>
+            </FakeLinkButton>
           </div>
         </FieldsWrapper>
 
@@ -98,11 +101,6 @@ export const LoginForm = () => {
           Log In
         </Button>
       </form>
-
-      <FormFooter>
-        Need an account?{" "}
-        <StyledLink href={routes.register(watchedEmail)}>Register</StyledLink>
-      </FormFooter>
     </FormProvider>
   );
 };

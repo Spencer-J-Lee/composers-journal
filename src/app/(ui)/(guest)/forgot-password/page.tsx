@@ -1,13 +1,11 @@
 import { PageWrapper } from "@/components/pageWrappers/PageWrapper";
-import { ForgotPasswordContent } from "@/modules/auth/forgotPassword/ForgotPasswordContent";
+import { AuthFlow } from "@/modules/auth/AuthFlow";
+import { AUTH_FLOW_ROUTES } from "@/modules/auth/AuthFlow/types";
 
-/**
- * TODO: turn auth-related pages into a single page experience
- */
 const ForgotPasswordPage = () => {
   return (
     <PageWrapper paddingSize="none">
-      <ForgotPasswordContent />
+      <AuthFlow defaultFlowRoute={AUTH_FLOW_ROUTES.FORGOT_PASSWORD} />
     </PageWrapper>
   );
 };
