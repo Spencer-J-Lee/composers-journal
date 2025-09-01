@@ -10,7 +10,7 @@ export const AuthFormWrapper = ({ children }: AuthFormWrapperProps) => {
   return (
     <div className="flex flex-1">
       <div className="bg-accent flex flex-1 items-center justify-center">
-        {/* TODO: add actual copy and change bg */}
+        {/* TODO: [med] add actual copy and change bg */}
         <div className="flex flex-col">
           <Typography variant="h1">Hi there</Typography>
           <Typography variant="subtitle">Time to do stuff</Typography>

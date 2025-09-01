@@ -7,7 +7,7 @@ export const DEFAULT_ENTRY_FILTER: EntryFilter = {
       direction: "desc",
     },
   ],
-  // TODO: handle filtering
+  // TODO: [very high] handle filtering
   // tags: [],
   // savedOnly: false,
 } as const;

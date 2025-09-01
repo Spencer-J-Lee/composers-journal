@@ -74,7 +74,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     setOffset((prev) => prev - 1);
   };
 
-  // TODO: Implement filters
+  // TODO: [very high] Implement filters
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleFiltersChange = () => {
     setOffset(0);

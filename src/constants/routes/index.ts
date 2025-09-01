@@ -81,7 +81,7 @@ class Routes {
     return `${this.notebooks()}/${notebookId}`;
   }
 
-  // TODO: Implement autosave drafts
+  // TODO: [high] Implement autosave drafts
   drafts(notebookId: number) {
     return `${this.notebooks()}/${notebookId}/drafts`;
   }

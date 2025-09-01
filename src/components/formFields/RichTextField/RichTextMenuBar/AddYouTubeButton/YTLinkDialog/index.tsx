@@ -50,8 +50,8 @@ export const YTLinkDialog = ({ onConfirm }: YTLinkDialogProps) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            // TODO: figure out why this is causing entry form to submit even
-            // though this dialog isn't nested inside of the entry form
+            // TODO: [med] figure out why this causes entry form to submit
+            // even though this dialog isn't nested inside of the entry form
             e.stopPropagation();
             methods.handleSubmit(handleSubmit)(e);
           }}

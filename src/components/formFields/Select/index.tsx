@@ -12,7 +12,7 @@ type SelectProps<Option, IsMulti extends boolean = false> = ReactSelectProps<
 >;
 
 /**
- * TODO: Fix bug where the first option is highlighted for a split second
+ * TODO: [med]  Fix bug where first option is highlighted for a split second
  * once another option is chosen. Possibly due to options getting re-rendered
  * after the chosen option is removed from the list.
  */

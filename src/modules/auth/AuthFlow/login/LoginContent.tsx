@@ -11,7 +11,7 @@ export const LoginContent = () => {
 
       <InformativeDivider className="my-5">or</InformativeDivider>
 
-      {/* TODO: Fix UI jitter caused by button re-rendering */}
+      {/* TODO: [very high]  Fix UI jitter caused by button re-rendering */}
       <GSIButton redirectTo={routes.workspace()} />
     </>
   );

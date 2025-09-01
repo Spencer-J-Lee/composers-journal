@@ -52,7 +52,7 @@ export const NotebooksContent = () => {
           setSortBy={setSortBy}
           options={NOTEBOOKS_SORT_OPTIONS}
         />
-        {/* TODO: implement re-order feature for notebooks */}
+        {/* TODO: [med] implement re-order feature for notebooks */}
         <LinkButton href={routes.notebookCreate()}>Create</LinkButton>
       </StickyTopBar>
 

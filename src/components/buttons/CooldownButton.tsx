@@ -7,7 +7,7 @@ type CooldownButtonProps = {
 } & ButtonProps;
 
 /**
- * TODO: Add cooldown sliding animation
+ * TODO: [very low] Add cooldown sliding animation
  */
 export const CooldownButton = ({
   children,
