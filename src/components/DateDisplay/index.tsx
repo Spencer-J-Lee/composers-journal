@@ -30,7 +30,7 @@ export const DateDisplay = ({
     if (datesToDisplay.updatedAt) {
       els.push(
         <span>
-          {/* TODO: [low] set up more robust way to tell if object is trashed */}
+          {/* TODO: [low] set up more robust way to tell if object trashed */}
           {status === STATUSES.TRASHED ? "Trashed: " : "Updated: "}
           {formatDateString(updatedAt)}
         </span>,
