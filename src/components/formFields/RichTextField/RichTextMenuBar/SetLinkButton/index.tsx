@@ -1,10 +1,9 @@
-import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { Editor } from "@tiptap/react";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { showErrorToast } from "@/utils/client/toasts";
 
-import { RichTextMenuButton } from "../RichTextMenuButton";
+import { SetLinkDialog } from "./SetLinkDialog";
 
 type SetLinkButtonProps = {
   editor: Editor | null;
@@ -16,18 +15,11 @@ export const SetLinkButton = ({ editor, active }: SetLinkButtonProps) => {
     return null;
   }
 
-  const setLink = () => {
-    const prevUrl = editor.getAttributes("link").href;
-    const url = window.prompt("URL", prevUrl);
-
-    if (url === null) {
-      return;
-    }
-
-    // Unsetting link
+  const handleConfirm = (url: string) => {
+    // Unset link if given empty url
     if (url === "") {
-      editor.chain().focus().extendMarkRange("link").unsetLink().run();
-      return;
+      handleReset();
+      return true;
     }
 
     try {
@@ -37,15 +29,26 @@ export const SetLinkButton = ({ editor, active }: SetLinkButtonProps) => {
         .extendMarkRange("link")
         .setLink({ href: url })
         .run();
+
+      return true;
     } catch (err) {
       console.error(err);
       showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN);
+
+      return false;
     }
   };
 
+  const handleReset = () => {
+    editor.chain().focus().extendMarkRange("link").unsetLink().run();
+  };
+
   return (
-    <RichTextMenuButton faIcon={faLink} onClick={setLink} active={active}>
-      Set link
-    </RichTextMenuButton>
+    <SetLinkDialog
+      editor={editor}
+      onConfirm={handleConfirm}
+      onReset={handleReset}
+      active={active}
+    />
   );
 };
