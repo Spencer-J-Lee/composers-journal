@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/buttons/Button";
+import { FakeLinkButton } from "@/components/buttons/FakeLinkButton";
 import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
@@ -13,6 +14,7 @@ import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
+import { FormFooter } from "@/modules/auth/components/FormFooter";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { RegisterFormValues, registerSchema } from "./schema";
@@ -73,6 +75,17 @@ export const RegisterForm = () => {
           Register
         </Button>
       </form>
+
+      <FormFooter>
+        Already have an account?{" "}
+        <FakeLinkButton
+          onClick={() => {
+            window.history.pushState(null, "", routes.login(watchedEmail));
+          }}
+        >
+          Log In
+        </FakeLinkButton>
+      </FormFooter>
     </FormProvider>
   );
 };

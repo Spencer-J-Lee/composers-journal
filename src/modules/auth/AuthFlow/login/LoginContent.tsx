@@ -1,27 +1,13 @@
-import { FakeLinkButton } from "@/components/buttons/FakeLinkButton";
 import { InformativeDivider } from "@/components/dividers/InformativeDivider";
 import { routes } from "@/constants/routes";
 
 import { GSIButton } from "./google/GSIButton";
 import { LoginForm } from "./LoginForm";
-import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../../AuthFlow/types";
-import { FormFooter } from "../../components/FormFooter";
 
-type LoginContentProps = {
-  onFlowChange: (newRoute: AuthFlowRoute) => void;
-};
-
-export const LoginContent = ({ onFlowChange }: LoginContentProps) => {
+export const LoginContent = () => {
   return (
     <>
-      <LoginForm onFlowChange={onFlowChange} />
-
-      <FormFooter>
-        Need an account?{" "}
-        <FakeLinkButton onClick={() => onFlowChange(AUTH_FLOW_ROUTES.REGISTER)}>
-          Register
-        </FakeLinkButton>
-      </FormFooter>
+      <LoginForm />
 
       <InformativeDivider className="my-5">or</InformativeDivider>
 

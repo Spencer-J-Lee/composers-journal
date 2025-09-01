@@ -11,19 +11,16 @@ import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
+import { routes } from "@/constants/routes";
 import { DEFAULT_PROTECTED_ROUTE } from "@/constants/routes/constants";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
+import { FormFooter } from "@/modules/auth/components/FormFooter";
 import { showErrorToast } from "@/utils/client/toasts";
 
 import { LoginFormValues, loginSchema } from "./schema";
-import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../../../AuthFlow/types";
 import { FieldsWrapper } from "../../../components/FieldsWrapper";
 
-type LoginFormProps = {
-  onFlowChange: (newRoute: AuthFlowRoute) => void;
-};
-
-export const LoginForm = ({ onFlowChange }: LoginFormProps) => {
+export const LoginForm = () => {
   const supabase = createClientCS();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -88,7 +85,13 @@ export const LoginForm = ({ onFlowChange }: LoginFormProps) => {
             />
 
             <FakeLinkButton
-              onClick={() => onFlowChange(AUTH_FLOW_ROUTES.FORGOT_PASSWORD)}
+              onClick={() => {
+                window.history.pushState(
+                  null,
+                  "",
+                  routes.forgotPassword(watchedEmail),
+                );
+              }}
             >
               Forgot password?
             </FakeLinkButton>
@@ -101,6 +104,17 @@ export const LoginForm = ({ onFlowChange }: LoginFormProps) => {
           Log In
         </Button>
       </form>
+
+      <FormFooter>
+        Need an account?{" "}
+        <FakeLinkButton
+          onClick={() => {
+            window.history.pushState(null, "", routes.register(watchedEmail));
+          }}
+        >
+          Register
+        </FakeLinkButton>
+      </FormFooter>
     </FormProvider>
   );
 };

@@ -37,25 +37,21 @@ export const AuthFlow = ({ defaultFlowRoute }: AuthFlowProps) => {
     setFlow(DEFAULT_AUTH_FLOW_ROUTE);
   }, [pathname]);
 
-  const handleFlowChange = (newRoute: AuthFlowRoute) => {
-    window.history.pushState(null, "", newRoute);
-  };
-
   return (
     <AuthFormWrapper>
       {flow === AUTH_FLOW_ROUTES.LOGIN && (
         <FadeSlide>
-          <LoginContent onFlowChange={handleFlowChange} />
+          <LoginContent />
         </FadeSlide>
       )}
       {flow === AUTH_FLOW_ROUTES.REGISTER && (
         <FadeSlide>
-          <RegisterContent onFlowChange={handleFlowChange} />
+          <RegisterContent />
         </FadeSlide>
       )}
       {flow === AUTH_FLOW_ROUTES.FORGOT_PASSWORD && (
         <FadeSlide>
-          <ForgotPasswordContent onFlowChange={handleFlowChange} />
+          <ForgotPasswordContent />
         </FadeSlide>
       )}
     </AuthFormWrapper>

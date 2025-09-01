@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
 
 import { CooldownButton } from "@/components/buttons/CooldownButton";
+import { FakeLinkButton } from "@/components/buttons/FakeLinkButton";
 import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
@@ -13,6 +14,7 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
 import { useCountdown } from "@/hooks/useCountdown";
+import { FormFooter } from "@/modules/auth/components/FormFooter";
 import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
 import { genFullSiteUrl } from "@/utils/client/urls";
 
@@ -73,6 +75,17 @@ export const ForgotPasswordForm = () => {
           Resend
         </CooldownButton>
       </form>
+
+      <FormFooter>
+        Remembered your password?{" "}
+        <FakeLinkButton
+          onClick={() => {
+            window.history.pushState(null, "", routes.login(watchedEmail));
+          }}
+        >
+          Log In
+        </FakeLinkButton>
+      </FormFooter>
     </FormProvider>
   );
 };
