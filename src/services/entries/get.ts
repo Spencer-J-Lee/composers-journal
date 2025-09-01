@@ -1,10 +1,10 @@
 import { RECENTLY_UPDATED_ENTRIES_PARAMS } from "@/constants/entryParams";
 import { EntryMetrics } from "@/db/queries/entries/get/types";
 import { entries } from "@/db/schema";
-import { getPaginationParams } from "@/getPaginationParams";
 import { Entry } from "@/models/Entry";
 import { STATUSES } from "@/models/types/status";
 import { EntryFilter } from "@/modules/entries/list/EntriesFilter/types";
+import { getPaginationParams } from "@/utils/getPaginationParams";
 import { calcNextPage } from "@/utils/server/calcNextPage";
 
 import { EntryPage } from "./types";

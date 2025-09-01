@@ -3,13 +3,13 @@ import { notFound } from "next/navigation";
 
 import { DYNAMIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { dbGetEntries } from "@/db/queries/entries/get";
-import { getPaginationParams } from "@/getPaginationParams";
 import { STATUSES } from "@/models/types/status";
 import {
   DEFAULT_ENTRY_FILTER,
   ENTRIES_PAGE_LIMIT,
 } from "@/modules/entries/list/EntriesFilter/constants";
 import { NotebookContent } from "@/modules/entries/list/NotebookContent";
+import { getPaginationParams } from "@/utils/getPaginationParams";
 import { calcNextPage } from "@/utils/server/calcNextPage";
 import { getUserSSOrRedirect } from "@/utils/server/getUserSSOrRedirect";
 import { makeQueryClient } from "@/utils/server/makeQueryClient";
