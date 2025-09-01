@@ -73,16 +73,17 @@ class Routes {
     return `${this.workspace()}/profile`;
   }
 
-  search() {
-    return `${this.workspace()}/search`;
-  }
-
   notebooks() {
     return `${this.workspace()}/notebooks`;
   }
 
   notebook(notebookId: number) {
     return `${this.notebooks()}/${notebookId}`;
+  }
+
+  // TODO: Implement autosave drafts
+  drafts(notebookId: number) {
+    return `${this.notebooks()}/${notebookId}/drafts`;
   }
 
   notebookEdit(notebookId: number) {

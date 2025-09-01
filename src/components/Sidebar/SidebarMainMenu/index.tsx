@@ -16,11 +16,6 @@ export const SidebarMainMenu = () => {
         <NotebooksAccordionMenu />
       </li>
       <li>
-        <SidebarLinkButton href={routes.search()} faIcon={faMagnifyingGlass}>
-          Search
-        </SidebarLinkButton>
-      </li>
-      <li>
         <SidebarLinkButton href={routes.trash()} faIcon={faTrashCan}>
           Trash
         </SidebarLinkButton>
