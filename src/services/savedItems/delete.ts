@@ -7,13 +7,13 @@ type ApiDeleteSavedItemsProps = {
   entryId: SavedItem["entryId"];
 };
 
-export const apiDeleteSavedItem = async (props: ApiDeleteSavedItemsProps) => {
-  return await fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
+export const apiDeleteSavedItem = (props: ApiDeleteSavedItemsProps) => {
+  return fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
     method: "DELETE",
     body: JSON.stringify(props),
   });
 };
 
-export const apiDeleteSavedEntry = async (entryId: SavedItem["entryId"]) => {
-  return await apiDeleteSavedItem({ entryId });
+export const apiDeleteSavedEntry = (entryId: SavedItem["entryId"]) => {
+  return apiDeleteSavedItem({ entryId });
 };

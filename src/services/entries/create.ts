@@ -8,10 +8,8 @@ type ApiCreateEntryProps = Pick<
   "notebookId" | "title" | "description" | "status"
 >;
 
-export const apiCreateEntry = async (
-  props: ApiCreateEntryProps,
-): Promise<Entry> => {
-  return await fetchWithErrorHandling<Entry>(API_PATHS.ENTRIES.ROOT, {
+export const apiCreateEntry = (props: ApiCreateEntryProps): Promise<Entry> => {
+  return fetchWithErrorHandling<Entry>(API_PATHS.ENTRIES.ROOT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

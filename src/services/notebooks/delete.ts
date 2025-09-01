@@ -7,10 +7,10 @@ type ApiDeleteNotebooksProps = {
   ids: Notebook["id"][];
 };
 
-export const apiDeleteNotebooks = async (
+export const apiDeleteNotebooks = (
   props: ApiDeleteNotebooksProps,
 ): Promise<Notebook> => {
-  return await fetchWithErrorHandling<Notebook>(API_PATHS.NOTEBOOKS.ROOT, {
+  return fetchWithErrorHandling<Notebook>(API_PATHS.NOTEBOOKS.ROOT, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

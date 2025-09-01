@@ -6,10 +6,10 @@ import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
 type ApiCreateNotebookProps = Pick<Notebook, "name">;
 
-export const apiCreateNotebook = async (
+export const apiCreateNotebook = (
   props: ApiCreateNotebookProps,
 ): Promise<Notebook> => {
-  return await fetchWithErrorHandling<Notebook>(API_PATHS.NOTEBOOKS.ROOT, {
+  return fetchWithErrorHandling<Notebook>(API_PATHS.NOTEBOOKS.ROOT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

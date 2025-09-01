@@ -7,10 +7,8 @@ type CreateTagParam = {
   name: string;
 };
 
-export const apiCreateTags = async (
-  params: CreateTagParam[],
-): Promise<Tag[]> => {
-  return await fetchWithErrorHandling<Tag[]>(API_PATHS.TAGS.ROOT, {
+export const apiCreateTags = (params: CreateTagParam[]): Promise<Tag[]> => {
+  return fetchWithErrorHandling<Tag[]>(API_PATHS.TAGS.ROOT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

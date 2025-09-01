@@ -5,10 +5,10 @@ import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
 type ApiCreateSavedItemProps = Pick<SavedItem, "entryId">;
 
-export const apiCreateSavedItem = async (
+export const apiCreateSavedItem = (
   props: ApiCreateSavedItemProps,
 ): Promise<SavedItem> => {
-  return await fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
+  return fetchWithErrorHandling<SavedItem>(API_PATHS.SAVED_ITEMS.ROOT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,8 +17,8 @@ export const apiCreateSavedItem = async (
   });
 };
 
-export const apiCreateSavedEntry = async (
+export const apiCreateSavedEntry = (
   entryId: SavedItem["entryId"],
 ): Promise<SavedItem> => {
-  return await apiCreateSavedItem({ entryId });
+  return apiCreateSavedItem({ entryId });
 };

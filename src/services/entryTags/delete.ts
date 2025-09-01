@@ -8,10 +8,10 @@ type ApiDeleteEntryTagsProps = {
   ids?: EntryTag["tagId"][];
 };
 
-export const apiDeleteEntryTags = async (
+export const apiDeleteEntryTags = (
   props: ApiDeleteEntryTagsProps,
 ): Promise<void> => {
-  await fetchWithErrorHandling<void>(API_PATHS.ENTRIES.TAGS, {
+  return fetchWithErrorHandling<void>(API_PATHS.ENTRIES.TAGS, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

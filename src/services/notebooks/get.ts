@@ -13,19 +13,19 @@ export type ApiGetNotebooksProps = Partial<
 > &
   CommonApiOptions<typeof notebooks>;
 
-export const apiGetNotebooks = async (
+export const apiGetNotebooks = (
   props: ApiGetNotebooksProps,
 ): Promise<Notebook[]> => {
-  return await fetchWithErrorHandling<Notebook[]>(
+  return fetchWithErrorHandling<Notebook[]>(
     genUrlWithSearchParams(API_PATHS.NOTEBOOKS.ROOT, props),
   );
 };
 
-export const apiGetActiveNotebooks = async (): Promise<Notebook[]> => {
+export const apiGetActiveNotebooks = (): Promise<Notebook[]> => {
   return apiGetNotebooks({ status: STATUSES.ACTIVE });
 };
 
-export const apiGetTrashedNotebooks = async (): Promise<Notebook[]> => {
+export const apiGetTrashedNotebooks = (): Promise<Notebook[]> => {
   return apiGetNotebooks({ status: STATUSES.TRASHED });
 };
 

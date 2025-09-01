@@ -8,7 +8,7 @@ import { fetchWithErrorHandling } from "../utils/fetchWithErrorHandling";
 
 type EditableParams = Partial<Pick<Notebook, "name" | "status">>;
 
-export const apiUpdateNotebooks = async (
+export const apiUpdateNotebooks = (
   props: { ids: Notebook["id"][] } & EditableParams,
 ): Promise<Notebook[]> => {
   return fetchWithErrorHandling<Notebook[]>(API_PATHS.NOTEBOOKS.ROOT, {
@@ -20,7 +20,7 @@ export const apiUpdateNotebooks = async (
   });
 };
 
-export const apiUpdateNotebook = async ({
+export const apiUpdateNotebook = ({
   id,
   ...rest
 }: Pick<Notebook, "id"> & EditableParams): Promise<Notebook> => {
@@ -34,9 +34,7 @@ export const apiUpdateNotebook = async ({
   );
 };
 
-export const apiRestoreNotebook = async (
-  id: Notebook["id"],
-): Promise<Notebook> => {
+export const apiRestoreNotebook = (id: Notebook["id"]): Promise<Notebook> => {
   return withFirstResult(
     () =>
       apiUpdateNotebooks({
@@ -47,9 +45,7 @@ export const apiRestoreNotebook = async (
   );
 };
 
-export const apiTrashNotebook = async (
-  id: Notebook["id"],
-): Promise<Notebook> => {
+export const apiTrashNotebook = (id: Notebook["id"]): Promise<Notebook> => {
   return withFirstResult(
     () =>
       apiUpdateNotebooks({
@@ -60,7 +56,7 @@ export const apiTrashNotebook = async (
   );
 };
 
-export const apiSoftDeleteNotebook = async (
+export const apiSoftDeleteNotebook = (
   id: Notebook["id"],
 ): Promise<Notebook> => {
   return withFirstResult(
@@ -73,7 +69,7 @@ export const apiSoftDeleteNotebook = async (
   );
 };
 
-export const apiSoftDeleteNotebooks = async (
+export const apiSoftDeleteNotebooks = (
   ids: Notebook["id"][],
 ): Promise<Notebook[]> => {
   return apiUpdateNotebooks({

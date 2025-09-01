@@ -16,15 +16,13 @@ import { genUrlWithSearchParams } from "../utils/genUrlWithSearchParams";
 export type ApiGetEntriesProps = Partial<Pick<Entry, "notebookId" | "status">> &
   CommonApiOptions<typeof entries>;
 
-export const apiGetEntries = async (
-  props: ApiGetEntriesProps,
-): Promise<Entry[]> => {
-  return await fetchWithErrorHandling<Entry[]>(
+export const apiGetEntries = (props: ApiGetEntriesProps): Promise<Entry[]> => {
+  return fetchWithErrorHandling<Entry[]>(
     genUrlWithSearchParams(API_PATHS.ENTRIES.ROOT, props),
   );
 };
 
-export const apiGetTrashedEntries = async () => {
+export const apiGetTrashedEntries = () => {
   return apiGetEntries({ status: STATUSES.TRASHED });
 };
 
@@ -58,7 +56,7 @@ export const apiGetFilteredEntriesPage = async ({
   };
 };
 
-export const apiGetRecentlyUpdatedEntries = async () => {
+export const apiGetRecentlyUpdatedEntries = () => {
   return apiGetEntries(RECENTLY_UPDATED_ENTRIES_PARAMS);
 };
 

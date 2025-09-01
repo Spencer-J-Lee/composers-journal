@@ -8,10 +8,10 @@ type CreateEntryTagParam = {
   tagId: number;
 };
 
-export const apiCreateEntryTags = async (
+export const apiCreateEntryTags = (
   params: CreateEntryTagParam[],
 ): Promise<EntryTag[]> => {
-  return await fetchWithErrorHandling<EntryTag[]>(API_PATHS.ENTRIES.TAGS, {
+  return fetchWithErrorHandling<EntryTag[]>(API_PATHS.ENTRIES.TAGS, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

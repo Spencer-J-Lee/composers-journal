@@ -12,10 +12,10 @@ type EditableParams = Partial<
 
 type ApiUpdateEntriesProps = { ids: Entry["id"][] } & EditableParams;
 
-export const apiUpdateEntries = async (
+export const apiUpdateEntries = (
   props: ApiUpdateEntriesProps,
 ): Promise<Entry[]> => {
-  return await fetchWithErrorHandling<Entry[]>(API_PATHS.ENTRIES.ROOT, {
+  return fetchWithErrorHandling<Entry[]>(API_PATHS.ENTRIES.ROOT, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export const apiUpdateEntries = async (
   });
 };
 
-export const apiUpdateEntry = async (
+export const apiUpdateEntry = (
   id: Entry["id"],
   params: EditableParams,
 ): Promise<Entry> => {
@@ -38,7 +38,7 @@ export const apiUpdateEntry = async (
   );
 };
 
-export const apiRestoreEntry = async (id: Entry["id"]): Promise<Entry> => {
+export const apiRestoreEntry = (id: Entry["id"]): Promise<Entry> => {
   return withFirstResult(
     () =>
       apiUpdateEntries({
@@ -49,7 +49,7 @@ export const apiRestoreEntry = async (id: Entry["id"]): Promise<Entry> => {
   );
 };
 
-export const apiTrashEntry = async (id: Entry["id"]): Promise<Entry> => {
+export const apiTrashEntry = (id: Entry["id"]): Promise<Entry> => {
   return withFirstResult(
     () =>
       apiUpdateEntries({
@@ -60,7 +60,7 @@ export const apiTrashEntry = async (id: Entry["id"]): Promise<Entry> => {
   );
 };
 
-export const apiSoftDeleteEntry = async (id: Entry["id"]): Promise<Entry> => {
+export const apiSoftDeleteEntry = (id: Entry["id"]): Promise<Entry> => {
   return withFirstResult(
     () =>
       apiUpdateEntries({
@@ -71,9 +71,7 @@ export const apiSoftDeleteEntry = async (id: Entry["id"]): Promise<Entry> => {
   );
 };
 
-export const apiSoftDeleteEntries = async (
-  ids: Entry["id"][],
-): Promise<Entry[]> => {
+export const apiSoftDeleteEntries = (ids: Entry["id"][]): Promise<Entry[]> => {
   return apiUpdateEntries({
     ids,
     status: STATUSES.DELETED,
