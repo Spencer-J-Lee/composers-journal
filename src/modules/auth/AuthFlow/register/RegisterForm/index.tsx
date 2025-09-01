@@ -3,31 +3,31 @@
 import { useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-import { CooldownButton } from "@/components/buttons/CooldownButton";
+import { Button } from "@/components/buttons/Button";
 import { RHFCaptcha } from "@/components/formFields/RHFFields/RHFCaptcha";
+import { RHFPasswordField } from "@/components/formFields/RHFFields/RHFPasswordField";
 import { RHFTextField } from "@/components/formFields/RHFFields/RHFTextField";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import { routes } from "@/constants/routes";
 import { createClientCS } from "@/db/supabase/client/createClientCS";
-import { useCountdown } from "@/hooks/useCountdown";
-import { showErrorToast, showSuccessToast } from "@/utils/client/toasts";
-import { genFullSiteUrl } from "@/utils/client/urls";
+import { showErrorToast } from "@/utils/client/toasts";
 
-import { ForgotPasswordFormValues, forgotPasswordSchema } from "./schema";
-import { FieldsWrapper } from "../../components/FieldsWrapper";
+import { RegisterFormValues, registerSchema } from "./schema";
+import { FieldsWrapper } from "../../../components/FieldsWrapper";
 
-export const ForgotPasswordForm = () => {
+export const RegisterForm = () => {
   const supabase = createClientCS();
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { count, startCountdown } = useCountdown();
-  const methods = useForm<ForgotPasswordFormValues>({
-    resolver: zodResolver(forgotPasswordSchema),
+  const methods = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       email: searchParams.get(QUERY_KEYS.EMAIL) ?? "",
+      password: "",
       captchaToken: "",
     },
   });
@@ -36,20 +36,25 @@ export const ForgotPasswordForm = () => {
     name: "email",
   });
 
-  const onSubmit = async (data: ForgotPasswordFormValues) => {
+  const onSubmit = async (data: RegisterFormValues) => {
     setLoading(true);
 
-    const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
-      redirectTo: genFullSiteUrl(routes.resetPassword()),
-      captchaToken: data.captchaToken,
+    // To increase security against brute force information farming, users
+    // aren't notified when an account already exists for the provided email.
+    // Instead, the request will succeed as if a new user was registered.
+    const { error } = await supabase.auth.signUp({
+      email: data.email,
+      password: data.password,
+      options: {
+        captchaToken: data.captchaToken,
+      },
     });
 
     if (error) {
       console.error(error);
       showErrorToast(ERROR_MESSAGES.USER.TRY_AGAIN_LATER);
     } else {
-      startCountdown(10);
-      showSuccessToast("Reset link has been sent.");
+      router.push(routes.notebooks());
     }
 
     setLoading(false);
@@ -60,18 +65,13 @@ export const ForgotPasswordForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <FieldsWrapper>
           <RHFTextField type="email" name="email" label="Email" required />
+          <RHFPasswordField name="password" required />
+          <RHFCaptcha name="captchaToken" />
         </FieldsWrapper>
 
-        <RHFCaptcha name="captchaToken" invisible />
-
-        <CooldownButton
-          type="submit"
-          loading={loading}
-          cooldown={count}
-          fullWidth
-        >
-          Resend
-        </CooldownButton>
+        <Button type="submit" loading={loading} fullWidth>
+          Register
+        </Button>
       </form>
     </FormProvider>
   );

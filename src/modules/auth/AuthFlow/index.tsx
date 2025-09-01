@@ -5,16 +5,16 @@ import { usePathname } from "next/navigation";
 
 import { FadeSlide } from "@/components/animations/FadeSlide";
 
+import { ForgotPasswordContent } from "./forgotPassword/ForgotPasswordContent";
 import { isAuthFlowRoute } from "./helpers";
+import { LoginContent } from "./login/LoginContent";
+import { RegisterContent } from "./register/RegisterContent";
 import {
   AUTH_FLOW_ROUTES,
   AuthFlowRoute,
   DEFAULT_AUTH_FLOW_ROUTE,
 } from "./types";
 import { AuthFormWrapper } from "../components/AuthFormWrapper";
-import { ForgotPasswordContent } from "../forgotPassword/ForgotPasswordContent";
-import { LoginContent } from "../login/LoginContent";
-import { RegisterContent } from "../register/RegisterContent";
 
 type AuthFlowProps = {
   defaultFlowRoute: AuthFlowRoute;

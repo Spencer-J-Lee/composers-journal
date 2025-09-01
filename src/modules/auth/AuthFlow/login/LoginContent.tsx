@@ -4,8 +4,8 @@ import { routes } from "@/constants/routes";
 
 import { GSIButton } from "./google/GSIButton";
 import { LoginForm } from "./LoginForm";
-import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../AuthFlow/types";
-import { FormFooter } from "../components/FormFooter";
+import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../../AuthFlow/types";
+import { FormFooter } from "../../components/FormFooter";
 
 type LoginContentProps = {
   onFlowChange: (newRoute: AuthFlowRoute) => void;

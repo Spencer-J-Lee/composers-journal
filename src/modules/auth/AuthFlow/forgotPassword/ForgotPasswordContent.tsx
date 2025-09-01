@@ -1,8 +1,8 @@
 import { FakeLinkButton } from "@/components/buttons/FakeLinkButton";
 
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
-import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../AuthFlow/types";
-import { FormFooter } from "../components/FormFooter";
+import { FormFooter } from "../../components/FormFooter";
+import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../types";
 
 type ForgotPasswordContentProps = {
   onFlowChange: (newRoute: AuthFlowRoute) => void;

@@ -3,8 +3,8 @@ import { InformativeDivider } from "@/components/dividers/InformativeDivider";
 import { routes } from "@/constants/routes";
 
 import { RegisterForm } from "./RegisterForm";
-import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../AuthFlow/types";
-import { FormFooter } from "../components/FormFooter";
+import { AUTH_FLOW_ROUTES, AuthFlowRoute } from "../../AuthFlow/types";
+import { FormFooter } from "../../components/FormFooter";
 import { GSIButton } from "../login/google/GSIButton";
 
 type RegisterContentProps = {
