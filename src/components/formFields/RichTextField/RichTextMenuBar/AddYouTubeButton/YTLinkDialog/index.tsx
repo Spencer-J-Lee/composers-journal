@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormProvider,useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -38,7 +38,12 @@ export const YTLinkDialog = ({ onConfirm }: YTLinkDialogProps) => {
         <RichTextMenuButton faIcon={faYoutube}>YouTube</RichTextMenuButton>
       }
       title="Embed YouTube Video"
-      description="Paste a YouTube link from your browser's address bar or by right-clicking a video. Links with timestamps are supported."
+      description={
+        <>
+          Paste a YouTube link straight from your browser's address bar or by
+          right-clicking a video. <b>Links with timestamps are supported.</b>
+        </>
+      }
       size="md"
     >
       <FormProvider {...methods}>
