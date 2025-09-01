@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { FadeSlide } from "@/components/animations/FadeSlide";
 import { ShimmerForm } from "@/components/shimmerLoaders/ShimmerForm";
 import { routes } from "@/constants/routes";
 import { useUser } from "@/hooks/useUser";
@@ -47,7 +48,9 @@ export const ResetPasswordContent = () => {
   return (
     <AuthFormWrapper>
       {!isPending && user ? (
-        <ResetPasswordForm />
+        <FadeSlide>
+          <ResetPasswordForm />
+        </FadeSlide>
       ) : (
         <ShimmerForm fieldCount={1} />
       )}
