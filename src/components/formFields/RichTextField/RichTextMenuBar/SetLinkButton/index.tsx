@@ -4,7 +4,7 @@ import { Editor } from "@tiptap/react";
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { showErrorToast } from "@/utils/client/toasts";
 
-import { RichTextMenuButton } from "./RichTextMenuButton";
+import { RichTextMenuButton } from "../RichTextMenuButton";
 
 type SetLinkButtonProps = {
   editor: Editor | null;
