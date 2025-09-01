@@ -74,7 +74,7 @@ export const SetLinkDialog = ({
           }}
         >
           <div className="mb-5 space-y-4">
-            <RHFTextField name="url" label="URL" />
+            <RHFTextField name="url" label="URL" autoFocus />
           </div>
 
           <DialogActionsWrapper>

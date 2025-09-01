@@ -46,7 +46,7 @@ export const ResetPasswordForm = () => {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <FieldsWrapper>
-          <RHFPasswordField name="password" required />
+          <RHFPasswordField name="password" required autoFocus />
         </FieldsWrapper>
 
         <Button type="submit" loading={loading} fullWidth>

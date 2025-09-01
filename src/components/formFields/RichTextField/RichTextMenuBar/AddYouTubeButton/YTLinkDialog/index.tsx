@@ -57,7 +57,7 @@ export const YTLinkDialog = ({ onConfirm }: YTLinkDialogProps) => {
           }}
         >
           <div className="mb-5 space-y-4">
-            <RHFTextField name="url" label="YouTube URL" />
+            <RHFTextField name="url" label="YouTube URL" autoFocus />
           </div>
 
           <DialogActionsWrapper>

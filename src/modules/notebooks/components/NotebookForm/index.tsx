@@ -67,7 +67,7 @@ export const NotebookForm = ({
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(handleSubmit)}>
         <div className="mb-5 space-y-4">
-          <RHFTextField name="name" label="Name your notebook" />
+          <RHFTextField name="name" label="Name your notebook" autoFocus />
         </div>
 
         <Button type="submit" loading={loading} fullWidth>

@@ -120,6 +120,7 @@ export const TagsDialog = ({
             }}
             closeMenuOnSelect={false}
             isMulti
+            autoFocus
           />
         )}
 

@@ -65,6 +65,7 @@ export const EntryForm = ({
             name="title"
             className="text-4xl"
             placeholder="Title"
+            autoFocus
           />
         </div>
 
