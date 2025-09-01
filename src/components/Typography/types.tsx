@@ -5,10 +5,11 @@ export type TypographyVariant =
   | "h4"
   | "h5"
   | "h6"
-  | "subtitle"
   | "body"
   | "bodySmall"
   | "smallMuted"
+  | "marketingSubtitle"
+  | "marketingH1"
   | "emptyState"
   | "fallback"
   | "divider";
