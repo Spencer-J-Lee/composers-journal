@@ -18,7 +18,7 @@ import { Divider } from "@/components/dividers/Divider";
 import { AddYouTubeButton } from "./AddYouTubeButton";
 import { RichTextMenuButton } from "./RichTextMenuButton";
 import { RichTextButtonGroup } from "./RichTextMenuGroup";
-import { SetLinkButton } from "./SetLinkButton/SetLinkButton";
+import { SetLinkButton } from "./SetLinkButton";
 
 type RichTextMenuBarProps = {
   editor: Editor | null;
