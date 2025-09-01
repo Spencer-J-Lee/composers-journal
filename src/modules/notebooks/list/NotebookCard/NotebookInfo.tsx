@@ -19,12 +19,18 @@ export const NotebookInfo = ({
 
   return (
     <div className="border-border flex flex-1 flex-col items-start border-l p-4">
-      <Link
-        href={routes.notebook(notebook.id)}
-        className="mb-1 hover:underline"
-      >
-        <Typography variant="h4">{name}</Typography>
-      </Link>
+      {notebook.status === "trashed" ? (
+        <Typography variant="h4" className="mb-1">
+          {name}
+        </Typography>
+      ) : (
+        <Link
+          href={routes.notebook(notebook.id)}
+          className="mb-1 hover:underline"
+        >
+          <Typography variant="h4">{name}</Typography>
+        </Link>
+      )}
 
       <div className="mt-auto">
         <Typography
