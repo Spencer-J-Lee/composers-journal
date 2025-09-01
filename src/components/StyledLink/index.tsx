@@ -2,6 +2,8 @@ import type { ComponentPropsWithoutRef } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
+import { styledLinkClassName } from "./styles";
+
 type StyledLinkProps = ComponentPropsWithoutRef<typeof Link> & {
   external?: boolean;
 };
@@ -13,10 +15,7 @@ export const StyledLink = ({
   external,
   ...props
 }: StyledLinkProps) => {
-  const finalClassName = clsx(
-    "font-semibold hover:underline text-accent-link cursor-pointer",
-    className,
-  );
+  const finalClassName = clsx(styledLinkClassName, className);
 
   if (external) {
     return (
