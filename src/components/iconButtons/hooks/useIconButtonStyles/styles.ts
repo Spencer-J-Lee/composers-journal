@@ -1,6 +1,6 @@
 import { IconButtonTextVariant } from "../../types";
 
-export const widthHeightClassName = "h-9 w-9";
+export const widthHeightClassName = "h-10 w-10";
 
 export const textVariantClassName: Record<
   IconButtonTextVariant,

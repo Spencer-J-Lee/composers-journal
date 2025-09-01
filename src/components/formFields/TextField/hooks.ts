@@ -10,7 +10,7 @@ type UseTextFieldStylesProps = {
 export const useTextFieldStyles = ({ hasError }: UseTextFieldStylesProps) => {
   return {
     textFieldClassName: clsx(
-      "w-full rounded-lg border bg-input-background px-3 py-2.5 text-sm hover:border-input-border-hover focus:border-input-border-focus transition-colors",
+      "w-full rounded-lg border bg-input-background px-3 py-3 text-sm hover:border-input-border-hover focus:border-input-border-focus transition-colors",
       hasError ? "border-negative" : "border-input-border",
     ),
   };

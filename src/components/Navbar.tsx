@@ -15,7 +15,7 @@ export const Navbar = () => {
     <header
       id={ELEMENT_IDS.NAVBAR}
       className={clsx(
-        "z-navbar bg-background sticky left-0 right-0 top-0 h-[var(--navbar-height)] px-5 py-3 shadow-sm transition-transform lg:px-11",
+        "z-navbar bg-background sticky left-0 right-0 top-0 h-[var(--navbar-height)] px-5 py-2.5 shadow-sm transition-transform lg:px-11",
       )}
     >
       <nav className="flex items-center justify-between gap-x-10">
