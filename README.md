@@ -5,38 +5,31 @@ A Next.js journaling app tailored specifically for composers to draft, organize,
 ## Features
 
 ### Already Available
-- **Authentication**: Secure login to keep journals private
-
-**Notebooks**
-- Create, edit, trash, and permanently delete notebooks
-- Sort notebooks to stay organized
-- View metrics for notebooks (e.g., counts, activity)
-
-**Entries**
-- Create, edit, trash, and permanently delete entries
-- Tag entries for better organization
-- Save and manage entry states
-- Browse entries with infinite scrolling
-- View recent entries for quick access
-- Track metrics for entries (e.g., totals, recent activity)
-
-**Interface**
-- Rich Text Editor: Capture thoughts with formatting and structure
+- **Authentication**: Secure login to keep journals private.
+- **Notebooks**: Create, edit, trash, restore, and permanently delete notebooks.
+- **Notebook Sorting**: Sort notebooks by different parameters.
+- **Entries**: Create, edit, trash, restore, and permanently delete entries.
+- **Entry Tagging**: Organize entries with tags.
+- **Entry Bookmarking**: Bookmark entries for filtering by.
+- **Infinite Scrolling for Entries**: Seamlessly browse through entries without pagination.
+- **Rich Text Editor**: Capture thoughts with formatting.
+- **Metrics for Notebooks and Entries**: Track counts and activity at a glance.
+- **Recent Entries Section**: Quickly access your latest work.
 
 ### Currently Being Added
-- **Entry Filtering**: Quickly find entries by tags and bookmarks
-- **Autosave Drafts**: Never lose your work while composing  
-- **Music Notation in Rich Text**: Add snippets of musical notation directly into journal entries  
-- **Re-ordering Notebooks**: Re-order notebooks in your desired order
-- **Single-page Auth Flow**: Navigate between login, register, and forgot password in a smooth, single page experience
+- **Entry Filtering**: Quickly find entries by tags and bookmarks.
+- **Autosave Drafts**: Never lose your work while drafting entries.
+- **Music Notation in Rich Text**: Add snippets of musical notation directly into journal entries.
+- **Re-ordering Notebooks**: Re-order notebooks in your desired order.
+- **Single-page Auth Flow**: Navigate between login, register, and forgot password in a smooth, single page experience.
 
 ## Technologies Used
 
-- **Next.js** – Frontend framework for server-rendered React applications  
-- **Drizzle** – Database toolkit for managing data  
-- **TypeScript** – Typed JavaScript for safer development  
-- **ESLint & Prettier** – Linting and formatting for code consistency  
-- **Geist & next/font** – Font optimization via Vercel  
+- **Next.js** – Frontend framework for server-rendered React applications.
+- **Drizzle** – Database toolkit for managing data.
+- **TypeScript** – Typed JavaScript for safer development.
+- **ESLint & Prettier** – Linting and formatting for code consistency.
+- **Geist & next/font** – Font optimization via Vercel.
 
 ## Getting Started
 
