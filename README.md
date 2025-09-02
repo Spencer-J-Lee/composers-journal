@@ -28,10 +28,16 @@ A Next.js journaling app tailored specifically for composers to draft, organize,
 ## Technologies Used
 
 - **Next.js** – Frontend framework for server-rendered React applications.
-- **Drizzle** – Database toolkit for managing data.
 - **TypeScript** – Typed JavaScript for safer development.
-- **ESLint & Prettier** – Linting and formatting for code consistency.
+- **Tiptap** – Rich-text editor for creating and formatting content.
+- **Tailwind CSS** – Utility-first CSS framework for styling.
 - **Geist & next/font** – Font optimization via Vercel.
+- **TanStack Query (React Query)** – Data fetching, caching, and synchronization.
+- **Supabase** – Backend-as-a-service for authentication, database, and storage.
+- **Google OAuth** – Third-party authentication provider.
+- **Drizzle** – Database toolkit for schema management and queries.
+- **PostgreSQL** – Primary relational database.
+- **ESLint & Prettier** – Linting and formatting for code consistency.
 
 ## Getting Started
 
