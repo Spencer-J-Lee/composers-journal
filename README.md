@@ -2,6 +2,14 @@
 
 A Next.js journaling app tailored specifically for composers to draft, organize, and reflect on their creative inspirations, musical ideas, notes, and beyond.
 
+## Getting Started
+
+This project is **not runnable in local development** because it requires private security keys stored in `.env` files.
+
+The app will be available on a **production deployment website** (link coming soon).
+
+Stay tuned for updates once the production site is live!
+
 ## Features
 
 ### Already Available
@@ -38,14 +46,6 @@ A Next.js journaling app tailored specifically for composers to draft, organize,
 - **Drizzle** – Database toolkit for schema management and queries.
 - **PostgreSQL** – Primary relational database.
 - **ESLint & Prettier** – Linting and formatting for code consistency.
-
-## Getting Started
-
-This project is **not runnable in local development** because it requires private security keys stored in `.env` files.
-
-The app will be available on a **production deployment website** (link coming soon).
-
-Stay tuned for updates once the production site is live!
 
 ## Project Structure
 
