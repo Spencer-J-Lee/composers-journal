@@ -7,21 +7,21 @@ export const getSupabaseEnv = () => {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
     missing.push("NEXT_PUBLIC_SUPABASE_URL");
   }
-  if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-    missing.push("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+  if (!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY) {
+    missing.push("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY");
   }
 
   // All variables are explicitly checked again
   // so that the compiler knows they are defined
   if (
     !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY
   ) {
     throw new Error("Missing environent variables:\n" + missing.join("\n"));
   }
 
   return {
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY,
   };
 };
