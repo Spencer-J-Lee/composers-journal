@@ -4,6 +4,7 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
 import { requireEnv } from "@/utils/requireEnv";
+
 import schema from "./schema";
 
 const DB_USER = requireEnv("DB_USER");
