@@ -3,8 +3,12 @@ import { PgTableWithColumns } from "drizzle-orm/pg-core";
 
 import { OrderBy } from "@/types/query";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const convertOrderByToSql = <T extends PgTableWithColumns<any>>(
+// Omit "enableRLS" so tables defined with .enableRLS() (which returns
+// Omit<PgTableWithColumns, "enableRLS">) are accepted too.
+export const convertOrderByToSql = <
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  T extends Omit<PgTableWithColumns<any>, "enableRLS">,
+>(
   table: T,
   orderBy: OrderBy<T> | undefined,
 ): SQL[] => {
