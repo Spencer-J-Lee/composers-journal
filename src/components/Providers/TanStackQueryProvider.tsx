@@ -28,7 +28,9 @@ export const TanStackQueryProvider = ({
 }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} buttonPosition="top-left" />
+      {process.env.NODE_ENV === "development" && (
+        <ReactQueryDevtools initialIsOpen={false} buttonPosition="top-left" />
+      )}
       {children}
     </QueryClientProvider>
   );
