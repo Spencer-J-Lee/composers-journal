@@ -50,8 +50,9 @@ export const YTLinkDialog = ({ onConfirm }: YTLinkDialogProps) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            // TODO: [med] figure out why this causes entry form to submit
-            // even though this dialog isn't nested inside of the entry form
+            // React portals bubble events through the React tree (not the
+            // DOM), so without this the submit would also reach the entry
+            // form. EntryForm additionally guards against foreign submits.
             e.stopPropagation();
             methods.handleSubmit(handleSubmit)(e);
           }}

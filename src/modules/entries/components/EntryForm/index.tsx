@@ -57,7 +57,16 @@ export const EntryForm = ({
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={methods.handleSubmit(handleSubmit)}
+        onSubmit={(e) => {
+          // Dialogs rendered from the menu bar (set link, YouTube) are
+          // portaled to the body, but React portals bubble events through
+          // the React tree — so their submit events reach this form. Only
+          // handle submits that originate from this form itself.
+          if (e.target !== e.currentTarget) {
+            return;
+          }
+          methods.handleSubmit(handleSubmit)(e);
+        }}
         className="flex h-full flex-col"
       >
         <div className="mb-4">
