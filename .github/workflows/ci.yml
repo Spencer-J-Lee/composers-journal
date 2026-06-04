@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      # Dummy values so `next build` can evaluate env checks.
+      # No real services are contacted during the build.
+      NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY: ci-dummy-key
+      NEXT_PUBLIC_GOOGLE_CLIENT_ID: ci-dummy-client-id
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: ci-dummy-site-key
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      DB_HOST: localhost
+      DB_PORT: "5432"
+      DB_NAME: ci
+      DB_USER: ci
+      DB_PASSWORD: ci
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
