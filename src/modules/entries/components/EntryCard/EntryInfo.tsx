@@ -49,6 +49,8 @@ export const EntryInfo = ({
 
         {tags && tags.length > 0 && (
           <button
+            type="button"
+            aria-expanded={showTags}
             onClick={() => setShowTags((prev) => !prev)}
             className="text-text-muted -mx-2 -my-1 px-2 py-1 text-xs font-medium uppercase tracking-widest"
           >
