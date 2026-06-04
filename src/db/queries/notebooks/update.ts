@@ -1,4 +1,4 @@
-import { inArray } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 
 import { db } from "@/db";
 import { notebooks } from "@/db/schema";
@@ -6,10 +6,12 @@ import { Notebook } from "@/models/Notebook";
 
 type DbUpdateNotebooksProps = {
   ids: Notebook["id"][];
+  ownerId: Notebook["ownerId"];
 } & Partial<Pick<Notebook, "name" | "status">>;
 
 export const dbUpdateNotebooks = async ({
   ids,
+  ownerId,
   name,
   status,
 }: DbUpdateNotebooksProps): Promise<Notebook[]> => {
@@ -23,7 +25,7 @@ export const dbUpdateNotebooks = async ({
       ...newVals,
       updatedAt: new Date(),
     })
-    .where(inArray(notebooks.id, ids))
+    .where(and(inArray(notebooks.id, ids), eq(notebooks.ownerId, ownerId)))
     .returning();
 
   return result.map((notebook) => ({

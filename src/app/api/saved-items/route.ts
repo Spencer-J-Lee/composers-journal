@@ -6,7 +6,9 @@ import { dbDeleteSavedItem } from "@/db/queries/savedItems/delete";
 import { getUserSS } from "@/db/supabase/server/helpers";
 import { savedItemSchema } from "@/models/SavedItem/schema";
 import {
+  ForbiddenError,
   respondWithError,
+  respondWithForbidden,
   respondWithInvalidInfoError,
   respondWithUnauthorized,
 } from "@/utils/server/errors";
@@ -38,6 +40,9 @@ export const POST = async (req: NextRequest) => {
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
+    if (err instanceof ForbiddenError) {
+      return respondWithForbidden();
+    }
     return respondWithError({
       status: 500,
       userMsg: ERROR_MESSAGES.USER.CREATE.SAVED_ITEM.ENTRY,
@@ -64,7 +69,10 @@ export const DELETE = async (req: NextRequest) => {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    const savedItem = await dbDeleteSavedItem(safeParams.data);
+    const savedItem = await dbDeleteSavedItem({
+      ownerId: user.id,
+      ...safeParams.data,
+    });
 
     return new Response(JSON.stringify(savedItem), {
       status: 200,

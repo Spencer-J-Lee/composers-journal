@@ -1,6 +1,18 @@
 import { ZodError } from "zod";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
+
+/**
+ * Thrown by db queries when the authenticated user does not own the
+ * resource(s) being read or mutated. API routes translate this into a 403.
+ */
+export class ForbiddenError extends Error {
+  constructor(message = ERROR_MESSAGES.DEV.FORBIDDEN) {
+    super(message);
+    this.name = "ForbiddenError";
+  }
+}
+
 type RespondWithErrorProps = {
   status: number;
   userMsg: string;
@@ -30,6 +42,14 @@ export const respondWithUnauthorized = () => {
     status: 401,
     userMsg: ERROR_MESSAGES.USER.UNAUTHORIZED,
     devMsg: ERROR_MESSAGES.DEV.UNAUTHORIZED,
+  });
+};
+
+export const respondWithForbidden = () => {
+  return respondWithError({
+    status: 403,
+    userMsg: ERROR_MESSAGES.USER.FORBIDDEN,
+    devMsg: ERROR_MESSAGES.DEV.FORBIDDEN,
   });
 };
 

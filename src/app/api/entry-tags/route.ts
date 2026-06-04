@@ -8,7 +8,9 @@ import { getUserSS } from "@/db/supabase/server/helpers";
 import { entryTagSchema } from "@/models/EntryTag/schema";
 import { idsOptionalSchema } from "@/schemas/idsSchema";
 import {
+  ForbiddenError,
   respondWithError,
+  respondWithForbidden,
   respondWithInvalidInfoError,
   respondWithUnauthorized,
 } from "@/utils/server/errors";
@@ -33,13 +35,19 @@ export const POST = async (req: NextRequest) => {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    const entryTags = await dbCreateEntryTags(safeParams.data);
+    const entryTags = await dbCreateEntryTags({
+      ownerId: user.id,
+      entryTags: safeParams.data,
+    });
 
     return new Response(JSON.stringify(entryTags), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
+    if (err instanceof ForbiddenError) {
+      return respondWithForbidden();
+    }
     return respondWithError({
       status: 500,
       userMsg: ERROR_MESSAGES.USER.CREATE.ENTRY_TAGS,
@@ -62,13 +70,20 @@ export const DELETE = async (req: NextRequest) => {
       .object({
         entryId: z.number().optional(),
       })
-      .merge(idsOptionalSchema);
+      .merge(idsOptionalSchema)
+      .refine(
+        ({ entryId, ids }) => entryId !== undefined || (ids && ids.length > 0),
+        { message: "Either entryId or ids must be provided" },
+      );
     const safeParams = schema.safeParse(body);
     if (!safeParams.success) {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    await dbDeleteEntryTags(safeParams.data);
+    await dbDeleteEntryTags({
+      ownerId: user.id,
+      ...safeParams.data,
+    });
 
     return new Response(null, { status: 204 });
   } catch (err) {

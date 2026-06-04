@@ -136,6 +136,7 @@ export const PATCH = async (req: NextRequest) => {
     }
 
     const notebooks = await dbUpdateNotebooks({
+      ownerId: user.id,
       ...safeParams.data,
     });
 
@@ -167,7 +168,10 @@ export const DELETE = async (req: NextRequest) => {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    await dbDeleteNotebooks(safeParams.data);
+    await dbDeleteNotebooks({
+      ownerId: user.id,
+      ...safeParams.data,
+    });
 
     return new Response(null, {
       status: 200,

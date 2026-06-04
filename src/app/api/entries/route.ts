@@ -11,7 +11,9 @@ import { commonApiParamsSchema } from "@/schemas/commonApiParamsSchema";
 import { idsOptionalSchema, idsSchema } from "@/schemas/idsSchema";
 import { OrderBy } from "@/types/query";
 import {
+  ForbiddenError,
   respondWithError,
+  respondWithForbidden,
   respondWithInvalidInfoError,
   respondWithInvalidJsonError,
   respondWithMissingPayloadError,
@@ -143,13 +145,19 @@ export const PATCH = async (req: NextRequest) => {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    const entry = await dbUpdateEntries(safeParams.data);
+    const entry = await dbUpdateEntries({
+      ownerId: user.id,
+      ...safeParams.data,
+    });
 
     return new Response(JSON.stringify(entry), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
+    if (err instanceof ForbiddenError) {
+      return respondWithForbidden();
+    }
     return respondWithError({
       status: 500,
       userMsg: ERROR_MESSAGES.USER.UPDATE.ENTRY,

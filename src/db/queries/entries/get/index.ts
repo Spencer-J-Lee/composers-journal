@@ -68,16 +68,24 @@ export const dbGetEntries = async ({
 
 export const dbGetEntryById = async (
   id: Entry["id"],
-  options?: Partial<Pick<Entry, "status">>,
+  options?: Partial<Pick<Entry, "status" | "ownerId">>,
 ) => {
   return withFirstResult(
-    () => dbGetEntries({ ids: [id], status: options?.status }),
+    () =>
+      dbGetEntries({
+        ids: [id],
+        status: options?.status,
+        ownerId: options?.ownerId,
+      }),
     ERROR_MESSAGES.DEV.FETCH.NO_ENTRY(id),
   );
 };
 
-export const dbGetActiveEntryById = async (id: Entry["id"]) => {
-  return dbGetEntryById(id, { status: STATUSES.ACTIVE });
+export const dbGetActiveEntryById = async (
+  id: Entry["id"],
+  options?: Partial<Pick<Entry, "ownerId">>,
+) => {
+  return dbGetEntryById(id, { status: STATUSES.ACTIVE, ...options });
 };
 
 type DbGetEntryMetricsProps = {

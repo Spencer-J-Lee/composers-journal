@@ -82,12 +82,10 @@ export const POST = async (req: NextRequest) => {
       return respondWithInvalidInfoError(safeParams.error);
     }
 
-    const tags = await dbCreateTags(
-      safeParams.data.map(({ name }) => ({
-        ownerId: user.id,
-        name,
-      })),
-    );
+    const tags = await dbCreateTags({
+      ownerId: user.id,
+      names: safeParams.data.map(({ name }) => name),
+    });
 
     return new Response(JSON.stringify(tags), {
       status: 200,

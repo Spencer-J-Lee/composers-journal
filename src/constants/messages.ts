@@ -3,6 +3,7 @@ export const ERROR_MESSAGES = {
     TRY_AGAIN_LATER: "Something went wrong. Please try again later",
     TRY_AGAIN: "Something went wrong. Please try again",
     UNAUTHORIZED: "You do not have permission to perform this action",
+    FORBIDDEN: "You do not have permission to perform this action",
     INVALID_INFO: "Some of the provided information is invalid",
     YOUTUBE_LINK: "Invalid YouTube link",
 
@@ -49,6 +50,7 @@ export const ERROR_MESSAGES = {
 
   DEV: {
     UNAUTHORIZED: "User is not authorized.",
+    FORBIDDEN: "User does not own the requested resource.",
     INVALID_INFO: "The provided input is invalid for performing this action.",
     MISSING_PAYLOAD: "Missing payload.",
     INVALID_JSON: "Invalid JSON.",
@@ -82,6 +84,8 @@ export const ERROR_MESSAGES = {
     DELETE: {
       ENTRY: "Error occurred while deleting entry.",
       ENTRY_TAGS: "Error occurred while deleting entry tags.",
+      ENTRY_TAGS_NO_FILTER:
+        "Refusing to delete entry tags without an entryId or tag ids filter.",
       NOTEBOOK: "Error occurred while deleting notebook.",
       SAVED_ITEM: {
         ENTRY: "Error occurred while deleting saved entry item.",
