@@ -37,4 +37,6 @@ export const DYNAMIC_TS_KEYS: Record<string, (...args: any[]) => QueryKey> = {
     notebookId,
     filters,
   ],
+  // Starts with KEYS.TAGS so invalidating STATIC_TS_KEYS.TAGS matches it too
+  TAGS_BY_PARAMS: (params?: unknown) => [KEYS.TAGS, params ?? null],
 } as const;
