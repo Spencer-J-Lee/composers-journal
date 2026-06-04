@@ -17,7 +17,7 @@ export const getSupabaseEnv = () => {
     !process.env.NEXT_PUBLIC_SUPABASE_URL ||
     !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY
   ) {
-    throw new Error("Missing environent variables:\n" + missing.join("\n"));
+    throw new Error("Missing environment variables:\n" + missing.join("\n"));
   }
 
   return {
