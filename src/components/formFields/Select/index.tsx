@@ -54,7 +54,7 @@ export const Select = <Option, IsMulti extends boolean = false>(
         }),
         input: (base) => ({
           ...base,
-          margin: "0.325rem 0.375rem",
+          padding: "0.125rem 0",
           color: "var(--color-text)",
           fontSize: "0.875rem",
         }),
@@ -62,17 +62,22 @@ export const Select = <Option, IsMulti extends boolean = false>(
           ...base,
           fontSize: "0.875rem",
         }),
+        singleValue: (base) => ({
+          ...base,
+          padding: "0.25rem 0",
+          fontSize: "0.875rem",
+          color: "var(--color-text)",
+        }),
 
         multiValue: (base) => ({
           ...base,
           borderRadius: "999px",
           backgroundColor: "var(--color-surface-light)",
           overflow: "hidden",
-          margin: "0.25rem",
         }),
         multiValueLabel: (base) => ({
           ...base,
-          padding: "0.25rem",
+          padding: "0.2rem",
           paddingLeft: "0.75rem",
           paddingRight: "0.25rem",
           fontSize: "0.75rem",
