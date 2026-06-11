@@ -29,9 +29,7 @@ A Next.js journaling app tailored specifically for composers to draft, organize,
 
 This project is **not runnable in local development** because it requires private security keys stored in `.env` files.
 
-The app will be available on a **production deployment website** (link coming soon).
-
-Stay tuned for updates once the production site is live!
+The app will be available on a **production deployment website**.
 
 ## Features
 
