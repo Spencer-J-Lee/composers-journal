@@ -24,6 +24,7 @@
 .DS_Store
 *.pem
 scratchpad.txt
+_stuff
 
 # debug
 npm-debug.log*
