@@ -2,6 +2,29 @@
 
 A Next.js journaling app tailored specifically for composers to draft, organize, and reflect on their creative inspirations, musical ideas, notes, and beyond.
 
+## Screenshots
+
+### Login View
+<img width="1512" height="826" alt="Screenshot 2026-06-11 at 11 48 49 AM" src="https://github.com/user-attachments/assets/ac17a646-2f52-42f0-b9fa-fd6c2cb20f7a" />
+
+### Dashboard View
+<img width="1512" height="830" alt="Screenshot 2026-06-11 at 11 50 20 AM" src="https://github.com/user-attachments/assets/11e47186-ec0c-41e2-9a2c-ce195d676187" />
+
+### Notebooks List View
+<img width="1512" height="827" alt="Screenshot 2026-06-11 at 11 50 31 AM" src="https://github.com/user-attachments/assets/74c3db01-1cb3-49da-978b-dc9b3c0f4ed7" />
+
+### Entries List View
+<img width="1512" height="826" alt="Screenshot 2026-06-11 at 11 50 53 AM" src="https://github.com/user-attachments/assets/4fdd5d72-7247-48ed-86be-0684e000d37b" />
+
+### Entry Details/Edit View
+<img width="1512" height="824" alt="Screenshot 2026-06-11 at 11 57 11 AM" src="https://github.com/user-attachments/assets/cc7f512f-382e-427f-b3da-ba8d43150256" />
+<img width="1512" height="827" alt="Screenshot 2026-06-11 at 11 55 34 AM" src="https://github.com/user-attachments/assets/5d1844be-ca18-41ca-9ac8-d40e0517b837" />
+
+### Trash View
+<img width="1512" height="826" alt="Screenshot 2026-06-11 at 11 57 54 AM" src="https://github.com/user-attachments/assets/b6c0d7a8-2289-45d6-9475-42bba93fd910" />
+
+
+
 ## Getting Started
 
 This project is **not runnable in local development** because it requires private security keys stored in `.env` files.
