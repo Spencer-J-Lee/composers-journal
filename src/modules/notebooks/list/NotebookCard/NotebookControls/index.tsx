@@ -99,6 +99,7 @@ export const NotebookControls = ({
       <LinkIconButton
         href={routes.notebookEdit(notebook.id)}
         faIcon={faEdit}
+        size="sm"
         key="edit"
       />
     ),
@@ -109,6 +110,7 @@ export const NotebookControls = ({
         disabled={actionPending}
         faIcon={faTrashCanArrowUp}
         textVariant="positive"
+        size="sm"
         key="restore"
       />
     ),
@@ -119,6 +121,7 @@ export const NotebookControls = ({
         disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
+        size="sm"
         key="trash"
       />
     ),
@@ -129,6 +132,7 @@ export const NotebookControls = ({
         disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
+        size="sm"
         key="delete"
       />
     ),

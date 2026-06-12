@@ -16,12 +16,14 @@ export const IconButton = ({
   type = "button",
   faIcon,
   textVariant = "default",
+  size = "md",
   active,
   loading,
   ...props
 }: IconButtonProps) => {
   const { iconButtonClassName } = useIconButtonStyles({
     textVariant,
+    size,
     active,
     disabled: props.disabled,
   });

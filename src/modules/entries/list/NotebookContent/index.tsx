@@ -104,7 +104,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
         )}
 
         {isEmptyResult && hasActiveFilters && (
-          <Typography variant="fallback">
+          <Typography variant="smallMuted">
             No entries match your filters
           </Typography>
         )}

@@ -141,6 +141,7 @@ export const EntryControls = ({
       <LinkIconButton
         href={routes.entryEdit(entry)}
         faIcon={faEdit}
+        size="sm"
         key="edit"
       />
     ),
@@ -150,6 +151,7 @@ export const EntryControls = ({
         loading={isUnsavePending}
         disabled={actionPending}
         faIcon={faBookmark}
+        size="sm"
         key="unsave"
       />
     ) : (
@@ -158,6 +160,7 @@ export const EntryControls = ({
         loading={isSavePending}
         disabled={actionPending}
         faIcon={faBookmarkEmpty}
+        size="sm"
         key="save"
       />
     ),
@@ -168,6 +171,7 @@ export const EntryControls = ({
         disabled={actionPending}
         faIcon={faTrashCanArrowUp}
         textVariant="positive"
+        size="sm"
         key="restore"
       />
     ),
@@ -178,6 +182,7 @@ export const EntryControls = ({
         disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
+        size="sm"
         key="trash"
       />
     ),
@@ -188,6 +193,7 @@ export const EntryControls = ({
         disabled={actionPending}
         faIcon={faTrashCan}
         textVariant="negative"
+        size="sm"
         key="delete"
       />
     ),

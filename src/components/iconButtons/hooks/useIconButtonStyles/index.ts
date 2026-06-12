@@ -2,16 +2,18 @@ import clsx from "clsx";
 
 import { calcVariantClassName } from "./helpers";
 import { widthHeightClassName } from "./styles";
-import { IconButtonTextVariant } from "../../types";
+import { IconButtonSize, IconButtonTextVariant } from "../../types";
 
 export type UseIconButtonStylesProps = {
   textVariant: IconButtonTextVariant;
+  size?: IconButtonSize;
   active?: boolean;
   disabled?: boolean;
 };
 
 export const useIconButtonStyles = ({
   textVariant,
+  size = "md",
   active,
   disabled,
 }: UseIconButtonStylesProps) => {
@@ -20,7 +22,7 @@ export const useIconButtonStyles = ({
   return {
     iconButtonClassName: clsx(
       baseClassName,
-      widthHeightClassName,
+      widthHeightClassName[size],
       calcVariantClassName({
         textVariant,
         active,
