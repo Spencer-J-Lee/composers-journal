@@ -42,14 +42,13 @@ export const EntriesFilter = ({ value, onChange }: EntriesFilterProps) => {
   );
 
   const selectedSortOption = useMemo(
-    () => 
-      SORT_OPTIONS.find(
-        (option) => {
-          const { column, direction } = draft.orderBy[0];
-          const { column: optionColumn, direction: optionDirection } = option.value[0];
-          return optionColumn === column && optionDirection === direction;
-        }
-      ) ?? undefined,
+    () =>
+      SORT_OPTIONS.find((option) => {
+        const { column, direction } = draft.orderBy[0];
+        const { column: optionColumn, direction: optionDirection } =
+          option.value[0];
+        return optionColumn === column && optionDirection === direction;
+      }) ?? undefined,
     [draft.orderBy],
   );
 
@@ -87,7 +86,7 @@ export const EntriesFilter = ({ value, onChange }: EntriesFilterProps) => {
           <FontAwesomeIcon icon={faFilter} />
           Filters
           {activeFilterCount > 0 && (
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--color-surface-light)] px-1.5 text-xs font-semibold text-text-muted">
+            <span className="text-text-muted flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--color-surface-light)] px-1.5 text-xs font-semibold">
               {activeFilterCount}
             </span>
           )}

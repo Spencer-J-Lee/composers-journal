@@ -1,9 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import {
-  DYNAMIC_TS_KEYS,
-  STATIC_TS_KEYS,
-} from "@/constants/tanStackQueryKeys";
+import { DYNAMIC_TS_KEYS, STATIC_TS_KEYS } from "@/constants/tanStackQueryKeys";
 import { apiCreateTags } from "@/services/tags/create";
 import { apiGetTags, ApiGetTagsProps } from "@/services/tags/get";
 

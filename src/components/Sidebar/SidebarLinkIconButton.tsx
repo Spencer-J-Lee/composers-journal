@@ -20,6 +20,7 @@ export const SidebarLinkIconButton = ({
     <LinkIconButton
       className={clsx(activeClassName, className)}
       active={active}
+      size="sm"
       {...props}
     />
   );

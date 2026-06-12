@@ -22,7 +22,10 @@ export type SortOption = {
 };
 
 export const SORT_OPTIONS: SortOption[] = [
-  { label: "Newest first", value: [{ column: "createdAt", direction: "desc" }] },
+  {
+    label: "Newest first",
+    value: [{ column: "createdAt", direction: "desc" }],
+  },
   { label: "Oldest first", value: [{ column: "createdAt", direction: "asc" }] },
   {
     label: "Recently updated",

@@ -24,6 +24,7 @@ export const SidebarLinkButton = ({
       )}
       variant="ghost"
       active={active}
+      size="sm"
       {...props}
     >
       {children}

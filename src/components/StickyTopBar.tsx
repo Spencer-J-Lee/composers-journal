@@ -18,7 +18,7 @@ export const StickyTopBar = ({
   return (
     <div
       className={clsx(
-        "bg-surface border-accent z-sticky-top-bar sticky top-0 gap-x-4 border-l-4 py-4 shadow-md",
+        "bg-surface border-l border-border z-sticky-top-bar sticky top-0 gap-x-4 py-4 shadow-md",
         paddingXClassName[paddingSize],
         className,
       )}

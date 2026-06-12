@@ -38,6 +38,7 @@ export const NotebooksAccordionMenu = () => {
           <IconButton
             faIcon={show ? faChevronUp : faChevronDown}
             onClick={() => setShow((prev) => !prev)}
+            size="sm"
           />
         )}
       </div>

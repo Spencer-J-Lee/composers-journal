@@ -3,10 +3,7 @@ import { Props as ReactSelectProps } from "react-select";
 import { FieldLabel } from "./FieldLabel";
 import { Select } from "./Select";
 
-export type SelectFieldProps<
-  Option,
-  IsMulti extends boolean = false,
-> = {
+export type SelectFieldProps<Option, IsMulti extends boolean = false> = {
   name: string;
   label: string;
 } & ReactSelectProps<Option, IsMulti>;

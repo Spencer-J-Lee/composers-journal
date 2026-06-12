@@ -34,7 +34,10 @@ export const dbCreateEntryTags = async ({
       .where(and(inArray(tags.id, tagIds), eq(tags.ownerId, ownerId))),
   ]);
 
-  if (ownedEntries.length !== entryIds.length || ownedTags.length !== tagIds.length) {
+  if (
+    ownedEntries.length !== entryIds.length ||
+    ownedTags.length !== tagIds.length
+  ) {
     throw new ForbiddenError();
   }
 

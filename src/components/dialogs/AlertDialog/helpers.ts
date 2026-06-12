@@ -1,4 +1,4 @@
-import { AsyncDialogAction,DialogAction } from "./types";
+import { AsyncDialogAction, DialogAction } from "./types";
 
 export const isAsyncDialogAction = (
   action: DialogAction,
