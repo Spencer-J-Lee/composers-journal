@@ -46,6 +46,8 @@ export const apiGetFilteredEntriesPage = async ({
       notebookId,
       status: STATUSES.ACTIVE,
       orderBy: filters.orderBy,
+      tagIds: filters.tags,
+      savedOnly: filters.savedOnly,
       ...getPaginationParams(page, limit, offset),
     }),
   );

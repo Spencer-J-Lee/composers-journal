@@ -19,6 +19,7 @@ import { Notebook } from "@/models/Notebook";
 import { EntryCard } from "@/modules/entries/components/EntryCard";
 
 import { NotebookPendingState } from "./NotebookPendingState";
+import { EntriesFilter } from "../EntriesFilter";
 import { DEFAULT_ENTRY_FILTER } from "../EntriesFilter/constants";
 import { EntryFilter } from "../EntriesFilter/types";
 import { NotebookEmptyState } from "../NotebookEmptyState";
@@ -74,31 +75,38 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
     setOffset((prev) => prev - 1);
   };
 
-  // TODO: [very high] Implement filters
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleFiltersChange = () => {
+  const handleFiltersChange = (next: EntryFilter) => {
     setOffset(0);
-    setFilters((prev) => prev);
+    setFilters(next);
   };
+
+  const hasActiveFilters = filters.tags.length > 0 || filters.savedOnly;
+  const isEmptyResult = isSuccess && data.pages[0].entries.length === 0;
 
   if (isPending) {
     return <NotebookPendingState notebookId={notebookId} />;
   }
 
-  if (isSuccess && data.pages[0].entries.length === 0) {
+  if (isEmptyResult && !hasActiveFilters) {
     return <NotebookEmptyState notebookId={notebookId} />;
   }
 
   return (
     <WorkspacePageWrapper paddingSize="none" ref={containerRef}>
-      <StickyTopBar className="flex items-center justify-between">
-        <div>Filters placeholder</div>
+      <StickyTopBar className="flex items-center justify-between gap-4">
+        <EntriesFilter value={filters} onChange={handleFiltersChange} />
         <LinkButton href={routes.entryCreate(notebookId)}>Create</LinkButton>
       </StickyTopBar>
 
       <WorkspaceContentWrapper>
         {isError && (
           <Typography variant="fallback">Failed to load entries</Typography>
+        )}
+
+        {isEmptyResult && hasActiveFilters && (
+          <Typography variant="fallback">
+            No entries match your filters
+          </Typography>
         )}
 
         {isSuccess && data.pages[0].entries.length > 0 && (
@@ -127,7 +135,7 @@ export const NotebookContent = ({ notebookId }: NotebookContentProps) => {
           </CardResultsWrapper>
         )}
 
-        {!hasNextPage && (
+        {!hasNextPage && !isEmptyResult && (
           <InformativeDivider className="mt-4">
             No more entries to show
           </InformativeDivider>

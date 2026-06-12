@@ -3,8 +3,9 @@ import { and, count, desc, eq, gte, inArray, sql } from "drizzle-orm";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { db } from "@/db";
-import { entries, entryTags, tags } from "@/db/schema";
+import { entries, entryTags, savedItems, tags } from "@/db/schema";
 import { Entry } from "@/models/Entry";
+import { Tag } from "@/models/Tag";
 import { STATUSES } from "@/models/types/status";
 import { CommonApiOptions } from "@/services/types";
 import { withFirstResult } from "@/utils/server/withFirstResults";
@@ -12,14 +13,18 @@ import { withFirstResult } from "@/utils/server/withFirstResults";
 import { EntryMetrics } from "./types";
 import { convertOrderByToSql } from "../../utils/convertOrderByToSql";
 
-type DbGetEntriesProps = { ids?: Entry["id"][] } & Partial<
-  Pick<Entry, "ownerId" | "status" | "notebookId">
-> &
+type DbGetEntriesProps = {
+  ids?: Entry["id"][];
+  tagIds?: Tag["id"][];
+  savedOnly?: boolean;
+} & Partial<Pick<Entry, "ownerId" | "status" | "notebookId">> &
   CommonApiOptions<typeof entries>;
 
 export const dbGetEntries = async ({
   ownerId,
   ids,
+  tagIds,
+  savedOnly,
   status,
   notebookId,
   limit = 50,
@@ -31,6 +36,33 @@ export const dbGetEntries = async ({
   if (ids) andClauses.push(inArray(entries.id, ids));
   if (status) andClauses.push(eq(entries.status, status));
   if (notebookId) andClauses.push(eq(entries.notebookId, notebookId));
+
+  if (tagIds?.length) {
+    const uniqueTagIds = [...new Set(tagIds)];
+    andClauses.push(
+      inArray(
+        entries.id,
+        db
+          .select({ id: entryTags.entryId })
+          .from(entryTags)
+          .where(inArray(entryTags.tagId, uniqueTagIds))
+          .groupBy(entryTags.entryId)
+          .having(sql`count(${entryTags.tagId}) = ${uniqueTagIds.length}`),
+      ),
+    );
+  }
+
+  if (savedOnly && ownerId) {
+    andClauses.push(
+      inArray(
+        entries.id,
+        db
+          .select({ id: savedItems.entryId })
+          .from(savedItems)
+          .where(eq(savedItems.ownerId, ownerId)),
+      ),
+    );
+  }
 
   const result = await db.query.entries.findMany({
     where: and(...andClauses),

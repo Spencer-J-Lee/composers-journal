@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { z } from "zod";
 
 import { ERROR_MESSAGES } from "@/constants/messages";
 import { dbCreateEntry } from "@/db/queries/entries/create";
@@ -39,6 +40,11 @@ export const GET = async (req: NextRequest) => {
   }
 
   try {
+    const filterParamsSchema = z.object({
+      tagIds: z.array(z.number()).optional(),
+      savedOnly: z.boolean().optional(),
+    });
+
     const schema = entrySchema
       .pick({
         status: true,
@@ -49,7 +55,8 @@ export const GET = async (req: NextRequest) => {
         notebookId: true,
       })
       .merge(commonApiParamsSchema)
-      .merge(idsOptionalSchema);
+      .merge(idsOptionalSchema)
+      .merge(filterParamsSchema);
 
     const safeParams = schema.safeParse(payload);
     if (!safeParams.success) {

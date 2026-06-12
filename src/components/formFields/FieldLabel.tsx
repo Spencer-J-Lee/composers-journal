@@ -6,6 +6,7 @@ type LabelProps = {
   htmlFor: string;
   required?: boolean;
   hasError?: boolean;
+  className?: string;
 };
 
 export const FieldLabel = ({
@@ -13,12 +14,14 @@ export const FieldLabel = ({
   htmlFor,
   required,
   hasError,
+  className,
 }: LabelProps) => {
   return (
     <label
       className={clsx(
         "mb-2 block text-xs font-bold uppercase transition-colors",
         hasError ? "text-negative-text" : "text-header-secondary",
+        className,
       )}
       htmlFor={htmlFor}
     >
