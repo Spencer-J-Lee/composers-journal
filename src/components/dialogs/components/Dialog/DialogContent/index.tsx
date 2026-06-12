@@ -101,7 +101,7 @@ export const DialogContent = ({
                   </Description>
                 )}
 
-                {description && children && <Divider className="my-5" />}
+                {children && <Divider className="my-5" />}
 
                 {children}
 

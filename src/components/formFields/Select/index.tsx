@@ -56,16 +56,13 @@ export const Select = <Option, IsMulti extends boolean = false>(
           ...base,
           padding: "0.125rem 0",
           color: "var(--color-text)",
-          fontSize: "0.875rem",
         }),
         placeholder: (base) => ({
           ...base,
-          fontSize: "0.875rem",
         }),
         singleValue: (base) => ({
           ...base,
           padding: "0.25rem 0",
-          fontSize: "0.875rem",
           color: "var(--color-text)",
         }),
 
